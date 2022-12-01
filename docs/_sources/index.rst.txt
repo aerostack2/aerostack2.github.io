@@ -38,34 +38,8 @@ Examples
 :doc:`examples`
 
 .. toctree::
-   :caption: Installation
-   :maxdepth: 2
    :hidden:
-
-   instructions
    
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: User
-    :hidden:
-
-    user
-    
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Developer
-    :hidden:
-
-    developer
-    
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Examples
-    :hidden:
-
-    examples
+   _getting_started/index.rst
     
     

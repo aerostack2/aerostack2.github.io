@@ -1,5 +1,0 @@
-Instructions
-============
-
-How to install 
---------------
