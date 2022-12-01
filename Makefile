@@ -1,20 +1,18 @@
-# Minimal makefile for Sphinx documentation
-#
+SHELL := /bin/bash
+CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 
-# You can set these variables from the command line, and also
-# from the environment for the first two.
-SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = source
-BUILDDIR      = build
+docker-images:
+	docker-compose build
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+docker-npm-build:
+	rm -f .container_id
+	docker-compose run -d sphinx_rtd_theme build > .container_id
+	docker container wait "$(shell cat .container_id)"
+	docker cp "$(shell cat .container_id):/project/sphinx_rtd_theme" .
+	docker cp "$(shell cat .container_id):/project/package-lock.json" .
+	@echo "Done building"
 
-.PHONY: help Makefile
-
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+docker-npm-dev:
+	docker-compose run sphinx_rtd_theme dev
+	
+docker-build-all: docker-images docker-npm-build
