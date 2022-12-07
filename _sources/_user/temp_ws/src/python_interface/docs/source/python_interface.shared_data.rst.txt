@@ -1,0 +1,61 @@
+python\_interface.shared\_data package
+======================================
+
+Submodules
+----------
+
+python\_interface.shared\_data.gps\_data module
+-----------------------------------------------
+
+.. automodule:: python_interface.shared_data.gps_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.shared\_data.orientation\_data module
+-------------------------------------------------------
+
+.. automodule:: python_interface.shared_data.orientation_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.shared\_data.platform\_info\_data module
+----------------------------------------------------------
+
+.. automodule:: python_interface.shared_data.platform_info_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.shared\_data.pose\_data module
+------------------------------------------------
+
+.. automodule:: python_interface.shared_data.pose_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.shared\_data.position\_data module
+----------------------------------------------------
+
+.. automodule:: python_interface.shared_data.position_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.shared\_data.twist\_data module
+-------------------------------------------------
+
+.. automodule:: python_interface.shared_data.twist_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: python_interface.shared_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

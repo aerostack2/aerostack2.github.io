@@ -1,0 +1,37 @@
+python\_interface.service\_clients package
+==========================================
+
+Submodules
+----------
+
+python\_interface.service\_clients.arming module
+------------------------------------------------
+
+.. automodule:: python_interface.service_clients.arming
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.service\_clients.offboard module
+--------------------------------------------------
+
+.. automodule:: python_interface.service_clients.offboard
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.service\_clients.service\_handler module
+----------------------------------------------------------
+
+.. automodule:: python_interface.service_clients.service_handler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: python_interface.service_clients
+   :members:
+   :undoc-members:
+   :show-inheritance:

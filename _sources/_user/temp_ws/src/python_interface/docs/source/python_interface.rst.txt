@@ -1,0 +1,32 @@
+python\_interface package
+=========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   python_interface.behaviour_actions
+   python_interface.service_clients
+   python_interface.shared_data
+   python_interface.tools
+
+Submodules
+----------
+
+python\_interface.drone\_interface module
+-----------------------------------------
+
+.. automodule:: python_interface.drone_interface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: python_interface
+   :members:
+   :undoc-members:
+   :show-inheritance:

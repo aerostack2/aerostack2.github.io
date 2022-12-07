@@ -1,0 +1,53 @@
+python\_interface.behaviour\_actions package
+============================================
+
+Submodules
+----------
+
+python\_interface.behaviour\_actions.action\_handler module
+-----------------------------------------------------------
+
+.. automodule:: python_interface.behaviour_actions.action_handler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.behaviour\_actions.followpath\_behaviour module
+-----------------------------------------------------------------
+
+.. automodule:: python_interface.behaviour_actions.followpath_behaviour
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.behaviour\_actions.gotowayp\_behaviour module
+---------------------------------------------------------------
+
+.. automodule:: python_interface.behaviour_actions.gotowayp_behaviour
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.behaviour\_actions.land\_behaviour module
+-----------------------------------------------------------
+
+.. automodule:: python_interface.behaviour_actions.land_behaviour
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.behaviour\_actions.takeoff\_behaviour module
+--------------------------------------------------------------
+
+.. automodule:: python_interface.behaviour_actions.takeoff_behaviour
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: python_interface.behaviour_actions
+   :members:
+   :undoc-members:
+   :show-inheritance:
