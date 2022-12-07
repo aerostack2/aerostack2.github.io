@@ -25,7 +25,7 @@ from sphinx.locale import _
 
 # -- Project information -----------------------------------------------------
 
-project = 'python_interface'
+project = 'Aerostack2'
 copyright = '2022, CVAR'
 author = 'CVAR'
 slug = re.sub(r'\W+', '-', project.lower())
