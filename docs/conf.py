@@ -2,6 +2,8 @@ import os
 import sys
 import re
 sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./_user/temp_ws/src/python_interface/python_interface'))
+import python_interface
 from sphinx.locale import _
 
 # Configuration file for the Sphinx documentation builder.
@@ -23,13 +25,13 @@ from sphinx.locale import _
 
 # -- Project information -----------------------------------------------------
 
-project = 'aerostack2'
+project = 'python_interface'
+copyright = '2022, CVAR'
+author = 'CVAR'
 slug = re.sub(r'\W+', '-', project.lower())
-copyright = '2022, Computer Vision and Aerial Robotics - UPM'
-author = 'aerostack2'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -53,6 +55,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+autodoc_mock_imports = ['as2_msgs', 'geographic_msgs', 'motion_reference_handlers']
 
 # -- Options for HTML output -------------------------------------------------
 

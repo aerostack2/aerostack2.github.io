@@ -41,5 +41,10 @@ Examples
    :hidden:
    
    _getting_started/index.rst
+   
+.. toctree::
+   :maxdepth: 2
+
+   _user/index.rst
     
     
