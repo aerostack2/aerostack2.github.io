@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drone_interface &mdash; python_interface 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: orange" >
+            <a href="../index.html" class="icon icon-home"> python_interface
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../_getting_started/index.html">What is Aerostack2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_getting_started/index.html#multipurpose-software-framework">Multipurpose software framework</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_user/index.html">User documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/index.html">python_interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/about.html">About</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/examples.html">Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/api.html">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html">Drone Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/modules.html">python_interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/python_interface.html">python_interface package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: orange" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">python_interface</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">drone_interface</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for drone_interface</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Python interface to easily command drones with AeroStack2.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Copyright (c) 2022 Universidad Politécnica de Madrid</span>
+<span class="c1"># All Rights Reserved</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the BSD-3-Clause (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1"># 1. Redistributions of source code must retain the above copyright notice,</span>
+<span class="c1">#    this list of conditions and the following disclaimer.</span>
+<span class="c1"># 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="c1">#    this list of conditions and the following disclaimer in the documentation</span>
+<span class="c1">#    and/or other materials provided with the distribution.</span>
+<span class="c1"># 3. Neither the name of the copyright holder nor the names of its contributors</span>
+<span class="c1">#    may be used to endorse or promote products derived from this software</span>
+<span class="c1">#    without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
+<span class="c1"># &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="c1"># THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="c1"># PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR</span>
+<span class="c1"># CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,</span>
+<span class="c1"># EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="c1"># PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;</span>
+<span class="c1"># OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="c1"># WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE</span>
+<span class="c1"># OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,</span>
+<span class="c1"># EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Miguel Fernández Cortizas, Pedro Arias Pérez, David Pérez Saura, Rafael Pérez Seguí&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">import</span> <span class="nn">rclpy.signals</span>
+<span class="kn">import</span> <span class="nn">rclpy.executors</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">qos_profile_sensor_data</span><span class="p">,</span> <span class="n">qos_profile_system_default</span>
+<span class="kn">from</span> <span class="nn">rclpy.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">NavSatFix</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span>
+<span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">TrajectoryWaypoints</span><span class="p">,</span> <span class="n">PlatformInfo</span><span class="p">,</span> <span class="n">AlertEvent</span>
+<span class="kn">from</span> <span class="nn">as2_msgs.srv</span> <span class="kn">import</span> <span class="n">SetOrigin</span><span class="p">,</span> <span class="n">GeopathToPath</span><span class="p">,</span> <span class="n">PathToGeopath</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">TwistStamped</span>
+<span class="kn">from</span> <span class="nn">geographic_msgs.msg</span> <span class="kn">import</span> <span class="n">GeoPose</span>
+<span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">motion_reference_handlers.hover_motion</span> <span class="kn">import</span> <span class="n">HoverMotion</span>
+<span class="kn">from</span> <span class="nn">motion_reference_handlers.position_motion</span> <span class="kn">import</span> <span class="n">PositionMotion</span>
+<span class="kn">from</span> <span class="nn">motion_reference_handlers.speed_motion</span> <span class="kn">import</span> <span class="n">SpeedMotion</span>
+<span class="kn">from</span> <span class="nn">motion_reference_handlers.speed_in_a_plane</span> <span class="kn">import</span> <span class="n">SpeedInAPlaneMotion</span>
+
+<span class="kn">from</span> <span class="nn">python_interface.shared_data.platform_info_data</span> <span class="kn">import</span> <span class="n">PlatformInfoData</span>
+<span class="kn">from</span> <span class="nn">python_interface.shared_data.pose_data</span> <span class="kn">import</span> <span class="n">PoseData</span>
+<span class="kn">from</span> <span class="nn">python_interface.shared_data.twist_data</span> <span class="kn">import</span> <span class="n">TwistData</span>
+<span class="kn">from</span> <span class="nn">python_interface.shared_data.gps_data</span> <span class="kn">import</span> <span class="n">GpsData</span>
+
+<span class="kn">from</span> <span class="nn">python_interface.behaviour_actions.gotowayp_behaviour</span> <span class="kn">import</span> <span class="n">SendGoToWaypoint</span>
+<span class="kn">from</span> <span class="nn">python_interface.behaviour_actions.takeoff_behaviour</span> <span class="kn">import</span> <span class="n">SendTakeoff</span>
+<span class="kn">from</span> <span class="nn">python_interface.behaviour_actions.followpath_behaviour</span> <span class="kn">import</span> <span class="n">SendFollowPath</span>
+<span class="kn">from</span> <span class="nn">python_interface.behaviour_actions.land_behaviour</span> <span class="kn">import</span> <span class="n">SendLand</span>
+
+<span class="kn">from</span> <span class="nn">python_interface.service_clients.arming</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">Disarm</span>
+<span class="kn">from</span> <span class="nn">python_interface.service_clients.offboard</span> <span class="kn">import</span> <span class="n">Offboard</span>
+
+<span class="kn">from</span> <span class="nn">python_interface.tools.utils</span> <span class="kn">import</span> <span class="n">euler_from_quaternion</span>
+
+
+<span class="n">STATE</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DISARMED&quot;</span><span class="p">,</span> <span class="s2">&quot;LANDED&quot;</span><span class="p">,</span> <span class="s2">&quot;TAKING_OFF&quot;</span><span class="p">,</span> <span class="s2">&quot;FLYING&quot;</span><span class="p">,</span> <span class="s2">&quot;LANDING&quot;</span><span class="p">,</span> <span class="s2">&quot;EMERGENCY&quot;</span><span class="p">]</span>
+<span class="n">YAW_MODE</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span> <span class="s2">&quot;YAW_ANGLE&quot;</span><span class="p">,</span> <span class="s2">&quot;YAW_SPEED&quot;</span><span class="p">]</span>
+<span class="n">CONTROL_MODE</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;UNSET&quot;</span><span class="p">,</span> <span class="s2">&quot;HOVER&quot;</span><span class="p">,</span> <span class="s2">&quot;POSITION&quot;</span><span class="p">,</span> <span class="s2">&quot;SPEED&quot;</span><span class="p">,</span> <span class="s2">&quot;SPEED_IN_A_PLANE&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ATTITUDE&quot;</span><span class="p">,</span> <span class="s2">&quot;ACRO&quot;</span><span class="p">,</span> <span class="s2">&quot;TRAJECTORY&quot;</span><span class="p">,</span> <span class="s2">&quot;ACEL&quot;</span><span class="p">]</span>
+<span class="n">REFERENCE_FRAME</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;UNDEFINED_FRAME&quot;</span><span class="p">,</span> <span class="s2">&quot;LOCAL_ENU_FRAME&quot;</span><span class="p">,</span>
+                   <span class="s2">&quot;BODY_FLU_FRAME&quot;</span><span class="p">,</span> <span class="s2">&quot;GLOBAL_ENU_FRAME&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="DroneInterface"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface">[docs]</a><span class="k">class</span> <span class="nc">DroneInterface</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Drone abstraction interface. Offers different methods to command the drone.</span>
+
+<span class="sd">    :param Node: ROS2 node where the interface will be executed</span>
+<span class="sd">    :type Node: rclpy.node.Node</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;drone0&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">use_gps</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Constructor method</span>
+
+<span class="sd">        :param drone_id: drone namespace, defaults to &quot;drone0&quot;</span>
+<span class="sd">        :type drone_id: str, optional</span>
+<span class="sd">        :param verbose: output mode, defaults to False</span>
+<span class="sd">        :type verbose: bool, optional</span>
+<span class="sd">        :param use_gps: use gps sensor, defaults to False</span>
+<span class="sd">        :type use_gps: bool, optional</span>
+<span class="sd">        :param use_sim_time: use simulation time, defaults to False</span>
+<span class="sd">        :type use_sim_time: bool, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">drone_id</span><span class="si">}</span><span class="s1">_interface&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">drone_id</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_use_sim_time</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span>
+            <span class="s1">&#39;use_sim_time&#39;</span><span class="p">,</span> <span class="n">Parameter</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">BOOL</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">param_use_sim_time</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span> <span class="o">=</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">executors</span><span class="o">.</span><span class="n">SingleThreadedExecutor</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">set_level</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">LoggingSeverity</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__info</span> <span class="o">=</span> <span class="n">PlatformInfoData</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pose</span> <span class="o">=</span> <span class="n">PoseData</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="n">TwistData</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">drone_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">drone_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">PlatformInfo</span><span class="p">,</span> <span class="s1">&#39;platform/info&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__info_callback</span><span class="p">,</span> <span class="n">qos_profile_system_default</span><span class="p">)</span>
+
+        <span class="c1"># TODO: Synchronious callbacks to pose and twist</span>
+        <span class="c1"># self.pose_sub = message_filters.Subscriber(self, PoseStamped,</span>
+        <span class="c1">#   &#39;self_localization/pose&#39;, qos_profile_sensor_data.get_c_qos_profile())</span>
+        <span class="c1"># self.twist_sub = message_filters.Subscriber(self, TwistStamped,</span>
+        <span class="c1">#   &#39;self_localization/twist&#39;, qos_profile_sensor_data.get_c_qos_profile())</span>
+
+        <span class="c1"># self._synchronizer = message_filters.ApproximateTimeSynchronizer(</span>
+        <span class="c1">#     (self.pose_sub, self.twist_sub), 5, 0.01, allow_headerless=True)</span>
+        <span class="c1"># self._synchronizer.registerCallback(self.pose_callback)</span>
+
+        <span class="c1"># State subscriber</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pose_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">PoseStamped</span><span class="p">,</span> <span class="s1">&#39;self_localization/pose&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pose_callback</span><span class="p">,</span> <span class="n">qos_profile_sensor_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">TwistStamped</span><span class="p">,</span> <span class="s1">&#39;self_localization/twist&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__twist_callback</span><span class="p">,</span> <span class="n">qos_profile_sensor_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gps_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
+            <span class="n">NavSatFix</span><span class="p">,</span> <span class="s1">&#39;sensor_measurements/gps&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gps_callback</span><span class="p">,</span> <span class="n">qos_profile_sensor_data</span><span class="p">)</span>
+
+        <span class="n">translator_namespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_to_local_cli_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+            <span class="n">GeopathToPath</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">translator_namespace</span><span class="si">}</span><span class="s2">/geopath_to_path&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_to_global_cli_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+            <span class="n">PathToGeopath</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">translator_namespace</span><span class="si">}</span><span class="s2">/path_to_geopath&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+            <span class="n">SetBool</span><span class="p">,</span> <span class="s2">&quot;traj_gen/run_node&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Trajectory generator service not found&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_gps</span> <span class="o">=</span> <span class="n">use_gps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gps</span> <span class="o">=</span> <span class="n">GpsData</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_gps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_origin_cli_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+                <span class="n">SetOrigin</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">translator_namespace</span><span class="si">}</span><span class="s2">/set_origin&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_origin_cli_</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Set Origin not ready&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_motion_handler</span> <span class="o">=</span> <span class="n">HoverMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position_motion_handler</span> <span class="o">=</span> <span class="n">PositionMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_motion_handler</span> <span class="o">=</span> <span class="n">SpeedMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed_in_a_plane_motion_handler</span> <span class="o">=</span> <span class="n">SpeedInAPlaneMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">alert_pub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span>
+            <span class="n">AlertEvent</span><span class="p">,</span> <span class="s2">&quot;alert_event&quot;</span><span class="p">,</span> <span class="n">qos_profile_system_default</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spin_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__auto_spin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spin_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">drone_id</span><span class="si">}</span><span class="s1"> interface initialized&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__shutdown</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">drone_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get drone id (namespace).</span>
+
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Get drone info.</span>
+
+<span class="sd">        :rtype: Dict[str, Union[bool, str]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_info</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;connected&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;armed&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;offboard&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">STATE</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="s2">&quot;yaw_mode&quot;</span><span class="p">:</span> <span class="n">YAW_MODE</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+                <span class="s2">&quot;control_mode&quot;</span><span class="p">:</span> <span class="n">CONTROL_MODE</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="mi">5</span><span class="p">]],</span> <span class="s2">&quot;reference_frame&quot;</span><span class="p">:</span> <span class="n">REFERENCE_FRAME</span><span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="mi">6</span><span class="p">]]}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get drone position (x, y, z) in m.</span>
+
+<span class="sd">        :rtype: List[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get drone orientation (roll, pitch, yaw) in rad.</span>
+
+<span class="sd">        :rtype: List[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get drone speed (vx, vy, vz) in m/s.</span>
+
+<span class="sd">        :rtype: List[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gps_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get GPS position (lat, lon, alt) in deg and m.</span>
+
+<span class="sd">        :rtype: List[float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gps</span><span class="o">.</span><span class="n">fix</span>
+
+    <span class="k">def</span> <span class="nf">__info_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PlatformInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;platform info callback&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__info</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">connected</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">armed</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">offboard</span><span class="p">),</span> <span class="n">msg</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
+                            <span class="n">msg</span><span class="o">.</span><span class="n">current_control_mode</span><span class="o">.</span><span class="n">yaw_mode</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">current_control_mode</span><span class="o">.</span><span class="n">control_mode</span><span class="p">,</span>
+                            <span class="n">msg</span><span class="o">.</span><span class="n">current_control_mode</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__info</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">__pose_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose_msg</span><span class="p">:</span> <span class="n">PoseStamped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;pose stamped callback&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">[</span><span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                              <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                              <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="o">*</span><span class="n">euler_from_quaternion</span><span class="p">(</span>
+                <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">z</span><span class="p">,</span>
+                <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">__twist_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">twist_msg</span><span class="p">:</span> <span class="n">TwistStamped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;twist stamped callback&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                            <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                            <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__gps_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">NavSatFix</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;navdata (gps) callback&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gps</span><span class="o">.</span><span class="n">fix</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">altitude</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__set_home</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gps_pose_</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set home origin&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_origin_cli_</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;GPS service not available&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">req</span> <span class="o">=</span> <span class="n">SetOrigin</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+        <span class="n">req</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">gps_pose_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">req</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">gps_pose_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">req</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">gps_pose_</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_origin_cli_</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Origin already set&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DroneInterface.arm"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.arm">[docs]</a>    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Arm drone.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">Arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.disarm"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.disarm">[docs]</a>    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Disarm drone.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.offboard"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.offboard">[docs]</a>    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Enable offboard mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.takeoff"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.takeoff">[docs]</a>    <span class="k">def</span> <span class="nf">takeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Takeoff to given height (m) and given speed (m/s).</span>
+
+<span class="sd">        :type height: float</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_gps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__set_home</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gps_pose</span><span class="p">)</span>
+
+        <span class="n">SendTakeoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DroneInterface.land"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.land">[docs]</a>    <span class="k">def</span> <span class="nf">land</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Land with given speed (m/s).</span>
+
+<span class="sd">        :type speed: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">SendLand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">__go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">is_gps</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_gps</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">GeoPose</span><span class="p">()</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_x</span><span class="p">)</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_y</span><span class="p">)</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_z</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_x</span><span class="p">)</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_y</span><span class="p">)</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_z</span><span class="p">)</span>
+        <span class="n">SendGoToWaypoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">)</span>
+
+    <span class="c1"># TODO: ignore_yaw</span>
+<div class="viewcode-block" id="DroneInterface.go_to"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.go_to">[docs]</a>    <span class="k">def</span> <span class="nf">go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Go to point (m) with speed (m/s).</span>
+
+<span class="sd">        :type _x: float</span>
+<span class="sd">        :type _y: float</span>
+<span class="sd">        :type _z: float</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :type ignore_yaw: bool, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">,</span> <span class="n">is_gps</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: ignore_yaw</span>
+<div class="viewcode-block" id="DroneInterface.go_to_point"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.go_to_point">[docs]</a>    <span class="k">def</span> <span class="nf">go_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+                    <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Go to point (m) with speed (m/s).</span>
+
+<span class="sd">        :type point: List[float]</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :type ignore_yaw: bool, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                     <span class="n">speed</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">,</span> <span class="n">is_gps</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: ignore_yaw</span>
+<div class="viewcode-block" id="DroneInterface.go_to_gps"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.go_to_gps">[docs]</a>    <span class="k">def</span> <span class="nf">go_to_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                  <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Go to GPS point (deg, m) with speed (m/s).</span>
+
+<span class="sd">        :type lat: float</span>
+<span class="sd">        :type lon: float</span>
+<span class="sd">        :type alt: float</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :type ignore_yaw: bool, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">,</span> <span class="n">is_gps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: ignore_yaw</span>
+<div class="viewcode-block" id="DroneInterface.go_to_gps_point"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.go_to_gps_point">[docs]</a>    <span class="k">def</span> <span class="nf">go_to_gps_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+                        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Go to GPS point (deg, m) with speed (m/s).</span>
+
+<span class="sd">        :type waypoint: List[float]</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :type ignore_yaw: bool, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                     <span class="n">speed</span><span class="p">,</span> <span class="n">ignore_yaw</span><span class="p">,</span> <span class="n">is_gps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__follow_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">is_gps</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">path_data</span> <span class="o">=</span> <span class="n">SendFollowPath</span><span class="o">.</span><span class="n">FollowPathData</span><span class="p">(</span>
+            <span class="n">path</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">is_gps</span><span class="p">)</span>
+        <span class="n">SendFollowPath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DroneInterface.follow_path"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.follow_path">[docs]</a>    <span class="k">def</span> <span class="nf">follow_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                    <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">TrajectoryWaypoints</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Follow path with speed (m/s) and yaw_mode.</span>
+
+<span class="sd">        :type path: Path</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :param yaw_mode: yaw_mode, defaults to TrajectoryWaypoints.KEEP_YAW</span>
+<span class="sd">        :type yaw_mode: int, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.follow_gps_path"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.follow_gps_path">[docs]</a>    <span class="k">def</span> <span class="nf">follow_gps_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                        <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">TrajectoryWaypoints</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Follow GPS path with speed (m/s) and yaw_mode.</span>
+
+<span class="sd">        :type path: Path</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :param yaw_mode: yaw_mode, defaults to TrajectoryWaypoints.KEEP_YAW</span>
+<span class="sd">        :type yaw_mode: int, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_path</span><span class="p">(</span><span class="n">wp_path</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">is_gps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.emergency_stop"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.emergency_stop">[docs]</a>    <span class="k">def</span> <span class="nf">emergency_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Kill switch. BE CAREFUL, motors will stop!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">emergency_stop_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DroneInterface.hover"><a class="viewcode-back" href="../_user/temp_ws/src/python_interface/docs/source/drone_interface.html#drone_interface.DroneInterface.hover">[docs]</a>    <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stop and hover current position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calling trajectory generator&quot;</span><span class="p">)</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">SetBool</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+            <span class="n">req</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Cannot stop trajectory generator&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hover_motion_handler</span><span class="o">.</span><span class="n">send_hover</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Hover sent&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: replace with executor callbacks</span>
+    <span class="k">def</span> <span class="nf">__auto_spin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Drone inner spin&quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">ok</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span><span class="o">.</span><span class="n">spin_once</span><span class="p">()</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Shutdown properly&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_sub</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pose_sub</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gps_sub</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_gps</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">set_origin_cli_</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_to_local_cli_</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_to_global_cli_</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">spin_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Clean exit&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, CVAR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

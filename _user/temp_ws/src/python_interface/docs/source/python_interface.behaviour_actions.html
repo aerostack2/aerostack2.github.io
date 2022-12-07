@@ -102,20 +102,126 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="python-interface-behaviour-actions-action-handler-module">
-<h2>python_interface.behaviour_actions.action_handler module<a class="headerlink" href="#python-interface-behaviour-actions-action-handler-module" title="Permalink to this heading"></a></h2>
+<section id="module-python_interface.behaviour_actions.action_handler">
+<span id="python-interface-behaviour-actions-action-handler-module"></span><h2>python_interface.behaviour_actions.action_handler module<a class="headerlink" href="#module-python_interface.behaviour_actions.action_handler" title="Permalink to this heading"></a></h2>
+<p>Action handler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_interface.behaviour_actions.action_handler.</span></span><span class="sig-name descname"><span class="pre">ActionHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ActionClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/action_handler.html#ActionHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Action handler</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler.ActionNotAvailable">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionNotAvailable</span></span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/action_handler.html#ActionHandler.ActionNotAvailable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler.ActionNotAvailable" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Action not available exception</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler.GoalFailed">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoalFailed</span></span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/action_handler.html#ActionHandler.GoalFailed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler.GoalFailed" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Goal failed exception</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler.GoalRejected">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoalRejected</span></span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/action_handler.html#ActionHandler.GoalRejected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler.GoalRejected" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Goal rejected exception</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler.TIMEOUT">
+<span class="sig-name descname"><span class="pre">TIMEOUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler.TIMEOUT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.action_handler.ActionHandler.feedback_callback">
+<span class="sig-name descname"><span class="pre">feedback_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feedback_msg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/action_handler.html#ActionHandler.feedback_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.action_handler.ActionHandler.feedback_callback" title="Permalink to this definition"></a></dt>
+<dd><p>feedback callback</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="python-interface-behaviour-actions-followpath-behaviour-module">
-<h2>python_interface.behaviour_actions.followpath_behaviour module<a class="headerlink" href="#python-interface-behaviour-actions-followpath-behaviour-module" title="Permalink to this heading"></a></h2>
+<section id="module-python_interface.behaviour_actions.followpath_behaviour">
+<span id="python-interface-behaviour-actions-followpath-behaviour-module"></span><h2>python_interface.behaviour_actions.followpath_behaviour module<a class="headerlink" href="#module-python_interface.behaviour_actions.followpath_behaviour" title="Permalink to this heading"></a></h2>
+<p>Follow path action handler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_interface.behaviour_actions.followpath_behaviour.</span></span><span class="sig-name descname"><span class="pre">SendFollowPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="drone_interface.html#drone_interface.DroneInterface" title="drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">as2_msgs.msg.TrajectoryWaypoints</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/followpath_behaviour.html#SendFollowPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_interface.behaviour_actions.action_handler.ActionHandler" title="python_interface.behaviour_actions.action_handler.ActionHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionHandler</span></code></a></p>
+<p>Send follow path action</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FollowPathData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">as2_msgs.msg.TrajectoryWaypoints.yaw_mode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">as2_msgs.msg.TrajectoryWaypoints.KEEP_YAW</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_gps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/followpath_behaviour.html#SendFollowPath.FollowPathData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Follow Path Data</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.is_gps">
+<span class="sig-name descname"><span class="pre">is_gps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.is_gps" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.path">
+<span class="sig-name descname"><span class="pre">path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.speed">
+<span class="sig-name descname"><span class="pre">speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.FollowPathData.speed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.get_traj">
+<span class="sig-name descname"><span class="pre">get_traj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">as2_msgs.msg.TrajectoryWaypoints</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/followpath_behaviour.html#SendFollowPath.get_traj"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.get_traj" title="Permalink to this definition"></a></dt>
+<dd><p>get trajectory msg</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="python-interface-behaviour-actions-gotowayp-behaviour-module">
-<h2>python_interface.behaviour_actions.gotowayp_behaviour module<a class="headerlink" href="#python-interface-behaviour-actions-gotowayp-behaviour-module" title="Permalink to this heading"></a></h2>
+<section id="module-python_interface.behaviour_actions.gotowayp_behaviour">
+<span id="python-interface-behaviour-actions-gotowayp-behaviour-module"></span><h2>python_interface.behaviour_actions.gotowayp_behaviour module<a class="headerlink" href="#module-python_interface.behaviour_actions.gotowayp_behaviour" title="Permalink to this heading"></a></h2>
+<p>Goto action handler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_interface.behaviour_actions.gotowayp_behaviour.</span></span><span class="sig-name descname"><span class="pre">SendGoToWaypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="drone_interface.html#drone_interface.DroneInterface" title="drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PoseStamped</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPoseStamped</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_pose_yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/gotowayp_behaviour.html#SendGoToWaypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_interface.behaviour_actions.action_handler.ActionHandler" title="python_interface.behaviour_actions.action_handler.ActionHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionHandler</span></code></a></p>
+<p>Go to action</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint.get_pose">
+<span class="sig-name descname"><span class="pre">get_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PoseStamped</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPoseStamped</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/gotowayp_behaviour.html#SendGoToWaypoint.get_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint.get_pose" title="Permalink to this definition"></a></dt>
+<dd><p>get pose msg</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="python-interface-behaviour-actions-land-behaviour-module">
-<h2>python_interface.behaviour_actions.land_behaviour module<a class="headerlink" href="#python-interface-behaviour-actions-land-behaviour-module" title="Permalink to this heading"></a></h2>
+<section id="module-python_interface.behaviour_actions.land_behaviour">
+<span id="python-interface-behaviour-actions-land-behaviour-module"></span><h2>python_interface.behaviour_actions.land_behaviour module<a class="headerlink" href="#module-python_interface.behaviour_actions.land_behaviour" title="Permalink to this heading"></a></h2>
+<p>Land action handler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.land_behaviour.SendLand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_interface.behaviour_actions.land_behaviour.</span></span><span class="sig-name descname"><span class="pre">SendLand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="drone_interface.html#drone_interface.DroneInterface" title="drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/land_behaviour.html#SendLand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.land_behaviour.SendLand" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_interface.behaviour_actions.action_handler.ActionHandler" title="python_interface.behaviour_actions.action_handler.ActionHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionHandler</span></code></a></p>
+<p>Land action</p>
+</dd></dl>
+
 </section>
-<section id="python-interface-behaviour-actions-takeoff-behaviour-module">
-<h2>python_interface.behaviour_actions.takeoff_behaviour module<a class="headerlink" href="#python-interface-behaviour-actions-takeoff-behaviour-module" title="Permalink to this heading"></a></h2>
+<section id="module-python_interface.behaviour_actions.takeoff_behaviour">
+<span id="python-interface-behaviour-actions-takeoff-behaviour-module"></span><h2>python_interface.behaviour_actions.takeoff_behaviour module<a class="headerlink" href="#module-python_interface.behaviour_actions.takeoff_behaviour" title="Permalink to this heading"></a></h2>
+<p>Takeoff action handler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_interface.behaviour_actions.takeoff_behaviour.SendTakeoff">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_interface.behaviour_actions.takeoff_behaviour.</span></span><span class="sig-name descname"><span class="pre">SendTakeoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="drone_interface.html#drone_interface.DroneInterface" title="drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/python_interface/behaviour_actions/takeoff_behaviour.html#SendTakeoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_interface.behaviour_actions.takeoff_behaviour.SendTakeoff" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#python_interface.behaviour_actions.action_handler.ActionHandler" title="python_interface.behaviour_actions.action_handler.ActionHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionHandler</span></code></a></p>
+<p>Takeoff action</p>
+</dd></dl>
+
 </section>
 <section id="module-python_interface.behaviour_actions">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-python_interface.behaviour_actions" title="Permalink to this heading"></a></h2>
