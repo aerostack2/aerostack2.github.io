@@ -23,19 +23,19 @@ Installation
 User
 ====
 
-:doc:`user`
+:doc:`_user/index.rst`
 
 
 Developer
 =========
 
-:doc:`developer`
+:doc:`_developer/index.rst`
 
 
 Examples
 =========
 
-:doc:`examples`
+:doc:`_examples/index.rst`
 
 .. toctree::
    :hidden:
@@ -46,5 +46,10 @@ Examples
    :maxdepth: 2
 
    _user/index.rst
+   
+.. toctree::
+   :maxdepth: 2
+
+   _developer/index.rst
     
     
