@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Aerostack2 1.0 documentation</title>
+  <title>License agreement &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -39,7 +39,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">License agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#release-installation">Release installation</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../_user/index.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/index.html">python_interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_user/temp_ws/src/python_interface/docs/source/about.html">About</a><ul class="simple">
@@ -68,6 +74,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/index.html">Examples</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+</ul>
 
         </div>
       </div>
@@ -83,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">License agreement</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_installation/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,75 +102,100 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>## License agreement</p>
+  <section id="license-agreement">
+<h1>License agreement<a class="headerlink" href="#license-agreement" title="Permalink to this heading"></a></h1>
 <p>Before the installation, you must [read and accept the conditions defined by the software license](<a class="reference external" href="https://github.com/aerostack/install/wiki/License">https://github.com/aerostack/install/wiki/License</a>)</p>
-<p>## Previous dependencies
-Make sure to have installed ROS2 via Debian Packages [[Galactic]](<a class="reference external" href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html">https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html</a>).</p>
-<p>For simulation install Ignition Fortress -&gt; <a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">https://gazebosim.org/docs/fortress/install_ubuntu</a></p>
-<p>## Installation</p>
-<p>&gt; For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run <code class="docutils literal notranslate"><span class="pre">`$</span> <span class="pre">source</span> <span class="pre">/opt/ros/&lt;your</span> <span class="pre">distro&gt;/setup.bash`</span></code> before running these steps.</p>
+</section>
+<section id="previous-dependencies">
+<h1>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h1>
+<p>Make sure to have installed ROS2 via Debian Packages <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a></p>
+<p>For simulation install <a href="#id1"><span class="problematic" id="id2">`Ignition Fortress&lt;https://gazebosim.org/docs/fortress/install_ubuntu&gt;`_</span></a></p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ source /opt/ros/&lt;your distro&gt;/setup.bash</p>
+<p>before running these steps.</p>
 <ul class="simple">
-<li><p>Create a AS2 workspace:</p></li>
+<li><p>Item 1. Create a AS2 workspace:</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">${HOME}/aerostack2_ws/src/</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">${HOME}/aerostack2_ws/src/</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ mkdir -p ${HOME}/aerostack2_ws/src/ &amp;&amp; cd ${HOME}/aerostack2_ws/src/</p>
 <ul class="simple">
-<li><p>Clone AS2 repository:</p></li>
+<li><p>Item 2. Clone AS2 repository:</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/aerostack2/aerostack2.git</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ git clone <a class="reference external" href="https://github.com/aerostack2/aerostack2.git">https://github.com/aerostack2/aerostack2.git</a></p>
 <ul class="simple">
-<li><p>Install core dependencies:</p></li>
+<li><p>Item 3. Install core dependencies:</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span>
-<span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">tmux</span> <span class="pre">python3-vcstool</span> <span class="pre">python3-rosdep</span> <span class="pre">python3-pip</span> <span class="pre">python3-colcon-common-extensions</span> <span class="pre">-y</span>
-<span class="pre">sudo</span> <span class="pre">rosdep</span> <span class="pre">init</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ sudo apt update
+$ sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
+$ sudo rosdep init</p>
 <ul class="simple">
-<li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
+<li><p>Item 4. Set environment vars (or add them to the ~/.bashrc file):</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">echo</span> <span class="pre">'export</span> <span class="pre">AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2'</span> <span class="pre">&gt;&gt;</span> <span class="pre">$HOME/.bashrc</span>
-<span class="pre">echo</span> <span class="pre">'source</span> <span class="pre">$AEROSTACK2_PATH/scripts/setup_env.bash'</span> <span class="pre">&gt;&gt;</span> <span class="pre">$HOME/.bashrc</span>
-<span class="pre">`</span></code></p>
-<p>## Release installation
-Open a new terminal or update current shell with <code class="docutils literal notranslate"><span class="pre">`$</span> <span class="pre">source</span> <span class="pre">~/.bashrc`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ echo ‘export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2’ &gt;&gt; $HOME/.bashrc
+$ echo ‘source $AEROSTACK2_PATH/scripts/setup_env.bash’ &gt;&gt; $HOME/.bashrc</p>
+</section>
+<section id="release-installation">
+<h1>Release installation<a class="headerlink" href="#release-installation" title="Permalink to this heading"></a></h1>
+<p>Open a new terminal or update current shell with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ source ~/.bashrc</p>
 <ul>
-<li><dl>
-<dt>Download repositories (from project or source release):</dt><dd><ul class="simple">
-<li><p>From source release:</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">cd</span> <span class="pre">$AEROSTACK2_PATH</span>
-<span class="pre">vcs</span> <span class="pre">import</span> <span class="pre">--recursive</span> <span class="pre">&lt;</span> <span class="pre">./installers/as2_beta_beetroot.repos</span>
-<span class="pre">`</span></code></p>
-<ul class="simple">
-<li><p>From project:</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">#</span> <span class="pre">e.g.</span> <span class="pre">install</span> <span class="pre">mbzirc</span> <span class="pre">project</span> <span class="pre">(&quot;as2</span> <span class="pre">project</span> <span class="pre">-l&quot;</span> <span class="pre">to</span> <span class="pre">list</span> <span class="pre">available</span> <span class="pre">projects)</span>
-<span class="pre">as2</span> <span class="pre">project</span> <span class="pre">-n</span> <span class="pre">mbzirc</span>
-<span class="pre">`</span></code></p>
-</dd>
-</dl>
+<li><p>Item 1. Download repositories (from project or source release):</p>
+<ul>
+<li><p>Item a. From source release:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="nv">$AEROSTACK2_PATH</span>
+$ vcs import --recursive &lt; ./installers/as2_beta_beetroot.repos
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><p>Install dependencies:</p></li>
+<li><p>Item b. From project (e.g.):</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 install mbzirc project
+$ as2 project -n mbzirc
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">cd</span> <span class="pre">${HOME}/aerostack2_ws</span>
-<span class="pre">rosdep</span> <span class="pre">update</span>
-<span class="pre">rosdep</span> <span class="pre">install</span> <span class="pre">--from-paths</span> <span class="pre">src</span> <span class="pre">--ignore-src</span> <span class="pre">-r</span> <span class="pre">-y</span>
-<span class="pre">`</span></code></p>
+</li>
+<li><p>Item 2. Install dependencies:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ cd ${HOME}/aerostack2_ws
+$ rosdep update
+$ rosdep install –from-paths src –ignore-src -r -y</p>
 <ul class="simple">
-<li><p>Build:</p></li>
+<li><p>Item 3. Build:</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">as2</span> <span class="pre">build</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>$ as2 build</p>
 <p>More information on how to run each project can be found in the README.md located on each project folder.</p>
+</section>
 
 
            </div>
