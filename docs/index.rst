@@ -12,13 +12,10 @@ Aerostack framework.
 Installation
 ============
 
-:doc:`instructions`
+.. toctree::
+   :maxdepth: 2
 
-:ref:`supported-os`
-    Supportedoperating system.
-
-:ref:`supported-dependencies`
-    Supported project dependencies.
+   _installation/index.rst
     
 User
 ====
