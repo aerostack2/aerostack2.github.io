@@ -1,90 +1,22 @@
-License agreement
-=================
+Installation Instructions
+=========================
 
-Before the installation, you must [read and accept the conditions defined by the software license](https://github.com/aerostack/install/wiki/License)
+.. toctree::
+   :maxdepth: 2
 
-Previous dependencies
-=====================
+   license_agreement.rst
 
-Make sure to have installed ROS2 via Debian Packages `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`_
+.. toctree::
+   :maxdepth: 2
 
-For simulation install `Ignition Fortress<https://gazebosim.org/docs/fortress/install_ubuntu>`_
+   previous_dependencies.rst
 
-Installation
-============
+.. toctree::
+   :maxdepth: 2
 
-For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run 
+   installation.rst
 
-.. code-block:: bash
+.. toctree::
+   :maxdepth: 2
 
-$ source /opt/ros/<your distro>/setup.bash
-
-before running these steps.
-
-* Item 1. Create a AS2 workspace:
-
-.. code-block:: bash
-
-$ mkdir -p ${HOME}/aerostack2_ws/src/ && cd ${HOME}/aerostack2_ws/src/
-
-* Item 2. Clone AS2 repository:
-
-.. code-block:: bash
-
-$ git clone https://github.com/aerostack2/aerostack2.git
-
-* Item 3. Install core dependencies:
-
-.. code-block:: bash
-
-$ sudo apt update
-$ sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
-$ sudo rosdep init
-
-* Item 4. Set environment vars (or add them to the ~/.bashrc file):
-
-.. code-block:: bash
-
-$ echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
-$ echo 'source $AEROSTACK2_PATH/scripts/setup_env.bash' >> $HOME/.bashrc
-
-
-Release installation
-====================
-
-Open a new terminal or update current shell with:
-
-.. code-block:: bash
-$ source ~/.bashrc
-
-* Item 1. Download repositories (from project or source release):
-
-  * Item a. From source release:
-  
-  	.. code-block:: bash
-  	
-         $ cd $AEROSTACK2_PATH
-         $ vcs import --recursive < ./installers/as2_beta_beetroot.repos
-         
-  * Item b. From project (e.g.):
-
-  	.. code-block:: bash
-  	
-         $ as2 install mbzirc project
-         $ as2 project -n mbzirc
-
-* Item 2. Install dependencies:
-
-.. code-block:: bash
-
-$ cd ${HOME}/aerostack2_ws
-$ rosdep update
-$ rosdep install --from-paths src --ignore-src -r -y
-
-* Item 3. Build:
-
-.. code-block:: bash
-
-$ as2 build
-
-More information on how to run each project can be found in the README.md located on each project folder.
+   release_installation.rst
