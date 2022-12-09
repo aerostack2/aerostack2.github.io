@@ -8,7 +8,6 @@ Welcome to Aerostack2's documentation!
 
 Aerostack framework.
 
-
 Installation
 ============
 
@@ -41,4 +40,11 @@ Examples
 .. toctree::
    :maxdepth: 2
 
-   _examples/index.rst    
+   _examples/index.rst
+   
+License
+=======
+.. toctree::
+   :maxdepth: 2
+
+   _license/index.rst
