@@ -109,6 +109,9 @@
   <section id="release-installation">
 <h1>Release installation<a class="headerlink" href="#release-installation" title="Permalink to this heading"></a></h1>
 <p>Open a new terminal or update current shell with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
 <ul>
 <li><p>Download repositories (from project or source release):</p>
 <ul>
@@ -132,9 +135,17 @@ $ as2 project -n mbzirc
 </li>
 <li><p>Install dependencies:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws
+$ rosdep update
+$ rosdep install --from-paths src --ignore-src -r -y
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Build:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 build
+</pre></div>
+</div>
 <p>More information on how to run each project can be found in the README.md located on each project folder.</p>
 </section>
 

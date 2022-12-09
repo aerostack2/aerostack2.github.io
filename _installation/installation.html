@@ -109,19 +109,37 @@
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> /opt/ros/&lt;your distro&gt;/setup.bash
+</pre></div>
+</div>
 <p>before running these steps.</p>
 <ul class="simple">
 <li><p>Create a AS2 workspace:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Clone AS2 repository:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/aerostack2/aerostack2.git
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Install core dependencies:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
+$ sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
+$ sudo rosdep init
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.bashrc
+$ <span class="nb">echo</span> <span class="s1">&#39;source $AEROSTACK2_PATH/scripts/setup_env.bash&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.bashrc
+</pre></div>
+</div>
 </section>
 
 
