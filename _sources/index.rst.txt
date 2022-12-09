@@ -6,7 +6,14 @@
 Welcome to Aerostack2's documentation!
 ======================================
 
-Aerostack framework.
+Getting started
+===============
+
+.. toctree::
+   :maxdepth: 2
+
+   _getting_started/index.rst
+
 
 Installation
 ============
