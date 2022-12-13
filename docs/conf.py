@@ -59,6 +59,14 @@ autodoc_mock_imports = ['as2_msgs', 'geographic_msgs', 'motion_reference_handler
 
 # -- Options for HTML output -------------------------------------------------
 
+html_context = {
+    "display_github": True, # Integrate GitHub
+    "github_user": "aerostack2", # Username
+    "github_repo": "aerostack2.github.io", # Repo name
+    "github_version": "main", # Version
+    "conf_py_path": "/docs/", # Path in the checkout to the docs root
+}
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
@@ -84,7 +92,7 @@ else:
         'logo_only': False,
         'display_version': True,
         'prev_next_buttons_location': 'None',
-        'style_nav_header_background': 'orange',
+        'style_nav_header_background': 'blue',
         # Toc options
         'collapse_navigation': False,
         'sticky_navigation': True,
