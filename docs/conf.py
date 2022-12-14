@@ -62,6 +62,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 autodoc_mock_imports = ['as2_msgs', 'geographic_msgs', 'motion_reference_handlers']
 
+autodoc_default_options = {'autosummary': True}
+
 # -- Options for HTML output -------------------------------------------------
 
 html_context = {
