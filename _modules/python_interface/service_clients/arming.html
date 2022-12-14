@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -155,14 +154,16 @@
 <span class="kn">from</span> <span class="nn">..service_clients.service_handler</span> <span class="kn">import</span> <span class="n">ServiceHandler</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
+    <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
 
 <div class="viewcode-block" id="Arm"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.service_clients.html#python_interface.service_clients.arming.Arm">[docs]</a><span class="k">class</span> <span class="nc">Arm</span><span class="p">(</span><span class="n">ServiceHandler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Arming service handler class&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_service_client</span> <span class="o">=</span> <span class="n">drone</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">SetBool</span><span class="p">,</span> <span class="s1">&#39;set_arming_state&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_service_client</span> <span class="o">=</span> <span class="n">drone</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+                <span class="n">SetBool</span><span class="p">,</span> <span class="s1">&#39;set_arming_state&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Set_arming_state not available&#39;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">ex</span>
@@ -179,6 +180,7 @@
 
 <div class="viewcode-block" id="Disarm"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.service_clients.html#python_interface.service_clients.arming.Disarm">[docs]</a><span class="k">class</span> <span class="nc">Disarm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Disarming service handler&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 </pre></div>

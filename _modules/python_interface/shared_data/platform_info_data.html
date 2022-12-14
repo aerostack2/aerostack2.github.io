@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -151,39 +150,59 @@
 
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">PlatformStatus</span>
+<span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">ControlMode</span>
+
 
 <span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 
+
 <div class="viewcode-block" id="lock_decor"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.shared_data.html#python_interface.shared_data.platform_info_data.lock_decor">[docs]</a><span class="k">def</span> <span class="nf">lock_decor</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;locker decorator&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrapper</span></div>
 
 
-<span class="c1"># TODO: change to dataclass</span>
-<div class="viewcode-block" id="PlatformInfoData"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.shared_data.html#python_interface.shared_data.platform_info_data.PlatformInfoData">[docs]</a><span class="k">class</span> <span class="nc">PlatformInfoData</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Platform info [connected armed offboard state yaw_mode control_mode reference_frame]&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="viewcode-block" id="PlatformInfoData"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.shared_data.html#python_interface.shared_data.platform_info_data.PlatformInfoData">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">PlatformInfoData</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Platform info&quot;&quot;&quot;</span>
+    <span class="n">__connected</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">__armed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">__offboard</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">__state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">PlatformStatus</span><span class="o">.</span><span class="n">DISARMED</span><span class="p">)</span>
+    <span class="n">__yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ControlMode</span><span class="o">.</span><span class="n">NONE</span><span class="p">)</span>
+    <span class="n">__control_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ControlMode</span><span class="o">.</span><span class="n">UNSET</span><span class="p">)</span>
+    <span class="n">__reference_frame</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ControlMode</span><span class="o">.</span><span class="n">UNDEFINED_FRAME</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">bool</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
 <span class="s2">                 </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s2">]&quot;</span>
 
     <span class="nd">@property</span>
     <span class="nd">@lock_decor</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;locked getter&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__connected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__armed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__offboard</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__yaw_mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__control_mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reference_frame</span><span class="p">]</span>
 
     <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
     <span class="nd">@lock_decor</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dat</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;locked setter&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span> <span class="o">=</span> <span class="n">dat</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__connected</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__armed</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__offboard</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__yaw_mode</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__control_mode</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__reference_frame</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

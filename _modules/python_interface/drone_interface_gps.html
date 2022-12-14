@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>python_interface.drone_interface &mdash; Aerostack2 1.0 documentation</title>
+  <title>python_interface.drone_interface_gps &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -99,7 +99,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">python_interface.drone_interface</li>
+      <li class="breadcrumb-item active">python_interface.drone_interface_gps</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -108,8 +108,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for python_interface.drone_interface</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Drone interface to easily command drones with AeroStack2.</span>
+  <h1>Source code for python_interface.drone_interface_gps</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Drone interface GPS to easily command drones with AeroStack2.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright (c) 2022 Universidad Politécnica de Madrid</span>
@@ -149,12 +149,12 @@
 
 <span class="kn">from</span> <span class="nn">python_interface.drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 <span class="kn">from</span> <span class="nn">python_interface.modules.takeoff_module</span> <span class="kn">import</span> <span class="n">TakeoffModule</span>
-<span class="kn">from</span> <span class="nn">python_interface.modules.goto_module</span> <span class="kn">import</span> <span class="n">GotoModule</span>
-<span class="kn">from</span> <span class="nn">python_interface.modules.follow_path_module</span> <span class="kn">import</span> <span class="n">FollowPathModule</span>
+<span class="kn">from</span> <span class="nn">python_interface.modules.goto_gps_module</span> <span class="kn">import</span> <span class="n">GotoGpsModule</span>
+<span class="kn">from</span> <span class="nn">python_interface.modules.follow_path_gps_module</span> <span class="kn">import</span> <span class="n">FollowPathGpsModule</span>
 <span class="kn">from</span> <span class="nn">python_interface.modules.land_module</span> <span class="kn">import</span> <span class="n">LandModule</span>
 
 
-<div class="viewcode-block" id="DroneInterface"><a class="viewcode-back" href="../../_user/temp_ws/src/python_interface/docs/source/python_interface.html#python_interface.drone_interface.DroneInterface">[docs]</a><span class="k">class</span> <span class="nc">DroneInterface</span><span class="p">(</span><span class="n">DroneInterfaceBase</span><span class="p">):</span>
+<div class="viewcode-block" id="DroneInterfaceGPS"><a class="viewcode-back" href="../../_user/temp_ws/src/python_interface/docs/source/python_interface.html#python_interface.drone_interface_gps.DroneInterfaceGPS">[docs]</a><span class="k">class</span> <span class="nc">DroneInterfaceGPS</span><span class="p">(</span><span class="n">DroneInterfaceBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Drone interface node&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;drone0&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -171,8 +171,8 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone_id</span><span class="o">=</span><span class="n">drone_id</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="o">=</span><span class="n">use_sim_time</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">takeoff</span> <span class="o">=</span> <span class="n">TakeoffModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">goto</span> <span class="o">=</span> <span class="n">GotoModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">follow_path</span> <span class="o">=</span> <span class="n">FollowPathModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goto</span> <span class="o">=</span> <span class="n">GotoGpsModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">follow_path</span> <span class="o">=</span> <span class="n">FollowPathGpsModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">land</span> <span class="o">=</span> <span class="n">LandModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
 </pre></div>
 

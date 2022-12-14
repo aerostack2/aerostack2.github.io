@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -155,45 +154,48 @@
 
 <span class="kn">from</span> <span class="nn">as2_msgs.action</span> <span class="kn">import</span> <span class="n">GoToWaypoint</span>
 <span class="kn">from</span> <span class="nn">as2_msgs.srv</span> <span class="kn">import</span> <span class="n">GeopathToPath</span>
+<span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">YawMode</span>
 <span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">Pose</span>
 <span class="kn">from</span> <span class="nn">geographic_msgs.msg</span> <span class="kn">import</span> <span class="n">GeoPoseStamped</span><span class="p">,</span> <span class="n">GeoPose</span>
 
 <span class="kn">from</span> <span class="nn">python_interface.behaviour_actions.action_handler</span> <span class="kn">import</span> <span class="n">ActionHandler</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
+    <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
 
 <div class="viewcode-block" id="SendGoToWaypoint"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint">[docs]</a><span class="k">class</span> <span class="nc">SendGoToWaypoint</span><span class="p">(</span><span class="n">ActionHandler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Go to action&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">,</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">,</span>
                  <span class="n">pose</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Pose</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">GeoPose</span><span class="p">,</span> <span class="n">GeoPoseStamped</span><span class="p">],</span>
-                 <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ignore_pose_yaw</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">GoToWaypoint</span><span class="p">,</span> <span class="s1">&#39;GoToWaypointBehaviour&#39;</span><span class="p">)</span>
+                 <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span>
+            <span class="n">drone</span><span class="p">,</span> <span class="n">GoToWaypoint</span><span class="p">,</span> <span class="s1">&#39;GoToWaypointBehaviour&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span> <span class="o">=</span> <span class="n">drone</span>
 
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">GoToWaypoint</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
-        <span class="n">pose_stamped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
-        <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span>
+        <span class="n">pose_stamped</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span>  <span class="c1"># TODO</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pose_stamped</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pose_stamped</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">target_pose</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">pose_stamped</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span>
-         
+
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">max_speed</span> <span class="o">=</span> <span class="n">speed</span>
-        <span class="k">if</span> <span class="n">ignore_pose_yaw</span><span class="p">:</span>
-            <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw_mode</span> <span class="o">=</span> <span class="n">GoToWaypoint</span><span class="o">.</span><span class="n">Goal</span><span class="o">.</span><span class="n">KEEP_YAW</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw_mode</span> <span class="o">=</span> <span class="n">GoToWaypoint</span><span class="o">.</span><span class="n">Goal</span><span class="o">.</span><span class="n">PATH_FACING</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">yaw_mode</span>
+        <span class="k">if</span> <span class="n">yaw_angle</span><span class="p">:</span>
+            <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">yaw_angle</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">())</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(),</span> <span class="n">wait_result</span><span class="p">)</span>
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
         <span class="k">except</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalFailed</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 
-<div class="viewcode-block" id="SendGoToWaypoint.get_pose"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.gotowayp_behaviour.SendGoToWaypoint.get_pose">[docs]</a>    <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Pose</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">GeoPose</span><span class="p">,</span> <span class="n">GeoPoseStamped</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">__get_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Pose</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">GeoPose</span><span class="p">,</span> <span class="n">GeoPoseStamped</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;get pose msg&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">Pose</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">pose</span>
@@ -202,7 +204,7 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">GeoPose</span><span class="p">):</span>
             <span class="n">geopose</span> <span class="o">=</span> <span class="n">GeoPoseStamped</span><span class="p">()</span>
             <span class="n">geopose</span><span class="o">.</span><span class="n">pose</span> <span class="o">=</span> <span class="n">pose</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">geopose</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_pose</span><span class="p">(</span><span class="n">geopose</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">GeoPoseStamped</span><span class="p">):</span>
             <span class="n">req</span> <span class="o">=</span> <span class="n">GeopathToPath</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
             <span class="n">req</span><span class="o">.</span><span class="n">geo_path</span><span class="o">.</span><span class="n">poses</span> <span class="o">=</span> <span class="p">[</span><span class="n">pose</span><span class="p">]</span>
@@ -213,7 +215,7 @@
 
             <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span>
 
-        <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">(</span><span class="s2">&quot;Goal format invalid&quot;</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">(</span><span class="s2">&quot;Goal format invalid&quot;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

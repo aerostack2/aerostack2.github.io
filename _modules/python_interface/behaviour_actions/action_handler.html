@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -168,29 +167,54 @@
 <div class="viewcode-block" id="ActionHandler.GoalFailed"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.GoalFailed">[docs]</a>    <span class="k">class</span> <span class="nc">GoalFailed</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Goal failed exception&quot;&quot;&quot;</span></div>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_client</span><span class="p">:</span> <span class="n">ActionClient</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_client</span><span class="p">:</span> <span class="n">ActionClient</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">wait_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_client</span> <span class="o">=</span> <span class="n">action_client</span>
 
         <span class="c1"># Wait for Action availability</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">):</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionNotAvailable</span><span class="p">(</span><span class="s1">&#39;Action Not Available&#39;</span><span class="p">)</span>
 
         <span class="c1"># Sending goal</span>
-        <span class="n">send_goal_future</span> <span class="o">=</span> <span class="n">action_client</span><span class="o">.</span><span class="n">send_goal_async</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">,</span>
-                                            <span class="n">feedback_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_callback</span><span class="p">)</span>
+        <span class="n">send_goal_future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_client</span><span class="o">.</span><span class="n">send_goal_async</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">,</span>
+                                            <span class="n">feedback_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__feedback_callback</span><span class="p">)</span>
 
         <span class="c1"># Waiting to sending goal result</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">send_goal_future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
         <span class="c1"># Check if goal is accepted</span>
-        <span class="n">goal_handle</span> <span class="o">=</span> <span class="n">send_goal_future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">goal_handle</span><span class="o">.</span><span class="n">accepted</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span> <span class="o">=</span> <span class="n">send_goal_future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span><span class="o">.</span><span class="n">accepted</span><span class="p">:</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">(</span><span class="s1">&#39;Goal Rejected&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Goal accepted :)&#39;</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="n">wait_result</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wait_to_result</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">accepted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span><span class="o">.</span><span class="n">accepted</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span><span class="o">.</span><span class="n">status</span>
+
+<div class="viewcode-block" id="ActionHandler.modify"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.modify">[docs]</a>    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ActionHandler.pause"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.pause">[docs]</a>    <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ActionHandler.resume"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.resume">[docs]</a>    <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ActionHandler.stop"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ActionHandler.wait_to_result"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.wait_to_result">[docs]</a>    <span class="k">def</span> <span class="nf">wait_to_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Getting result</span>
-        <span class="n">get_result_future</span> <span class="o">=</span> <span class="n">goal_handle</span><span class="o">.</span><span class="n">get_result_async</span><span class="p">()</span>
+        <span class="n">get_result_future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">goal_handle</span><span class="o">.</span><span class="n">get_result_async</span><span class="p">()</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">get_result_future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
@@ -201,11 +225,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalFailed</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Goal failed with status code: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">action_client</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_client</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ActionHandler.feedback_callback"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.action_handler.ActionHandler.feedback_callback">[docs]</a>    <span class="k">def</span> <span class="nf">feedback_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback_msg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__feedback_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback_msg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;feedback callback&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Received feedback: </span><span class="si">{</span><span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Received feedback: </span><span class="si">{</span><span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

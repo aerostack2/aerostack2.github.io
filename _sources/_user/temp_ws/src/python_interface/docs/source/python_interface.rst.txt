@@ -23,6 +23,30 @@ python\_interface.drone\_interface module
    :undoc-members:
    :show-inheritance:
 
+python\_interface.drone\_interface\_base module
+-----------------------------------------------
+
+.. automodule:: python_interface.drone_interface_base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.drone\_interface\_gps module
+----------------------------------------------
+
+.. automodule:: python_interface.drone_interface_gps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+python\_interface.drone\_interface\_teleop module
+-------------------------------------------------
+
+.. automodule:: python_interface.drone_interface_teleop
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

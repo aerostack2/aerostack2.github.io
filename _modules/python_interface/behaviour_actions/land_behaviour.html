@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -155,19 +154,20 @@
 <span class="kn">from</span> <span class="nn">..behaviour_actions.action_handler</span> <span class="kn">import</span> <span class="n">ActionHandler</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
+    <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
 
 <div class="viewcode-block" id="SendLand"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.land_behaviour.SendLand">[docs]</a><span class="k">class</span> <span class="nc">SendLand</span><span class="p">(</span><span class="n">ActionHandler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Land action&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">Land</span><span class="p">,</span> <span class="s1">&#39;LandBehaviour&#39;</span><span class="p">)</span>
 
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">Land</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">land_speed</span> <span class="o">=</span> <span class="n">speed</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">())</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(),</span> <span class="n">wait_result</span><span class="p">)</span>
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
         <span class="k">except</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalFailed</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>

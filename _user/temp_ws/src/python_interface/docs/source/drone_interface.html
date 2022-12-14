@@ -73,7 +73,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -117,183 +116,12 @@
              
   <section id="module-drone_interface">
 <span id="drone-interface"></span><h1>Drone Interface<a class="headerlink" href="#module-drone_interface" title="Permalink to this heading"></a></h1>
-<p>Python interface to easily command drones with AeroStack2.</p>
+<p>Drone interface to easily command drones with AeroStack2.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="drone_interface.DroneInterface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drone_interface.</span></span><span class="sig-name descname"><span class="pre">DroneInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
-<p>Drone abstraction interface. Offers different methods to command the drone.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>Node</strong> (<em>rclpy.node.Node</em>) – ROS2 node where the interface will be executed</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.arm">
-<span class="sig-name descname"><span class="pre">arm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.arm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.arm" title="Permalink to this definition"></a></dt>
-<dd><p>Arm drone.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.disarm">
-<span class="sig-name descname"><span class="pre">disarm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.disarm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.disarm" title="Permalink to this definition"></a></dt>
-<dd><p>Disarm drone.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.drone_id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drone_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#drone_interface.DroneInterface.drone_id" title="Permalink to this definition"></a></dt>
-<dd><p>Get drone id (namespace).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.emergency_stop">
-<span class="sig-name descname"><span class="pre">emergency_stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.emergency_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.emergency_stop" title="Permalink to this definition"></a></dt>
-<dd><p>Kill switch. BE CAREFUL, motors will stop!</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.follow_gps_path">
-<span class="sig-name descname"><span class="pre">follow_gps_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wp_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">as2_msgs.msg.TrajectoryWaypoints.KEEP_YAW</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.follow_gps_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.follow_gps_path" title="Permalink to this definition"></a></dt>
-<dd><p>Follow GPS path with speed (m/s) and yaw_mode.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>yaw_mode</strong> (<em>int</em><em>, </em><em>optional</em>) – yaw_mode, defaults to TrajectoryWaypoints.KEEP_YAW</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.follow_path">
-<span class="sig-name descname"><span class="pre">follow_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">as2_msgs.msg.TrajectoryWaypoints.KEEP_YAW</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.follow_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.follow_path" title="Permalink to this definition"></a></dt>
-<dd><p>Follow path with speed (m/s) and yaw_mode.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>yaw_mode</strong> (<em>int</em><em>, </em><em>optional</em>) – yaw_mode, defaults to TrajectoryWaypoints.KEEP_YAW</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.go_to">
-<span class="sig-name descname"><span class="pre">go_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.go_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.go_to" title="Permalink to this definition"></a></dt>
-<dd><p>Go to point (m) with speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.go_to_gps">
-<span class="sig-name descname"><span class="pre">go_to_gps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.go_to_gps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.go_to_gps" title="Permalink to this definition"></a></dt>
-<dd><p>Go to GPS point (deg, m) with speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.go_to_gps_point">
-<span class="sig-name descname"><span class="pre">go_to_gps_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">waypoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.go_to_gps_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.go_to_gps_point" title="Permalink to this definition"></a></dt>
-<dd><p>Go to GPS point (deg, m) with speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.go_to_point">
-<span class="sig-name descname"><span class="pre">go_to_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_yaw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.go_to_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.go_to_point" title="Permalink to this definition"></a></dt>
-<dd><p>Go to point (m) with speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.gps_pose">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gps_pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#drone_interface.DroneInterface.gps_pose" title="Permalink to this definition"></a></dt>
-<dd><p>Get GPS position (lat, lon, alt) in deg and m.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[float]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.hover">
-<span class="sig-name descname"><span class="pre">hover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.hover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.hover" title="Permalink to this definition"></a></dt>
-<dd><p>Stop and hover current position.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.info">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#drone_interface.DroneInterface.info" title="Permalink to this definition"></a></dt>
-<dd><p>Get drone info.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Dict[str, Union[bool, str]]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.land">
-<span class="sig-name descname"><span class="pre">land</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.land"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.land" title="Permalink to this definition"></a></dt>
-<dd><p>Land with given speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.offboard">
-<span class="sig-name descname"><span class="pre">offboard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.offboard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.offboard" title="Permalink to this definition"></a></dt>
-<dd><p>Enable offboard mode.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.orientation">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#drone_interface.DroneInterface.orientation" title="Permalink to this definition"></a></dt>
-<dd><p>Get drone orientation (roll, pitch, yaw) in rad.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[float]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.position">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#drone_interface.DroneInterface.position" title="Permalink to this definition"></a></dt>
-<dd><p>Get drone position (x, y, z) in m.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[float]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.speed">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#drone_interface.DroneInterface.speed" title="Permalink to this definition"></a></dt>
-<dd><p>Get drone speed (vx, vy, vz) in m/s.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[float]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="drone_interface.DroneInterface.takeoff">
-<span class="sig-name descname"><span class="pre">takeoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface.takeoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface.takeoff" title="Permalink to this definition"></a></dt>
-<dd><p>Takeoff to given height (m) and given speed (m/s).</p>
-<dl class="field-list simple">
-</dl>
-</dd></dl>
-
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drone_interface.</span></span><span class="sig-name descname"><span class="pre">DroneInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="python_interface.html#python_interface.drone_interface_base.DroneInterfaceBase" title="python_interface.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
+<p>Drone interface node</p>
 </dd></dl>
 
 </section>

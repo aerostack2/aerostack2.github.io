@@ -70,7 +70,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/python_interface/docs/source/index.html#indices-and-tables">Indices and tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
 </ul>
 </li>
@@ -164,7 +163,7 @@
 <span class="kn">from</span> <span class="nn">..tools.utils</span> <span class="kn">import</span> <span class="n">path_to_list</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
+    <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
 
 <div class="viewcode-block" id="SendFollowPath"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath">[docs]</a><span class="k">class</span> <span class="nc">SendFollowPath</span><span class="p">(</span><span class="n">ActionHandler</span><span class="p">):</span>
@@ -178,22 +177,23 @@
         <span class="n">yaw_mode</span><span class="p">:</span> <span class="n">TrajectoryWaypoints</span><span class="o">.</span><span class="n">yaw_mode</span> <span class="o">=</span> <span class="n">TrajectoryWaypoints</span><span class="o">.</span><span class="n">KEEP_YAW</span>
         <span class="n">is_gps</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">,</span>
-                 <span class="n">path_data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">TrajectoryWaypoints</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">FollowPath</span><span class="p">,</span> <span class="s1">&#39;FollowPathBehaviour&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">,</span>
+                 <span class="n">path_data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">TrajectoryWaypoints</span><span class="p">],</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span>
+            <span class="n">drone</span><span class="p">,</span> <span class="n">FollowPath</span><span class="p">,</span> <span class="s1">&#39;FollowPathBehaviour&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span> <span class="o">=</span> <span class="n">drone</span>
 
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">FollowPath</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
-        <span class="n">goal_msg</span><span class="o">.</span><span class="n">trajectory_waypoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_traj</span><span class="p">(</span><span class="n">path_data</span><span class="p">)</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">trajectory_waypoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_traj</span><span class="p">(</span><span class="n">path_data</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">())</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_action_client</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(),</span> <span class="n">wait_result</span><span class="p">)</span>
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">ActionNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
         <span class="k">except</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalFailed</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 
-<div class="viewcode-block" id="SendFollowPath.get_traj"><a class="viewcode-back" href="../../../_user/temp_ws/src/python_interface/docs/source/python_interface.behaviour_actions.html#python_interface.behaviour_actions.followpath_behaviour.SendFollowPath.get_traj">[docs]</a>    <span class="k">def</span> <span class="nf">get_traj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">TrajectoryWaypoints</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">__get_traj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">TrajectoryWaypoints</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;get trajectory msg&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path_data</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">path_data</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>  <span class="c1"># not empty</span>
@@ -235,7 +235,7 @@
 
             <span class="n">path_data</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">geopath</span>
             <span class="n">path_data</span><span class="o">.</span><span class="n">is_gps</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_traj</span><span class="p">(</span><span class="n">path_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_traj</span><span class="p">(</span><span class="n">path_data</span><span class="p">)</span>
 
         <span class="n">msg</span> <span class="o">=</span> <span class="n">TrajectoryWaypoints</span><span class="p">()</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
@@ -252,7 +252,7 @@
             <span class="n">poses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">poses</span> <span class="o">=</span> <span class="n">poses</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">max_speed</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">path_data</span><span class="o">.</span><span class="n">speed</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">msg</span></div></div>
+        <span class="k">return</span> <span class="n">msg</span></div>
 </pre></div>
 
            </div>
