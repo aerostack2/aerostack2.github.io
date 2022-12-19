@@ -50,7 +50,7 @@ before running these steps.
 .. code-block:: bash
     
  $ echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
- $ echo 'source $AEROSTACK2_PATH/scripts/setup_env.bash' >> $HOME/.bashrc
+ $ echo 'source $AEROSTACK2_PATH/as2_cli/setup_env.bash' >> $HOME/.bashrc
 
 Release installation
 ####################
