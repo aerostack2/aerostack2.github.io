@@ -7,7 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   python_interface.behaviour_actions
+   python_interface.behavior_actions
    python_interface.service_clients
    python_interface.shared_data
    python_interface.tools
