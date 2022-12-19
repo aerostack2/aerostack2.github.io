@@ -18,15 +18,9 @@ jobs:
         path: main
     - uses: actions/checkout@master
       with:
-        repository: aerostack2/python_interface
+        repository: aerostack2/aerostack2
         ref: main
-        path: python_interface
-        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - uses: actions/checkout@master
-      with:
-        repository: aerostack2/as2_core
-        ref: main
-        path: as2_core
+        path: aerostack2
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Apt update
       run: sudo apt-get update
@@ -34,6 +28,8 @@ jobs:
       run: sudo apt-get install -y doxygen
     - name: Build and Commit
       uses: aerostack2/pages@v2
+      with:
+        aerostack2_modules: python_interface, as2_core
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
