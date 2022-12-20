@@ -171,7 +171,7 @@ These messages are motion values to be considered as goals by controllers.
 
 * **Services**
 
-.. list-table:: ACTUATOR_COMMANDS
+.. list-table:: PLATFORM
    :widths: 50 50 50 50
    :header-rows: 1
 
@@ -195,7 +195,7 @@ These messages are motion values to be considered as goals by controllers.
      - Land platform.
    * - platform/state_machine_event
      - as2_srvs/SetPlatformStateMachineEvent
-     - Send event to Platform 
+     - | Send event to Platform 
        | State Machine.
    * - platform/list_control_mode
      - as2_srvs/ListControlModes
