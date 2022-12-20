@@ -5,10 +5,6 @@ Aerostack2 has a CLI to ease the use of the Aerostack2 pipeline. Typing as2 on t
 
 List of commands:
 
-.. code-block:: bash
-
- $ as2 build as2_package
-
 * Build all Aerostack2 (or just the package/packages indicated). It is not necessary to execute this command in the Aerostack2 workspace directory.
 
 .. code-block:: bash
@@ -19,18 +15,22 @@ List of commands:
 
 .. code-block:: bash
 
- $ as2 build as2_package
+ $ as2 cd as2_package
 
 * Clean workspace.
 
 .. code-block:: bash
 
- $ as2 build as2_package
+ $ as2 clean as2_package
 
 * List Aerostack2 packages.
 
 .. code-block:: bash
 
- $ as2 build as2_package
+ $ as2 list as2_package
 
 * List and install Aerostack2 projects.
+
+.. code-block:: bash
+
+ $ as2 project as2_project
