@@ -4,7 +4,7 @@ User documentation
 .. toctree::
    :maxdepth: 2
 
-   temp_ws/src/python_interface/docs/source/index.rst
+   temp_ws/src/as2_python_api/docs/source/index.rst
    
 .. toctree::
    :maxdepth: 2

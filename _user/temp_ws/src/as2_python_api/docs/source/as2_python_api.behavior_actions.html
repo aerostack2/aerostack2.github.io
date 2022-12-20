@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>as2_python_api.behavior_actions package &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="as2_python_api.service_clients package" href="as2_python_api.service_clients.html" />
+    <link rel="prev" title="as2_python_api package" href="as2_python_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../../../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_getting_started/index.html">What is Aerostack2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_getting_started/index.html#multipurpose-software-framework">Multipurpose software framework</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_installation/index.html">Installation Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_installation/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_installation/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_installation/index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_installation/index.html#release-installation">Release installation</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_cli/index.html">CLI</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">User documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">as2_python_api</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="about.html">About</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="drone_interface.html">Drone Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="modules.html">as2_python_api</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="as2_python_api.html">as2_python_api package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_developer/index.html">Developer documentation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_examples/index.html">Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">User documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">as2_python_api</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">as2_python_api</a></li>
+          <li class="breadcrumb-item"><a href="as2_python_api.html">as2_python_api package</a></li>
+      <li class="breadcrumb-item active">as2_python_api.behavior_actions package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="as2-python-api-behavior-actions-package">
+<h1>as2_python_api.behavior_actions package<a class="headerlink" href="#as2-python-api-behavior-actions-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-as2_python_api.behavior_actions.behavior_handler">
+<span id="as2-python-api-behavior-actions-behavior-handler-module"></span><h2>as2_python_api.behavior_actions.behavior_handler module<a class="headerlink" href="#module-as2_python_api.behavior_actions.behavior_handler" title="Permalink to this heading"></a></h2>
+<p>behavior_handler.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.behavior_actions.behavior_handler.</span></span><span class="sig-name descname"><span class="pre">BehaviorHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">behavior_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Behavior handler</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.BehaviorNotAvailable">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BehaviorNotAvailable</span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.BehaviorNotAvailable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.BehaviorNotAvailable" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Behavior not available exception</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.GoalRejected">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoalRejected</span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.GoalRejected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.GoalRejected" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Goal rejected exception</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.ResultUnknown">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResultUnknown</span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.ResultUnknown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.ResultUnknown" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Result unknown exception</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.TIMEOUT">
+<span class="sig-name descname"><span class="pre">TIMEOUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.TIMEOUT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.destroy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.destroy" title="Permalink to this definition"></a></dt>
+<dd><p>Clean exit</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.feedback">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">feedback</span></span><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.feedback" title="Permalink to this definition"></a></dt>
+<dd><p>Behavior feedback</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>rclpy.Feedback</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.pause">
+<span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.pause"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.pause" title="Permalink to this definition"></a></dt>
+<dd><p>Pause current behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>pause succeed or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result" title="Permalink to this definition"></a></dt>
+<dd><p>Behavior result</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>self.ResultUnknown</strong> – on result not ready</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>rclpy.Result</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result_status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result_status</span></span><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result_status" title="Permalink to this definition"></a></dt>
+<dd><p>Behavior result status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>rclpy.GoalStatus</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.resume">
+<span class="sig-name descname"><span class="pre">resume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.resume"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.resume" title="Permalink to this definition"></a></dt>
+<dd><p>Continue with current behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>resume succeed or not</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_msg</strong> (<em>Goal</em>) – behavior goal</p></li>
+<li><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>self.GoalRejected</strong> – on goal rejection</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>succeeded or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.status" title="Permalink to this definition"></a></dt>
+<dd><p>Behavior status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>IDLE, PAUSED, RUNNING</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops behavior by canceling inner goal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>stop succeed or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.wait_to_result">
+<span class="sig-name descname"><span class="pre">wait_to_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.wait_to_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.wait_to_result" title="Permalink to this definition"></a></dt>
+<dd><p>Wait to inner action to finish</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>GoalFailed</strong> – When behaviour result not succeeded</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>succeeded or not</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.behavior_actions.followpath_behavior">
+<span id="as2-python-api-behavior-actions-followpath-behavior-module"></span><h2>as2_python_api.behavior_actions.followpath_behavior module<a class="headerlink" href="#module-as2_python_api.behavior_actions.followpath_behavior" title="Permalink to this heading"></a></h2>
+<p>followpath_behavior.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.behavior_actions.followpath_behavior.</span></span><span class="sig-name descname"><span class="pre">FollowPathBehavior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><span class="pre">DroneInterfaceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/followpath_behavior.html#FollowPathBehavior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler" title="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BehaviorHandler</span></code></a></p>
+<p>FollowPath Behavior</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">as2_msgs.msg.PoseWithID</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/followpath_behavior.html#FollowPathBehavior.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.modify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">as2_msgs.msg.PoseWithID</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/followpath_behavior.html#FollowPathBehavior.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_msg</strong> (<em>Goal</em>) – behavior goal</p></li>
+<li><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>self.GoalRejected</strong> – on goal rejection</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>succeeded or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.behavior_actions.goto_behavior">
+<span id="as2-python-api-behavior-actions-goto-behavior-module"></span><h2>as2_python_api.behavior_actions.goto_behavior module<a class="headerlink" href="#module-as2_python_api.behavior_actions.goto_behavior" title="Permalink to this heading"></a></h2>
+<p>goto_behavior.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.goto_behavior.GoToBehavior">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.behavior_actions.goto_behavior.</span></span><span class="sig-name descname"><span class="pre">GoToBehavior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><span class="pre">DroneInterfaceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/goto_behavior.html#GoToBehavior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.goto_behavior.GoToBehavior" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler" title="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BehaviorHandler</span></code></a></p>
+<p>GoTo Behavior</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.goto_behavior.GoToBehavior.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PoseStamped</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPoseStamped</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/goto_behavior.html#GoToBehavior.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.goto_behavior.GoToBehavior.modify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.goto_behavior.GoToBehavior.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PoseStamped</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geographic_msgs.msg.GeoPoseStamped</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/goto_behavior.html#GoToBehavior.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.goto_behavior.GoToBehavior.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_msg</strong> (<em>Goal</em>) – behavior goal</p></li>
+<li><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>self.GoalRejected</strong> – on goal rejection</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>succeeded or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.behavior_actions.land_behavior">
+<span id="as2-python-api-behavior-actions-land-behavior-module"></span><h2>as2_python_api.behavior_actions.land_behavior module<a class="headerlink" href="#module-as2_python_api.behavior_actions.land_behavior" title="Permalink to this heading"></a></h2>
+<p>land_behavior.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.land_behavior.LandBehavior">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.behavior_actions.land_behavior.</span></span><span class="sig-name descname"><span class="pre">LandBehavior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><span class="pre">DroneInterfaceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/land_behavior.html#LandBehavior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.land_behavior.LandBehavior" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler" title="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BehaviorHandler</span></code></a></p>
+<p>Land Behavior</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.land_behavior.LandBehavior.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/land_behavior.html#LandBehavior.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.land_behavior.LandBehavior.modify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.land_behavior.LandBehavior.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/land_behavior.html#LandBehavior.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.land_behavior.LandBehavior.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_msg</strong> (<em>Goal</em>) – behavior goal</p></li>
+<li><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>self.GoalRejected</strong> – on goal rejection</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>succeeded or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.behavior_actions.takeoff_behavior">
+<span id="as2-python-api-behavior-actions-takeoff-behavior-module"></span><h2>as2_python_api.behavior_actions.takeoff_behavior module<a class="headerlink" href="#module-as2_python_api.behavior_actions.takeoff_behavior" title="Permalink to this heading"></a></h2>
+<p>takeoff_behavior.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.behavior_actions.takeoff_behavior.</span></span><span class="sig-name descname"><span class="pre">TakeoffBehavior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><span class="pre">DroneInterfaceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/takeoff_behavior.html#TakeoffBehavior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler" title="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">BehaviorHandler</span></code></a></p>
+<p>Takeoff Behavior</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/takeoff_behavior.html#TakeoffBehavior.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.modify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/behavior_actions/takeoff_behavior.html#TakeoffBehavior.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start behavior</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_msg</strong> (<em>Goal</em>) – behavior goal</p></li>
+<li><p><strong>wait_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait to behavior end, defaults to True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>self.GoalRejected</strong> – on goal rejection</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>succeeded or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.behavior_actions">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_python_api.behavior_actions" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, CVAR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
