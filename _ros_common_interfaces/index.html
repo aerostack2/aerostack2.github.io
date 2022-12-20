@@ -229,6 +229,173 @@
 </tr>
 </tbody>
 </table>
+<p>These values correspond to the robot localization in the environment together with kinematic values (e.g., speed) as they are believed by the robot. These values may be obtained, for example, by fusing sensor measurements with the help of extended Kalman filters (EKF).</p>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">SELF LOCALIZATION</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic name</p></th>
+<th class="head"><p>ROS message</p></th>
+<th class="head"><p>Quality of Service</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>self_localization/odom</p></td>
+<td><p>nav_msgs/Odometry</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Estimated odometry (pose and twist).</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Represents the Control Manager.</p>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">CONTROLLER</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic name</p></th>
+<th class="head"><p>ROS message</p></th>
+<th class="head"><p>Quality of Service</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>controller/info</p></td>
+<td><p>as2_msgs/ControllerInfo</p></td>
+<td><p>DefaultQoS</p></td>
+<td><div class="line-block">
+<div class="line">Information about the controller state.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>These messages are motion values to be considered as goals by controllers.</p>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-text">MOTION REFERENCE</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic name</p></th>
+<th class="head"><p>ROS message</p></th>
+<th class="head"><p>Quality of Service</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>motion_reference/pose</p></td>
+<td><p>geometry_msgs/PoseStamped</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Pose reference for the controller.</div>
+<div class="line">The following values from the message</div>
+<div class="line">are used &lt;x, y, z, yaw&gt; (the values</div>
+<div class="line">for &lt;pitch, roll&gt; are discarded)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>motion_reference/speed</p></td>
+<td><p>geometry_msgs/TwistStamped</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Speed reference for the controller.</div>
+<div class="line">The following values from the message</div>
+<div class="line">are used &lt;d_x, d_y, d_z, d_yaw&gt; (the</div>
+<div class="line">values for &lt;d_pitch, d_roll&gt; are</div>
+<div class="line">discarded)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>motion_reference/waypoints</p></td>
+<td><p>as2_msgs/TrajectoryWaypoints</p></td>
+<td><p>DefaultQoS</p></td>
+<td><div class="line-block">
+<div class="line">Reference path to be tracked by the</div>
+<div class="line">robot. The path is defined as a list</div>
+<div class="line">of points. Each point is defined with</div>
+<div class="line">a pose &lt;x, y, z&gt; and a yaw mode</div>
+<div class="line">(Keep Yaw, Path Facing or Generate</div>
+<div class="line">Yaw Trajectory).</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>motion_reference/trajectory</p></td>
+<td><p>trajectory_msgs/JointTrajectoryPoint</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Desired trajectory reference with</div>
+<div class="line">points, velocities and accelerations.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">ACTUATOR_COMMANDS</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic name</p></th>
+<th class="head"><p>ROS message</p></th>
+<th class="head"><p>Quality of Service</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>actuator_command/thrust</p></td>
+<td><p>mavros_msgs/Thrust</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Actuator command for the multirotor</div>
+<div class="line">specifying thrust (N: Newtons)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>actuator_command/pose</p></td>
+<td><p>geometry_msgs/PoseStamped</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Actuator command for the multirotor</div>
+<div class="line">specifying x, y, z, roll, pitch and yaw</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>actuator_command/speed</p></td>
+<td><p>geometry_msgs/TwistStamped</p></td>
+<td><p>SensorDataQoS</p></td>
+<td><div class="line-block">
+<div class="line">Actuator command for the multirotor</div>
+<div class="line">specifying dx, dy, dz, roll rate,</div>
+<div class="line">pitch rate and yaw rate</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Services</strong></p></li>
+</ul>
 </section>
 </section>
 
