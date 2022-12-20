@@ -39,6 +39,13 @@ CLI
    :maxdepth: 2
 
    _cli/index.rst
+
+ROS2 Common interfaces
+======================
+.. toctree::
+   :maxdepth: 2
+
+   _ros_common_interfaces/index.rst
     
 User
 ====
