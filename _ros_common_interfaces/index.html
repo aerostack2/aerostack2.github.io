@@ -136,34 +136,115 @@
 <ul class="simple">
 <li><p><strong>Topics</strong></p></li>
 </ul>
-<p>Platform represents the robot.</p>
-<table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">Platform</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Topic name</p></th>
-<th class="head"><p>ROS message</p></th>
-<th class="head"><p>Quality of Service</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>platform/info</p></td>
-<td><p>as2_msgs/PlatformInfo</p></td>
-<td><p>DefaultQoS</p></td>
-<td><div class="line-block">
-<div class="line">Information about the robot: connection_state, arming_state,</div>
-<div class="line">offboard_state, fly status and control_mode.</div>
+<p>Platform represents the robot.
+.. list-table:: PLATFORM</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">widths</dt>
+<dd class="field-odd"><p>50 50 50 50</p>
+</dd>
+<dt class="field-even">header-rows</dt>
+<dd class="field-even"><p>1</p>
+</dd>
+</dl>
+<ul>
+<li><ul class="simple">
+<li><p>Topic name</p></li>
+<li><p>ROS message</p></li>
+<li><p>Quality of Service</p></li>
+<li><p>Description</p></li>
+</ul>
+</li>
+<li><ul>
+<li><p>platform/info</p></li>
+<li><p>as2_msgs/PlatformInfo</p></li>
+<li><p>DefaultQoS</p></li>
+<li><div class="line-block">
+<div class="line">Information about the robot: connection_state,</div>
+<div class="line">arming_state, offboard_state,</div>
+<div class="line">fly status and control_mode.</div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Sensor measurements are values corresponding to direct measurements recorded by sensors.
+.. list-table:: SENSOR MEASUREMENTS</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">widths</dt>
+<dd class="field-odd"><p>50 50 50 50</p>
+</dd>
+<dt class="field-even">header-rows</dt>
+<dd class="field-even"><p>1</p>
+</dd>
+</dl>
+<ul>
+<li><ul class="simple">
+<li><p>Topic name</p></li>
+<li><p>ROS message</p></li>
+<li><p>Quality of Service</p></li>
+<li><p>Description</p></li>
+</ul>
+</li>
+<li><ul>
+<li><p>sensor_measurement/camera</p></li>
+<li><p>sensor_msgs/Image</p></li>
+<li><p>SensorDataQoS</p></li>
+<li><div class="line-block">
+<div class="line">Raw image data received from</div>
+<div class="line">camera (a general camera).</div>
+</div>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>sensor_measurement/camera/front</p></li>
+<li><p>sensor_msgs/Image</p></li>
+<li><p>SensorDataQoS</p></li>
+<li><div class="line-block">
+<div class="line">Raw image data received from</div>
+<div class="line">front camera.</div>
+</div>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>sensor_measurement/camera/bottom</p></li>
+<li><p>sensor_msgs/Image</p></li>
+<li><p>SensorDataQoS</p></li>
+<li><div class="line-block">
+<div class="line">Raw image data received from</div>
+<div class="line">the bottom camera.</div>
+</div>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>sensor_measurement/gps</p></li>
+<li><p>sensor_msgs/NavSatFix</p></li>
+<li><p>SensorDataQoS</p></li>
+<li><div class="line-block">
+<div class="line">GPS (Global Positioning</div>
+<div class="line">System) coordinates</div>
+</div>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>sensor_measurement/imu</p></li>
+<li><p>sensor_msgs/Imu</p></li>
+<li><p>SensorDataQoS</p></li>
+<li><div class="line-block">
+<div class="line">Inertial Measurement Unit</div>
+<div class="line">data</div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 
