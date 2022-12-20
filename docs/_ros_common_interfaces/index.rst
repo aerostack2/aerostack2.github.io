@@ -21,6 +21,7 @@ You can access to a interface name via `as2_names`, e.g. `as2_names::topics::pla
 * **Topics**
 
 Platform represents the robot.
+
 .. list-table:: PLATFORM
    :widths: 50 50 50 50
    :header-rows: 1
@@ -38,6 +39,7 @@ Platform represents the robot.
 
 
 Sensor measurements are values corresponding to direct measurements recorded by sensors.
+
 .. list-table:: SENSOR MEASUREMENTS
    :widths: 50 50 50 50
    :header-rows: 1
