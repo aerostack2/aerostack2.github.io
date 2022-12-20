@@ -6,6 +6,15 @@
 Welcome to Aerostack2's documentation!
 ======================================
 
+Aerostack2 is a framework developed to fly aerial platforms build for ROS2 `Humble <https://docs.ros.org/en/humble/index.html>`_ and ROS2 `Galactic <https://docs.ros.org/en/galactic/index.html>`_.
+
+Most important features:
+- Natively developed on ROS2
+- Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system
+- Independence of the aerial platform.
+- Project-oriented, allowing to install and use only the necessary packages for the application to be developed. 
+- Swarming orientation.
+
 Getting started
 ===============
 
@@ -22,6 +31,14 @@ Installation
    :maxdepth: 2
 
    _installation/index.rst
+
+CLI
+===
+
+.. toctree::
+   :maxdepth: 2
+
+   _cli/index.rst
     
 User
 ====

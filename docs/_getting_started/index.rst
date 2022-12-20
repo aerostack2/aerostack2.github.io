@@ -10,7 +10,6 @@ Aerostack was created to be available for communities of researchers and develop
 Multipurpose software framework
 ###############################
 
-
 Aerostack is versatile for building different system configurations with various degrees of autonomy:
 
 - From teleoperation to autonomous flight. Aerostack can be used for teleoperation flights (with manual control) but it can also be used for building autonomous robot systems to perform aerial missions without operator assistance.
