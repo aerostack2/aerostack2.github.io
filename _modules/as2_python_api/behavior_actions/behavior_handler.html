@@ -55,6 +55,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../_cli/index.html">CLI</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_user/index.html">User documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/about.html">About</a><ul class="simple">
@@ -188,6 +194,8 @@
             <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s2">&quot;/_behavior/pause&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
             <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s2">&quot;/_behavior/resume&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+            <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s2">&quot;/_behavior/stop&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__status_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
             <span class="n">BehaviorStatus</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s2">&quot;/_behavior/behavior_status&quot;</span><span class="p">,</span>
@@ -196,7 +204,8 @@
         <span class="c1"># Wait for Action and Servers availability</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
                 <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">):</span>
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">):</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">behavior_name</span><span class="si">}</span><span class="s1"> Not Available&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BehaviorHandler.destroy"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.destroy">[docs]</a>    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -305,20 +314,15 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.stop"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Stops behavior by canceling inner goal</span>
+        <span class="sd">&quot;&quot;&quot;Stop current behavior</span>
 
 <span class="sd">        :return: stop succeed or not</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: extend to all behavior status</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">BehaviorStatus</span><span class="o">.</span><span class="n">RUNNING</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">result_future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__goal_handle</span><span class="o">.</span><span class="n">cancel_goal_async</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wait_to_result</span><span class="p">()</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">result_future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">result_future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">return_code</span><span class="p">)</span></div>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">Trigger</span><span class="o">.</span><span class="n">Request</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.wait_to_result"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.wait_to_result">[docs]</a>    <span class="k">def</span> <span class="nf">wait_to_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Wait to inner action to finish</span>
