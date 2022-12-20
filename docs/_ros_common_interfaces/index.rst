@@ -25,7 +25,7 @@ Platform represents the robot.
 ===============  =====================  ==================  ==================
 Topic name       ROS message            Quality of Service  Description
 ===============  =====================  ==================  ==================
-platform/info    as2_msgs/PlatformInfo  DefaultQoS          |Information about the robot: 
-                                                            |connection_state, arming_state, 
-                                                            |offboard_state, fly status and control_mode.
+platform/info    as2_msgs/PlatformInfo  DefaultQoS          | Information about the robot: 
+                                                            | connection_state, arming_state, 
+                                                            | offboard_state, fly status and control_mode.
 ===============  =====================  ==================  ==================
