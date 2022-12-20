@@ -118,9 +118,6 @@
 <h1>CLI<a class="headerlink" href="#cli" title="Permalink to this heading"></a></h1>
 <p>Aerostack2 has a CLI to ease the use of the Aerostack2 pipeline. Typing as2 on the command line, you can access the different available tools. Also, it is possible to access the help message with a brief description of the different tools using <cite>as2</cite>, <cite>as2 –help</cite>, or <cite>as2 -h</cite>.</p>
 <p>List of commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 build as2_package
-</pre></div>
-</div>
 <ul class="simple">
 <li><p>Build all Aerostack2 (or just the package/packages indicated). It is not necessary to execute this command in the Aerostack2 workspace directory.</p></li>
 </ul>
@@ -130,24 +127,27 @@
 <ul class="simple">
 <li><p>Change the current directory to the Aerostack2 directory (or the Aerostack2 package directory indicated).</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 build as2_package
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 <span class="nb">cd</span> as2_package
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Clean workspace.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 build as2_package
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 clean as2_package
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>List Aerostack2 packages.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 build as2_package
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 list as2_package
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>List and install Aerostack2 projects.</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ as2 project as2_project
+</pre></div>
+</div>
 </section>
 
 
