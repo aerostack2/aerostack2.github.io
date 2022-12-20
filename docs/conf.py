@@ -2,7 +2,7 @@ import os
 import sys
 import re
 sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('./_user/temp_ws/src/python_interface/python_interface'))
+sys.path.insert(0, os.path.abspath('./_user/temp_ws/src/as2_python_api/as2_python_api'))
 import python_interface
 from sphinx.locale import _
 
