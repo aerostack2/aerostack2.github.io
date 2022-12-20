@@ -170,3 +170,33 @@ These messages are motion values to be considered as goals by controllers.
        | pitch rate and yaw rate
 
 * **Services**
+
+.. list-table:: ACTUATOR_COMMANDS
+   :widths: 50 50 50 50
+   :header-rows: 1
+
+   * - Service name
+     - ROS service
+     - Description
+   * - platform/set_arming_state
+     - std_srvs/SetBool
+     - Arm / Disarm platform.
+   * - platform/set_offboard_mode
+     - std_srvs/SetBool
+     - Enable offboard mode.
+   * - platform/set_control_mode
+     - as2_srvs/SetControlMode
+     - Set platform control mode.
+   * - platform/takeoff
+     - std_srvs/SetBool
+     - Takeoff platform.
+   * - platform/land
+     - std_srvs/SetBool
+     - Land platform.
+   * - platform/state_machine_event
+     - as2_srvs/SetPlatformStateMachineEvent
+     - Send event to Platform 
+       | State Machine.
+   * - platform/list_control_mode
+     - as2_srvs/ListControlModes
+     - List available platform control modes.
