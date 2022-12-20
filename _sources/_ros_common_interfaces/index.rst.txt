@@ -22,16 +22,10 @@ You can access to a interface name via `as2_names`, e.g. `as2_names::topics::pla
 
 Platform represents the robot.
 
-.. list-table:: Platform
-   :widths: 50 50 50 50
-   :header-rows: 1
-
-   * - Topic name
-     - ROS message
-     - Quality of Service
-     - Description
-   * - platform/info
-     - as2_msgs/PlatformInfo
-     - DefaultQoS
-     - |Information about the robot: connection_state, arming_state,
-       |offboard_state, fly status and control_mode.
+===============  =====================  ==================  ==================
+Topic name       ROS message            Quality of Service  Description
+===============  =====================  ==================  ==================
+platform/info    as2_msgs/PlatformInfo  DefaultQoS          |Information about the robot: 
+                                                            |connection_state, arming_state, 
+                                                            |offboard_state, fly status and control_mode.
+===============  =====================  ==================  ==================
