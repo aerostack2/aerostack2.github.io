@@ -35,8 +35,8 @@ before running these steps.
 
 .. code-block:: bash
 
- $ git clone https://github.com/aerostack2/aerostack2.git
-
+ $ git clone --recursive https://github.com/aerostack2/aerostack2.git
+ 
 * Install core dependencies:
 
 .. code-block:: bash
