@@ -20,9 +20,9 @@ You can access to a interface name via `as2_names`, e.g. `as2_names::topics::pla
 
 * **Topics**
 
-Platform represents the robot.
+Topics that represent robot platform.
 
-.. list-table:: PLATFORM (TOPICS)
+.. list-table:: PLATFORM
    :widths: 50 50 50 50
    :header-rows: 1
 
@@ -171,8 +171,10 @@ These messages are motion values to be considered as goals by controllers.
 
 * **Services**
 
-.. list-table:: PLATFORM (SERVICES)
-   :widths: 50 50 50 50
+Services to interact with robot platform.
+
+.. list-table:: PLATFORM
+   :widths: 50 50 50
    :header-rows: 1
 
    * - Service name
