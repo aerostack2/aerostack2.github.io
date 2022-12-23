@@ -7,7 +7,7 @@ the built html files in branch **gh-pages**.
 ## Adding a python module to docs
 
 To add a python module to the web, follow these steps:
-- Configure the python package so that Sphinx can build the .html files for it.  To do so, you have to create a Sphinx project so that the folder package/docs/ contains the following files:
+- Configure the python package so that Sphinx can build the .html files for it.  To do so, you have to [create a Sphinx project](https://www.sphinx-doc.org/en/master/tutorial/index.html) so that the folder package/docs/ contains the following files:
 	- make.bat
 	- Makefile
 	- Folder sources/
