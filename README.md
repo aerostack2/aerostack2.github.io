@@ -4,7 +4,7 @@ This repository contain the source files to build Aerostack2's documentation fro
 In order to build the project, just push the changes to docs and github actions will automatically push
 the built html files in branch **gh-pages**.
 
-## Adding a python module to docs
+## Adding a python package to docs
 
 To add a python module to the web, follow these steps:
 - Configure the python package so that Sphinx can build the .html files for it.  To do so, you have to [create a Sphinx project](https://www.sphinx-doc.org/en/master/tutorial/getting-started.html#setting-up-your-project-and-development-environment) **Do not build** so that the folder package/docs/ contains the following files:
@@ -56,7 +56,7 @@ autodoc_mock_imports = ['as2_msgs', 'geographic_msgs', 'motion_reference_handler
 ```
 This is to be improved in later versions.
 
-## Adding a C++ module to docs
+## Adding a C++ project to docs
 
 To add a C++ module to the web, follow these steps:
 - Grab from this repository https://github.com/aerostack2/aerostack2.github.io the doxygen.dox file inside the doxygen_template/ folder and put it into the C++ project root folder. 
