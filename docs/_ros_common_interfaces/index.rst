@@ -202,3 +202,44 @@ Services to interact with robot platform.
    * - platform/list_control_mode
      - as2_srvs/ListControlModes
      - List available platform control modes.
+
+Services to interact with robot controller.
+
+.. list-table:: CONTROLLER
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Service name
+     - ROS service
+     - Description
+   * - controller/set_control_mode
+     - as2_srvs/SetControlMode
+     - Set controller control mode.
+   * - controller/list_control_mode
+     - as2_srvs/ListControlModes
+     - List available controller control modes.
+
+* **Actions**
+
+Action messages part of behavior definition.
+
+.. list-table:: BEHAVIORS
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Action name
+     - ROS action
+     - Description
+   * - TakeOffBehavior
+     - as2_msgs/TakeOff
+     - Do takeoff with a given height and speed.
+   * - GoToWaypointBehavior
+     - as2_msgs/GoToWaypoint
+     - | Go to a specific position with a 
+       | given cruise speed and yaw mode.
+   * - FollowPathBehavior
+     - as2_msgs/FollowPath
+     - Follow a given path.
+   * - LandBehavior
+     - as2_msgs/Land
+     - Land with a given speed.
