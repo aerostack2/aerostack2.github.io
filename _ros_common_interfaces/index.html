@@ -87,7 +87,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/index.html">Examples</a></li>
@@ -127,9 +132,9 @@
 <section id="using-as2-interfaces">
 <h2>Using AS2 interfaces<a class="headerlink" href="#using-as2-interfaces" title="Permalink to this heading"></a></h2>
 <p>AS2 interfaces names <strong>should not</strong> be typed manually. Names are stored in:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/topics.hpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/services.hpp&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/actions.hpp&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/topics.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/services.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_core/names/actions.hpp&quot;</span>
 </pre></div>
 </div>
 <p>You can access to a interface name via <cite>as2_names</cite>, e.g. <cite>as2_names::topics::platform::info</cite>.</p>
@@ -442,6 +447,71 @@
 <tr class="row-even"><td><p>platform/list_control_mode</p></td>
 <td><p>as2_srvs/ListControlModes</p></td>
 <td><p>List available platform control modes.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Services to interact with robot controller.</p>
+<table class="colwidths-given docutils align-default" id="id8">
+<caption><span class="caption-text">CONTROLLER</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Service name</p></th>
+<th class="head"><p>ROS service</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>controller/set_control_mode</p></td>
+<td><p>as2_srvs/SetControlMode</p></td>
+<td><p>Set controller control mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>controller/list_control_mode</p></td>
+<td><p>as2_srvs/ListControlModes</p></td>
+<td><p>List available controller control modes.</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Actions</strong></p></li>
+</ul>
+<p>Action messages part of behavior definition.</p>
+<table class="colwidths-given docutils align-default" id="id9">
+<caption><span class="caption-text">BEHAVIORS</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action name</p></th>
+<th class="head"><p>ROS action</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TakeOffBehavior</p></td>
+<td><p>as2_msgs/TakeOff</p></td>
+<td><p>Do takeoff with a given height and speed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>GoToWaypointBehavior</p></td>
+<td><p>as2_msgs/GoToWaypoint</p></td>
+<td><div class="line-block">
+<div class="line">Go to a specific position with a</div>
+<div class="line">given cruise speed and yaw mode.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>FollowPathBehavior</p></td>
+<td><p>as2_msgs/FollowPath</p></td>
+<td><p>Follow a given path.</p></td>
+</tr>
+<tr class="row-odd"><td><p>LandBehavior</p></td>
+<td><p>as2_msgs/Land</p></td>
+<td><p>Land with a given speed.</p></td>
 </tr>
 </tbody>
 </table>

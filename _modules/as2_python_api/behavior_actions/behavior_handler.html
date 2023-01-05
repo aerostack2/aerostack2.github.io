@@ -84,7 +84,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/index.html">Examples</a></li>
@@ -170,17 +175,17 @@
 
 
 <div class="viewcode-block" id="BehaviorHandler"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler">[docs]</a><span class="k">class</span> <span class="nc">BehaviorHandler</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Behavior handler&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Behavior handler&quot;&quot;&quot;</span>
     <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># seconds</span>
 
 <div class="viewcode-block" id="BehaviorHandler.BehaviorNotAvailable"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.BehaviorNotAvailable">[docs]</a>    <span class="k">class</span> <span class="nc">BehaviorNotAvailable</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Behavior not available exception&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior not available exception&quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.GoalRejected"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.GoalRejected">[docs]</a>    <span class="k">class</span> <span class="nc">GoalRejected</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Goal rejected exception&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Goal rejected exception&quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.ResultUnknown"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.ResultUnknown">[docs]</a>    <span class="k">class</span> <span class="nc">ResultUnknown</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Result unknown exception&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Result unknown exception&quot;&quot;&quot;</span></div>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s1">&#39;Node&#39;</span><span class="p">,</span> <span class="n">action_msg</span><span class="p">,</span> <span class="n">behavior_name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span> <span class="o">=</span> <span class="n">node</span>
@@ -209,7 +214,7 @@
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">behavior_name</span><span class="si">}</span><span class="s1"> Not Available&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BehaviorHandler.destroy"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.destroy">[docs]</a>    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Clean exit</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clean exit</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__status_sub</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span><span class="p">)</span>
@@ -218,7 +223,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Behavior status</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior status</span>
 
 <span class="sd">        :return: IDLE, PAUSED, RUNNING</span>
 <span class="sd">        :rtype: int</span>
@@ -227,7 +232,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Behavior feedback</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior feedback</span>
 
 <span class="sd">        :return: rclpy.Feedback</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -235,7 +240,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">result_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Behavior result status</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior result status</span>
 
 <span class="sd">        :return: rclpy.GoalStatus</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -243,7 +248,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Behavior result</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior result</span>
 
 <span class="sd">        :raises self.ResultUnknown: on result not ready</span>
 <span class="sd">        :return: rclpy.Result</span>
@@ -253,7 +258,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__result</span><span class="o">.</span><span class="n">result</span>
 
 <div class="viewcode-block" id="BehaviorHandler.start"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Start behavior</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start behavior</span>
 
 <span class="sd">        :param goal_msg: behavior goal</span>
 <span class="sd">        :type goal_msg: Goal</span>
@@ -286,7 +291,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.pause"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.pause">[docs]</a>    <span class="k">def</span> <span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Pause current behavior</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pause current behavior</span>
 
 <span class="sd">        :return: pause succeed or not</span>
 <span class="sd">        :rtype: bool</span>
@@ -298,7 +303,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.resume"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.resume">[docs]</a>    <span class="k">def</span> <span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Continue with current behavior</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Continue with current behavior</span>
 
 <span class="sd">        :param wait_result: wait to behavior end, defaults to True</span>
 <span class="sd">        :type wait_result: bool, optional</span>
@@ -314,7 +319,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.stop"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Stop current behavior</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop current behavior</span>
 
 <span class="sd">        :return: stop succeed or not</span>
 <span class="sd">        :rtype: bool</span>
@@ -325,7 +330,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
 <div class="viewcode-block" id="BehaviorHandler.wait_to_result"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.wait_to_result">[docs]</a>    <span class="k">def</span> <span class="nf">wait_to_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Wait to inner action to finish</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wait to inner action to finish</span>
 
 <span class="sd">        :raises GoalFailed: When behaviour result not succeeded</span>
 <span class="sd">        :return: succeeded or not</span>
@@ -347,14 +352,14 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
     <span class="k">def</span> <span class="nf">__feedback_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback_msg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;feedback callback</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;feedback callback</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__feedback</span> <span class="o">=</span> <span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
             <span class="sa">f</span><span class="s1">&#39;Received feedback: </span><span class="si">{</span><span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__status_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status_msg</span><span class="p">:</span> <span class="n">BehaviorStatus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;behavior status callback</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;behavior status callback</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__status</span> <span class="o">=</span> <span class="n">status_msg</span><span class="o">.</span><span class="n">status</span></div>
 </pre></div>

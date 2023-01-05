@@ -84,7 +84,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/index.html">Examples</a></li>
@@ -163,7 +168,7 @@
 
 
 <div class="viewcode-block" id="lock_decor"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.shared_data.html#as2_python_api.shared_data.orientation_data.lock_decor">[docs]</a><span class="k">def</span> <span class="nf">lock_decor</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;locker decorator&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;locker decorator&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
@@ -173,7 +178,7 @@
 
 <div class="viewcode-block" id="OrientationData"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.shared_data.html#as2_python_api.shared_data.orientation_data.OrientationData">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">OrientationData</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Orientation data [roll pitch yaw] in radians&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Orientation data [roll pitch yaw] in radians&quot;&quot;&quot;</span>
     <span class="n">__roll</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">))</span>
     <span class="n">__pitch</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">))</span>
     <span class="n">__yaw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">))</span>
@@ -185,13 +190,13 @@
     <span class="nd">@property</span>
     <span class="nd">@lock_decor</span>
     <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;locked getter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;locked getter&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__roll</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pitch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__yaw</span><span class="p">]</span>
 
     <span class="nd">@orientation</span><span class="o">.</span><span class="n">setter</span>
     <span class="nd">@lock_decor</span>
     <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orient</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;locked setter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;locked setter&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__roll</span> <span class="o">=</span> <span class="n">orient</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__pitch</span> <span class="o">=</span> <span class="n">orient</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__yaw</span> <span class="o">=</span> <span class="n">orient</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></div>

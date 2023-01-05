@@ -84,7 +84,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/index.html">Examples</a></li>
@@ -164,7 +169,7 @@
 
 <div class="viewcode-block" id="PoseData"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.shared_data.html#as2_python_api.shared_data.pose_data.PoseData">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">PoseData</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Pose data&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pose data&quot;&quot;&quot;</span>
     <span class="n">__pose</span><span class="p">:</span> <span class="n">PositionData</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">PositionData</span><span class="p">())</span>
     <span class="n">__orientation</span><span class="p">:</span> <span class="n">OrientationData</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">OrientationData</span><span class="p">())</span>
@@ -176,22 +181,22 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;position getter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;position getter&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pose</span><span class="o">.</span><span class="n">position</span>
 
     <span class="nd">@position</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;position setter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;position setter&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__pose</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">pos</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;orientation getter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;orientation getter&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__orientation</span><span class="o">.</span><span class="n">orientation</span>
 
     <span class="nd">@orientation</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orient</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;orientation setter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;orientation setter&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__orientation</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">orient</span></div>
 </pre></div>
 

@@ -84,7 +84,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../_examples/index.html">Examples</a></li>
@@ -180,11 +185,11 @@
 
 
 <div class="viewcode-block" id="DroneInterfaceBase"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase">[docs]</a><span class="k">class</span> <span class="nc">DroneInterfaceBase</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Drone interface base node&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface base node&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;drone0&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Constructor method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
 
 <span class="sd">        :param drone_id: drone namespace, defaults to &quot;drone0&quot;</span>
 <span class="sd">        :type drone_id: str, optional</span>
@@ -237,7 +242,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 
 <div class="viewcode-block" id="DroneInterfaceBase.load_module"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.load_module">[docs]</a>    <span class="k">def</span> <span class="nf">load_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;load module on drone&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;load module on drone&quot;&quot;&quot;</span>
         <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
         <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;Module&quot;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
@@ -249,7 +254,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">drone_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get drone id (namespace).</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get drone id (namespace).</span>
 
 <span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -257,7 +262,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Get drone info.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get drone info.</span>
 
 <span class="sd">        :rtype: Dict[str, Union[bool, str]]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -268,7 +273,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get drone position (x, y, z) in m.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get drone position (x, y, z) in m.</span>
 
 <span class="sd">        :rtype: List[float]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -276,7 +281,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get drone orientation (roll, pitch, yaw) in rad.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get drone orientation (roll, pitch, yaw) in rad.</span>
 
 <span class="sd">        :rtype: List[float]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -284,14 +289,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get drone speed (vx, vy, vz) in m/s.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get drone speed (vx, vy, vz) in m/s.</span>
 
 <span class="sd">        :rtype: List[float]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__twist</span><span class="o">.</span><span class="n">twist</span>
 
     <span class="k">def</span> <span class="nf">__info_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">PlatformInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;platform info callback&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;platform info callback&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__info</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">connected</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">armed</span><span class="p">,</span>
                             <span class="n">msg</span><span class="o">.</span><span class="n">offboard</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
                             <span class="n">msg</span><span class="o">.</span><span class="n">current_control_mode</span><span class="o">.</span><span class="n">yaw_mode</span><span class="p">,</span>
@@ -299,7 +304,7 @@
                             <span class="n">msg</span><span class="o">.</span><span class="n">current_control_mode</span><span class="o">.</span><span class="n">reference_frame</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__pose_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose_msg</span><span class="p">:</span> <span class="n">PoseStamped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;pose stamped callback&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;pose stamped callback&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__pose</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">[</span><span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                                 <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                                 <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
@@ -312,36 +317,36 @@
                 <span class="n">pose_msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">orientation</span><span class="o">.</span><span class="n">w</span><span class="p">)]</span>
 
     <span class="k">def</span> <span class="nf">__twist_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">twist_msg</span><span class="p">:</span> <span class="n">TwistStamped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;twist stamped callback&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;twist stamped callback&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__twist</span><span class="o">.</span><span class="n">twist</span> <span class="o">=</span> <span class="p">[</span><span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                               <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                               <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
 
 <div class="viewcode-block" id="DroneInterfaceBase.arm"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.arm">[docs]</a>    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Arm drone.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Arm drone.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
         <span class="n">Arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.disarm"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm">[docs]</a>    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Disarm drone.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disarm drone.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.offboard"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard">[docs]</a>    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Enable offboard mode.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable offboard mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
     <span class="c1"># TODO: replace with executor callbacks</span>
     <span class="k">def</span> <span class="nf">__auto_spin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Drone inner spin&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drone inner spin&quot;&quot;&quot;</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="ow">and</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">ok</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span><span class="o">.</span><span class="n">spin_once</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DroneInterfaceBase.shutdown"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Shutdown properly&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Shutdown properly&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_sub</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pose_sub</span><span class="p">)</span>
@@ -362,24 +367,24 @@
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_land</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Emergency landing&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Emergency landing&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting emergency landing&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">FORCE_LAND</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set controller to hover mode. You will have to take the control manually&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set controller to hover mode. You will have to take the control manually&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">FORCE_HOVER</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land_to_aircraft"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_land_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Call platform emergency land&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform emergency land&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">EMERGENCY_LAND</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover_to_aircraft"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_hover_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Call platform hover. BE CAREFUL, you will have to take it control manually!&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform hover. BE CAREFUL, you will have to take it control manually!&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">EMERGENCY_HOVER</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DroneInterfaceBase.send_emergency_killswitch_to_aircraft"><a class="viewcode-back" href="../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_killswitch_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Call platform stop. BE CAREFUL, motors will stop!&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform stop. BE CAREFUL, motors will stop!&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">KILL_SWITCH</span><span class="p">)</span></div></div>
 </pre></div>
 

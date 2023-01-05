@@ -84,7 +84,12 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_examples/index.html">Examples</a></li>
@@ -159,14 +164,14 @@
 
 
 <div class="viewcode-block" id="ServiceHandler"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler">[docs]</a><span class="k">class</span> <span class="nc">ServiceHandler</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Service handler class&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Service handler class&quot;&quot;&quot;</span>
     <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># seconds</span>
 
 <div class="viewcode-block" id="ServiceHandler.ServiceNotAvailable"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler.ServiceNotAvailable">[docs]</a>    <span class="k">class</span> <span class="nc">ServiceNotAvailable</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Service not available exception&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Service not available exception&quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="ServiceHandler.ServiceFailed"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler.ServiceFailed">[docs]</a>    <span class="k">class</span> <span class="nc">ServiceFailed</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Service failed exection&quot;&quot;&quot;</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Service failed exection&quot;&quot;&quot;</span></div>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_client</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">request_msg</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logger</span>

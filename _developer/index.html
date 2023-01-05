@@ -87,7 +87,12 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-architecture">Package architecture</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_examples/index.html">Examples</a></li>
@@ -122,6 +127,160 @@
              
   <section id="developer-documentation">
 <h1>Developer documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this heading"></a></h1>
+<section id="file-style-guide">
+<h2>File style guide<a class="headerlink" href="#file-style-guide" title="Permalink to this heading"></a></h2>
+<p>Every file should start with the Licence text, which looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">/*********************************************************************************************</span>
+<span class="pre">*</span>&#160; <span class="pre">\file</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[file</span> <span class="pre">name]</span>
+<span class="pre">*</span>&#160; <span class="pre">\brief</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">[brief</span> <span class="pre">description</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">file]</span>
+<span class="pre">*</span>&#160; <span class="pre">\authors</span>&#160;&#160;&#160; <span class="pre">[name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">author]</span>
+<span class="pre">*</span>&#160; <span class="pre">\copyright</span>&#160; <span class="pre">Copyright</span> <span class="pre">(c)</span> <span class="pre">2021</span> <span class="pre">Universidad</span> <span class="pre">Politécnica</span> <span class="pre">de</span> <span class="pre">Madrid</span>
+<span class="pre">*</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">All</span> <span class="pre">Rights</span> <span class="pre">Reserved</span>
+<span class="pre">*</span>
+<span class="pre">*</span> <span class="pre">Redistribution</span> <span class="pre">and</span> <span class="pre">use</span> <span class="pre">in</span> <span class="pre">source</span> <span class="pre">and</span> <span class="pre">binary</span> <span class="pre">forms,</span> <span class="pre">with</span> <span class="pre">or</span> <span class="pre">without</span>
+<span class="pre">*</span> <span class="pre">modification,</span> <span class="pre">are</span> <span class="pre">permitted</span> <span class="pre">provided</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">conditions</span> <span class="pre">are</span> <span class="pre">met:</span>
+<span class="pre">*</span>
+<span class="pre">*</span> <span class="pre">1.</span> <span class="pre">Redistributions</span> <span class="pre">of</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">must</span> <span class="pre">retain</span> <span class="pre">the</span> <span class="pre">above</span> <span class="pre">copyright</span> <span class="pre">notice,</span>
+<span class="pre">*</span>&#160;&#160;&#160; <span class="pre">this</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">conditions</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">disclaimer.</span>
+<span class="pre">*</span> <span class="pre">2.</span> <span class="pre">Redistributions</span> <span class="pre">in</span> <span class="pre">binary</span> <span class="pre">form</span> <span class="pre">must</span> <span class="pre">reproduce</span> <span class="pre">the</span> <span class="pre">above</span> <span class="pre">copyright</span> <span class="pre">notice,</span>
+<span class="pre">*</span>&#160;&#160;&#160; <span class="pre">this</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">conditions</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">disclaimer</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">documentation</span>
+<span class="pre">*</span>&#160;&#160;&#160; <span class="pre">and/or</span> <span class="pre">other</span> <span class="pre">materials</span> <span class="pre">provided</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">distribution.</span>
+<span class="pre">*</span> <span class="pre">3.</span> <span class="pre">Neither</span> <span class="pre">the</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">copyright</span> <span class="pre">holder</span> <span class="pre">nor</span> <span class="pre">the</span> <span class="pre">names</span> <span class="pre">of</span> <span class="pre">its</span> <span class="pre">contributors</span>
+<span class="pre">*</span>&#160;&#160;&#160; <span class="pre">may</span> <span class="pre">be</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">endorse</span> <span class="pre">or</span> <span class="pre">promote</span> <span class="pre">products</span> <span class="pre">derived</span> <span class="pre">from</span> <span class="pre">this</span> <span class="pre">software</span>
+<span class="pre">*</span>&#160;&#160;&#160; <span class="pre">without</span> <span class="pre">specific</span> <span class="pre">prior</span> <span class="pre">written</span> <span class="pre">permission.</span>
+<span class="pre">*</span>
+<span class="pre">*</span> <span class="pre">THIS</span> <span class="pre">SOFTWARE</span> <span class="pre">IS</span> <span class="pre">PROVIDED</span> <span class="pre">BY</span> <span class="pre">THE</span> <span class="pre">COPYRIGHT</span> <span class="pre">HOLDERS</span> <span class="pre">AND</span> <span class="pre">CONTRIBUTORS</span>
+<span class="pre">*</span> <span class="pre">&quot;AS</span> <span class="pre">IS&quot;</span> <span class="pre">AND</span> <span class="pre">ANY</span> <span class="pre">EXPRESS</span> <span class="pre">OR</span> <span class="pre">IMPLIED</span> <span class="pre">WARRANTIES,</span> <span class="pre">INCLUDING,</span> <span class="pre">BUT</span> <span class="pre">NOT</span> <span class="pre">LIMITED</span> <span class="pre">TO,</span>
+<span class="pre">*</span> <span class="pre">THE</span> <span class="pre">IMPLIED</span> <span class="pre">WARRANTIES</span> <span class="pre">OF</span> <span class="pre">MERCHANTABILITY</span> <span class="pre">AND</span> <span class="pre">FITNESS</span> <span class="pre">FOR</span> <span class="pre">A</span> <span class="pre">PARTICULAR</span>
+<span class="pre">*</span> <span class="pre">PURPOSE</span> <span class="pre">ARE</span> <span class="pre">DISCLAIMED.</span> <span class="pre">IN</span> <span class="pre">NO</span> <span class="pre">EVENT</span> <span class="pre">SHALL</span> <span class="pre">THE</span> <span class="pre">COPYRIGHT</span> <span class="pre">HOLDER</span> <span class="pre">OR</span>
+<span class="pre">*</span> <span class="pre">CONTRIBUTORS</span> <span class="pre">BE</span> <span class="pre">LIABLE</span> <span class="pre">FOR</span> <span class="pre">ANY</span> <span class="pre">DIRECT,</span> <span class="pre">INDIRECT,</span> <span class="pre">INCIDENTAL,</span> <span class="pre">SPECIAL,</span>
+<span class="pre">*</span> <span class="pre">EXEMPLARY,</span> <span class="pre">OR</span> <span class="pre">CONSEQUENTIAL</span> <span class="pre">DAMAGES</span> <span class="pre">(INCLUDING,</span> <span class="pre">BUT</span> <span class="pre">NOT</span> <span class="pre">LIMITED</span> <span class="pre">TO,</span>
+<span class="pre">*</span> <span class="pre">PROCUREMENT</span> <span class="pre">OF</span> <span class="pre">SUBSTITUTE</span> <span class="pre">GOODS</span> <span class="pre">OR</span> <span class="pre">SERVICES;</span> <span class="pre">LOSS</span> <span class="pre">OF</span> <span class="pre">USE,</span> <span class="pre">DATA,</span> <span class="pre">OR</span> <span class="pre">PROFITS;</span>
+<span class="pre">*</span> <span class="pre">OR</span> <span class="pre">BUSINESS</span> <span class="pre">INTERRUPTION)</span> <span class="pre">HOWEVER</span> <span class="pre">CAUSED</span> <span class="pre">AND</span> <span class="pre">ON</span> <span class="pre">ANY</span> <span class="pre">THEORY</span> <span class="pre">OF</span> <span class="pre">LIABILITY,</span>
+<span class="pre">*</span> <span class="pre">WHETHER</span> <span class="pre">IN</span> <span class="pre">CONTRACT,</span> <span class="pre">STRICT</span> <span class="pre">LIABILITY,</span> <span class="pre">OR</span> <span class="pre">TORT</span> <span class="pre">(INCLUDING</span> <span class="pre">NEGLIGENCE</span>
+<span class="pre">*</span> <span class="pre">OR</span> <span class="pre">OTHERWISE)</span> <span class="pre">ARISING</span> <span class="pre">IN</span> <span class="pre">ANY</span> <span class="pre">WAY</span> <span class="pre">OUT</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">USE</span> <span class="pre">OF</span> <span class="pre">THIS</span> <span class="pre">SOFTWARE,</span>
+<span class="pre">*</span> <span class="pre">EVEN</span> <span class="pre">IF</span> <span class="pre">ADVISED</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">POSSIBILITY</span> <span class="pre">OF</span> <span class="pre">SUCH</span> <span class="pre">DAMAGE.</span>
+<span class="pre">********************************************************************************/</span>
+<span class="pre">`</span></code></p>
+<p>Code should follows the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">google c++ style guide</a>.</p>
+<p>Also, documentation will be generate using <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html">Doxygen</a>. Therefore, header files should include a comment over every definition in order to generate the documentation properly. The comments made in the current nodes are writing using Javadoc style.</p>
+<p>Plese, do not use std::cout or similar functions to show messages in command line. Instead, use logging macros like RCLCPP_INFO from ROS logging library.</p>
+</section>
+<section id="developing-a-new-package">
+<h2>Developing a new Package<a class="headerlink" href="#developing-a-new-package" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Style tests</strong></p></li>
+</ul>
+<p>A Cpp style check must be done in order to use the same style through all the packages.
+Each package must have the same <code class="docutils literal notranslate"><span class="pre">`.clang-format`</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
+<p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">`CMakeList.txt`</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(BUILD_TESTING)
+
+find_package(ament_cmake_cppcheck REQUIRED)
+find_package(ament_cmake_clang_format REQUIRED)
+
+ament_cppcheck(src/ include/ tests/)
+ament_clang_format(src/ include/ tests/ --config ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
+
+endif()
+</pre></div>
+</div>
+<p>Also, these packages must be added to the <code class="docutils literal notranslate"><span class="pre">`package.xml`</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_clang_format</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_cppcheck</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>if ament clang format test fails you can autoformat the code using :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ament_clang_format<span class="w"> </span>./src/<span class="w"> </span>./include/<span class="w"> </span>./tests/<span class="w"> </span>--reformat<span class="w"> </span>--config<span class="w"> </span>.clang-format
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Functional Tests</strong></p></li>
+</ul>
+<p>In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
+GTest complete documentation about how to write your own unit tests can be found at:
+<a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
+<p>In order to compile this tests some lines must be added into a <strong>NEW</strong> <code class="docutils literal notranslate"><span class="pre">`CMakeLists.txt`</span></code> file located in a <code class="docutils literal notranslate"><span class="pre">`tests/`</span></code> folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Add gtest dependencies and install them if they are not already installed
+
+find_package(gtest QUIET)
+if (${Gtest_FOUND})
+MESSAGE(STATUS &quot;Found Gtest.&quot;)
+else (${Gtest_FOUND})
+MESSAGE(STATUS &quot;Could not locate Gtest.&quot;)
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# For Windows: Prevent overriding the parent project&#39;s compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL &quot;&quot; FORCE)
+FetchContent_MakeAvailable(googletest)
+
+endif(${Gtest_FOUND})
+
+include(GoogleTest)
+
+enable_testing()
+# find all *.cpp files in the tests directory
+
+file(GLOB TEST_SOURCES tests/*.cpp )
+
+# create a test executable for each test file
+foreach(TEST_SOURCE ${TEST_SOURCES})
+
+get_filename_component(_src_filename ${TEST_SOURCE} NAME)
+string(LENGTH ${_src_filename} name_length)
+math(EXPR final_length  &quot;${name_length}-4&quot;) # remove .cpp of the name
+string(SUBSTRING ${_src_filename} 0 ${final_length} TEST_NAME)
+
+add_executable(${TEST_NAME}_test ${TEST_SOURCE})
+ament_target_dependencies(${TEST_NAME}_test  ${PROJECT_DEPENDENCIES})
+target_link_libraries(${TEST_NAME}_test gtest_main ${PROJECT_NAME})
+
+# add the test executable to the list of executables to build
+gtest_discover_tests(${TEST_NAME}_test)
+
+endforeach()
+</pre></div>
+</div>
+<p>In order to link this <code class="docutils literal notranslate"><span class="pre">`./tests/CMakeLists.txt`</span></code> file into the <code class="docutils literal notranslate"><span class="pre">`CMakeLists.txt`</span></code> file of the package, the following line must be added:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">BUILD_TESTING</span><span class="p">)</span>
+<span class="c1"># all the other tests</span>
+<span class="n">include</span><span class="p">(</span><span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span><span class="p">)</span>
+<span class="n">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Run tests</strong></p></li>
+</ul>
+<p>To run these tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>colcon<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="package-architecture">
+<h2>Package architecture<a class="headerlink" href="#package-architecture" title="Permalink to this heading"></a></h2>
+<p>Every new package should have the following architecture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">package_name</span>
+<span class="o">/</span><span class="n">include</span>
+    <span class="o">/</span><span class="n">package_name</span>
+    <span class="n">header_files</span><span class="p">(</span><span class="o">.</span><span class="n">hpp</span><span class="p">)</span>
+<span class="o">/</span><span class="n">launch</span>
+<span class="o">/</span><span class="n">src</span>
+    <span class="n">implementation_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+    <span class="n">main_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tests</span>
+    <span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">test_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">CmakeLists</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">package</span><span class="o">.</span><span class="n">xml</span>
+<span class="n">Readme</span><span class="o">.</span><span class="n">md</span>
+<span class="o">.</span><span class="n">gitignore</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
