@@ -4,7 +4,7 @@ import sys
 import re
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath(
-    './_user/temp_ws/src/as2_python_api/as2_python_api'))
+    './_python_api/temp_ws/src/as2_python_api/as2_python_api'))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -37,7 +37,7 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 
 breathe_projects = {
-    "as2_core": "./_user/as2_core/doxygen/xml"
+    "as2_core": "./_core/as2_core/doxygen/xml"
 }
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -110,6 +110,7 @@ else:
     }
 
 html_theme_path = ['_themes']
+
 html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,

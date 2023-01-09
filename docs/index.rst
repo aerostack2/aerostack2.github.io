@@ -15,8 +15,6 @@ Most important features:
 - Project-oriented, allowing to install and use only the necessary packages for the application to be developed. 
 - Swarming orientation.
 
-Getting started
-===============
 
 .. toctree::
    :maxdepth: 2
@@ -24,40 +22,35 @@ Getting started
    _getting_started/index.rst
 
 
-Installation
-============
-
 .. toctree::
    :maxdepth: 2
 
    _installation/index.rst
 
-CLI
-===
 
 .. toctree::
    :maxdepth: 2
 
    _cli/index.rst
 
-ROS2 Common interfaces
-======================
+
 .. toctree::
    :maxdepth: 2
 
    _ros_common_interfaces/index.rst
-    
-User
-====
+
 
 .. toctree::
    :maxdepth: 2
 
-   _user/index.rst
+   _python_api/index.rst
+   
 
+.. toctree::
+   :maxdepth: 2
 
-Developer
-=========
+   _core/index.rst
+
 
 .. toctree::
    :maxdepth: 2
@@ -65,16 +58,12 @@ Developer
    _developer/index.rst
 
 
-Examples
-=========
-
 .. toctree::
    :maxdepth: 2
 
    _examples/index.rst
+
    
-License
-=======
 .. toctree::
    :maxdepth: 2
 
