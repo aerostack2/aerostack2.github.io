@@ -6,7 +6,7 @@ File style guide
 
 Every file should start with the Licence text, which looks like this:
 
-.. code-block::cpp
+.. code-block:: c++
 
     /*********************************************************************************************
     *  \file       [file name]

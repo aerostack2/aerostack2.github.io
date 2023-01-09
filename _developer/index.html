@@ -133,6 +133,39 @@
 <section id="file-style-guide">
 <h2>File style guide<a class="headerlink" href="#file-style-guide" title="Permalink to this heading"></a></h2>
 <p>Every file should start with the Licence text, which looks like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/*********************************************************************************************</span>
+<span class="cm">*  \file       [file name]</span>
+<span class="cm">*  \brief      [brief description of the file]</span>
+<span class="cm">*  \authors    [name of the author]</span>
+<span class="cm">*  \copyright  Copyright (c) 2021 Universidad Politécnica de Madrid</span>
+<span class="cm">*              All Rights Reserved</span>
+<span class="cm">*</span>
+<span class="cm">* Redistribution and use in source and binary forms, with or without</span>
+<span class="cm">* modification, are permitted provided that the following conditions are met:</span>
+<span class="cm">*</span>
+<span class="cm">* 1. Redistributions of source code must retain the above copyright notice,</span>
+<span class="cm">*    this list of conditions and the following disclaimer.</span>
+<span class="cm">* 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="cm">*    this list of conditions and the following disclaimer in the documentation</span>
+<span class="cm">*    and/or other materials provided with the distribution.</span>
+<span class="cm">* 3. Neither the name of the copyright holder nor the names of its contributors</span>
+<span class="cm">*    may be used to endorse or promote products derived from this software</span>
+<span class="cm">*    without specific prior written permission.</span>
+<span class="cm">*</span>
+<span class="cm">* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
+<span class="cm">* &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="cm">* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="cm">* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR</span>
+<span class="cm">* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,</span>
+<span class="cm">* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="cm">* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;</span>
+<span class="cm">* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="cm">* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE</span>
+<span class="cm">* OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,</span>
+<span class="cm">* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="cm">**********************************************************************************************/</span>
+</pre></div>
+</div>
 <p>Code should follows the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">google c++ style guide</a>.</p>
 <p>Also, documentation will be generate using <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html">Doxygen</a>. Therefore, header files should include a comment over every definition in order to generate the documentation properly. The comments made in the current nodes are writing using Javadoc style.</p>
 <p>Plese, do not use std::cout or similar functions to show messages in command line. Instead, use logging macros like RCLCPP_INFO from ROS logging library.</p>
