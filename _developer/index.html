@@ -176,20 +176,20 @@
 <li><p><strong>Style tests</strong></p></li>
 </ul>
 <p>A Cpp style check must be done in order to use the same style through all the packages.
-Each package must have the same <code class="docutils literal notranslate"><span class="pre">`.clang-format`</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
-<p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">`CMakeList.txt`</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(BUILD_TESTING)
+Each package must have the same <code class="docutils literal notranslate"><span class="pre">.clang-format</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
+<p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
 
-find_package(ament_cmake_cppcheck REQUIRED)
-find_package(ament_cmake_clang_format REQUIRED)
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_cppcheck</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_clang_format</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
-ament_cppcheck(src/ include/ tests/)
-ament_clang_format(src/ include/ tests/ --config ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
+<span class="nb">ament_cppcheck</span><span class="p">(</span><span class="s">src/</span><span class="w"> </span><span class="s">include/</span><span class="w"> </span><span class="s">tests/</span><span class="p">)</span>
+<span class="nb">ament_clang_format</span><span class="p">(</span><span class="s">src/</span><span class="w"> </span><span class="s">include/</span><span class="w"> </span><span class="s">tests/</span><span class="w"> </span><span class="s">--config</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/.clang-format</span><span class="p">)</span>
 
-endif()
+<span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Also, these packages must be added to the <code class="docutils literal notranslate"><span class="pre">`package.xml`</span></code></p>
+<p>Also, these packages must be added to the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_clang_format</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_cppcheck</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
 </pre></div>
@@ -204,55 +204,55 @@ endif()
 <p>In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
 GTest complete documentation about how to write your own unit tests can be found at:
 <a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
-<p>In order to compile this tests some lines must be added into a <strong>NEW</strong> <code class="docutils literal notranslate"><span class="pre">`CMakeLists.txt`</span></code> file located in a <code class="docutils literal notranslate"><span class="pre">`tests/`</span></code> folder.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Add gtest dependencies and install them if they are not already installed
+<p>In order to compile this tests some lines must be added into a <strong>NEW</strong> <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file located in a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> folder.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Add gtest dependencies and install them if they are not already installed</span>
 
-find_package(gtest QUIET)
-if (${Gtest_FOUND})
-MESSAGE(STATUS &quot;Found Gtest.&quot;)
-else (${Gtest_FOUND})
-MESSAGE(STATUS &quot;Could not locate Gtest.&quot;)
-include(FetchContent)
-FetchContent_Declare(
-    googletest
-    URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
-)
-# For Windows: Prevent overriding the parent project&#39;s compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL &quot;&quot; FORCE)
-FetchContent_MakeAvailable(googletest)
+<span class="nb">find_package</span><span class="p">(</span><span class="s">gtest</span><span class="w"> </span><span class="s">QUIET</span><span class="p">)</span>
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">MESSAGE</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Found Gtest.&quot;</span><span class="p">)</span>
+<span class="nb">else</span><span class="w"> </span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">MESSAGE</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Could not locate Gtest.&quot;</span><span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">FetchContent</span><span class="p">)</span>
+<span class="nb">FetchContent_Declare</span><span class="p">(</span>
+<span class="w">    </span><span class="s">googletest</span>
+<span class="w">    </span><span class="s">URL</span><span class="w"> </span><span class="s">https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip</span>
+<span class="p">)</span>
+<span class="c"># For Windows: Prevent overriding the parent project&#39;s compiler/linker settings</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">gtest_force_shared_crt</span><span class="w"> </span><span class="s">ON</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+<span class="nb">FetchContent_MakeAvailable</span><span class="p">(</span><span class="s">googletest</span><span class="p">)</span>
 
-endif(${Gtest_FOUND})
+<span class="nb">endif</span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
 
-include(GoogleTest)
+<span class="nb">include</span><span class="p">(</span><span class="s">GoogleTest</span><span class="p">)</span>
 
-enable_testing()
-# find all *.cpp files in the tests directory
+<span class="nb">enable_testing</span><span class="p">()</span>
+<span class="c"># find all *.cpp files in the tests directory</span>
 
-file(GLOB TEST_SOURCES tests/*.cpp )
+<span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span><span class="w"> </span><span class="s">TEST_SOURCES</span><span class="w"> </span><span class="s">tests/*.cpp</span><span class="w"> </span><span class="p">)</span>
 
-# create a test executable for each test file
-foreach(TEST_SOURCE ${TEST_SOURCES})
+<span class="c"># create a test executable for each test file</span>
+<span class="nb">foreach</span><span class="p">(</span><span class="s">TEST_SOURCE</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCES</span><span class="o">}</span><span class="p">)</span>
 
-get_filename_component(_src_filename ${TEST_SOURCE} NAME)
-string(LENGTH ${_src_filename} name_length)
-math(EXPR final_length  &quot;${name_length}-4&quot;) # remove .cpp of the name
-string(SUBSTRING ${_src_filename} 0 ${final_length} TEST_NAME)
+<span class="nb">get_filename_component</span><span class="p">(</span><span class="s">_src_filename</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCE</span><span class="o">}</span><span class="w"> </span><span class="s">NAME</span><span class="p">)</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">LENGTH</span><span class="w"> </span><span class="o">${</span><span class="nv">_src_filename</span><span class="o">}</span><span class="w"> </span><span class="s">name_length</span><span class="p">)</span>
+<span class="nb">math</span><span class="p">(</span><span class="s">EXPR</span><span class="w"> </span><span class="s">final_length</span><span class="w">  </span><span class="s2">&quot;${name_length}-4&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># remove .cpp of the name</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">SUBSTRING</span><span class="w"> </span><span class="o">${</span><span class="nv">_src_filename</span><span class="o">}</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="o">${</span><span class="nv">final_length</span><span class="o">}</span><span class="w"> </span><span class="s">TEST_NAME</span><span class="p">)</span>
 
-add_executable(${TEST_NAME}_test ${TEST_SOURCE})
-ament_target_dependencies(${TEST_NAME}_test  ${PROJECT_DEPENDENCIES})
-target_link_libraries(${TEST_NAME}_test gtest_main ${PROJECT_NAME})
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCE</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w">  </span><span class="o">${</span><span class="nv">PROJECT_DEPENDENCIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w"> </span><span class="s">gtest_main</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
 
-# add the test executable to the list of executables to build
-gtest_discover_tests(${TEST_NAME}_test)
+<span class="c"># add the test executable to the list of executables to build</span>
+<span class="nb">gtest_discover_tests</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="p">)</span>
 
-endforeach()
+<span class="nb">endforeach</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In order to link this <code class="docutils literal notranslate"><span class="pre">`./tests/CMakeLists.txt`</span></code> file into the <code class="docutils literal notranslate"><span class="pre">`CMakeLists.txt`</span></code> file of the package, the following line must be added:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">BUILD_TESTING</span><span class="p">)</span>
-<span class="c1"># all the other tests</span>
-<span class="n">include</span><span class="p">(</span><span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span><span class="p">)</span>
-<span class="n">endif</span><span class="p">()</span>
+<p>In order to link this <code class="docutils literal notranslate"><span class="pre">./tests/CMakeLists.txt</span></code> file into the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file of the package, the following line must be added:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+<span class="c"># all the other tests</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">./tests/CMakeLists.txt</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">

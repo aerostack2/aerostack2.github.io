@@ -52,11 +52,11 @@ Developing a new Package
 * **Style tests**
 
 A Cpp style check must be done in order to use the same style through all the packages.
-Each package must have the same ```.clang-format``` `file <https://github.com/aerostack2/as2_node_template/blob/main/.clang-format>`_.
+Each package must have the same ``.clang-format`` `file <https://github.com/aerostack2/as2_node_template/blob/main/.clang-format>`_.
 
-For configuring style tests, this must be added on the ```CMakeList.txt``` 
+For configuring style tests, this must be added on the ``CMakeList.txt`` 
 
-.. code-block::
+.. code-block:: cmake
 
     if(BUILD_TESTING)
 
@@ -68,7 +68,7 @@ For configuring style tests, this must be added on the ```CMakeList.txt```
 
     endif()
 
-Also, these packages must be added to the ```package.xml```
+Also, these packages must be added to the ``package.xml``
 
 .. code-block::
 
@@ -88,9 +88,9 @@ In aerostack2 we use googletest (GTest) library to perform unit tests across the
 GTest complete documentation about how to write your own unit tests can be found at:
 https://github.com/google/googletest
 
-In order to compile this tests some lines must be added into a **NEW** ```CMakeLists.txt``` file located in a ```tests/``` folder.
+In order to compile this tests some lines must be added into a **NEW** ``CMakeLists.txt`` file located in a ``tests/`` folder.
 
-.. code-block::
+.. code-block:: cmake
 
     # Add gtest dependencies and install them if they are not already installed
 
@@ -134,9 +134,9 @@ In order to compile this tests some lines must be added into a **NEW** ```CMakeL
 
     endforeach()
 
-In order to link this ```./tests/CMakeLists.txt``` file into the ```CMakeLists.txt``` file of the package, the following line must be added:
+In order to link this ``./tests/CMakeLists.txt`` file into the ``CMakeLists.txt`` file of the package, the following line must be added:
 
-.. code-block::
+.. code-block:: cmake
 
     if(BUILD_TESTING)
     # all the other tests
