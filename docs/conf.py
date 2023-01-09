@@ -1,9 +1,10 @@
+from sphinx.locale import _
 import os
 import sys
 import re
 sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('./_user/temp_ws/src/as2_python_api/as2_python_api'))
-from sphinx.locale import _
+sys.path.insert(0, os.path.abspath(
+    './_user/temp_ws/src/as2_python_api/as2_python_api'))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -60,18 +61,19 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-autodoc_mock_imports = ['as2_msgs', 'geographic_msgs', 'as2_motion_reference_handlers']
+autodoc_mock_imports = ['as2_msgs', 'geographic_msgs',
+                        'as2_motion_reference_handlers']
 
 autodoc_default_options = {'autosummary': False}
 
 # -- Options for HTML output -------------------------------------------------
 
 html_context = {
-    "display_github": True, # Integrate GitHub
-    "github_user": "aerostack2", # Username
-    "github_repo": "aerostack2.github.io", # Repo name
-    "github_version": "main", # Version
-    "conf_py_path": "/docs/", # Path in the checkout to the docs root
+    "display_github": True,  # Integrate GitHub
+    "github_user": "aerostack2",  # Username
+    "github_repo": "aerostack2.github.io",  # Repo name
+    "github_version": "main",  # Version
+    "conf_py_path": "/docs/",  # Path in the checkout to the docs root
 }
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -87,9 +89,10 @@ except ImportError:
         '**': [
             'relations.html',  # needs 'show_related': True theme option to display
             'searchbox.html',
-            ]
-        }
-    sys.stderr.write('Warning: sphinx_rtd_theme missing. Use pip to install it.\n')
+        ]
+    }
+    sys.stderr.write(
+        'Warning: sphinx_rtd_theme missing. Use pip to install it.\n')
 else:
     html_theme = "sphinx_rtd_theme"
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
@@ -112,10 +115,14 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['_themes/sphinx_rtd_theme/static']
+
+html_css_files = [
+    'css/config.css',
+]
 
 latex_documents = [
-  ('index', '{0}.tex'.format(slug), project, author, 'manual'),
+    ('index', '{0}.tex'.format(slug), project, author, 'manual'),
 ]
 
 man_pages = [
@@ -123,8 +130,9 @@ man_pages = [
 ]
 
 texinfo_documents = [
-  ('index', slug, project, author, slug, project, 'Miscellaneous'),
+    ('index', slug, project, author, slug, project, 'Miscellaneous'),
 ]
+
 
 def setup(app):
     from sphinx.domains.python import PyField
