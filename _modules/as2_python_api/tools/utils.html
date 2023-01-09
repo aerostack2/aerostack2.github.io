@@ -65,25 +65,26 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_user/index.html">User documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/about.html">About</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/api.html">API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/drone_interface.html">Drone Interface</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html">as2_python_api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -170,7 +171,7 @@
 <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Path</span>
 
 
-<div class="viewcode-block" id="euler_from_quaternion"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.euler_from_quaternion">[docs]</a><span class="k">def</span> <span class="nf">euler_from_quaternion</span><span class="p">(</span><span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_w</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<div class="viewcode-block" id="euler_from_quaternion"><a class="viewcode-back" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.euler_from_quaternion">[docs]</a><span class="k">def</span> <span class="nf">euler_from_quaternion</span><span class="p">(</span><span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_w</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a quaternion into euler angles (roll, pitch, yaw)</span>
 <span class="sd">    roll is rotation around _x in radians (counterclockwise)</span>
@@ -193,7 +194,7 @@
     <span class="k">return</span> <span class="n">roll_x</span><span class="p">,</span> <span class="n">pitch_y</span><span class="p">,</span> <span class="n">yaw_z</span>  <span class="c1"># in radians</span></div>
 
 
-<div class="viewcode-block" id="path_to_list"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.path_to_list">[docs]</a><span class="k">def</span> <span class="nf">path_to_list</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+<div class="viewcode-block" id="path_to_list"><a class="viewcode-back" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.path_to_list">[docs]</a><span class="k">def</span> <span class="nf">path_to_list</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts path into list&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">],</span>
                     <span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">))</span></div>

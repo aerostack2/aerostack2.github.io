@@ -65,25 +65,26 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../_user/index.html">User documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/about.html">About</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/api.html">API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/drone_interface.html">Drone Interface</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.html">as2_python_api package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_user/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -174,7 +175,7 @@
     <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
 
-<div class="viewcode-block" id="TakeoffBehavior"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior">[docs]</a><span class="k">class</span> <span class="nc">TakeoffBehavior</span><span class="p">(</span><span class="n">BehaviorHandler</span><span class="p">):</span>
+<div class="viewcode-block" id="TakeoffBehavior"><a class="viewcode-back" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior">[docs]</a><span class="k">class</span> <span class="nc">TakeoffBehavior</span><span class="p">(</span><span class="n">BehaviorHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Takeoff Behavior&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -185,7 +186,7 @@
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 
-<div class="viewcode-block" id="TakeoffBehavior.start"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="TakeoffBehavior.start"><a class="viewcode-back" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">TakeOff</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">takeoff_height</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">takeoff_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
@@ -196,7 +197,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="TakeoffBehavior.modify"><a class="viewcode-back" href="../../../_user/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.modify">[docs]</a>    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="TakeoffBehavior.modify"><a class="viewcode-back" href="../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.modify">[docs]</a>    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">TakeOff</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">takeoff_height</span> <span class="o">=</span> <span class="n">height</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">takeoff_speed</span> <span class="o">=</span> <span class="n">speed</span>

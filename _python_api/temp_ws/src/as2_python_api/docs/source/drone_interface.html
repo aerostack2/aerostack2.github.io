@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API &mdash; Aerostack2 1.0 documentation</title>
+  <title>Drone Interface &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" />
-    <link rel="next" title="Drone Interface" href="drone_interface.html" />
-    <link rel="prev" title="Examples" href="examples.html" /> 
+    <link rel="next" title="as2_python_api" href="modules.html" />
+    <link rel="prev" title="API" href="api.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,25 +68,26 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">User documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">as2_python_api</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="about.html">About</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="examples.html">Examples</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="drone_interface.html">Drone Interface</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="modules.html">as2_python_api</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html">as2_python_api package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../../index.html#code">Code</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">as2_python_api</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules.html">as2_python_api</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,11 +120,12 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../../../index.html">User documentation</a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Python API</a></li>
           <li class="breadcrumb-item"><a href="index.html">as2_python_api</a></li>
-      <li class="breadcrumb-item active">API</li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">Drone Interface</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_user/temp_ws/src/as2_python_api/docs/source/api.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_python_api/temp_ws/src/as2_python_api/docs/source/drone_interface.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -131,14 +133,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Content:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="drone_interface.html">Drone Interface</a></li>
-</ul>
-</div>
+  <section id="module-drone_interface">
+<span id="drone-interface"></span><h1>Drone Interface<a class="headerlink" href="#module-drone_interface" title="Permalink to this heading"></a></h1>
+<p>Drone interface to easily command drones with AeroStack2.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="drone_interface.DroneInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drone_interface.</span></span><span class="sig-name descname"><span class="pre">DroneInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/drone_interface.html#DroneInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drone_interface.DroneInterface" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
+<p>Drone interface node.</p>
+</dd></dl>
+
 </section>
 
 
