@@ -6,7 +6,7 @@ File style guide
 
 Every file should start with the Licence text, which looks like this:
 
-.. code-block::
+.. code-block::cpp
 
     /*********************************************************************************************
     *  \file       [file name]
@@ -38,7 +38,7 @@ Every file should start with the Licence text, which looks like this:
     * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
     * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
     * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    ********************************************************************************/
+    **********************************************************************************************/
 
 Code should follows the `google c++ style guide <https://google.github.io/styleguide/cppguide.html>`_.
 
