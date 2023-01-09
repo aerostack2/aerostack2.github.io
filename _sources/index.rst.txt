@@ -17,54 +17,15 @@ Most important features:
 
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    _getting_started/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _installation/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _cli/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _ros_common_interfaces/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _python_api/index.rst
-   
-
-.. toctree::
-   :maxdepth: 2
-
    _core/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _developer/index.rst
-
-
-.. toctree::
-   :maxdepth: 2
-
    _examples/index.rst
-
-   
-.. toctree::
-   :maxdepth: 2
-
    _license/index.rst
+   
