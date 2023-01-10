@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developer documentation &mdash; Aerostack2 1.0 documentation</title>
+  <title>Developer guide &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -62,6 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_behaviors/index.html">Behaviors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_platforms/index.html">Platforms</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#ignition">Ignition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#dji">DJI</a></li>
@@ -71,7 +72,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_ros_common_interfaces/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_ros_common_interfaces/index.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_ros_common_interfaces/index.html#actions">Actions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_user_interfaces/index.html">User Interfaces</a><ul>
@@ -109,9 +115,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer documentation</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#file-style-guide">File style guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#developing-a-new-package">Developing a new Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#style-tests">Style tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functional-tests">Functional tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-tests">Run tests</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#package-architecture">Package architecture</a></li>
 </ul>
 </li>
@@ -133,7 +144,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Developer documentation</li>
+      <li class="breadcrumb-item active">Developer guide</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_developer/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -143,8 +154,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="developer-documentation">
-<h1>Developer documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this heading"></a></h1>
+  <section id="developer-guide">
+<h1>Developer guide<a class="headerlink" href="#developer-guide" title="Permalink to this heading"></a></h1>
 <section id="file-style-guide">
 <h2>File style guide<a class="headerlink" href="#file-style-guide" title="Permalink to this heading"></a></h2>
 <p>Every file should start with the Licence text, which looks like this:</p>
@@ -187,9 +198,8 @@
 </section>
 <section id="developing-a-new-package">
 <h2>Developing a new Package<a class="headerlink" href="#developing-a-new-package" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Style tests</strong></p></li>
-</ul>
+<section id="style-tests">
+<h3>Style tests<a class="headerlink" href="#style-tests" title="Permalink to this heading"></a></h3>
 <p>A Cpp style check must be done in order to use the same style through all the packages.
 Each package must have the same <code class="docutils literal notranslate"><span class="pre">.clang-format</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
 <p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code></p>
@@ -213,9 +223,9 @@ Each package must have the same <code class="docutils literal notranslate"><span
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ament_clang_format<span class="w"> </span>./src/<span class="w"> </span>./include/<span class="w"> </span>./tests/<span class="w"> </span>--reformat<span class="w"> </span>--config<span class="w"> </span>.clang-format
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Functional Tests</strong></p></li>
-</ul>
+</section>
+<section id="functional-tests">
+<h3>Functional tests<a class="headerlink" href="#functional-tests" title="Permalink to this heading"></a></h3>
 <p>In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
 GTest complete documentation about how to write your own unit tests can be found at:
 <a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
@@ -270,13 +280,14 @@ GTest complete documentation about how to write your own unit tests can be found
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Run tests</strong></p></li>
-</ul>
+</section>
+<section id="run-tests">
+<h3>Run tests<a class="headerlink" href="#run-tests" title="Permalink to this heading"></a></h3>
 <p>To run these tests:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>colcon<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="package-architecture">
 <h2>Package architecture<a class="headerlink" href="#package-architecture" title="Permalink to this heading"></a></h2>

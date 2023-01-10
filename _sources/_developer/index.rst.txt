@@ -1,5 +1,5 @@
-Developer documentation
-=======================
+Developer guide
+===============
 
 File style guide
 ################
@@ -49,7 +49,8 @@ Plese, do not use std::cout or similar functions to show messages in command lin
 Developing a new Package
 ########################
 
-* **Style tests**
+Style tests
+-----------
 
 A Cpp style check must be done in order to use the same style through all the packages.
 Each package must have the same ``.clang-format`` `file <https://github.com/aerostack2/as2_node_template/blob/main/.clang-format>`_.
@@ -82,7 +83,8 @@ if ament clang format test fails you can autoformat the code using :
 
     $ ament_clang_format ./src/ ./include/ ./tests/ --reformat --config .clang-format
 
-* **Functional Tests**
+Functional tests
+----------------
 
 In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
 GTest complete documentation about how to write your own unit tests can be found at:
@@ -144,7 +146,8 @@ In order to link this ``./tests/CMakeLists.txt`` file into the ``CMakeLists.txt`
     endif()
 
 
-* **Run tests**
+Run tests
+---------
 
 To run these tests:
 

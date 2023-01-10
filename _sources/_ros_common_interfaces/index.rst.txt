@@ -18,7 +18,8 @@ AS2 interfaces names **should not** be typed manually. Names are stored in:
 
 You can access to a interface name via `as2_names`, e.g. `as2_names::topics::platform::info`.
 
-* **Topics**
+Topics
+------
 
 Topics that represent robot platform.
 
@@ -169,7 +170,8 @@ These messages are motion values to be considered as goals by controllers.
        | specifying dx, dy, dz, roll rate, 
        | pitch rate and yaw rate
 
-* **Services**
+Services
+--------
 
 Services to interact with robot platform.
 
@@ -219,7 +221,8 @@ Services to interact with robot controller.
      - as2_srvs/ListControlModes
      - List available controller control modes.
 
-* **Actions**
+Actions
+-------
 
 Action messages part of behavior definition.
 

@@ -62,6 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_behaviors/index.html">Behaviors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_platforms/index.html">Platforms</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#ignition">Ignition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#dji">DJI</a></li>
@@ -71,7 +72,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ROS Common interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#using-as2-interfaces">Using AS2 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-as2-interfaces">Using AS2 interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#actions">Actions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_user_interfaces/index.html">User Interfaces</a><ul>
@@ -109,9 +115,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../_developer/index.html">Developer documentation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../_developer/index.html">Developer guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#file-style-guide">File style guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#developing-a-new-package">Developing a new Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#developing-a-new-package">Developing a new Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_developer/index.html#style-tests">Style tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_developer/index.html#functional-tests">Functional tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_developer/index.html#run-tests">Run tests</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#package-architecture">Package architecture</a></li>
 </ul>
 </li>
@@ -156,9 +167,8 @@
 </pre></div>
 </div>
 <p>You can access to a interface name via <cite>as2_names</cite>, e.g. <cite>as2_names::topics::platform::info</cite>.</p>
-<ul class="simple">
-<li><p><strong>Topics</strong></p></li>
-</ul>
+<section id="topics">
+<h3>Topics<a class="headerlink" href="#topics" title="Permalink to this heading"></a></h3>
 <p>Topics that represent robot platform.</p>
 <table class="colwidths-given docutils align-default" id="id1">
 <caption><span class="caption-text">PLATFORM</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
@@ -416,9 +426,9 @@
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li><p><strong>Services</strong></p></li>
-</ul>
+</section>
+<section id="services">
+<h3>Services<a class="headerlink" href="#services" title="Permalink to this heading"></a></h3>
 <p>Services to interact with robot platform.</p>
 <table class="colwidths-given docutils align-default" id="id7">
 <caption><span class="caption-text">PLATFORM</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
@@ -493,9 +503,9 @@
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li><p><strong>Actions</strong></p></li>
-</ul>
+</section>
+<section id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this heading"></a></h3>
 <p>Action messages part of behavior definition.</p>
 <table class="colwidths-given docutils align-default" id="id9">
 <caption><span class="caption-text">BEHAVIORS</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
@@ -533,6 +543,7 @@
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 </section>
 
