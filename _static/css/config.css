@@ -1,3 +1,7 @@
 .wy-nav-content {
     max-width: none !important;
 }
+
+.docutils caption {
+  caption-side: bottom;
+}
