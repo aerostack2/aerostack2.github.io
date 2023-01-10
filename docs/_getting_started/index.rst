@@ -113,6 +113,15 @@ In a new terminal, run Aerostack2 nodes:
 
     ./as2_launch.bash
 
+|
+
+ .. image:: images/ignition_gazebo.png
+    :height: 800px
+    :width: 800px
+    :align: center
+
+|
+
 In a new terminal again, execute mission:
 
 .. code-block:: bash
