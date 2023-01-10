@@ -111,13 +111,12 @@ A window like the following image should open.
 
 .. figure:: images/ignition_gazebo.png
    :scale: 50
-   :class: with-border
+   :class: with-shadow
    :align: left
 
    Ignition gazebo simulator.
 
-
-* In a new terminal, run Aerostack2 nodes:
+|* In a new terminal, run Aerostack2 nodes:
 
 .. code-block:: bash
 
