@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="CLI" href="../_cli/index.html" />
+    <link rel="next" title="Aerostack2 Concepts" href="../_aerostack2_concepts/index.html" />
     <link rel="prev" title="Welcome to Aerostack2’s documentation!" href="../index.html" /> 
 </head>
 
@@ -56,9 +56,37 @@
 <li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_platforms/index.html">Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#ignition">Ignition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#dji">DJI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#px4">PX4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#crazyflie">Crazyflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_platforms/index.html#tello">Tello</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_user_interfaces/index.html#behavior-tree">Behavior Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_user_interfaces/index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_user_interfaces/index.html#keyboard-teleoperation">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_user_interfaces/index.html#id1">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_user_interfaces/index.html#alphanumeric-viewer">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_user_interfaces/index.html#id2">Code</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_python_api/index.html">Python API</a><ul>
@@ -87,7 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../_developer/index.html#package-architecture">Package architecture</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../_examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_projects/index.html">Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_license/index.html">License agreement: 3-Clause BSD License</a></li>
 </ul>
 
@@ -192,36 +220,48 @@ rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span c
 <section id="basic-example">
 <h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this heading"></a></h2>
 <p>For this example we are going to execute a basic mission simulated in Ignition.</p>
-<p>We create a directory where we want to store our projects. It can be any directory:</p>
+<ul class="simple">
+<li><p>We create a directory where we want to store our projects. It can be any directory:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AEROSTACK2_PATH</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>projects/
 </pre></div>
 </div>
-<p>Clone the project in the directory we just created:</p>
+<ul class="simple">
+<li><p>Clone the project in the directory we just created:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">AEROSTACK2_PATH</span><span class="si">}</span>/projects/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_ignition<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>project_ignition/
 </pre></div>
 </div>
-<p>Run Ignition simulator:</p>
+<ul class="simple">
+<li><p>Run Ignition simulator:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_ignition.bash
 </pre></div>
 </div>
-<p>In a new terminal, run Aerostack2 nodes:</p>
+<p>A window like the following image should open.</p>
+<blockquote>
+<div><figure class="align-center" id="id1">
+<a class="with-border reference internal image-reference" href="../_images/ignition_gazebo.png"><img alt="../_images/ignition_gazebo.png" class="with-border" src="../_images/ignition_gazebo.png" style="width: 492.0px; height: 422.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ignition gazebo simulator.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<ul class="simple">
+<li><p>In a new terminal, run Aerostack2 nodes:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./as2_launch.bash
 </pre></div>
 </div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<blockquote>
-<div><a class="reference internal image-reference" href="../_images/ignition_gazebo.png"><img alt="../_images/ignition_gazebo.png" class="align-center" src="../_images/ignition_gazebo.png" style="width: 800px; height: 800px;" /></a>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>In a new terminal again, execute mission:</p>
+<ul class="simple">
+<li><p>In a new terminal again, execute mission:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission.py
 </pre></div>
 </div>
-<p>Wait for the mission to finish. Once it finished, close the terminal with:</p>
+<ul class="simple">
+<li><p>Wait for the mission to finish. Once it finished, close the terminal with:</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash
 </pre></div>
 </div>
