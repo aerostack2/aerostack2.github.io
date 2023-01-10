@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLI &mdash; Aerostack2 1.0 documentation</title>
+  <title>Aerostack2 Concepts &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ROS Common interfaces" href="../_ros_common_interfaces/index.html" />
-    <link rel="prev" title="Getting started" href="../_getting_started/index.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,7 +41,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_getting_started/index.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_getting_started/index.html#install-and-build">Install and build</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_getting_started/index.html#license-agreement">License agreement</a></li>
@@ -56,7 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../_getting_started/index.html#basic-example">Basic example</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a></li>
 </ul>
@@ -105,9 +103,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CLI</li>
+      <li class="breadcrumb-item active">Aerostack2 Concepts</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_cli/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_aerostack2_concepts/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -115,40 +113,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cli">
-<span id="id1"></span><h1>CLI<a class="headerlink" href="#cli" title="Permalink to this heading"></a></h1>
-<p>Aerostack2 has a CLI to ease the use of the Aerostack2 pipeline. Typing as2 on the command line, you can access the different available tools. Also, it is possible to access the help message with a brief description of the different tools using <cite>as2</cite>, <cite>as2 –help</cite>, or <cite>as2 -h</cite>.</p>
-<p>List of commands:</p>
+  <section id="aerostack2-concepts">
+<h1>Aerostack2 Concepts<a class="headerlink" href="#aerostack2-concepts" title="Permalink to this heading"></a></h1>
+<p>In this section we will review high level concepts that Aerostack2 introduces, from the architecture to its approach to attack the problematic of developing and
+deploy aerial robotics systems so the user can familiarize with them.</p>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h2>
+<p>TBD (new architecture figure)</p>
+</section>
+<section id="robot-behaviors">
+<h2>Robot behaviors<a class="headerlink" href="#robot-behaviors" title="Permalink to this heading"></a></h2>
+<p>Aerostack provides a software library to implement robot behaviors that can be used by developers to build a particular robotic system architecture.
+Examples of these components are:</p>
 <ul class="simple">
-<li><p>Build all Aerostack2 (or just the package/packages indicated). It is not necessary to execute this command in the Aerostack2 workspace directory.</p></li>
+<li><p>Feature extractors that read simple states of sensors or implement vision recognition algorithms,</p></li>
+<li><p>Motion controllers (e.g., PID controllers or MPC controllers),</p></li>
+<li><p>Behaviors that perform self-localization and mapping (SLAM),</p></li>
+<li><p>Motion planners that generate obstacle-free paths to reach destination points, and</p></li>
+<li><p>Methods for communicating with other agents (other robots or human operators).</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>build<span class="w"> </span>as2_package
-</pre></div>
-</div>
+<p>The library is open, so new behaviors can be included easily in the future, without changing the core of the system and the rest of the behaviors.</p>
+<p>Each behavior in Aerostack is characterized by the following properties:</p>
 <ul class="simple">
-<li><p>Change the current directory to the Aerostack2 directory (or the Aerostack2 package directory indicated).</p></li>
+<li><p>Common communication. Each behavior sends and/or receive messages using the common communication channel used by the Aerostack2 architecture.
+If several behaviors publish data in the same ROS topic (e.g., different motion controllers), additional mechanisms must be used to avoid conflicts.</p></li>
+<li><p>Uniform interface. Each behavior has a uniform interface to control its execution (e.g., activate and deactivate).
+Each behavior provides cognizant failure, i.e., it verifies the correct execution with a reflective process that verifies whether
+the task is done correctly or not to inform about success or failure.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>as2_package
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Clean workspace.</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>clean<span class="w"> </span>as2_package
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>List Aerostack2 packages.</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>list<span class="w"> </span>as2_package
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>List and install Aerostack2 projects.</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>project<span class="w"> </span>as2_project
-</pre></div>
-</div>
+</section>
 </section>
 
 
