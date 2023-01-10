@@ -31,19 +31,22 @@ Most important features:
 * Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system
 * Independence of the aerial platform.
 * Project-oriented, allowing to install and use only the necessary packages for the application to be developed. 
-* Swarming orientation.
+* Swarming oriented operation.
 
 
 .. toctree::
    :hidden:
 
    _getting_started/index.rst
+   _aerostack2_concepts/index.rst
    _cli/index.rst
+   _behaviors/index.rst
+   _platforms/index.rst
    _ros_common_interfaces/index.rst
    _user_interfaces/index.rst
    _python_api/index.rst
    _core/index.rst
    _developer/index.rst
-   _examples/index.rst
+   _projects/index.rst
    _license/index.rst
    

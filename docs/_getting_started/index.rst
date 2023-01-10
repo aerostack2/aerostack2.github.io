@@ -89,46 +89,46 @@ Basic example
 
 For this example we are going to execute a basic mission simulated in Ignition.
 
-We create a directory where we want to store our projects. It can be any directory:
+* We create a directory where we want to store our projects. It can be any directory:
 
 .. code-block:: bash
 
     cd $AEROSTACK2_PATH && mkdir projects/
 
-Clone the project in the directory we just created:
+* Clone the project in the directory we just created:
 
 .. code-block:: bash
 
     cd ${AEROSTACK2_PATH}/projects/ && git clone https://github.com/aerostack2/project_ignition && cd project_ignition/
 
-Run Ignition simulator:
+* Run Ignition simulator:
 
 .. code-block:: bash
 
     ./launch_ignition.bash
 
-In a new terminal, run Aerostack2 nodes:
+A window like the following image should open.
+
+ .. figure:: images/ignition_gazebo.png
+    :scale: 50
+    :class: with-border
+    :align: center
+
+    Ignition gazebo simulator.
+
+* In a new terminal, run Aerostack2 nodes:
 
 .. code-block:: bash
 
     ./as2_launch.bash
 
-|
-
- .. image:: images/ignition_gazebo.png
-    :height: 800px
-    :width: 800px
-    :align: center
-
-|
-
-In a new terminal again, execute mission:
+* In a new terminal again, execute mission:
 
 .. code-block:: bash
 
     python3 mission.py
 
-Wait for the mission to finish. Once it finished, close the terminal with:
+* Wait for the mission to finish. Once it finished, close the terminal with:
 
 .. code-block:: bash
 
