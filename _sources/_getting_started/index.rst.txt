@@ -109,9 +109,11 @@ For this example we are going to execute a basic mission simulated in Ignition.
 
 A window like the following image should open.
 
-.. image:: images/ignition_gazebo.png
+.. figure:: images/ignition_gazebo.png
    :scale: 50
    :class: with-shadow
+   
+   Ignition Gazebo simulator
 
 * In a new terminal, run Aerostack2 nodes:
 
