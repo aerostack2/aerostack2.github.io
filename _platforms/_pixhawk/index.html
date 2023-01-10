@@ -66,7 +66,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Platforms</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#ignition">Ignition</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#dji">DJI</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">PX4</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PX4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aditional-dependencies">Aditional dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#px4-firmware-update">PX4 firmware update</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aditional-parameters">ADITIONAL PARAMETERS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#crazyflie">Crazyflie</a></li>
@@ -159,9 +164,63 @@
              
   <section id="px4">
 <h1>PX4<a class="headerlink" href="#px4" title="Permalink to this heading"></a></h1>
-<p>Aditional dependencies
-###</p>
+<section id="aditional-dependencies">
+<h2>Aditional dependencies<a class="headerlink" href="#aditional-dependencies" title="Permalink to this heading"></a></h2>
+<p>In order to be able to use a Pixhawk autopilot some additional software must be installed:
+This documentation is obtained from ( ADD LINK )</p>
+<section id="fast-dds-gen">
+<h3>Fast-DDS-Gen<a class="headerlink" href="#fast-dds-gen" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openjdk-11-jdk
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/eProsima/Fast-DDS-Gen.git<span class="w"> </span>-b<span class="w"> </span>v1.0.4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Fast-DDS-Gen<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>./gradlew<span class="w"> </span>assemble<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>./gradlew<span class="w"> </span>install
+</pre></div>
+</div>
+<p>In order to validate the installation in another terminal run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check FastRTPSGen version</span>
+<span class="nv">fastrtpsgen_version_out</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="nv">$FASTRTPSGEN_DIR</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nv">fastrtpsgen_version_out</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$FASTRTPSGEN_DIR</span><span class="s2">/</span><span class="k">$(</span>fastrtpsgen<span class="w"> </span>-version<span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nv">fastrtpsgen_version_out</span><span class="o">=</span><span class="k">$(</span>fastrtpsgen<span class="w"> </span>-version<span class="k">)</span>
+<span class="k">fi</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="nv">$fastrtpsgen_version_out</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;FastRTPSGen not found! Please build and install FastRTPSGen...&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nv">fastrtpsgen_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fastrtpsgen_version_out</span><span class="p">: -5</span><span class="k">:-</span><span class="nv">2</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$fastrtpsgen_version</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+<span class="o">([</span>.<span class="o">][</span><span class="m">0</span>-9<span class="o">]</span>+<span class="o">)</span>?$<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">fastrtpsgen_version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span>
+<span class="w">    </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-v<span class="w"> </span><span class="nv">$verbose</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;FastRTPSGen version: </span><span class="si">${</span><span class="nv">fastrtpsgen_version</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-v<span class="w"> </span><span class="nv">$verbose</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;FastRTPSGen version: </span><span class="si">${</span><span class="nv">fastrtpsgen_version_out</span><span class="p">: -5</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
+</section>
+<section id="px4-ros-com">
+<h3>PX4-ROS-COM<a class="headerlink" href="#px4-ros-com" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/px4_ros_com
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+<span class="c1"># if using as2 CLI run $ as2 build</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="px4-firmware-update">
+<h2>PX4 firmware update<a class="headerlink" href="#px4-firmware-update" title="Permalink to this heading"></a></h2>
 <p>TBD</p>
+</section>
+<section id="aditional-parameters">
+<h2>ADITIONAL PARAMETERS<a class="headerlink" href="#aditional-parameters" title="Permalink to this heading"></a></h2>
+<p>TBD</p>
+</section>
 </section>
 
 
