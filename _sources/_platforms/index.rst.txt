@@ -1,19 +1,11 @@
 Platforms
 =========
 
-Ignition
-########
-
-DJI
-###
-
 .. toctree::
   :maxdepth: 1
 
+  _gazebo_simulation/index.rst
   _pixhawk/index.rst
-
-Crazyflie
-#########
-
-Tello
-#####
+  _crazyflie/index.rst
+  _ryze_tello/index.rst
+  _dji/index.rst
