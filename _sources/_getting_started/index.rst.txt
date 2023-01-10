@@ -112,7 +112,6 @@ A window like the following image should open.
 .. image:: images/ignition_gazebo.png
    :scale: 50
    :class: with-shadow
-   :align: left
 
 * In a new terminal, run Aerostack2 nodes:
 
