@@ -112,7 +112,7 @@ A window like the following image should open.
  .. figure:: images/ignition_gazebo.png
     :scale: 50
     :class: with-border
-    :align: center
+    :align: left
 
     Ignition gazebo simulator.
 
