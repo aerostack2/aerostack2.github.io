@@ -7,8 +7,8 @@ Ignition
 DJI
 ###
 
-PX4
-###
+.. toctree::
+  _pixhawk/index.rst
 
 Crazyflie
 #########
