@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What is Aerostack2 &mdash; Aerostack2 1.0 documentation</title>
+  <title>Getting started &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installation Instructions" href="../_installation/index.html" />
+    <link rel="next" title="CLI" href="../_cli/index.html" />
     <link rel="prev" title="Welcome to Aerostack2’s documentation!" href="../index.html" /> 
 </head>
 
@@ -44,15 +44,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">What is Aerostack2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#multipurpose-software-framework">Multipurpose software framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-and-build">Install and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#license-agreement">License agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-installation">Source installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-cli">Build CLI</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../_installation/index.html">Installation Instructions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../_installation/index.html#license-agreement">License agreement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_installation/index.html#previous-dependencies">Previous dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_installation/index.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_installation/index.html#release-installation">Release installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
@@ -104,7 +105,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">What is Aerostack2</li>
+      <li class="breadcrumb-item active">Getting started</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_getting_started/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -114,20 +115,108 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="what-is-aerostack2">
-<h1>What is Aerostack2<a class="headerlink" href="#what-is-aerostack2" title="Permalink to this heading"></a></h1>
-<p>Aerostack is a software framework that helps developers design and build the control architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions (e.g., computer vision algorithms, motion controllers, self-localization and mapping methods, motion planning algorithms, etc.).</p>
-<p>Aerostack is useful for building autonomous aerial systems in complex and dynamic environments and it is also a useful research tool for aerial robotics to test new algorithms and architectures.</p>
-<p>Aerostack was created to be available for communities of researchers and developers and it is currently an active open-source project with periodic software releases.</p>
-<section id="multipurpose-software-framework">
-<h2>Multipurpose software framework<a class="headerlink" href="#multipurpose-software-framework" title="Permalink to this heading"></a></h2>
-<p>Aerostack is versatile for building different system configurations with various degrees of autonomy:</p>
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<p>This page will help you go through the installation and build process for Aerostack2 packages, as well as providing a simple example project for you to execute.</p>
+<section id="install-and-build">
+<h2>Install and build<a class="headerlink" href="#install-and-build" title="Permalink to this heading"></a></h2>
+<section id="license-agreement">
+<h3>License agreement<a class="headerlink" href="#license-agreement" title="Permalink to this heading"></a></h3>
+<p>Before the installation, you must read and accept the conditions defined by the software license
+<a class="reference internal" href="../_license/index.html#license"><span class="std std-ref">License agreement: 3-Clause BSD License</span></a></p>
+</section>
+<section id="previous-dependencies">
+<h3>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h3>
+<p>Make sure to have installed ROS2 via Debian Packages <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a></p>
+<p>For simulation install <a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">Ignition Fortress</a></p>
+</section>
+<section id="source-installation">
+<h3>Source installation<a class="headerlink" href="#source-installation" title="Permalink to this heading"></a></h3>
+<p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;your<span class="w"> </span>distro&gt;/setup.bash
+</pre></div>
+</div>
+<p>before running these steps.</p>
 <ul class="simple">
-<li><p>From teleoperation to autonomous flight. Aerostack can be used for teleoperation flights (with manual control) but it can also be used for building autonomous robot systems to perform aerial missions without operator assistance.</p></li>
-<li><p>Single robots or multi-robot systems. Aerostack can be used to fly a swarm of heterogeneous drones to perform multi-aerial-robot missions. It has been validated to operate with up to five drones simultaneously.</p></li>
-<li><p>Flexible for different applications. Aerostack can be used by system designers to develop their own systems in a wide range of applications. Aerostack provides languages and graphical tools to configure specific aerial missions.</p></li>
-<li><p>Hardware independent. Aerostack runs on conventional laptops and it has also run on onboard computers like mastermind or odroid XU3. Aerostack has been used in different aerial platforms, including, but not limited to: DJI platforms (Matrice 210, Matrice 100, Ryze Tello), Parrot platforms (Bebop 2, AR Drone 1.0 &amp; 2.0), Pixhawk, Mikrokopter Oktokopter and Asctec Pelican.</p></li>
+<li><p>Create a AS2 workspace:</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Clone AS2 repository:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/aerostack2/aerostack2.git
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install core dependencies:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux<span class="w"> </span>python3-vcstool<span class="w"> </span>python3-rosdep<span class="w"> </span>python3-pip<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>-y
+sudo<span class="w"> </span>rosdep<span class="w"> </span>init
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install dependencies:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws
+rosdep<span class="w"> </span>update
+rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+</pre></div>
+</div>
+</section>
+<section id="build">
+<h3>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+</pre></div>
+</div>
+</section>
+<section id="build-cli">
+<h3>Build CLI<a class="headerlink" href="#build-cli" title="Permalink to this heading"></a></h3>
+<p>Aditionally, Aerostack2 provides with a <span class="xref std std-ref">CLI</span> that is able to perform Aerostack2 build operation from any directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>build
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basic-example">
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Permalink to this heading"></a></h2>
+<p>For this example we are going to execute a basic mission simulated in Ignition.</p>
+<p>We create a directory where we want to store our projects. It can be any directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AEROSTACK2_PATH</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>projects/
+</pre></div>
+</div>
+<p>Clone the project in the directory we just created:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">AEROSTACK2_PATH</span><span class="si">}</span>/projects/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_ignition<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>project_ignition/
+</pre></div>
+</div>
+<p>Run Ignition simulator:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_ignition.bash
+</pre></div>
+</div>
+<p>In a new terminal, run Aerostack2 nodes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./as2_launch.bash
+</pre></div>
+</div>
+<p>In a new terminal again, execute mission:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission.py
+</pre></div>
+</div>
+<p>Wait for the mission to finish. Once it finished, close the terminal with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash
+</pre></div>
+</div>
+<p>More information on how to run each project can be found in the README.md located on each project folder.</p>
 </section>
 </section>
 

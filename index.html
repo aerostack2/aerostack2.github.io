@@ -24,7 +24,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="What is Aerostack2" href="_getting_started/index.html" /> 
+    <link rel="next" title="Getting started" href="_getting_started/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,15 +43,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="_getting_started/index.html">What is Aerostack2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="_getting_started/index.html#multipurpose-software-framework">Multipurpose software framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_getting_started/index.html#install-and-build">Install and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_getting_started/index.html#source-installation">Source installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_getting_started/index.html#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="_getting_started/index.html#build-cli">Build CLI</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="_installation/index.html">Installation Instructions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="_installation/index.html#license-agreement">License agreement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_installation/index.html#previous-dependencies">Previous dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_installation/index.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="_installation/index.html#release-installation">Release installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_getting_started/index.html#basic-example">Basic example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="_cli/index.html">CLI</a></li>
@@ -115,15 +116,29 @@
              
   <section id="welcome-to-aerostack2-s-documentation">
 <h1>Welcome to Aerostack2’s documentation!<a class="headerlink" href="#welcome-to-aerostack2-s-documentation" title="Permalink to this heading"></a></h1>
-<p>Aerostack2 is a framework developed to fly aerial platforms build for ROS2 <a class="reference external" href="https://docs.ros.org/en/humble/index.html">Humble</a> and ROS2 <a class="reference external" href="https://docs.ros.org/en/galactic/index.html">Galactic</a>.</p>
-<p>Most important features:
-- Natively developed on ROS2
-- Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system
-- Independence of the aerial platform.
-- Project-oriented, allowing to install and use only the necessary packages for the application to be developed.
-- Swarming orientation.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Aerostack is a software framework that helps developers design and build the control architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions (e.g., computer vision algorithms, motion controllers, self-localization and mapping methods, motion planning algorithms, etc.), built for ROS2 <a class="reference external" href="https://docs.ros.org/en/humble/index.html">Humble</a> and ROS2 <a class="reference external" href="https://docs.ros.org/en/galactic/index.html">Galactic</a>.</p>
+<p>Aerostack is useful for building autonomous aerial systems in complex and dynamic environments and it is also a useful research tool for aerial robotics to test new algorithms and architectures.</p>
+<p>It was created to be available for communities of researchers and developers and it is currently an active open-source project with periodic software releases.</p>
+<p>Aerostack is versatile for building different system configurations with various degrees of autonomy:</p>
+<ul class="simple">
+<li><p>From teleoperation to autonomous flight. Aerostack can be used for teleoperation flights (with manual control) but it can also be used for building autonomous robot systems to perform aerial missions without operator assistance.</p></li>
+<li><p>Single robots or multi-robot systems. Aerostack can be used to fly a swarm of heterogeneous drones to perform multi-aerial-robot missions. It has been validated to operate with up to five drones simultaneously.</p></li>
+<li><p>Flexible for different applications. Aerostack can be used by system designers to develop their own systems in a wide range of applications. Aerostack provides languages and graphical tools to configure specific aerial missions.</p></li>
+<li><p>Hardware independent. Aerostack runs on conventional laptops and it has also run on onboard computers like mastermind or odroid XU3. Aerostack has been used in different aerial platforms, including, but not limited to: DJI platforms (Matrice 210, Matrice 100, Ryze Tello), Parrot platforms (Bebop 2, AR Drone 1.0 &amp; 2.0), Pixhawk, Mikrokopter Oktokopter and Asctec Pelican.</p></li>
+</ul>
+<p>Most important features:</p>
+<ul class="simple">
+<li><p>Natively developed on ROS2</p></li>
+<li><p>Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system</p></li>
+<li><p>Independence of the aerial platform.</p></li>
+<li><p>Project-oriented, allowing to install and use only the necessary packages for the application to be developed.</p></li>
+<li><p>Swarming orientation.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 
 

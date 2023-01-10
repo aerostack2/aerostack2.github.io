@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation Instructions &mdash; Aerostack2 1.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -23,7 +23,9 @@
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python API" href="../_python_api/index.html" />
+    <link rel="prev" title="ROS Common interfaces" href="../_ros_common_interfaces/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -103,9 +105,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Installation Instructions</li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_installation/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_user_interfaces/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -113,97 +115,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installation-instructions">
-<h1>Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this heading"></a></h1>
-<section id="license-agreement">
-<h2>License agreement<a class="headerlink" href="#license-agreement" title="Permalink to this heading"></a></h2>
-<p>Before the installation, you must [read and accept the conditions defined by the software license]
-<a class="reference internal" href="../_license/index.html#license"><span class="std std-ref">License agreement: 3-Clause BSD License</span></a></p>
-</section>
-<section id="previous-dependencies">
-<h2>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h2>
-<p>Make sure to have installed ROS2 via Debian Packages <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a></p>
-<p>For simulation install <a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">Ignition Fortress</a></p>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;your<span class="w"> </span>distro&gt;/setup.bash
-</pre></div>
-</div>
-<p>before running these steps.</p>
-<ul class="simple">
-<li><p>Create a AS2 workspace:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Clone AS2 repository:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/aerostack2/aerostack2.git
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Install core dependencies:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux<span class="w"> </span>python3-vcstool<span class="w"> </span>python3-rosdep<span class="w"> </span>python3-pip<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>-y
-$<span class="w"> </span>sudo<span class="w"> </span>rosdep<span class="w"> </span>init
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
-$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source $AEROSTACK2_PATH/as2_cli/setup_env.bash&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
-</pre></div>
-</div>
-</section>
-<section id="release-installation">
-<h2>Release installation<a class="headerlink" href="#release-installation" title="Permalink to this heading"></a></h2>
-<p>Open a new terminal or update current shell with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</pre></div>
-</div>
-<ul>
-<li><p>Download repositories (from project or source release):</p>
-<ul>
-<li><p>From source release:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AEROSTACK2_PATH</span>
-$<span class="w"> </span>vcs<span class="w"> </span>import<span class="w"> </span>--recursive<span class="w"> </span>&lt;<span class="w"> </span>./installers/as2_beta_beetroot.repos
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>From project (e.g.):</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>install<span class="w"> </span>mbzirc<span class="w"> </span>project
-$<span class="w"> </span>as2<span class="w"> </span>project<span class="w"> </span>-n<span class="w"> </span>mbzirc
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-</ul>
-</li>
-<li><p>Install dependencies:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws
-$<span class="w"> </span>rosdep<span class="w"> </span>update
-$<span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Build:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>as2<span class="w"> </span>build
-</pre></div>
-</div>
-<p>More information on how to run each project can be found in the README.md located on each project folder.</p>
-</section>
-</section>
-
+  
 
            </div>
           </div>

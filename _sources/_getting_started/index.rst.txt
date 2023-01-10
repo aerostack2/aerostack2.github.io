@@ -1,21 +1,128 @@
-What is Aerostack2
-==================
+Getting started
+===============
 
-Aerostack is a software framework that helps developers design and build the control architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions (e.g., computer vision algorithms, motion controllers, self-localization and mapping methods, motion planning algorithms, etc.). 
+This page will help you go through the installation and build process for Aerostack2 packages, as well as providing a simple example project for you to execute.
 
-Aerostack is useful for building autonomous aerial systems in complex and dynamic environments and it is also a useful research tool for aerial robotics to test new algorithms and architectures.
+Install and build
+#################
 
-Aerostack was created to be available for communities of researchers and developers and it is currently an active open-source project with periodic software releases. 
+License agreement
+-----------------
 
-Multipurpose software framework
-###############################
+Before the installation, you must read and accept the conditions defined by the software license
+:ref:`License`
 
-Aerostack is versatile for building different system configurations with various degrees of autonomy:
+Previous dependencies
+--------------------
 
-- From teleoperation to autonomous flight. Aerostack can be used for teleoperation flights (with manual control) but it can also be used for building autonomous robot systems to perform aerial missions without operator assistance.
+Make sure to have installed ROS2 via Debian Packages `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`_
 
-- Single robots or multi-robot systems. Aerostack can be used to fly a swarm of heterogeneous drones to perform multi-aerial-robot missions. It has been validated to operate with up to five drones simultaneously.
+For simulation install `Ignition Fortress <https://gazebosim.org/docs/fortress/install_ubuntu>`_
 
-- Flexible for different applications. Aerostack can be used by system designers to develop their own systems in a wide range of applications. Aerostack provides languages and graphical tools to configure specific aerial missions.
+Source installation
+-------------------
 
-- Hardware independent. Aerostack runs on conventional laptops and it has also run on onboard computers like mastermind or odroid XU3. Aerostack has been used in different aerial platforms, including, but not limited to: DJI platforms (Matrice 210, Matrice 100, Ryze Tello), Parrot platforms (Bebop 2, AR Drone 1.0 & 2.0), Pixhawk, Mikrokopter Oktokopter and Asctec Pelican.
+For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run 
+
+.. code-block:: bash
+
+    source /opt/ros/<your distro>/setup.bash
+
+before running these steps.
+
+* Create a AS2 workspace:
+
+.. code-block:: bash
+
+    mkdir -p ${HOME}/aerostack2_ws/src/ && cd ${HOME}/aerostack2_ws/src/
+
+* Clone AS2 repository:
+
+.. code-block:: bash
+
+    git clone --recursive https://github.com/aerostack2/aerostack2.git
+ 
+* Install core dependencies:
+
+.. code-block:: bash
+
+    sudo apt update
+    sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
+    sudo rosdep init
+
+* Set environment vars (or add them to the ~/.bashrc file):
+
+.. code-block:: bash
+    
+ $ echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
+ 
+* Install dependencies:
+
+.. code-block:: bash
+
+    cd ${HOME}/aerostack2_ws
+    rosdep update
+    rosdep install --from-paths src --ignore-src -r -y
+
+Build
+-----
+
+.. code-block:: bash
+
+    colcon build --symlink-install
+
+Build CLI
+---------
+
+Aditionally, Aerostack2 provides with a :ref:`CLI` that is able to perform Aerostack2 build operation from any directory:
+
+.. code-block:: bash
+
+    source ~/.bashrc
+
+.. code-block:: bash
+    
+    as2 build
+ 
+Basic example
+#############
+
+For this example we are going to execute a basic mission simulated in Ignition.
+
+We create a directory where we want to store our projects. It can be any directory:
+
+.. code-block:: bash
+
+    cd $AEROSTACK2_PATH && mkdir projects/
+
+Clone the project in the directory we just created:
+
+.. code-block:: bash
+
+    cd ${AEROSTACK2_PATH}/projects/ && git clone https://github.com/aerostack2/project_ignition && cd project_ignition/
+
+Run Ignition simulator:
+
+.. code-block:: bash
+
+    ./launch_ignition.bash
+
+In a new terminal, run Aerostack2 nodes:
+
+.. code-block:: bash
+
+    ./as2_launch.bash
+
+In a new terminal again, execute mission:
+
+.. code-block:: bash
+
+    python3 mission.py
+
+Wait for the mission to finish. Once it finished, close the terminal with:
+
+.. code-block:: bash
+
+    ./stop.bash
+
+More information on how to run each project can be found in the README.md located on each project folder.
