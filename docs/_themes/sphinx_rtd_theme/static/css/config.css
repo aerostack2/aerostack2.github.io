@@ -5,5 +5,5 @@
 .code-block-caption {
     color: #000;
     padding: 1em 0;
-    text-align: left;
+    text-align: left !important;
 }
