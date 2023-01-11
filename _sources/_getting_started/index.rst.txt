@@ -69,6 +69,12 @@ Aditionally, Aerostack2 provides with a :ref:`CLI` that is able to perform Aeros
 Basic example
 #############
 
+Every project in Aerostack2 uses `tmux <https://github.com/tmux/tmux/wiki>`_ to get a more organized execution. Install it with:
+
+.. code-block:: bash
+    
+    sudo apt install tmux
+
 For this example we are going to execute a basic mission simulated in Ignition.
 
 * We create a directory where we want to store our projects. It can be any directory:
@@ -101,7 +107,7 @@ A window like the following image should open.
 
 .. code-block:: bash
 
-    ./as2_launch.bash
+    ./main_launcher.bash
 
 * In a new terminal again, execute mission:
 
