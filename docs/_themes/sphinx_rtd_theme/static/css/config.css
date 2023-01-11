@@ -8,3 +8,7 @@
     text-align: left !important;
     vertical-align: bottom !important;
 }
+
+table.align-center {
+   display: table !important;
+}
