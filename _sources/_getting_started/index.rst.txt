@@ -30,39 +30,21 @@ For using and installing Aerostack2, your ROS2 environment must be settled up. I
 
 before running these steps.
 
-* Create a AS2 workspace:
+* A new workspace for Aerostack2 will be created in order to clone the source code and build it. `Rosdep <https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html>`_ will be used to get the binary dependecies for Aerostack2 packages:
 
 .. code-block:: bash
 
-    mkdir -p ${HOME}/aerostack2_ws/src/ && cd ${HOME}/aerostack2_ws/src/
-
-* Clone AS2 repository:
-
-.. code-block:: bash
-
-    git clone --recursive https://github.com/aerostack2/aerostack2.git
- 
-* Install core dependencies:
-
-.. code-block:: bash
-
-    sudo apt update
-    sudo apt install tmux python3-vcstool python3-rosdep python3-pip python3-colcon-common-extensions -y
-    sudo rosdep init
+    mkdir -p ${HOME}/aerostack2_ws/src/ \
+        && cd ${HOME}/aerostack2_ws/src/ \
+        && git clone --recursive https://github.com/aerostack2/aerostack2.git \
+        && cd ${HOME}/aerostack2_ws \
+        && rosdep install -y -r -q --from-paths src --ignore-src --rosdistro <ros2-distro>
 
 * Set environment vars (or add them to the ~/.bashrc file):
 
 .. code-block:: bash
     
  $ echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
- 
-* Install dependencies:
-
-.. code-block:: bash
-
-    cd ${HOME}/aerostack2_ws
-    rosdep update
-    rosdep install --from-paths src --ignore-src -r -y
 
 Build
 -----

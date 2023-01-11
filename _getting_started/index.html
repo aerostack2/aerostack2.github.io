@@ -185,37 +185,19 @@
 </div>
 <p>before running these steps.</p>
 <ul class="simple">
-<li><p>Create a AS2 workspace:</p></li>
+<li><p>A new workspace for Aerostack2 will be created in order to clone the source code and build it. <a class="reference external" href="https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html">Rosdep</a> will be used to get the binary dependecies for Aerostack2 packages:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Clone AS2 repository:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/aerostack2/aerostack2.git
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Install core dependencies:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tmux<span class="w"> </span>python3-vcstool<span class="w"> </span>python3-rosdep<span class="w"> </span>python3-pip<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>-y
-sudo<span class="w"> </span>rosdep<span class="w"> </span>init
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/aerostack2/aerostack2.git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>&lt;ros2-distro&gt;
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Install dependencies:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws
-rosdep<span class="w"> </span>update
-rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
 </pre></div>
 </div>
 </section>
