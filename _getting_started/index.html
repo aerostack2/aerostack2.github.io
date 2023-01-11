@@ -197,7 +197,7 @@
 <ul class="simple">
 <li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 </pre></div>
 </div>
 </section>
@@ -210,7 +210,7 @@
 <section id="build-cli">
 <h3>Build CLI<a class="headerlink" href="#build-cli" title="Permalink to this heading"></a></h3>
 <p>Aditionally, Aerostack2 provides with a <a class="reference internal" href="../_cli/index.html#cli"><span class="std std-ref">CLI</span></a> that is able to perform Aerostack2 build operation from any directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source $AEROSTACK2_PATH/as2_cli/setup_env.bash&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>build
