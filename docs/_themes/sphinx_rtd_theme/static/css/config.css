@@ -2,6 +2,6 @@
     max-width: none !important;
 }
 
-.caption-text {
-    text-align: left;
+.docutils caption {
+  caption-side: top;
 }
