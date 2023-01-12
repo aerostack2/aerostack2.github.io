@@ -1,2 +1,2 @@
-PLugins
+Plugins
 =======
