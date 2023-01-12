@@ -39,6 +39,7 @@ Most important features:
 
    _getting_started/index.rst
    _aerostack2_concepts/index.rst
+   _tutorials/index.rst
    _cli/index.rst
    _behaviors/index.rst
    _platforms/index.rst

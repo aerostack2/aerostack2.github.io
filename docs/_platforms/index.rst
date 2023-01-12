@@ -1,5 +1,7 @@
-Platforms
-=========
+.. _aerial_platforms:
+
+Aerial Platforms
+================
 
 .. toctree::
   :maxdepth: 1
