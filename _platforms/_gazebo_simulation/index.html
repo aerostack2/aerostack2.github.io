@@ -170,6 +170,16 @@
   <section id="ignition-gazebo">
 <h1>Ignition Gazebo<a class="headerlink" href="#ignition-gazebo" title="Permalink to this heading"></a></h1>
 <p>For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a Platform that provides an entry point for aerial robotics simulated in this environment.</p>
+<ul class="simple">
+<li><p><strong>Supported Control Modes:</strong></p>
+<ul>
+<li><p>Speed</p></li>
+<li><p>Hover</p></li>
+</ul>
+</li>
+</ul>
+<p>Aerial robots works in local FLU reference frame. This means that Platform Control Mode should be set in <code class="docutils literal notranslate"><span class="pre">BODY_FLU_FRAME</span></code>.</p>
+<p>No offboard mode is needed, and due to the particularity of this platform beeing fully simulated, this component provides custom <code class="docutils literal notranslate"><span class="pre">take</span> <span class="pre">off</span></code> and <code class="docutils literal notranslate"><span class="pre">land</span></code>.</p>
 <section id="ros-gazebo-bridge">
 <h2>Ros-Gazebo Bridge<a class="headerlink" href="#ros-gazebo-bridge" title="Permalink to this heading"></a></h2>
 <p>Gazebo defines it’s own messages in a ROS2 decoupled communication protocol, for instance, in order to get this data to work in ROS2 network, we need to use a intermediate
@@ -209,10 +219,36 @@ The ign messages regarding the robot model that are passed to ROS2 are included 
 <td><p>ignition.msgs.Odometry</p></td>
 <td><p>geometry_msgs/msg/TwistStamped</p></td>
 </tr>
-<tr class="row-odd"><td><p>/model/{model_name}/velocity_controller/enable</p></td>
+</tbody>
+</table>
+<p>To communicate ROS2 commands with Ignition Gazebo, ros_gz_bridge can work the other way around, translating messages from ROS2 to Ignition Gazebo
+so we can arm the aerial robot and send speed commands from the controller. This is a unique characteristic of this platform as it is only simulated,
+ROS2 communication tools are used to send speed commands:</p>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">MODEL BRIDGE ROS-IGN</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Ign Topic</p></th>
+<th class="head"><p>ROS Topic</p></th>
+<th class="head"><p>Ign message type</p></th>
+<th class="head"><p>ROS message type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>/model/{model_name}/velocity_controller/enable</p></td>
 <td><p>/ign/{model_name}/arm</p></td>
 <td><p>ignition.msgs.Boolean</p></td>
 <td><p>std_msgs/msg/Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>/model/{model_name}/cmd_vel</p></td>
+<td><p>/ign/{model_name}/cmd_vel</p></td>
+<td><p>ignition.msgs.Twist</p></td>
+<td><p>geometry_msgs/msg/Twist</p></td>
 </tr>
 </tbody>
 </table>
@@ -222,8 +258,8 @@ The ign messages regarding the robot model that are passed to ROS2 are included 
 <p>Aerostack2 is provided with different types of sensors from <a class="reference external" href="https://github.com/gazebosim/gz-sensors">Ignition Gazebo sensor library</a>. These
 sensors can be attached to models in order to simulate the physical model of the sensor in the world and its functionality.
 To get the information coming from these sensor’s Gazebo plugins, Aerostack2 brings these messages to ROS2 like the following table indicates:</p>
-<table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">SENSOR BRIDGE IGN-ROS</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">SENSOR BRIDGE IGN-ROS</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />

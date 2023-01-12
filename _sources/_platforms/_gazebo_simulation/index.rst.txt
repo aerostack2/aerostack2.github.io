@@ -3,6 +3,15 @@ Ignition Gazebo
 
 For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a Platform that provides an entry point for aerial robotics simulated in this environment.
 
+* **Supported Control Modes:**
+
+  - Speed
+  - Hover
+
+Aerial robots works in local FLU reference frame. This means that Platform Control Mode should be set in ``BODY_FLU_FRAME``.
+
+No offboard mode is needed, and due to the particularity of this platform beeing fully simulated, this component provides custom ``take off`` and ``land``.
+
 Ros-Gazebo Bridge
 #################
 
@@ -34,10 +43,27 @@ The ign messages regarding the robot model that are passed to ROS2 are included 
      - {namespace}/ground_truth/speed
      - ignition.msgs.Odometry
      - geometry_msgs/msg/TwistStamped
+
+To communicate ROS2 commands with Ignition Gazebo, ros_gz_bridge can work the other way around, translating messages from ROS2 to Ignition Gazebo 
+so we can arm the aerial robot and send speed commands from the controller. This is a unique characteristic of this platform as it is only simulated,
+ROS2 communication tools are used to send speed commands: 
+
+.. list-table:: MODEL BRIDGE ROS-IGN
+   :widths: 50 50 50 50
+   :header-rows: 1
+
+   * - Ign Topic
+     - ROS Topic
+     - Ign message type
+     - ROS message type
    * - /model/{model_name}/velocity_controller/enable
      - /ign/{model_name}/arm
      - ignition.msgs.Boolean
      - std_msgs/msg/Bool
+   * - /model/{model_name}/cmd_vel
+     - /ign/{model_name}/cmd_vel
+     - ignition.msgs.Twist
+     - geometry_msgs/msg/Twist
 
 Sensors
 #######
