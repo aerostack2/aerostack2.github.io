@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Platforms &mdash; Aerostack2 1.0 documentation</title>
+  <title>Aerial Platforms &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Ignition Gazebo" href="_gazebo_simulation/index.html" />
+    <link rel="next" title="Ignition Gazebo Simulation" href="_gazebo_simulation/index.html" />
     <link rel="prev" title="Behaviors" href="../_behaviors/index.html" /> 
 </head>
 
@@ -61,10 +61,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/behavior.html">Writing a New Behavior</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_behaviors/index.html">Behaviors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Platforms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_gazebo_simulation/index.html">Ignition Gazebo Simulation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_gazebo_simulation/index.html#ros-gazebo-bridge">Ros-Gazebo Bridge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_gazebo_simulation/index.html#sensors">Sensors</a></li>
 </ul>
@@ -80,6 +97,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="_crazyflie/index.html">Bitcraze Crazyflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_ryze_tello/index.html">Ryze Tello</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_dji/index.html">DJI Matrice Series</a></li>
 </ul>
 </li>
@@ -156,7 +174,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Platforms</li>
+      <li class="breadcrumb-item active">Aerial Platforms</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_platforms/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -166,13 +184,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="platforms">
-<h1>Platforms<a class="headerlink" href="#platforms" title="Permalink to this heading"></a></h1>
+  <section id="aerial-platforms">
+<span id="id1"></span><h1>Aerial Platforms<a class="headerlink" href="#aerial-platforms" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="_gazebo_simulation/index.html">Ignition Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_gazebo_simulation/index.html">Ignition Gazebo Simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_pixhawk/index.html">PX4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_crazyflie/index.html">Bitcraze Crazyflie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_ryze_tello/index.html">Ryze Tello</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_dji/index.html">DJI Matrice Series</a></li>
 </ul>
 </div>

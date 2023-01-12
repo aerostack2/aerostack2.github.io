@@ -13,7 +13,7 @@ Before the installation, you must read and accept the conditions defined by the 
 :ref:`License`
 
 Previous dependencies
---------------------
+---------------------
 
 Make sure to have installed ROS2 via Debian Packages `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`_
 

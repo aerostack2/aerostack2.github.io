@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLI &mdash; Aerostack2 1.0 documentation</title>
+  <title>Writing a New Estimator Plugin &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Behaviors" href="../_behaviors/index.html" />
-    <link rel="prev" title="Writing a New Behavior" href="../_tutorials/behavior.html" /> 
+    <link rel="next" title="Writing a New Behavior" href="behavior.html" />
+    <link rel="prev" title="Writing a New Controller Plugin" href="controller_plugin.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,24 +61,24 @@
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../_tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/behavior.html">Writing a New Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Writing a New Estimator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="behavior.html">Writing a New Behavior</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cli/index.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_behaviors/index.html">Behaviors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_platforms/index.html">Aerial Platforms</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_platforms/_gazebo_simulation/index.html">Ignition Gazebo Simulation</a><ul>
@@ -174,9 +174,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CLI</li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Writing a New Estimator Plugin</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_cli/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_tutorials/estimator_plugin.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -184,82 +185,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cli">
-<span id="id1"></span><h1>CLI<a class="headerlink" href="#cli" title="Permalink to this heading"></a></h1>
-<p>Aerostack2 has a CLI to ease the use of the Aerostack2 pipeline. Typing as2 on the command line, you can access the different available tools. Also, it is possible to access the help message with a brief description of the different tools using <cite>as2</cite>, <cite>as2 –help</cite>, or <cite>as2 -h</cite>.</p>
-<p>List of commands:</p>
-<ul>
-<li><p>Build all Aerostack2 (or just the package/packages indicated). It is not necessary to execute this command in the Aerostack2 workspace directory.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">as2_package</span></code> and its dependencies are built.</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>build<span class="w"> </span>as2_package
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Every package inside Aerostack2 is built.</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>build
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Change the current directory to the Aerostack2 directory (or the Aerostack2 package directory indicated).</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">Takes you to <code class="docutils literal notranslate"><span class="pre">as2_package</span></code> directory.</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>as2_package
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Takes you to <code class="docutils literal notranslate"><span class="pre">$AEROSTACK_PATH</span></code> directory.</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span><span class="nb">cd</span>
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">Takes you to <code class="docutils literal notranslate"><span class="pre">$AEROSTACK_PATH/projects/as2_project</span></code> directory. As long as <code class="docutils literal notranslate"><span class="pre">as2_project</span></code> is in the projects folder inside <code class="docutils literal notranslate"><span class="pre">$AEROSTACK_PATH</span></code>.</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>as2_project
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>Clean workspace.</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">Removes installed binaries from <code class="docutils literal notranslate"><span class="pre">as2_package</span></code>.</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>clean<span class="w"> </span>as2_package
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">Removes all installed binaries from all Aerostack2 packages.</span><a class="headerlink" href="#id8" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>clean<span class="w"> </span>-a
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>List Aerostack2 packages.</p>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">List all installed packages from Aerostack2.</span><a class="headerlink" href="#id9" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>list
-</pre></div>
-</div>
-</div>
-</li>
-<li><p>List and install Aerostack2 projects.</p>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">List available projects.</span><a class="headerlink" href="#id10" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>project<span class="w"> </span>list
-</pre></div>
-</div>
-</div>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">Install <code class="docutils literal notranslate"><span class="pre">as2_project</span></code> in <code class="docutils literal notranslate"><span class="pre">$AEROSTACK2_PATH/projects/</span></code> folder.</span><a class="headerlink" href="#id11" title="Permalink to this code"></a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>project<span class="w"> </span>as2_project
-</pre></div>
-</div>
-</div>
-</li>
-</ul>
+  <section id="writing-a-new-estimator-plugin">
+<h1>Writing a New Estimator Plugin<a class="headerlink" href="#writing-a-new-estimator-plugin" title="Permalink to this heading"></a></h1>
 </section>
 
 
