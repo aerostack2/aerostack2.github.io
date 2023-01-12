@@ -46,8 +46,6 @@ In order to validate the installation in another terminal run:
     fi
   fi
 
-```
-
 PX4-ROS-COM
 **********************
 
