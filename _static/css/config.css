@@ -10,14 +10,9 @@
 }
 
 table.align-center {
-   margin-left: auto;
-   margin-right: auto;
+   display: table !important;
 }
 
-figcaption {
-    text-align: center;
-}
-
-figcaption {
-    text-align: center;
+figure {
+    text-align: center !important;
 }
