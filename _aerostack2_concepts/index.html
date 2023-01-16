@@ -58,6 +58,9 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Aerostack2 Concepts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-estimator">State Estimator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#robot-behaviors">Robot behaviors</a></li>
 </ul>
 </li>
@@ -74,7 +77,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/estimator_plugin.html#estimator-plugin-base">1. Estimator Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/estimator_plugin.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/estimator_plugin.html#exporting-the-plugin">1. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/estimator_plugin.html#launching">4. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../_tutorials/behavior.html">Writing a New Behavior</a></li>
 </ul>
 </li>
@@ -190,13 +204,22 @@
 <p>In this section we will review high level concepts that Aerostack2 introduces, from the architecture to its approach to attack the problematic of developing and
 deploy aerial robotics systems so the user can familiarize with them.</p>
 <section id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h2>
+<span id="as2-architecture"></span><h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h2>
 <figure class="align-default" id="id1">
 <a class="with-shadow reference internal image-reference" href="../_images/architecture.png"><img alt="../_images/architecture.png" class="with-shadow" src="../_images/architecture.png" style="width: 681.0px; height: 541.0px;" /></a>
 <figcaption>
 <p><span class="caption-text">Aerostack2 architecture</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
+</section>
+<section id="platform">
+<h2>Platform<a class="headerlink" href="#platform" title="Permalink to this heading"></a></h2>
+</section>
+<section id="controller">
+<span id="as2-controller"></span><h2>Controller<a class="headerlink" href="#controller" title="Permalink to this heading"></a></h2>
+</section>
+<section id="state-estimator">
+<span id="as2-estimator"></span><h2>State Estimator<a class="headerlink" href="#state-estimator" title="Permalink to this heading"></a></h2>
 </section>
 <section id="robot-behaviors">
 <h2>Robot behaviors<a class="headerlink" href="#robot-behaviors" title="Permalink to this heading"></a></h2>
