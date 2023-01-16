@@ -5,6 +5,8 @@ import re
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath(
     './_python_api/temp_ws/src/as2_python_api/as2_python_api'))
+sys.path.insert(0, os.path.abspath(
+    './_python_api/temp_ws/src/as2_keyboard_teleoperation/as2_keyboard_teleoperation'))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -62,7 +64,8 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 autodoc_mock_imports = ['as2_msgs', 'geographic_msgs',
-                        'as2_motion_reference_handlers']
+                        'as2_motion_reference_handlers',
+                        'PySimpleGUI']
 
 autodoc_default_options = {'autosummary': False}
 
