@@ -108,7 +108,7 @@ Besides, the group of protected attributes are:
      - as2_msgs::msg::PlatformInfo
      - Platform information data container. Readable only.
 
-1. Overriden methods
+2. Overriden methods
 --------------------
 
 Class constuctor
