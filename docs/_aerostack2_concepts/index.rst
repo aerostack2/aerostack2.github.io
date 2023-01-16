@@ -4,6 +4,8 @@ Aerostack2 Concepts
 In this section we will review high level concepts that Aerostack2 introduces, from the architecture to its approach to attack the problematic of developing and 
 deploy aerial robotics systems so the user can familiarize with them.
 
+.. _as2_architecture:
+
 Architecture
 ############
 
@@ -12,6 +14,19 @@ Architecture
    :class: with-shadow
    
    Aerostack2 architecture
+
+Platform
+########
+
+.. _as2_controller:
+
+Controller
+##########
+
+.. _as2_estimator:
+
+State Estimator
+###############
 
 Robot behaviors
 ###############
