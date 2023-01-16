@@ -1,19 +1,7 @@
-.. _ign_gazebo_platform:
+Ignition Gazebo
+===============
 
-Ignition Gazebo Simulation
-==========================
-
-.. What to tell about:
-.. - ign_gz_bridges and how sensors are published in the platform
-.. - ros communication to command the platform hardware
-.. - control modes (only two modes supported)
-.. - hardware needs base_link reference frame (flu)
-.. - 
-.. - no offboard needed
-.. - custom platform takeoff and platform land 
-
-
-For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a Platform that provides an entry point for aerial robotics simulated in this environment.
+For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a platform that serves as an entry point for aerial robotics simulated in this environment.
 
 * **Supported Control Modes:**
 
@@ -143,3 +131,67 @@ To get the information coming from these sensor's Gazebo plugins, Aerostack2 bri
      - {namespace}/sensor_measurements/{model_prefix}/points
      - ignition.msgs.PointCloudPacked
      - sensor_msgs/msg/PointCloud2
+
+Aerial models
+#############
+
+There are two aerial models available for simulation. These models are:
+
+* Quadrotor base.
+  
+.. figure:: images/quadrotor.png
+   :width: 400
+   :scale: 50
+   :class: with-shadow
+   
+   Quadrotor base model
+
+* Hexrotor base.
+
+.. figure:: images/hexrotor.png
+   :width: 400
+   :scale: 50
+   :class: with-shadow
+   
+   Hexrotor base model
+
+In order to add an aerial model with sensors attached to it to the simulated world, modify or create a new configuration file in folder ``simulation_config`` in ``.json`` format with the following:
+
+.. code-block:: json
+
+  {
+    "world": "empty",
+    "drones": [
+        {
+            "model": "quadrotor_base",
+            "name": "drone_sim_0",
+            "xyz": [ 1.0, 1.0, 0.3 ],
+            "rpy": [ 0.0, 0.0, 0.0 ],
+            "sensors": {
+              "gps": {
+                "sensor": "gps"
+              }
+            }
+        }
+    ]
+  }
+
+Where:
+
+* ``world``: name of the defined world in sdf format.
+* ``drones``: list of drones to be included in the world.
+  
+Each of the ``drones`` is defined by:
+
+* ``model``: model of the drone defined in sdf format.
+* ``name``: namespace
+* ``xyz``: spawn position
+* ``rpy``: spawn orientation 
+* ``sensors``: list of sensors attached to the model
+
+Each of the ``sensors`` is defined by:
+
+* ``type``: name of the sensor inside de simulation (this case ``gps``)
+* ``sensor``: name of the sensor defined in sdf format.
+
+New models, sensors and worlds are defined in the ``as2_ignition_assets`` package. For more information on how to create new assets, go to the `Ignition Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.

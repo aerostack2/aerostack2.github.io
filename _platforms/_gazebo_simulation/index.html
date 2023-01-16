@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ignition Gazebo Simulation &mdash; Aerostack2 1.0 documentation</title>
+  <title>Ignition Gazebo &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
@@ -81,9 +81,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../_cli/index.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_behaviors/index.html">Behaviors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Aerial Platforms</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Ignition Gazebo Simulation</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ignition Gazebo</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ros-gazebo-bridge">Ros-Gazebo Bridge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sensors">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aerial-models">Aerial models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../_pixhawk/index.html">PX4</a><ul>
@@ -175,7 +176,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Aerial Platforms</a></li>
-      <li class="breadcrumb-item active">Ignition Gazebo Simulation</li>
+      <li class="breadcrumb-item active">Ignition Gazebo</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_platforms/_gazebo_simulation/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -185,9 +186,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ignition-gazebo-simulation">
-<span id="ign-gazebo-platform"></span><h1>Ignition Gazebo Simulation<a class="headerlink" href="#ignition-gazebo-simulation" title="Permalink to this heading"></a></h1>
-<p>For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a Platform that provides an entry point for aerial robotics simulated in this environment.</p>
+  <section id="ignition-gazebo">
+<h1>Ignition Gazebo<a class="headerlink" href="#ignition-gazebo" title="Permalink to this heading"></a></h1>
+<p>For simulation purposes with Ignition Gazebo simulator, Aerostack2 provides with a platform that serves as an entry point for aerial robotics simulated in this environment.</p>
 <ul class="simple">
 <li><p><strong>Supported Control Modes:</strong></p>
 <ul>
@@ -356,6 +357,66 @@ To get the information coming from these sensor’s Gazebo plugins, Aerostack2 b
 </tr>
 </tbody>
 </table>
+</section>
+<section id="aerial-models">
+<h2>Aerial models<a class="headerlink" href="#aerial-models" title="Permalink to this heading"></a></h2>
+<p>There are two aerial models available for simulation. These models are:</p>
+<ul class="simple">
+<li><p>Quadrotor base.</p></li>
+</ul>
+<figure class="align-default" id="id4">
+<a class="with-shadow reference internal image-reference" href="../../_images/quadrotor.png"><img alt="../../_images/quadrotor.png" class="with-shadow" src="../../_images/quadrotor.png" style="width: 200.0px; height: 194.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Quadrotor base model</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Hexrotor base.</p></li>
+</ul>
+<figure class="align-default" id="id5">
+<a class="with-shadow reference internal image-reference" href="../../_images/hexrotor.png"><img alt="../../_images/hexrotor.png" class="with-shadow" src="../../_images/hexrotor.png" style="width: 200.0px; height: 192.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Hexrotor base model</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In order to add an aerial model with sensors attached to it to the simulated world, modify or create a new configuration file in folder <code class="docutils literal notranslate"><span class="pre">simulation_config</span></code> in <code class="docutils literal notranslate"><span class="pre">.json</span></code> format with the following:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;world&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;empty&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;drones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quadrotor_base&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drone_sim_0&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;xyz&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;rpy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">],</span>
+<span class="w">          </span><span class="nt">&quot;sensors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;gps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gps&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">world</span></code>: name of the defined world in sdf format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drones</span></code>: list of drones to be included in the world.</p></li>
+</ul>
+<p>Each of the <code class="docutils literal notranslate"><span class="pre">drones</span></code> is defined by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: model of the drone defined in sdf format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: namespace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xyz</span></code>: spawn position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rpy</span></code>: spawn orientation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors</span></code>: list of sensors attached to the model</p></li>
+</ul>
+<p>Each of the <code class="docutils literal notranslate"><span class="pre">sensors</span></code> is defined by:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: name of the sensor inside de simulation (this case <code class="docutils literal notranslate"><span class="pre">gps</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensor</span></code>: name of the sensor defined in sdf format.</p></li>
+</ul>
+<p>New models, sensors and worlds are defined in the <code class="docutils literal notranslate"><span class="pre">as2_ignition_assets</span></code> package. For more information on how to create new assets, go to the <a class="reference external" href="https://gazebosim.org/docs/fortress/tutorials">Ignition Fortress tutorial page</a>.</p>
 </section>
 </section>
 
