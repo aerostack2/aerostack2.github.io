@@ -14,5 +14,14 @@ table.align-center {
 }
 
 figure {
-    text-align: center !important;
+    display: inline-block;
+}
+
+figure img {
+    vertical-align: top;
+    border: 1px groove gray;
+}
+
+figure figcaption {
+    text-align: center;
 }
