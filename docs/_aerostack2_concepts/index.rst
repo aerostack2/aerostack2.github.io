@@ -7,7 +7,11 @@ deploy aerial robotics systems so the user can familiarize with them.
 Architecture
 ############
 
-TBD (new architecture figure)
+.. figure:: images/architecture.png
+   :scale: 100
+   :class: with-shadow
+   
+   Aerostack2 architecture
 
 Robot behaviors
 ###############

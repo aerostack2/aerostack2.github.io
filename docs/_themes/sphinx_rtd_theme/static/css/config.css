@@ -12,3 +12,7 @@
 table.align-center {
    display: table !important;
 }
+
+figcaption {
+    text-align: center;
+}
