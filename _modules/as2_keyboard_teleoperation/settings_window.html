@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>as2_keyboard_teleoperation.settings_window &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_getting_started/index.html#install-and-build">Install and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#source-installation">Source installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#build-cli">Build CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_getting_started/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#state-estimator">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#estimator-plugin-base">1. Estimator Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#exporting-the-plugin">1. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#launching">4. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/behavior.html">Writing a New Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_behaviors/index.html">Behaviors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#ros-gazebo-bridge">Ros-Gazebo Bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#aerial-models">Aerial models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_pixhawk/index.html">PX4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#aditional-dependencies">Aditional dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#fast-dds-gen">Fast-DDS-Gen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#px4-ros-com">PX4-ROS-COM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#px4-firmware-update">PX4 firmware update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#aditional-parameters">ADITIONAL PARAMETERS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_ryze_tello/index.html">Ryze Tello</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_dji/index.html">DJI Matrice Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#behavior-tree">Behavior Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#keyboard-teleoperation">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#id1">Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/index.html">as2_keyboard_teleoperation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#alphanumeric-viewer">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#id2">Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_developer/index.html">Developer guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#developing-a-new-package">Developing a new Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#style-tests">Style tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#functional-tests">Functional tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#run-tests">Run tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">as2_keyboard_teleoperation.settings_window</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for as2_keyboard_teleoperation.settings_window</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Settings window.&quot;&quot;&quot;</span>
+
+<span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions of source code must retain the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions in binary form must reproduce the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer in the</span>
+<span class="c1">#      documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Neither the name of the the copyright holder nor the names of its</span>
+<span class="c1">#      contributors may be used to endorse or promote products derived from</span>
+<span class="c1">#      this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Javier Melero Deza, Pedro Arias Pérez&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+
+<span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+
+
+<div class="viewcode-block" id="SettingsWindow"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.settings_window.SettingsWindow">[docs]</a><span class="k">class</span> <span class="nc">SettingsWindow</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display value control settings so the user can change them.</span>
+
+<span class="sd">    :param sg: Window class of PySimpleGUI</span>
+<span class="sd">    :type sg: PySimpleGUI Window</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">menu_font</span><span class="p">,</span> <span class="n">value_list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span> <span class="o">=</span> <span class="n">value_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">font</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">menu_font</span> <span class="o">=</span> <span class="n">menu_font</span>
+
+<div class="viewcode-block" id="SettingsWindow.make_settings_window"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.settings_window.SettingsWindow.make_settings_window">[docs]</a>    <span class="k">def</span> <span class="nf">make_settings_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the settings window layout.</span>
+
+<span class="sd">        :param location: location relative to the main window</span>
+<span class="sd">        :type location: (int, int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="n">col_value_settings_layout</span> <span class="o">=</span> <span class="p">[[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Speed Control Values&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">menu_font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Speed value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE0-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;m/s&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Vertical value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+                                         <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE1-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;m/s&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Turn speed value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE2-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;rad/s&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+                                         <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+                                         <span class="s2">&quot;Position control values:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">menu_font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Position value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE3-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Altitude value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE4-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Turn angle value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE5-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+                                         <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+                                         <span class="s2">&quot;Attitude control values:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">menu_font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Pitch angle value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE6-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Roll angle value:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE7-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Attitude duration:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">InputText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span>
+                                         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span>
+                                         <span class="n">key</span><span class="o">=</span><span class="s2">&quot;-VALUE8-&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">),</span>
+                                         <span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span>
+                                         <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">)],</span>
+                                     <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Save&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">),</span>
+                                     <span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Exit&quot;</span><span class="p">,</span>
+                                               <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="p">((</span><span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))]]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="p">([[</span><span class="n">sg</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">col_value_settings_layout</span><span class="p">)]])</span></div>
+
+<div class="viewcode-block" id="SettingsWindow.event_handler"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.settings_window.SettingsWindow.event_handler">[docs]</a>    <span class="k">def</span> <span class="nf">event_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">,</span> <span class="n">settings_event</span><span class="p">,</span> <span class="n">settings_value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle the events generated from the user&#39;s input.</span>
+
+<span class="sd">        :param window: main window</span>
+<span class="sd">        :type window: sg.Window</span>
+<span class="sd">        :param settings_event: Events from user&#39;s input</span>
+<span class="sd">        :type settings_event: event</span>
+<span class="sd">        :param settings_value: Control values previously saved or default</span>
+<span class="sd">        :type settings_value: list(float)</span>
+<span class="sd">        :return: list of values and whether the window is opened or not</span>
+<span class="sd">        :rtype: list(float), bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">numeric_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">settings_value</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">numeric_values</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid Input, setting to 0.0&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;-VALUE&quot;</span> <span class="o">+</span>
+                     <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">0.00</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">settings_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WIN_CLOSE_ATTEMPTED_EVENT</span> <span class="ow">or</span> <span class="n">settings_event</span> <span class="o">==</span> <span class="s2">&quot;Exit&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">,</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">settings_event</span> <span class="o">==</span> <span class="s2">&quot;Save&quot;</span><span class="p">:</span>
+            <span class="n">jdx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">):</span>
+                <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-INPUTTEXT&quot;</span> <span class="o">+</span>
+                       <span class="nb">str</span><span class="p">(</span><span class="n">jdx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-INPUTTEXT&quot;</span> <span class="o">+</span>
+                       <span class="nb">str</span><span class="p">(</span><span class="n">jdx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span> <span class="ow">and</span>
+                        <span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx</span> <span class="o">!=</span> <span class="mi">7</span><span class="p">)):</span>
+
+                    <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-INPUTTEXT&quot;</span> <span class="o">+</span>
+                           <span class="nb">str</span><span class="p">(</span><span class="n">jdx</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">window</span><span class="p">[</span><span class="s2">&quot;-INPUTTEXT&quot;</span> <span class="o">+</span>
+                           <span class="nb">str</span><span class="p">(</span><span class="n">jdx</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">jdx</span> <span class="o">=</span> <span class="n">jdx</span> <span class="o">+</span> <span class="mi">4</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">jdx</span> <span class="o">=</span> <span class="n">jdx</span> <span class="o">+</span> <span class="mi">2</span>
+
+                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;-VALUE&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span>
+                     <span class="s2">&quot;-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">,</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_list</span><span class="p">,</span> <span class="kc">True</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, CVAR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

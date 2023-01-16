@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>as2_keyboard_teleoperation package &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../../../_static/copybutton.js"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Python API" href="../../../../../../_python_api/index.html" />
+    <link rel="prev" title="as2_keyboard_teleoperation" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../../../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_getting_started/index.html#install-and-build">Install and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_getting_started/index.html#source-installation">Source installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_getting_started/index.html#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_getting_started/index.html#build-cli">Build CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_getting_started/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html#state-estimator">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#estimator-plugin-base">1. Estimator Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#exporting-the-plugin">1. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/estimator_plugin.html#launching">4. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_tutorials/behavior.html">Writing a New Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_behaviors/index.html">Behaviors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_gazebo_simulation/index.html#ros-gazebo-bridge">Ros-Gazebo Bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_gazebo_simulation/index.html#aerial-models">Aerial models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html">PX4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html#aditional-dependencies">Aditional dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html#fast-dds-gen">Fast-DDS-Gen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html#px4-ros-com">PX4-ROS-COM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html#px4-firmware-update">PX4 firmware update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_platforms/_pixhawk/index.html#aditional-parameters">ADITIONAL PARAMETERS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_platforms/_ryze_tello/index.html">Ryze Tello</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_platforms/_dji/index.html">DJI Matrice Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_ros_common_interfaces/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_ros_common_interfaces/index.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_ros_common_interfaces/index.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../index.html">User Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../index.html#behavior-tree">Behavior Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../../index.html#keyboard-teleoperation">Keyboard Teleoperation</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../../../index.html#id1">Code</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">as2_keyboard_teleoperation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../index.html#alphanumeric-viewer">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../index.html#id2">Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_developer/index.html">Developer guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_developer/index.html#developing-a-new-package">Developing a new Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_developer/index.html#style-tests">Style tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_developer/index.html#functional-tests">Functional tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_developer/index.html#run-tests">Run tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">User Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="index.html">as2_keyboard_teleoperation</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">as2_keyboard_teleoperation</a></li>
+      <li class="breadcrumb-item active">as2_keyboard_teleoperation package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="as2-keyboard-teleoperation-package">
+<h1>as2_keyboard_teleoperation package<a class="headerlink" href="#as2-keyboard-teleoperation-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-as2_keyboard_teleoperation.behavior_manager">
+<span id="as2-keyboard-teleoperation-behavior-manager-module"></span><h2>as2_keyboard_teleoperation.behavior_manager module<a class="headerlink" href="#module-as2_keyboard_teleoperation.behavior_manager" title="Permalink to this heading"></a></h2>
+<p>Behavior manager.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.behavior_manager.BehaviorManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.behavior_manager.</span></span><span class="sig-name descname"><span class="pre">BehaviorManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drone_id_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/behavior_manager.html#BehaviorManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.behavior_manager.BehaviorManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handle behavior control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.behavior_manager.BehaviorManager.manage_behavior_control">
+<span class="sig-name descname"><span class="pre">manage_behavior_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">behavior_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/behavior_manager.html#BehaviorManager.manage_behavior_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.behavior_manager.BehaviorManager.manage_behavior_control" title="Permalink to this definition"></a></dt>
+<dd><p>Make de calls to behavior methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>behavior_list</strong> (<em>list</em><em>(</em><em>string</em><em>)</em>) – list of behaviors to be controlled</p></li>
+<li><p><strong>control_order</strong> (<em>string</em>) – control_order to be taken uppon behavior list</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.config_values">
+<span id="as2-keyboard-teleoperation-config-values-module"></span><h2>as2_keyboard_teleoperation.config_values module<a class="headerlink" href="#module-as2_keyboard_teleoperation.config_values" title="Permalink to this heading"></a></h2>
+<p>Configuration values.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">AvailableBehaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#AvailableBehaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="as2_keyboard_teleoperation.config_values.ExtendedEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_FOLLOW_PATH">
+<span class="sig-name descname"><span class="pre">BEHAVIOR_FOLLOW_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Follow</span> <span class="pre">Path'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_FOLLOW_PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_GO_TO">
+<span class="sig-name descname"><span class="pre">BEHAVIOR_GO_TO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Go</span> <span class="pre">To'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_GO_TO" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_LAND">
+<span class="sig-name descname"><span class="pre">BEHAVIOR_LAND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Land'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_LAND" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_TAKE_OFF">
+<span class="sig-name descname"><span class="pre">BEHAVIOR_TAKE_OFF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Take</span> <span class="pre">Off'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_TAKE_OFF" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlModes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">ControlModes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#ControlModes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlModes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="as2_keyboard_teleoperation.config_values.ExtendedEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlModes.ATTITUDE_CONTROL">
+<span class="sig-name descname"><span class="pre">ATTITUDE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'-ATTITUDE-'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlModes.ATTITUDE_CONTROL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlModes.POSE_CONTROL">
+<span class="sig-name descname"><span class="pre">POSE_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'-POSE-'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlModes.POSE_CONTROL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlModes.SPEED_CONTROL">
+<span class="sig-name descname"><span class="pre">SPEED_CONTROL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'-SPEED-'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlModes.SPEED_CONTROL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">ControlValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#ControlValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="as2_keyboard_teleoperation.config_values.ExtendedEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.ALTITUDE_VALUE">
+<span class="sig-name descname"><span class="pre">ALTITUDE_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.ALTITUDE_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.ATTITUDE_DURATION">
+<span class="sig-name descname"><span class="pre">ATTITUDE_DURATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.ATTITUDE_DURATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.PITCH_ANGLE_VALUE">
+<span class="sig-name descname"><span class="pre">PITCH_ANGLE_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.PITCH_ANGLE_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.POSITION_VALUE">
+<span class="sig-name descname"><span class="pre">POSITION_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.POSITION_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.ROLL_ANGLE_VALUE">
+<span class="sig-name descname"><span class="pre">ROLL_ANGLE_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.ROLL_ANGLE_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.SPEED_VALUE">
+<span class="sig-name descname"><span class="pre">SPEED_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.SPEED_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.TURN_ANGLE_VALUE">
+<span class="sig-name descname"><span class="pre">TURN_ANGLE_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.TURN_ANGLE_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.TURN_SPEED_VALUE">
+<span class="sig-name descname"><span class="pre">TURN_SPEED_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.TURN_SPEED_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlValues.VERTICAL_VALUE">
+<span class="sig-name descname"><span class="pre">VERTICAL_VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlValues.VERTICAL_VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ExtendedEnum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">ExtendedEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#ExtendedEnum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ExtendedEnum.list">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#ExtendedEnum.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum.list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">KeyMappings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#KeyMappings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="as2_keyboard_teleoperation.config_values.ExtendedEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedEnum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.BACKWARD_KEY">
+<span class="sig-name descname"><span class="pre">BACKWARD_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Down'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.BACKWARD_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.DOWN_KEY">
+<span class="sig-name descname"><span class="pre">DOWN_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'s'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.DOWN_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.EMERGENCY_KEY">
+<span class="sig-name descname"><span class="pre">EMERGENCY_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Delete'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.EMERGENCY_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.FORWARD_KEY">
+<span class="sig-name descname"><span class="pre">FORWARD_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Up'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.FORWARD_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.HOVER_KEY">
+<span class="sig-name descname"><span class="pre">HOVER_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'space'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.HOVER_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.LAND_KEY">
+<span class="sig-name descname"><span class="pre">LAND_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'l'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.LAND_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.LEFT_KEY">
+<span class="sig-name descname"><span class="pre">LEFT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Left'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.LEFT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.RIGHT_KEY">
+<span class="sig-name descname"><span class="pre">RIGHT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Right'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.RIGHT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.ROTATE_LEFT_KEY">
+<span class="sig-name descname"><span class="pre">ROTATE_LEFT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'a'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.ROTATE_LEFT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.ROTATE_RIGHT_KEY">
+<span class="sig-name descname"><span class="pre">ROTATE_RIGHT_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'d'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.ROTATE_RIGHT_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.TAKE_OFF_KEY">
+<span class="sig-name descname"><span class="pre">TAKE_OFF_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'t'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.TAKE_OFF_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.KeyMappings.UP_KEY">
+<span class="sig-name descname"><span class="pre">UP_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'w'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.KeyMappings.UP_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.drone_manager">
+<span id="as2-keyboard-teleoperation-drone-manager-module"></span><h2>as2_keyboard_teleoperation.drone_manager module<a class="headerlink" href="#module-as2_keyboard_teleoperation.drone_manager" title="Permalink to this heading"></a></h2>
+<p>Drone control manager.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.drone_manager.</span></span><span class="sig-name descname"><span class="pre">DroneManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drone_id_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_frame_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twist_frame_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manage drone control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.emergency_stop">
+<span class="sig-name descname"><span class="pre">emergency_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.emergency_stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.emergency_stop" title="Permalink to this definition"></a></dt>
+<dd><p>Emergency stop.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.execute_common_behaviors">
+<span class="sig-name descname"><span class="pre">execute_common_behaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.execute_common_behaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.execute_common_behaviors" title="Permalink to this definition"></a></dt>
+<dd><p>Execute common behaviors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>method</strong> (<em>function</em>) – behavior to be executed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.execute_function">
+<span class="sig-name descname"><span class="pre">execute_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.execute_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.execute_function" title="Permalink to this definition"></a></dt>
+<dd><p>Execute function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>method</strong> (<em>function</em>) – function to be executed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.go_to_pose">
+<span class="sig-name descname"><span class="pre">go_to_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.go_to_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.go_to_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Go to pose.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.hover">
+<span class="sig-name descname"><span class="pre">hover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.hover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.hover" title="Permalink to this definition"></a></dt>
+<dd><p>Hover.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.land">
+<span class="sig-name descname"><span class="pre">land</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.land"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.land" title="Permalink to this definition"></a></dt>
+<dd><p>Land.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.manage_common_behaviors">
+<span class="sig-name descname"><span class="pre">manage_common_behaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.manage_common_behaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.manage_common_behaviors" title="Permalink to this definition"></a></dt>
+<dd><p>Manage behaviors common to every control mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>string</em>) – Control order</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.manage_pose_behaviors">
+<span class="sig-name descname"><span class="pre">manage_pose_behaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.manage_pose_behaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.manage_pose_behaviors" title="Permalink to this definition"></a></dt>
+<dd><p>Manage pose control behaviors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>string</em>) – Control order</p></li>
+<li><p><strong>value_list</strong> (<em>float</em>) – Pose value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.manage_speed_behaviors">
+<span class="sig-name descname"><span class="pre">manage_speed_behaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.manage_speed_behaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.manage_speed_behaviors" title="Permalink to this definition"></a></dt>
+<dd><p>Manage speed control behaviors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>string</em>) – Control order</p></li>
+<li><p><strong>value_list</strong> (<em>float</em>) – Speed value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.move_at_speed">
+<span class="sig-name descname"><span class="pre">move_at_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_speed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.move_at_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.move_at_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Move at speed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.drone_manager.DroneManager.take_off">
+<span class="sig-name descname"><span class="pre">take_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uav</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/drone_manager.html#DroneManager.take_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.drone_manager.DroneManager.take_off" title="Permalink to this definition"></a></dt>
+<dd><p>Take off.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.keyboard_teleoperation">
+<span id="as2-keyboard-teleoperation-keyboard-teleoperation-module"></span><h2>as2_keyboard_teleoperation.keyboard_teleoperation module<a class="headerlink" href="#module-as2_keyboard_teleoperation.keyboard_teleoperation" title="Permalink to this heading"></a></h2>
+<p>Keyboard Teleoperation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.keyboard_teleoperation.</span></span><span class="sig-name descname"><span class="pre">KeyboardTeleoperation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_drone_interface</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../../../_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop"><span class="pre">DroneInterfaceTeleop</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/keyboard_teleoperation.html#KeyboardTeleoperation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main class for the teleoperation.</p>
+<p>It initializes both the frontend and backend. It also
+execute the main loop where the Main window is executed. When the handler of the Main window
+returns an output, it calls the drone manager to perform an action.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.execute_main_window">
+<span class="sig-name descname"><span class="pre">execute_main_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_keyboard_teleoperation.main_window.MainWindow" title="as2_keyboard_teleoperation.main_window.MainWindow"><span class="pre">MainWindow</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/keyboard_teleoperation.html#KeyboardTeleoperation.execute_main_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.execute_main_window" title="Permalink to this definition"></a></dt>
+<dd><p>Execute main window event handler.</p>
+<p>Main loop where the main window is executed. Every iteration it receives an output from
+the main window so an action is taken in consequence.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>window</strong> (<a class="reference internal" href="#as2_keyboard_teleoperation.main_window.MainWindow" title="as2_keyboard_teleoperation.main_window.MainWindow"><em>MainWindow</em></a>) – Main window to be looped</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the interface is still opened</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.get_behavior_status">
+<span class="sig-name descname"><span class="pre">get_behavior_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/keyboard_teleoperation.html#KeyboardTeleoperation.get_behavior_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.get_behavior_status" title="Permalink to this definition"></a></dt>
+<dd><p>Get behavior status for each interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary with namespace and behavior status</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict(namespace, list(int))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.tick_main_window">
+<span class="sig-name descname"><span class="pre">tick_main_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/keyboard_teleoperation.html#KeyboardTeleoperation.tick_main_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.tick_main_window" title="Permalink to this definition"></a></dt>
+<dd><p>Ticks the main window.</p>
+<p>Function to be executed in a separated thread in order to make the execution of the
+teleoperation non-blocking.”</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.keyboard_teleoperation.main">
+<span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.keyboard_teleoperation.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/keyboard_teleoperation.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.keyboard_teleoperation.main" title="Permalink to this definition"></a></dt>
+<dd><p>entrypoint.</p>
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.localization_window">
+<span id="as2-keyboard-teleoperation-localization-window-module"></span><h2>as2_keyboard_teleoperation.localization_window module<a class="headerlink" href="#module-as2_keyboard_teleoperation.localization_window" title="Permalink to this heading"></a></h2>
+<p>Localization window.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.localization_window.LocalizationWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.localization_window.</span></span><span class="sig-name descname"><span class="pre">LocalizationWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/localization_window.html#LocalizationWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.localization_window.LocalizationWindow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></p>
+<p>Display the localization of the drones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sg</strong> (<em>PySimpleGUI Window</em>) – Window class of PySimpleGUI</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.localization_window.LocalizationWindow.execute_localization_window">
+<span class="sig-name descname"><span class="pre">execute_localization_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/localization_window.html#LocalizationWindow.execute_localization_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.localization_window.LocalizationWindow.execute_localization_window" title="Permalink to this definition"></a></dt>
+<dd><p>Update the localization window visual output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Opened or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.localization_window.LocalizationWindow.make_localization_window">
+<span class="sig-name descname"><span class="pre">make_localization_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/localization_window.html#LocalizationWindow.make_localization_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.localization_window.LocalizationWindow.make_localization_window" title="Permalink to this definition"></a></dt>
+<dd><p>Create the localization window layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – location relative to the main window</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.main_window">
+<span id="as2-keyboard-teleoperation-main-window-module"></span><h2>as2_keyboard_teleoperation.main_window module<a class="headerlink" href="#module-as2_keyboard_teleoperation.main_window" title="Permalink to this heading"></a></h2>
+<p>Main Window.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.main_window.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></p>
+<p>Create the main window.</p>
+<p>Send events taken as an input from the user.
+This class also handles the settings window and the localization window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sg</strong> (<em>PySimpleGUI Window</em>) – Window class of PySimpleGUI</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.event_handler">
+<span class="sig-name descname"><span class="pre">event_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">behaviors_status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.event_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.event_handler" title="Permalink to this definition"></a></dt>
+<dd><p>Handle the events taken from the user’s input.</p>
+<p>Make the calls to the
+event handlers of the localization and settings windows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event</strong> (<em>String</em>) – Event generated from the user’s input keyboard</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – Value connected to user’s input numeric values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list containing the control mode, key pressed (event), a list of values</p>
+</dd>
+</dl>
+<p>and wheter if it is still opened or not
+:rtype: string, string, list(float), bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.make_main_window">
+<span class="sig-name descname"><span class="pre">make_main_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.make_main_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.make_main_window" title="Permalink to this definition"></a></dt>
+<dd><p>Create the main window layout.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.update_behavior">
+<span class="sig-name descname"><span class="pre">update_behavior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">behaviors_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.update_behavior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.update_behavior" title="Permalink to this definition"></a></dt>
+<dd><p>Update Behavior values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.update_main_window_mode">
+<span class="sig-name descname"><span class="pre">update_main_window_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.update_main_window_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.update_main_window_mode" title="Permalink to this definition"></a></dt>
+<dd><p>Update the main window control mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>string</em>) – User input</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_attitude">
+<span class="sig-name descname"><span class="pre">update_window_to_attitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.update_window_to_attitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_attitude" title="Permalink to this definition"></a></dt>
+<dd><p>Update window to attitude mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_pose">
+<span class="sig-name descname"><span class="pre">update_window_to_pose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.update_window_to_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Update window to pose mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_speed">
+<span class="sig-name descname"><span class="pre">update_window_to_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/main_window.html#MainWindow.update_window_to_speed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.main_window.MainWindow.update_window_to_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Update window to speed mode.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation.settings_window">
+<span id="as2-keyboard-teleoperation-settings-window-module"></span><h2>as2_keyboard_teleoperation.settings_window module<a class="headerlink" href="#module-as2_keyboard_teleoperation.settings_window" title="Permalink to this heading"></a></h2>
+<p>Settings window.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.settings_window.SettingsWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.settings_window.</span></span><span class="sig-name descname"><span class="pre">SettingsWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/settings_window.html#SettingsWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.settings_window.SettingsWindow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></p>
+<p>Display value control settings so the user can change them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sg</strong> (<em>PySimpleGUI Window</em>) – Window class of PySimpleGUI</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.settings_window.SettingsWindow.event_handler">
+<span class="sig-name descname"><span class="pre">event_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySimpleGUI.Window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/settings_window.html#SettingsWindow.event_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.settings_window.SettingsWindow.event_handler" title="Permalink to this definition"></a></dt>
+<dd><p>Handle the events generated from the user’s input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window</strong> (<em>sg.Window</em>) – main window</p></li>
+<li><p><strong>settings_event</strong> (<em>event</em>) – Events from user’s input</p></li>
+<li><p><strong>settings_value</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – Control values previously saved or default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of values and whether the window is opened or not</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list(float), bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_keyboard_teleoperation.settings_window.SettingsWindow.make_settings_window">
+<span class="sig-name descname"><span class="pre">make_settings_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/settings_window.html#SettingsWindow.make_settings_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.settings_window.SettingsWindow.make_settings_window" title="Permalink to this definition"></a></dt>
+<dd><p>Create the settings window layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>location</strong> (<em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – location relative to the main window</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_keyboard_teleoperation">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_keyboard_teleoperation" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, CVAR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

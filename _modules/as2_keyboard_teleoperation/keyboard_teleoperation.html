@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>as2_keyboard_teleoperation.keyboard_teleoperation &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_getting_started/index.html#install-and-build">Install and build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#source-installation">Source installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#build">Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_getting_started/index.html#build-cli">Build CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_getting_started/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#platform">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#state-estimator">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#estimator-plugin-base">1. Estimator Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#exporting-the-plugin">1. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/estimator_plugin.html#launching">4. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/behavior.html">Writing a New Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_cli/index.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_behaviors/index.html">Behaviors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#ros-gazebo-bridge">Ros-Gazebo Bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_gazebo_simulation/index.html#aerial-models">Aerial models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_pixhawk/index.html">PX4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#aditional-dependencies">Aditional dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#fast-dds-gen">Fast-DDS-Gen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#px4-ros-com">PX4-ROS-COM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#px4-firmware-update">PX4 firmware update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_platforms/_pixhawk/index.html#aditional-parameters">ADITIONAL PARAMETERS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_ryze_tello/index.html">Ryze Tello</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_platforms/_dji/index.html">DJI Matrice Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_ros_common_interfaces/index.html">ROS Common interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_ros_common_interfaces/index.html#using-as2-interfaces">Using AS2 interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#services">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_ros_common_interfaces/index.html#actions">Actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#behavior-tree">Behavior Tree</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#keyboard-teleoperation">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#id1">Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/index.html">as2_keyboard_teleoperation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_user_interfaces/index.html#alphanumeric-viewer">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_user_interfaces/index.html#id2">Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_core/index.html">AS2 Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_core/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_core/as2_core/docs/index.html">as2_core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_developer/index.html">Developer guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#file-style-guide">File style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#developing-a-new-package">Developing a new Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#style-tests">Style tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#functional-tests">Functional tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_developer/index.html#run-tests">Run tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_developer/index.html#package-architecture">Package architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">as2_keyboard_teleoperation.keyboard_teleoperation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for as2_keyboard_teleoperation.keyboard_teleoperation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Keyboard Teleoperation.&quot;&quot;&quot;</span>
+
+<span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions of source code must retain the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions in binary form must reproduce the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer in the</span>
+<span class="c1">#      documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Neither the name of the the copyright holder nor the names of its</span>
+<span class="c1">#      contributors may be used to endorse or promote products derived from</span>
+<span class="c1">#      this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Javier Melero Deza, Pedro Arias Pérez&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">rclpy</span>
+
+<span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.drone_interface_teleop</span> <span class="kn">import</span> <span class="n">DroneInterfaceTeleop</span> <span class="k">as</span> <span class="n">DroneInterface</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.main_window</span> <span class="kn">import</span> <span class="n">MainWindow</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.localization_window</span> <span class="kn">import</span> <span class="n">LocalizationWindow</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.behavior_manager</span> <span class="kn">import</span> <span class="n">BehaviorManager</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.settings_window</span> <span class="kn">import</span> <span class="n">SettingsWindow</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.drone_manager</span> <span class="kn">import</span> <span class="n">DroneManager</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.config_values</span> <span class="kn">import</span> <span class="n">ControlValues</span>
+<span class="kn">from</span> <span class="nn">as2_keyboard_teleoperation.config_values</span> <span class="kn">import</span> <span class="n">ControlModes</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.keyboard_teleoperation.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;entrypoint.&quot;&quot;&quot;</span>
+    <span class="n">drone_id</span><span class="p">,</span> <span class="n">is_verbose</span><span class="p">,</span> <span class="n">use_sim_time</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">is_verbose</span> <span class="o">=</span> <span class="n">is_verbose</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+    <span class="n">use_sim_time</span> <span class="o">=</span> <span class="n">use_sim_time</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+    <span class="n">uav_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+    <span class="k">if</span> <span class="s1">&#39;,&#39;</span> <span class="ow">in</span> <span class="n">drone_id</span><span class="p">:</span>
+        <span class="n">drone_id_list</span> <span class="o">=</span> <span class="n">drone_id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">uav_id</span> <span class="ow">in</span> <span class="n">drone_id_list</span><span class="p">:</span>
+            <span class="n">uav_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DroneInterface</span><span class="p">(</span>
+                <span class="n">uav_id</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">is_verbose</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="o">=</span><span class="n">use_sim_time</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">uav_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DroneInterface</span><span class="p">(</span>
+            <span class="n">drone_id</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">is_verbose</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="o">=</span><span class="n">use_sim_time</span><span class="p">))</span>
+
+    <span class="n">k_t</span> <span class="o">=</span> <span class="n">KeyboardTeleoperation</span><span class="p">(</span><span class="n">uav_list</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">k_t</span><span class="o">.</span><span class="n">execute_main_window</span><span class="p">(</span><span class="n">k_t</span><span class="o">.</span><span class="n">main_window</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="KeyboardTeleoperation"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation">[docs]</a><span class="k">class</span> <span class="nc">KeyboardTeleoperation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main class for the teleoperation.</span>
+
+<span class="sd">    It initializes both the frontend and backend. It also</span>
+<span class="sd">    execute the main loop where the Main window is executed. When the handler of the Main window</span>
+<span class="sd">    returns an output, it calls the drone manager to perform an action.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_drone_interface</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DroneInterface</span><span class="p">],</span> <span class="n">thread</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span> <span class="o">=</span> <span class="n">list_drone_interface</span>
+        <span class="n">drone_id_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">uav</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">:</span>
+            <span class="n">drone_id_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">uav</span><span class="o">.</span><span class="n">get_namespace</span><span class="p">(),</span> <span class="kc">True</span><span class="p">])</span>
+
+        <span class="n">value_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">ControlValues</span><span class="o">.</span><span class="n">SPEED_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ControlValues</span><span class="o">.</span><span class="n">VERTICAL_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="n">ControlValues</span><span class="o">.</span><span class="n">TURN_SPEED_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ControlValues</span><span class="o">.</span><span class="n">POSITION_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="n">ControlValues</span><span class="o">.</span><span class="n">ALTITUDE_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ControlValues</span><span class="o">.</span><span class="n">TURN_ANGLE_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="n">ControlValues</span><span class="o">.</span><span class="n">PITCH_ANGLE_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="n">ControlValues</span><span class="o">.</span><span class="n">ROLL_ANGLE_VALUE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                      <span class="n">ControlValues</span><span class="o">.</span><span class="n">ATTITUDE_DURATION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">localization_opened</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">sg</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="s2">&quot;DarkBlack1&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">drone_manager</span> <span class="o">=</span> <span class="n">DroneManager</span><span class="p">(</span>
+            <span class="n">uav_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">,</span> <span class="n">drone_id_list</span><span class="o">=</span><span class="n">drone_id_list</span><span class="p">,</span>
+            <span class="n">pose_frame_id</span><span class="o">=</span><span class="s1">&#39;earth&#39;</span><span class="p">,</span> <span class="n">twist_frame_id</span><span class="o">=</span><span class="s1">&#39;earth&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">behavior_manager</span> <span class="o">=</span> <span class="n">BehaviorManager</span><span class="p">(</span>
+            <span class="n">uav_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">,</span> <span class="n">drone_id_list</span><span class="o">=</span><span class="n">drone_id_list</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings_window</span> <span class="o">=</span> <span class="n">SettingsWindow</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Terminus Font&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">menu_font</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Ubuntu Mono&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span> <span class="n">value_list</span><span class="o">=</span><span class="n">value_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Settings&quot;</span><span class="p">,</span>
+            <span class="n">enable_close_attempted_event</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">localization_window</span> <span class="o">=</span> <span class="n">LocalizationWindow</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Terminus Font&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">menu_font</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Ubuntu Mono&quot;</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span> <span class="n">uav_list</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Localization&quot;</span><span class="p">,</span>
+            <span class="n">use_default_focus</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">enable_close_attempted_event</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">resizable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span> <span class="o">=</span> <span class="n">MainWindow</span><span class="p">(</span><span class="n">settings_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">settings_window</span><span class="p">,</span>
+                                      <span class="n">localization_window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">localization_window</span><span class="p">,</span>
+                                      <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Terminus Font&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+                                      <span class="n">menu_font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Ubuntu Mono&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span>
+                                      <span class="n">drone_id_list</span><span class="o">=</span><span class="n">drone_id_list</span><span class="p">,</span>
+                                      <span class="n">value_list</span><span class="o">=</span><span class="n">value_list</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Keyboard Teleoperation&quot;</span><span class="p">,</span>
+                                      <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_keyboard_events</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">make_main_window</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">thread</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span>
+                <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tick_main_window</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<div class="viewcode-block" id="KeyboardTeleoperation.tick_main_window"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.tick_main_window">[docs]</a>    <span class="k">def</span> <span class="nf">tick_main_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ticks the main window.</span>
+
+<span class="sd">        Function to be executed in a separated thread in order to make the execution of the</span>
+<span class="sd">        teleoperation non-blocking.&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute_main_window</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="KeyboardTeleoperation.execute_main_window"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.execute_main_window">[docs]</a>    <span class="k">def</span> <span class="nf">execute_main_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">:</span> <span class="n">MainWindow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute main window event handler.</span>
+
+<span class="sd">        Main loop where the main window is executed. Every iteration it receives an output from</span>
+<span class="sd">        the main window so an action is taken in consequence.&quot;</span>
+
+<span class="sd">        :param window: Main window to be looped</span>
+<span class="sd">        :type window: MainWindow</span>
+<span class="sd">        :return: If the interface is still opened</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">event</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="n">control_mode</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value_list</span><span class="p">,</span> <span class="n">behavior_control</span><span class="p">,</span> <span class="n">opened</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">event_handler</span><span class="p">(</span>
+            <span class="n">event</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_behavior_status</span><span class="p">())</span>
+
+        <span class="c1"># self.uav_list[0].get_logger().info(</span>
+        <span class="c1">#     str(values[&quot;-ACTIVE_BEHAVIORS-&quot;]))</span>
+        <span class="k">if</span> <span class="n">control_mode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">drone_manager</span><span class="o">.</span><span class="n">manage_common_behaviors</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">control_mode</span> <span class="o">==</span> <span class="n">ControlModes</span><span class="o">.</span><span class="n">SPEED_CONTROL</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">drone_manager</span><span class="o">.</span><span class="n">manage_speed_behaviors</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value_list</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">control_mode</span> <span class="o">==</span> <span class="n">ControlModes</span><span class="o">.</span><span class="n">POSE_CONTROL</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">drone_manager</span><span class="o">.</span><span class="n">manage_pose_behaviors</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value_list</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">behavior_control</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">behavior_manager</span><span class="o">.</span><span class="n">manage_behavior_control</span><span class="p">(</span>
+                <span class="n">behavior_list</span><span class="o">=</span><span class="n">value_list</span><span class="p">,</span> <span class="n">control_order</span><span class="o">=</span><span class="n">behavior_control</span><span class="p">)</span>
+
+        <span class="c1"># self.uav_list[0].get_logger().info(</span>
+        <span class="c1">#     &quot;&quot;)</span>
+
+        <span class="k">return</span> <span class="n">opened</span></div>
+
+<div class="viewcode-block" id="KeyboardTeleoperation.get_behavior_status"><a class="viewcode-back" href="../../_user_interfaces/temp_ws/src/as2_keyboard_teleoperation/docs/source/as2_keyboard_teleoperation.html#as2_keyboard_teleoperation.keyboard_teleoperation.KeyboardTeleoperation.get_behavior_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_behavior_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get behavior status for each interface.</span>
+
+<span class="sd">        :return: dictionary with namespace and behavior status</span>
+<span class="sd">        :rtype: dict(namespace, list(int))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">drone</span><span class="o">.</span><span class="n">get_namespace</span><span class="p">()</span> <span class="k">for</span> <span class="n">drone</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">]</span>
+        <span class="n">value_list</span> <span class="o">=</span> <span class="p">[[</span><span class="n">drone</span><span class="o">.</span><span class="n">takeoff</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">land</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
+                       <span class="n">drone</span><span class="o">.</span><span class="n">follow_path</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">goto</span><span class="o">.</span><span class="n">status</span><span class="p">]</span> <span class="k">for</span> <span class="n">drone</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">uav_list</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">key_list</span><span class="p">,</span> <span class="n">value_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, CVAR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
