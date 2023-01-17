@@ -11,3 +11,26 @@ The first step is to install Ubuntu 22.04 on the Carrier Board from a `bootable 
 
 
 
+Structure Core Setup
+********************
+
+In order to use the Structure Core Camera that comes in the drone you must follow the subsequent steps:
+
+1. Download Structure SDK from https://developer.structure.io/sdk . We have tested ``StructureSDK-CrossPlatform-0.9``
+2. Unzip content in ``$HOME`` directory 
+3. Change directory into the uncompressed folder and run: 
+
+.. code-block:: bash
+
+  chmod +x DriverAndFirmware/Linux/Install-CoreDriver-Udev-Linux.sh
+  sudo DriverAndFirmware/Linux/Install-CoreDriver-Udev-Linux.sh # This will allow the device to be detected by the computer
+  
+
+4. After that we will build the library with
+
+.. code-block:: bash
+
+  mkdir build
+  cd build
+  cmake -G'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release ..
+  make Samples
