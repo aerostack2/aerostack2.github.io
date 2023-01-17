@@ -49,13 +49,17 @@ In order to validate the installation in another terminal run:
 PX4-ROS-COM
 **********************
 
+A pyros-genmsg dependency is needed 
+$ pip3 install pyros-genmsg
+
 .. code-block:: bash
+
+  pip3 install pyros-genmsg
   
   cd ~/aerostack2_ws/src
   git clone https://github.com/aerostack2/px4_ros_com 
   cd ~/aerostack2_ws && colcon build --symlink-install 
   # if using as2 CLI run $ as2 build 
-
 
 
 

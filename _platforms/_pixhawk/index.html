@@ -251,7 +251,11 @@ This documentation is obtained from ( ADD LINK )</p>
 </section>
 <section id="px4-ros-com">
 <h3>PX4-ROS-COM<a class="headerlink" href="#px4-ros-com" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src
+<p>A pyros-genmsg dependency is needed
+$ pip3 install pyros-genmsg</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>pyros-genmsg
+
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/px4_ros_com
 <span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 <span class="c1"># if using as2 CLI run $ as2 build</span>
