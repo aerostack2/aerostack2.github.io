@@ -49,8 +49,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#license-agreement">License agreement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#previous-dependencies">Previous dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#source-installation">Source installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build">Build</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-cli">Build CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#standard-build">Standard Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-with-as2-cli">Build with as2 CLI</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
@@ -214,43 +214,34 @@
 </section>
 <section id="previous-dependencies">
 <h3>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h3>
-<p>Make sure to have installed ROS2 via Debian Packages <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a></p>
-<p>For simulation install <a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">Ignition Fortress</a></p>
+<p>Make sure to have installed ROS2 via Debian Packages <cite>Humble &lt;https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html&gt;</cite> or Galactic <cite>Humble &lt;https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html&gt;</cite></p>
 </section>
 <section id="source-installation">
 <h3>Source installation<a class="headerlink" href="#source-installation" title="Permalink to this heading"></a></h3>
-<p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;your<span class="w"> </span>distro&gt;/setup.bash
+<p>For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should source the ros2 environment before running these steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;ros2-distro&gt;/setup.bash
 </pre></div>
 </div>
-<p>before running these steps.</p>
-<ul class="simple">
-<li><p>A new workspace for Aerostack2 will be created in order to clone the source code and build it. <a class="reference external" href="https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html">Rosdep</a> will be used to get the binary dependecies for Aerostack2 packages:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws/src/<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/aerostack2/aerostack2.git<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/aerostack2_ws<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>&lt;ros2-distro&gt;
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Set environment vars (or add them to the ~/.bashrc file):</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<p>A new workspace for Aerostack2 will be created in order to clone the source code and build it. <a class="reference external" href="https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html">Rosdep</a> will be used to get the binary dependecies for Aerostack2 packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/aerostack2_ws/src/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src/
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/aerostack2.git
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
+rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>&lt;ros2-distro&gt;
 </pre></div>
 </div>
 </section>
-<section id="build">
-<h3>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+<section id="standard-build">
+<h3>Standard Build<a class="headerlink" href="#standard-build" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
+colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 </pre></div>
 </div>
 </section>
-<section id="build-cli">
-<h3>Build CLI<a class="headerlink" href="#build-cli" title="Permalink to this heading"></a></h3>
+<section id="build-with-as2-cli">
+<h3>Build with as2 CLI<a class="headerlink" href="#build-with-as2-cli" title="Permalink to this heading"></a></h3>
 <p>Aditionally, Aerostack2 provides with a <a class="reference internal" href="../_cli/index.html#cli"><span class="std std-ref">CLI</span></a> that is able to perform Aerostack2 build operation from any directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source $AEROSTACK2_PATH/as2_cli/setup_env.bash&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source $AEROSTACK2_PATH/as2_cli/setup_env.bash&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>build
