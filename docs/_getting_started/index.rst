@@ -15,51 +15,42 @@ Before the installation, you must read and accept the conditions defined by the 
 Previous dependencies
 ---------------------
 
-Make sure to have installed ROS2 via Debian Packages `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`_
-
-For simulation install `Ignition Fortress <https://gazebosim.org/docs/fortress/install_ubuntu>`_
+Make sure to have installed ROS2 via Debian Packages `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>` or Galactic `Humble <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`
 
 Source installation
 -------------------
 
-For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should run 
+For using and installing Aerostack2, your ROS2 environment must be settled up. If ROS2 is installed using debian packages you should source the ros2 environment before running these steps:
 
 .. code-block:: bash
 
-    source /opt/ros/<your distro>/setup.bash
+    source /opt/ros/<ros2-distro>/setup.bash
 
-before running these steps.
-
-* A new workspace for Aerostack2 will be created in order to clone the source code and build it. `Rosdep <https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html>`_ will be used to get the binary dependecies for Aerostack2 packages:
+A new workspace for Aerostack2 will be created in order to clone the source code and build it. `Rosdep <https://docs.ros.org/en/humble/Tutorials/Intermediate/Rosdep.html>`_ will be used to get the binary dependecies for Aerostack2 packages:
 
 .. code-block:: bash
 
-    mkdir -p ${HOME}/aerostack2_ws/src/ \
-        && cd ${HOME}/aerostack2_ws/src/ \
-        && git clone --recursive https://github.com/aerostack2/aerostack2.git \
-        && cd ${HOME}/aerostack2_ws \
-        && rosdep install -y -r -q --from-paths src --ignore-src --rosdistro <ros2-distro>
+    mkdir -p ~/aerostack2_ws/src/ && cd ~/aerostack2_ws/src/ 
+    git clone https://github.com/aerostack2/aerostack2.git
+    cd ~/aerostack2_ws
+    rosdep install -y -r -q --from-paths src --ignore-src --rosdistro <ros2-distro>
 
-* Set environment vars (or add them to the ~/.bashrc file):
-
-.. code-block:: bash
-    
-    echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
-
-Build
------
+Standard Build
+--------------
 
 .. code-block:: bash
 
+    cd ~/aerostack2_ws
     colcon build --symlink-install
 
-Build CLI
----------
+Build with as2 CLI
+------------------
 
 Aditionally, Aerostack2 provides with a :ref:`CLI` that is able to perform Aerostack2 build operation from any directory:
 
 .. code-block:: bash
 
+    echo 'export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2' >> $HOME/.bashrc
     echo 'source $AEROSTACK2_PATH/as2_cli/setup_env.bash' >> $HOME/.bashrc && source $HOME/.bashrc
 
 .. code-block:: bash
