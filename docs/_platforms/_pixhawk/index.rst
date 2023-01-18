@@ -63,7 +63,7 @@ The expected output is something similar to:
 
 pyros-genmsg
 **********************
-A pyros-genmsg dependency is needed:
+A pyros-genmsg dependency is needed
 
 .. code-block:: bash
 
