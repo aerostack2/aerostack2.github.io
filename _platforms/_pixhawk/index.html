@@ -110,7 +110,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">PX4</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#aditional-dependencies">Aditional dependencies</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#fast-dds-gen">Fast-DDS-Gen</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#px4-ros-com">PX4-ROS-COM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyros-genmsg">pyros-genmsg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#as2-platform-pixhawk">as2_platform_pixhawk</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#px4-firmware-update">PX4 firmware update</a></li>
@@ -211,6 +212,8 @@
              
   <section id="px4">
 <h1>PX4<a class="headerlink" href="#px4" title="Permalink to this heading"></a></h1>
+<p>Since PX4 has a lot of external dependencies we opted to separate it in a diferent repo.
+The complete installations step are as follows:</p>
 <section id="aditional-dependencies">
 <h2>Aditional dependencies<a class="headerlink" href="#aditional-dependencies" title="Permalink to this heading"></a></h2>
 <p>In order to be able to use a Pixhawk autopilot some additional software must be installed:
@@ -248,19 +251,32 @@ This documentation is obtained from ( ADD LINK )</p>
 <span class="k">fi</span>
 </pre></div>
 </div>
+<p>The expected output is something similar to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openjdk<span class="w"> </span>version<span class="w"> </span><span class="s2">&quot;13.0.7&quot;</span><span class="w"> </span><span class="m">2021</span>-04-20
+OpenJDK<span class="w"> </span>Runtime<span class="w"> </span>Environment<span class="w"> </span><span class="o">(</span>build<span class="w"> </span><span class="m">13</span>.0.7+5-Ubuntu-0ubuntu120.04<span class="o">)</span>
+OpenJDK<span class="w"> </span><span class="m">64</span>-Bit<span class="w"> </span>Server<span class="w"> </span>VM<span class="w"> </span><span class="o">(</span>build<span class="w"> </span><span class="m">13</span>.0.7+5-Ubuntu-0ubuntu120.04,<span class="w"> </span>mixed<span class="w"> </span>mode<span class="o">)</span>
+</pre></div>
+</div>
 </section>
-<section id="px4-ros-com">
-<h3>PX4-ROS-COM<a class="headerlink" href="#px4-ros-com" title="Permalink to this heading"></a></h3>
+<section id="pyros-genmsg">
+<h3>pyros-genmsg<a class="headerlink" href="#pyros-genmsg" title="Permalink to this heading"></a></h3>
 <p>A pyros-genmsg dependency is needed
 $ pip3 install pyros-genmsg</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>pyros-genmsg
-
-<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/px4_ros_com
-<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
-<span class="c1"># if using as2 CLI run $ as2 build</span>
 </pre></div>
 </div>
+</section>
+<section id="as2-platform-pixhawk">
+<h3>as2_platform_pixhawk<a class="headerlink" href="#as2-platform-pixhawk" title="Permalink to this heading"></a></h3>
+<p>We recommend to have this in a diferent colcon_ws since px4_msgs packages spends a lot of time in compiling and we only want to do it once.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/px4_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/px4_ws/src
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:aerostack2/as2_platform_pixhawk.git
+vcs<span class="w"> </span>import<span class="w"> </span>--recursive<span class="w"> </span>&lt;<span class="w"> </span>as2_platform_pixhawk/dependencies.repos
+<span class="nb">cd</span><span class="w"> </span>~/px4_ws
+colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+</pre></div>
+</div>
+<p>&gt;&gt; Remind to <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">~/aerostack2_ws/install/setup.bash</span></code> before runing <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code></p>
 </section>
 </section>
 <section id="px4-firmware-update">
