@@ -1,5 +1,10 @@
 PX4
 ===
+
+Since PX4 has a lot of external dependencies we opted to separate it in a diferent repo.
+The complete installations step are as follows:
+
+
 Aditional dependencies
 ######################
 
@@ -46,9 +51,18 @@ In order to validate the installation in another terminal run:
     fi
   fi
 
-PX4-ROS-COM
-**********************
 
+The expected output is something similar to:
+
+.. code-block:: bash 
+
+  openjdk version "13.0.7" 2021-04-20
+  OpenJDK Runtime Environment (build 13.0.7+5-Ubuntu-0ubuntu120.04)
+  OpenJDK 64-Bit Server VM (build 13.0.7+5-Ubuntu-0ubuntu120.04, mixed mode)
+
+
+pyros-genmsg
+**********************
 A pyros-genmsg dependency is needed 
 $ pip3 install pyros-genmsg
 
@@ -56,12 +70,19 @@ $ pip3 install pyros-genmsg
 
   pip3 install pyros-genmsg
   
-  cd ~/aerostack2_ws/src
-  git clone https://github.com/aerostack2/px4_ros_com 
-  cd ~/aerostack2_ws && colcon build --symlink-install 
-  # if using as2 CLI run $ as2 build 
+as2_platform_pixhawk
+**********************
+We recommend to have this in a diferent colcon_ws since px4_msgs packages spends a lot of time in compiling and we only want to do it once.
 
+.. code-block:: bash
 
+  mkdir -p ~/px4_ws/src && cd ~/px4_ws/src
+  git clone git@github.com:aerostack2/as2_platform_pixhawk.git
+  vcs import --recursive < as2_platform_pixhawk/dependencies.repos
+  cd ~/px4_ws
+  colcon build --symlink-install
+ 
+>> Remind to ``$ source ~/aerostack2_ws/install/setup.bash`` before runing ``colcon build``
 
 PX4 firmware update
 ###################
