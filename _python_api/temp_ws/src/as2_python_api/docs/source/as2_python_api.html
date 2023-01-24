@@ -183,6 +183,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../_projects/index.html">Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_troubleshooting/index.html#nvidia-nx">Nvidia NX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_troubleshooting/index.html#clock-skew">Clock skew</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -241,22 +248,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.followpath_behavior">as2_python_api.behavior_actions.followpath_behavior module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.modify"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior.modify()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.start"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior.start()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.goto_behavior">as2_python_api.behavior_actions.goto_behavior module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.goto_behavior.GoToBehavior"><code class="docutils literal notranslate"><span class="pre">GoToBehavior</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.goto_behavior.GoToBehavior.modify"><code class="docutils literal notranslate"><span class="pre">GoToBehavior.modify()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.goto_behavior.GoToBehavior.start"><code class="docutils literal notranslate"><span class="pre">GoToBehavior.start()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2-python-api-behavior-actions-followpath-behavior-module">as2_python_api.behavior_actions.followpath_behavior module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2-python-api-behavior-actions-goto-behavior-module">as2_python_api.behavior_actions.goto_behavior module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.land_behavior">as2_python_api.behavior_actions.land_behavior module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.land_behavior.LandBehavior"><code class="docutils literal notranslate"><span class="pre">LandBehavior</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.land_behavior.LandBehavior.modify"><code class="docutils literal notranslate"><span class="pre">LandBehavior.modify()</span></code></a></li>
@@ -368,16 +361,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-as2_python_api.drone_interface">
-<span id="as2-python-api-drone-interface-module"></span><h2>as2_python_api.drone_interface module<a class="headerlink" href="#module-as2_python_api.drone_interface" title="Permalink to this heading"></a></h2>
-<p>Drone interface to easily command drones with AeroStack2.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="as2_python_api.drone_interface.DroneInterface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface.</span></span><span class="sig-name descname"><span class="pre">DroneInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/drone_interface.html#DroneInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface.DroneInterface" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
-<p>Drone interface node.</p>
-</dd></dl>
-
+<section id="as2-python-api-drone-interface-module">
+<h2>as2_python_api.drone_interface module<a class="headerlink" href="#as2-python-api-drone-interface-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-as2_python_api.drone_interface_base">
 <span id="as2-python-api-drone-interface-base-module"></span><h2>as2_python_api.drone_interface_base module<a class="headerlink" href="#module-as2_python_api.drone_interface_base" title="Permalink to this heading"></a></h2>
@@ -505,27 +490,11 @@
 </dd></dl>
 
 </section>
-<section id="module-as2_python_api.drone_interface_gps">
-<span id="as2-python-api-drone-interface-gps-module"></span><h2>as2_python_api.drone_interface_gps module<a class="headerlink" href="#module-as2_python_api.drone_interface_gps" title="Permalink to this heading"></a></h2>
-<p>Drone interface GPS to easily command drones with AeroStack2.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="as2_python_api.drone_interface_gps.DroneInterfaceGPS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface_gps.</span></span><span class="sig-name descname"><span class="pre">DroneInterfaceGPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/drone_interface_gps.html#DroneInterfaceGPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_gps.DroneInterfaceGPS" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
-<p>Drone interface node</p>
-</dd></dl>
-
+<section id="as2-python-api-drone-interface-gps-module">
+<h2>as2_python_api.drone_interface_gps module<a class="headerlink" href="#as2-python-api-drone-interface-gps-module" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-as2_python_api.drone_interface_teleop">
-<span id="as2-python-api-drone-interface-teleop-module"></span><h2>as2_python_api.drone_interface_teleop module<a class="headerlink" href="#module-as2_python_api.drone_interface_teleop" title="Permalink to this heading"></a></h2>
-<p>Drone interface with motion handlers to teleoperate.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface_teleop.</span></span><span class="sig-name descname"><span class="pre">DroneInterfaceTeleop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/drone_interface_teleop.html#DroneInterfaceTeleop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface.DroneInterface" title="as2_python_api.drone_interface.DroneInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterface</span></code></a></p>
-<p>Drone interface</p>
-</dd></dl>
-
+<section id="as2-python-api-drone-interface-teleop-module">
+<h2>as2_python_api.drone_interface_teleop module<a class="headerlink" href="#as2-python-api-drone-interface-teleop-module" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-as2_python_api">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_python_api" title="Permalink to this heading"></a></h2>

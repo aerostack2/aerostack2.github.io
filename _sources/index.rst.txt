@@ -50,4 +50,5 @@ Most important features:
    _developer/index.rst
    _projects/index.rst
    _license/index.rst
+   _troubleshooting/index.rst
    

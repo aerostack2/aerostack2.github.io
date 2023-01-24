@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>drone_interface &mdash; Aerostack2 1.0 documentation</title>
+  <title>Troubleshooting &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -22,7 +23,8 @@
         <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="License agreement: 3-Clause BSD License" href="../_license/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../_getting_started/index.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../_getting_started/index.html#install-and-build">Install and build</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_getting_started/index.html#license-agreement">License agreement</a></li>
@@ -180,6 +182,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../_projects/index.html">Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_license/index.html">License agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-nx">Nvidia NX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clock-skew">Clock skew</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -196,9 +205,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
-      <li class="breadcrumb-item active">drone_interface</li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
       <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_troubleshooting/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -206,70 +215,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for drone_interface</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Drone interface to easily command drones with AeroStack2.&quot;&quot;&quot;</span>
-
-<span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
-<span class="c1">#</span>
-<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
-<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
-<span class="c1">#</span>
-<span class="c1">#    * Redistributions of source code must retain the above copyright</span>
-<span class="c1">#      notice, this list of conditions and the following disclaimer.</span>
-<span class="c1">#</span>
-<span class="c1">#    * Redistributions in binary form must reproduce the above copyright</span>
-<span class="c1">#      notice, this list of conditions and the following disclaimer in the</span>
-<span class="c1">#      documentation and/or other materials provided with the distribution.</span>
-<span class="c1">#</span>
-<span class="c1">#    * Neither the name of the the copyright holder nor the names of its</span>
-<span class="c1">#      contributors may be used to endorse or promote products derived from</span>
-<span class="c1">#      this software without specific prior written permission.</span>
-<span class="c1">#</span>
-<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
-<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
-<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
-<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
-<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
-<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
-<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
-<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
-<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
-<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
-<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
-
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Miguel Fernández Cortizas, Pedro Arias Pérez, David Pérez Saura, Rafael Pérez Seguí&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
-
-<span class="kn">from</span> <span class="nn">as2_python_api.drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.takeoff_module</span> <span class="kn">import</span> <span class="n">TakeoffModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.goto_module</span> <span class="kn">import</span> <span class="n">GotoModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.follow_path_module</span> <span class="kn">import</span> <span class="n">FollowPathModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.land_module</span> <span class="kn">import</span> <span class="n">LandModule</span>
-
-
-<div class="viewcode-block" id="DroneInterface"><a class="viewcode-back" href="../_python_api/temp_ws/src/as2_python_api/docs/source/drone_interface.html#drone_interface.DroneInterface">[docs]</a><span class="k">class</span> <span class="nc">DroneInterface</span><span class="p">(</span><span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface node.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;drone0&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct method.</span>
-
-<span class="sd">        :param drone_id: drone namespace, defaults to &quot;drone0&quot;</span>
-<span class="sd">        :type drone_id: str, optional</span>
-<span class="sd">        :param verbose: output mode, defaults to False</span>
-<span class="sd">        :type verbose: bool, optional</span>
-<span class="sd">        :param use_sim_time: use simulation time, defaults to False</span>
-<span class="sd">        :type use_sim_time: bool, optional</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone_id</span><span class="o">=</span><span class="n">drone_id</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="o">=</span><span class="n">use_sim_time</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">takeoff</span> <span class="o">=</span> <span class="n">TakeoffModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">goto</span> <span class="o">=</span> <span class="n">GotoModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">follow_path</span> <span class="o">=</span> <span class="n">FollowPathModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">land</span> <span class="o">=</span> <span class="n">LandModule</span><span class="p">(</span><span class="n">drone</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
+  <section id="troubleshooting">
+<span id="id1"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#nvidia-nx">Nvidia NX</a></p></li>
+</ul>
+<section id="nvidia-nx">
+<h2>Nvidia NX<a class="headerlink" href="#nvidia-nx" title="Permalink to this heading"></a></h2>
+<section id="clock-skew">
+<h3>Clock skew<a class="headerlink" href="#clock-skew" title="Permalink to this heading"></a></h3>
+<p>Clock skew while colcon building: <code class="docutils literal notranslate"><span class="pre">make:</span> <span class="pre">warning:</span>&#160; <span class="pre">Clock</span> <span class="pre">skew</span> <span class="pre">detected.</span>&#160; <span class="pre">Your</span> <span class="pre">build</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">incomplete</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>date<span class="w"> </span>MMddhhmm<span class="o">(</span>YY<span class="o">)</span>
 </pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><strong>MM</strong> month</p></li>
+<li><p><strong>dd</strong> day</p></li>
+<li><p><strong>hh</strong> hour</p></li>
+<li><p><strong>mm</strong> minutes</p></li>
+<li><p><strong>YY</strong> years</p></li>
+</ul>
+</section>
+</section>
+</section>
+
 
            </div>
           </div>
