@@ -89,7 +89,7 @@ The list of methods is presented in the table below:
 
 Besides, the group of protected attributes are:
 
-.. list-table:: List of Virtual Methods
+.. list-table:: List of Protected Attributes
    :header-rows: 1
 
    * - Attribute
