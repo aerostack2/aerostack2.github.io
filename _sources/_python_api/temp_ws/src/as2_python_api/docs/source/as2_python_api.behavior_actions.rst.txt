@@ -20,10 +20,10 @@ as2\_python\_api.behavior\_actions.followpath\_behavior module
    :undoc-members:
    :show-inheritance:
 
-as2\_python\_api.behavior\_actions.goto\_behavior module
---------------------------------------------------------
+as2\_python\_api.behavior\_actions.go\_to\_behavior module
+----------------------------------------------------------
 
-.. automodule:: as2_python_api.behavior_actions.goto_behavior
+.. automodule:: as2_python_api.behavior_actions.go_to_behavior
    :members:
    :undoc-members:
    :show-inheritance:
