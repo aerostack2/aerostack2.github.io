@@ -118,7 +118,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../_pixhawk/index.html#aditional-parameters">ADITIONAL PARAMETERS</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Bitcraze Crazyflie</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#platform-setup">Platform Setup</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../_ryze_tello/index.html">Ryze Tello</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_dji/index.html">DJI Matrice Series</a></li>
 </ul>
@@ -219,7 +222,27 @@
              
   <section id="bitcraze-crazyflie">
 <h1>Bitcraze Crazyflie<a class="headerlink" href="#bitcraze-crazyflie" title="Permalink to this heading"></a></h1>
-<p>TBD</p>
+<p>First thing to do is to configure your Crazyflie(s). In order to do that, please follow these steps:</p>
+<ul class="simple">
+<li><p>Install the <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/installation/install/">cfclient</a>.</p></li>
+<li><p>Setup <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/installation/usb_permissions/">UDEV permissions</a> for using the Crazyradio.</p></li>
+<li><p>Perform a <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade">firmware upgrade</a>. For this step, if two or more crazyflies are going to be used,
+please use a different radio address for each crazyflie.</p></li>
+</ul>
+<p>These steps are meant to be done once.</p>
+<section id="platform-setup">
+<h2>Platform Setup<a class="headerlink" href="#platform-setup" title="Permalink to this heading"></a></h2>
+<p>In order to map the adresses of the crazyflie(s) we just configured to the input adresses of the platfom, we need to use a configuration <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> configuration file with the format as the following example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">cf0</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">radio://0/80/2M/E7E7E7E700</span>
+<span class="nt">cf1</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">radio://0/80/2M/E7E7E7E701</span>
+</pre></div>
+</div>
+<p>In this case, we are mapping two Crazyflies with uri’s <code class="docutils literal notranslate"><span class="pre">radio://0/80/2M/E7E7E7E700</span></code> and <code class="docutils literal notranslate"><span class="pre">radio://0/80/2M/E7E7E7E701</span></code> for namespaces <code class="docutils literal notranslate"><span class="pre">cf0</span></code> and <code class="docutils literal notranslate"><span class="pre">cf1</span></code> respectively.
+As you can see for the radio id part of the uri, the same Crazyradio is going to be used for both.</p>
+<p>This configuration file’s path shall serve as an input to the platform launch parameter <code class="docutils literal notranslate"><span class="pre">swarm_config_file</span></code>. Note that this platform is launched only once, regardless of the number of crazyflies beeing used.</p>
+</section>
 </section>
 
 
