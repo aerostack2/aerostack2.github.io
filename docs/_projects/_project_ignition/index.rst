@@ -59,8 +59,6 @@ A window like the following image should open.
 
     ./stop.bash
 
-More information on how to run each project can be found in the README.md located on each project folder.
-
 Swarm execution
 ###############
 
@@ -95,5 +93,3 @@ A window like the following image should open.
 .. code-block:: bash
 
     ./stop.bash
-
-More information on how to run each project can be found in the README.md located on each project folder.
