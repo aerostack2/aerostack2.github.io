@@ -184,7 +184,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../_developer/index.html#package-architecture">Package architecture</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../_projects/index.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_projects/_project_ignition/index.html">Project Ignition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_projects/_project_ignition/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_projects/_project_ignition/index.html#single-drone-execution">Single drone execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_projects/_project_ignition/index.html#swarm-execution">Swarm execution</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../_license/index.html">License agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../_troubleshooting/index.html">Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../_troubleshooting/index.html#nvidia-nx">Nvidia NX</a><ul>
@@ -227,39 +235,9 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="as2-keyboard-teleoperation-behavior-manager-module">
-<h2>as2_keyboard_teleoperation.behavior_manager module<a class="headerlink" href="#as2-keyboard-teleoperation-behavior-manager-module" title="Permalink to this heading"></a></h2>
-</section>
 <section id="module-as2_keyboard_teleoperation.config_values">
 <span id="as2-keyboard-teleoperation-config-values-module"></span><h2>as2_keyboard_teleoperation.config_values module<a class="headerlink" href="#module-as2_keyboard_teleoperation.config_values" title="Permalink to this heading"></a></h2>
 <p>Configuration values.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">AvailableBehaviors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#AvailableBehaviors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#as2_keyboard_teleoperation.config_values.ExtendedEnum" title="as2_keyboard_teleoperation.config_values.ExtendedEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedEnum</span></code></a></p>
-<p>An enumeration.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_FOLLOW_PATH">
-<span class="sig-name descname"><span class="pre">BEHAVIOR_FOLLOW_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Follow</span> <span class="pre">Path'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_FOLLOW_PATH" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_GO_TO">
-<span class="sig-name descname"><span class="pre">BEHAVIOR_GO_TO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Go</span> <span class="pre">To'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_GO_TO" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_LAND">
-<span class="sig-name descname"><span class="pre">BEHAVIOR_LAND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Land'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_LAND" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_TAKE_OFF">
-<span class="sig-name descname"><span class="pre">BEHAVIOR_TAKE_OFF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Behavior</span> <span class="pre">Take</span> <span class="pre">Off'</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.AvailableBehaviors.BEHAVIOR_TAKE_OFF" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.ControlModes">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_keyboard_teleoperation.config_values.</span></span><span class="sig-name descname"><span class="pre">ControlModes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_keyboard_teleoperation/config_values.html#ControlModes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.ControlModes" title="Permalink to this definition"></a></dt>
@@ -420,7 +398,7 @@
 <p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="as2_keyboard_teleoperation.config_values.Options.ARM_ON_TAKE_OFF">
-<span class="sig-name descname"><span class="pre">ARM_ON_TAKE_OFF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.Options.ARM_ON_TAKE_OFF" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ARM_ON_TAKE_OFF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#as2_keyboard_teleoperation.config_values.Options.ARM_ON_TAKE_OFF" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

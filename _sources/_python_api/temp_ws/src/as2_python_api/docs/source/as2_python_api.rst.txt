@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    as2_python_api.behavior_actions
+   as2_python_api.behavior_manager
    as2_python_api.service_clients
    as2_python_api.shared_data
    as2_python_api.tools

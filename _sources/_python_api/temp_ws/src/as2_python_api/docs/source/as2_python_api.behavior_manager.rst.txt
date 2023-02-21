@@ -1,0 +1,21 @@
+as2\_python\_api.behavior\_manager package
+==========================================
+
+Submodules
+----------
+
+as2\_python\_api.behavior\_manager.behavior\_manager module
+-----------------------------------------------------------
+
+.. automodule:: as2_python_api.behavior_manager.behavior_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: as2_python_api.behavior_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
