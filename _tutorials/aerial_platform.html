@@ -61,6 +61,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#platform">Platform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#controller">Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#state-estimator">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#id1">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#id2">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#id4">State Estimator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../_aerostack2_concepts/index.html#robot-behaviors">Robot behaviors</a></li>
 </ul>
 </li>
@@ -70,13 +73,25 @@
 <li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tutorial-steps">Tutorial Steps</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overriden-methods">2. Overriden methods</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#control-modes-configuration">3. Control modes configuration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller_plugin.html">Writing a New Controller Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#controller-plugin-base">1. Controller Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#overriden-methods">2. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#exporting-the-plugin">3. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#controller-manager-and-configuration-files">4. Controller manager and configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#launching">5. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="estimator_plugin.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="estimator_plugin.html#requirements">Requirements</a></li>
@@ -352,7 +367,7 @@ activated the platform will stop hearing commands from AS2. USE WITH CAUTION.</p
 </table>
 </section>
 <section id="overriden-methods">
-<h3>1. Overriden methods<a class="headerlink" href="#overriden-methods" title="Permalink to this heading"></a></h3>
+<h3>2. Overriden methods<a class="headerlink" href="#overriden-methods" title="Permalink to this heading"></a></h3>
 <section id="class-constuctor">
 <h4>Class constuctor<a class="headerlink" href="#class-constuctor" title="Permalink to this heading"></a></h4>
 <p>Besides the overriden methods, it is necessary to create all the interface communication with the

@@ -61,6 +61,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#platform">Platform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#controller">Controller</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#state-estimator">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">State Estimator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#robot-behaviors">Robot behaviors</a></li>
 </ul>
 </li>
@@ -70,13 +73,25 @@
 <li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#requirements">Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#abstract-class-aerial-platform">1. Abstract class, Aerial Platform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#overriden-methods">1. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#overriden-methods">2. Overriden methods</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../_tutorials/aerial_platform.html#control-modes-configuration">3. Control modes configuration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/controller_plugin.html">Writing a New Controller Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/controller_plugin.html#controller-plugin-base">1. Controller Plugin Base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/controller_plugin.html#overriden-methods">2. Overriden methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/controller_plugin.html#exporting-the-plugin">3. Exporting the plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/controller_plugin.html#controller-manager-and-configuration-files">4. Controller manager and configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/controller_plugin.html#launching">5. Launching</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../_tutorials/estimator_plugin.html">Writing a New Estimator Plugin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../_tutorials/estimator_plugin.html#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
@@ -233,10 +248,10 @@
 deploy aerial robotics systems so the user can familiarize with them.</p>
 <section id="architecture">
 <span id="as2-architecture"></span><h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h2>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id5">
 <a class="with-shadow reference internal image-reference" href="../_images/architecture.png"><img alt="../_images/architecture.png" class="with-shadow" src="../_images/architecture.png" style="width: 681.0px; height: 541.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Aerostack2 architecture</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Aerostack2 architecture</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -248,6 +263,15 @@ deploy aerial robotics systems so the user can familiarize with them.</p>
 </section>
 <section id="state-estimator">
 <span id="as2-estimator"></span><h2>State Estimator<a class="headerlink" href="#state-estimator" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id1">
+<h2>Platform<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id2">
+<span id="id3"></span><h2>Controller<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id4">
+<h2>State Estimator<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 </section>
 <section id="robot-behaviors">
 <h2>Robot behaviors<a class="headerlink" href="#robot-behaviors" title="Permalink to this heading"></a></h2>
