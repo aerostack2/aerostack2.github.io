@@ -28,6 +28,17 @@ Controller
 State Estimator
 ###############
 
+Platform
+########
+
+.. _as2_controller:
+
+Controller
+##########
+
+State Estimator
+###############
+
 Robot behaviors
 ###############
 
