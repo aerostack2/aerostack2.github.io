@@ -41,6 +41,7 @@ Table of Contents
 -----------------
 
 .. toctree::
+   :hidden:
 
    _00_getting_started/index.rst
    _01_aerostack2_concepts/index.rst

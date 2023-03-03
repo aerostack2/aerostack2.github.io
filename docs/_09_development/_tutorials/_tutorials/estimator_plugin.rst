@@ -1,8 +1,8 @@
 .. _development_tutorials_state_estimator:
 
-=============================
-Writing a New Estimator Plugin
-==============================
+====================================
+Writing a New State Estimator Plugin
+====================================
 
 .. contents:: Table of Contents
    :depth: 1

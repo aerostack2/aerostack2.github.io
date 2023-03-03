@@ -1,8 +1,8 @@
 .. _behaviors:
 
-=========
-Behaviors
-=========
+===============
+Robot Behaviors
+===============
 
 In this section, we give a list of behaviors that has been implemented in Aerostack2. 
 For more information about what a behavior is, please refer to the :ref:`as2_concepts_behaviors` section, and how work on Aerostack2 architecture in the :ref:`as2_concepts_architecture_behaviors` section.

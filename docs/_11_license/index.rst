@@ -3,7 +3,7 @@ BY INSTALLING, COPYING OR OTHER USES OF SOFTWARE YOU ARE DECLARING THAT YOU AGRE
 .. _license:
 
 =======================================
-License agreement: 3-Clause BSD License
+License Agreement: 3-Clause BSD License
 =======================================
 
 Aerostack2 - A Software Framework for Aerial Robotic Systems
