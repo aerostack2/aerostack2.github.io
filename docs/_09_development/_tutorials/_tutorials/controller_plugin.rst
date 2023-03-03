@@ -1,12 +1,18 @@
-.. _writing_new_controller_plugin:
+.. _development_tutorials_motion_controller:
 
-Writing a New Controller Plugin
-===============================
+======================================
+Writing a New Motion Controller Plugin
+======================================
 
-- `Overview`_
-- `Requirements`_
-- `Tutorial Steps`_
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
 
+
+
+.. _development_tutorials_motion_controller_overview:
+
+--------
 Overview
 --------
 
@@ -20,17 +26,30 @@ The code used in this tutorial can be found in `Github
 <https://github.com/aerostack2/aerostack2/tree/main/as2_controller/as2_controller_plugin_speed_controller>`_.
 
 
+
+.. _development_tutorials_motion_controller_requirements:
+
+------------
 Requirements
 ------------
 
 - ROS 2 Humble
 - AeroStack2
 
+
+
+.. _development_tutorials_motion_controller_steps:
+
+--------------
 Tutorial Steps
 --------------
 
+
+
+.. _development_tutorials_motion_controller_steps_class:
+
 1. Controller Plugin Base
-#########################
+=========================
 
 Following the plugin structure, all the controllers should inherit from a base class
 ``controller_plugin_base::ControllerBase``. The base class provides a set of virtual methods
@@ -71,11 +90,19 @@ table below:
      - Return the desired twist state and reference frame_id. ``base_link`` by default.
      - No
 
+
+
+.. _development_tutorials_motion_controller_steps_methods:
+
 2. Overriden methods
-####################
+====================
+
+
+
+.. _development_tutorials_motion_controller_steps_methods_init:
 
 Initialization
-**************
+--------------
 
 **TDB**
 
@@ -105,8 +132,12 @@ Initialization
         return;
     }
 
+
+
+.. _development_tutorials_motion_controller_steps_methods_state:
+
 Update State
-************
+------------
 
 **TBD**
 
@@ -128,8 +159,12 @@ Update State
         return;
     }
 
+
+
+.. _development_tutorials_motion_controller_steps_methods_reference:
+
 Update Reference
-****************
+----------------
 
 **TBD**
 
@@ -197,8 +232,12 @@ Update Reference
 
 Thrust is not overriden since is not needed.
 
+
+
+.. _development_tutorials_motion_controller_steps_methods_output:
+
 Compute Output
-**************
+--------------
 
 **TBD**
 
@@ -291,8 +330,11 @@ Compute Output
     }
 
 
+
+.. _development_tutorials_motion_controller_steps_methods_mode:
+
 Set Mode
-********
+--------
 
 **TBD**
 
@@ -386,8 +428,11 @@ Set Mode
     }
 
 
+
+.. _development_tutorials_motion_controller_steps_methods_params:
+
 Parameters Update
-*****************
+-----------------
 
 **TBD**
 
@@ -398,8 +443,12 @@ Parameters Update
         return result.successful;
     };
 
+
+
+.. _development_tutorials_motion_controller_steps_methods_reset:
+
 Reset
-*****
+-----
 
 **TBD**
 
@@ -415,8 +464,12 @@ Reset
         pid_3D_trajectory_handler_->resetController();
     }
 
+
+
+.. _development_tutorials_motion_controller_steps_export:
+
 3. Exporting the plugin
-#######################
+=======================
 
 Now that we have created our new controller, we need to export it so that it would be visible
 to the Controller Manager. Plugins are loaded at runtime and if they are not visible, then our
@@ -465,8 +518,11 @@ file to share directory and sets ament indexes to make it discoverable.
 4. Compile and it should be registered. Next, we'll use this plugin.
 
 
+
+.. _development_tutorials_motion_controller_steps_config:
+
 4. Controller manager and configuration files
-#############################################
+=============================================
 
 To use the plugin, we should create two configuration files.
 
@@ -593,7 +649,11 @@ To use the plugin, we should create two configuration files.
                 kd: 0.0
                 ki: 0.0
 
+
+
+.. _development_tutorials_motion_controller_steps_launch:
+
 5. Launching
-############
+============
 
 ¿**TBD**?

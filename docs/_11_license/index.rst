@@ -1,7 +1,8 @@
 BY INSTALLING, COPYING OR OTHER USES OF SOFTWARE YOU ARE DECLARING THAT YOU AGREE WITH THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT. IF YOU DO NOT AGREE WITH THE TERMS AND CONDITIONS, DO NOT INSTALL, COPY OR USE THE SOFTWARE
 
-.. _License:
+.. _license:
 
+=======================================
 License agreement: 3-Clause BSD License
 =======================================
 

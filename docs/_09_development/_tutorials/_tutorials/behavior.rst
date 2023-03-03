@@ -1,13 +1,18 @@
-.. _writing_new_behavior:
+.. _development_tutorials_behavior:
 
-Writing a New Behavior
+======================
+Writing a New Bheavior
 ======================
 
-- `Overview`_
-- `Requirements`_
-- `Behavior Server`_
-- `Behavior Client`_
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
 
+
+
+.. _development_tutorials_behavior_overview:
+
+--------
 Overview
 --------
 
@@ -21,12 +26,21 @@ can be found in Github (`Server
 `Client <https://github.com/aerostack2/aerostack2/tree/main/as2_python_api/as2_python_api/behavior_actions>`_).
 
 
+
+.. _development_tutorials_behavior_requirements:
+
+------------
 Requirements
 ------------
 
 - ROS 2 Humble
 - AeroStack2
 
+
+
+.. _development_tutorials_behavior_server:
+
+---------------
 Behavior Server
 ---------------
 
@@ -123,6 +137,11 @@ For the example, the Takeoff Behavior would be something similar to:
         return;
     }
 
+
+
+.. _development_tutorials_behavior_client:
+
+---------------
 Behavior Client
 ---------------
 

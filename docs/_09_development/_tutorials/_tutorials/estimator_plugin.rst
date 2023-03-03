@@ -1,12 +1,18 @@
-.. _writing_new_estimator_plugin:
+.. _development_tutorials_state_estimator:
 
+=============================
 Writing a New Estimator Plugin
 ==============================
 
-- `Overview`_
-- `Requirements`_
-- `Tutorial Steps`_
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
 
+
+
+.. _development_tutorials_state_estimator_overview:
+
+--------
 Overview
 --------
 
@@ -20,17 +26,30 @@ found in `Github
 <https://github.com/aerostack2/aerostack2/tree/main/as2_state_estimator/as2_state_estimator_plugin_mocap>`_.
 
 
+
+.. _development_tutorials_state_estimator_requirements:
+
+------------
 Requirements
 ------------
 
 - ROS 2 Humble
 - AeroStack2
 
+
+
+.. _development_tutorials_state_estimator_steps:
+
+--------------
 Tutorial Steps
 --------------
 
+
+
+.. _development_tutorials_state_estimator_steps_class:
+
 1. Estimator Plugin Base
-########################
+========================
 
 Following the plugin structure, all the estimators should inherit from a base class
 ``as2_state_estimator_plugin_base::StateEstimatorBase``. The base class provides a set of 
@@ -51,11 +70,18 @@ presented in the table below:
      - No
 
 
-1. Overriden methods
-####################
+
+.. _development_tutorials_state_estimator_steps_methods:
+
+2. Overriden methods
+====================
+
+
+
+.. _development_tutorials_state_estimator_steps_methods_setup:
 
 Setup
-*****
+-----
 
 During the setup, mocap subscriber is created and a static transformation between ``map``
 and ``odom`` is published as null into the tf tree. In the mocap callback, the transformation
@@ -79,8 +105,12 @@ published into the AeroStack2 designed topic (``self_localization/twist``).
 
 Transformation between ``earth`` and ``map`` is not implemented in this example.
 
-1. Exporting the plugin
-#######################
+
+
+.. _development_tutorials_state_estimator_steps_export:
+
+3. Exporting the plugin
+=======================
 
 Now that we have created our new estimator, we need to export it so that it would be visible
 to the State Estimator Node. Plugins are loaded at runtime and if they are not visible, then our
@@ -128,7 +158,11 @@ file to share directory and sets ament indexes to make it discoverable.
 
 4. Compile and it should be registered. Next, we'll use this plugin.
 
+
+
+.. _development_tutorials_state_estimator_steps_launch:
+
 4. Launching
-############
+============
 
 ¿**TBD**?

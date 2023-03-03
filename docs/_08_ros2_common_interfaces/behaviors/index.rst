@@ -21,7 +21,7 @@ Actions
 
 Action messages part of behavior definition.
 
-.. list-table:: BEHAVIORS
+.. list-table:: Aerostack2 Behaviors
    :widths: 50 50 50
    :header-rows: 1
 

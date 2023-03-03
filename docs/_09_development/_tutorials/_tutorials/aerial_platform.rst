@@ -1,14 +1,20 @@
-.. _writing_new_aerial_platform:
+.. _development_tutorials_aerial_platforms:
 
+=============================
 Writing a New Aerial Platform
-*****************************
+=============================
 
-- `Overview`_
-- `Requirements`_
-- `Tutorial Steps`_
+.. contents:: Table of Contents
+   :depth: 1
+   :local:
 
+
+
+.. _development_tutorials_aerial_platforms_overview:
+
+--------
 Overview
-========
+--------
 
 This tutorial shows how to create your own Aerial Platform. To understand what is an
 AeroStack2 Aerial Platform, please revisit :ref:`aerial_platforms`.
@@ -27,19 +33,33 @@ this tutorial can be found in `Github
     communication will be done by the base class, who has all the subscribers and publishers
     needed in AeroStack2.
 
+
+
+.. _development_tutorials_aerial_platforms_requirements:
+
+------------
 Requirements
-============
+------------
 
 - ROS 2 Humble
 - AeroStack2
 - Gazebo Ignition Fortress
 - Quadrotor Gazebo model (as2_gazebo_assets, already included within AeroStack2)
 
+
+
+.. _development_tutorials_aerial_platforms_steps:
+
+--------------
 Tutorial Steps
-==============
+--------------
+
+
+
+.. _development_tutorials_aerial_platforms_steps_class:
 
 1. Abstract class, Aerial Platform
-----------------------------------
+==================================
 
 All Aerial Platforms should inherit from a common base class ``as2::AerialPlatform``, an 
 extension of a ``rclcpp::Node``. It provides the basic functionality for the platform and 
@@ -108,11 +128,19 @@ Besides, the group of protected attributes are:
      - as2_msgs::msg::PlatformInfo
      - Platform information data container. Readable only.
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods:
+
 2. Overriden methods
---------------------
+====================
+
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_constructor:
 
 Class constuctor
-################
+----------------
 
 Besides the overriden methods, it is necessary to create all the interface communication with the
 hardware specific hardware. In this case, only two publishers are needed to arm and send commands
@@ -131,8 +159,12 @@ to de platform.
         arm_pub_ = this->create_publisher<std_msgs::msg::Bool>(arm_topic_param, rclcpp::QoS(1));
     }
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_sensors:
+
 Sensor configuration
-####################
+--------------------
 
 There is no need to call this method manually. Base class will call it after instantiation. 
 
@@ -150,8 +182,12 @@ You can find more information about this at :ref:`ign_gazebo_platform`.
 
     **TDB**: Reference how to use Sensors
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_control_mode:
+
 Control mode
-############
+------------
 
 When a control mode reach this method, it can be assumed that the control mode is supported by the
 platform (see `3. Control modes configuration`_).
@@ -169,8 +205,12 @@ platform (see `3. Control modes configuration`_).
 
     **TDB**: Reference how to control modes work
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_send_command:
+
 Send command
-############
+------------
 
 Twist msg received from ``actuator_command/twist`` topic is sent to the simulated drone. Before,
 current control mode is checked to send null speed if HOVER mode is active.
@@ -203,8 +243,11 @@ current control mode is checked to send null speed if HOVER mode is active.
     specified in the platform control mode.
 
 
+
+.. _development_tutorials_aerial_platforms_steps_methods_arm:
+
 Arming
-######
+------
 
 Send arming message to Gazebo simulator.
 
@@ -218,8 +261,12 @@ Send arming message to Gazebo simulator.
         return true;
     }
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_offboard:
+
 Offboard
-########
+--------
 
 Setting offboard mode before fly is not needed on Gazebo simulator.
 
@@ -229,8 +276,12 @@ Setting offboard mode before fly is not needed on Gazebo simulator.
         return true;  // Offboard not needed
     }
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_kill:
+
 Emergency kill switch
-#####################
+---------------------
 
 Disarms the drone.
 
@@ -243,8 +294,10 @@ Disarms the drone.
 
 
 
+.. _development_tutorials_aerial_platforms_steps_methods_stop:
+
 Emergency stop
-##############
+--------------
 
 Sends null speed to the drone.
 
@@ -264,8 +317,11 @@ Sends null speed to the drone.
     }
 
 
+
+.. _development_tutorials_aerial_platforms_steps_methods_takeoff:
+
 Takeoff
-#######
+-------
 
 Gazebo simulator doesn't not have a platform takeoff. Call platform takeoff here if supported.
 
@@ -276,8 +332,12 @@ Gazebo simulator doesn't not have a platform takeoff. Call platform takeoff here
         return false;
     }
 
+
+
+.. _development_tutorials_aerial_platforms_steps_methods_land:
+
 Land
-####
+----
 
 Gazebo simulator doesn't not have a platform land. Call platform land here if supported.
 
@@ -289,8 +349,11 @@ Gazebo simulator doesn't not have a platform land. Call platform land here if su
     }
 
 
+
+.. _development_tutorials_aerial_platforms_steps_control_mode:
+
 3. Control modes configuration
-------------------------------
+==============================
 
 Valid control modes are defined in a configuration file ``control_modes.yaml``. In the case of
 Gazebo simulator, only two control modes are valid:

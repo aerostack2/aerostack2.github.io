@@ -10,6 +10,7 @@ deploy aerial robotics systems so the user can familiarize with them.
 .. toctree::
 
    architecture/index.rst
+   as2_communications/index.rst
    aerial_platforms/index.rst
    motion_controller/index.rst
    state_estimator/index.rst

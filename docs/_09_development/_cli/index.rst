@@ -1,7 +1,8 @@
-.. _CLI:
+.. _development_cli:
 
-CLI
-===
+============================
+Command Line Interface (CLI)
+============================
 
 Aerostack2 has a CLI to ease the use of the Aerostack2 pipeline. Typing as2 on the command line, you can access the different available tools. Also, it is possible to access the help message with a brief description of the different tools using `as2`, `as2 --help`, or `as2 -h`.
 

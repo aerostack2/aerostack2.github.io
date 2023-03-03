@@ -33,7 +33,7 @@ Installation
 Prerequisites
 =============
 
-TBD
+TBD: PX4 Autopilot is close to be released native to work in ROS2.
 
 Since PX4 has a lot of external dependencies we opted to separate it in a diferent repo.
 The complete installations step are as follows:
