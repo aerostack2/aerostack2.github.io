@@ -34,11 +34,11 @@ Aerostack2 is versatile for building different system configurations with variou
 
 
 
-.. _as2_docs_index:
+.. .. _as2_docs_index:
 
------------------
-Table of Contents
------------------
+.. -----------------
+.. Table of Contents
+.. -----------------
 
 .. toctree::
    :hidden:
