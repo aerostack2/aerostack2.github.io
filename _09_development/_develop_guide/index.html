@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Develop Guide &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="API Documentation" href="../_api_documentation/index.html" />
+    <link rel="prev" title="Writing a New Bheavior" href="../_tutorials/_tutorials/behavior.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/keyboard_single_drone/index.html">Keyboard Teleoperation Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/keyboard_swarm_drones/index.html">Swarm Keyboard Teleoperation Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/python_single_drone/index.html">Python Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/python_swarm_drones/index.html">Swarm Python Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_03_aerial_platforms/_ryze_tello/index.html">Ryze Tello</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_03_aerial_platforms/_dji/index.html">DJI Matrice Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/index.html#behavior-tree">Behavior Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/index.html#keyboard-teleoperation">Keyboard Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/index.html#alphanumeric-viewer">Alphanumeric Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/index.html#web-gui">Web Gui</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_07_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_07_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/as2_msgs/index.html">AS2 Msgs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_tutorials/_tutorials/behavior.html">Writing a New Bheavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#developing-a-new-package">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_api_documentation/index.html#as2-core">AS2 Core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_api_documentation/index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_api_documentation/index.html#as2-msgs">AS2 Msgs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_api_documentation/index.html#as2-motion-controller">AS2 Motion Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_api_documentation/index.html#as2-state-estimator">AS2 State Estimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_api_documentation/index.html#as2-behavior">AS2 Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_10_roadmaps/index.html">Roadmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Development</a></li>
+      <li class="breadcrumb-item active">Develop Guide</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_develop_guide/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="develop-guide">
+<span id="development-guide"></span><h1>Develop Guide<a class="headerlink" href="#develop-guide" title="Permalink to this heading"></a></h1>
+<p>TDB</p>
+<section id="developing-a-new-package">
+<span id="development-guide-new-pkg"></span><h2>Developing a New Package<a class="headerlink" href="#developing-a-new-package" title="Permalink to this heading"></a></h2>
+<p>TDB</p>
+<section id="architecture-of-a-new-package">
+<span id="development-guide-new-pkg-architecture"></span><h3>Architecture of a New Package<a class="headerlink" href="#architecture-of-a-new-package" title="Permalink to this heading"></a></h3>
+<p>Every new package should have the following architecture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">package_name</span>
+<span class="o">/</span><span class="n">include</span>
+    <span class="o">/</span><span class="n">package_name</span>
+    <span class="n">header_files</span><span class="p">(</span><span class="o">.</span><span class="n">hpp</span><span class="p">)</span>
+<span class="o">/</span><span class="n">launch</span>
+<span class="o">/</span><span class="n">src</span>
+    <span class="n">implementation_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+    <span class="n">main_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tests</span>
+    <span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span>
+    <span class="n">test_files</span><span class="p">(</span><span class="o">.</span><span class="n">cpp</span><span class="p">)</span>
+<span class="n">CmakeLists</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">package</span><span class="o">.</span><span class="n">xml</span>
+<span class="n">Readme</span><span class="o">.</span><span class="n">md</span>
+<span class="o">.</span><span class="n">gitignore</span>
+</pre></div>
+</div>
+</section>
+<section id="code-style">
+<span id="development-guide-new-pkg-code-style"></span><h3>Code Style<a class="headerlink" href="#code-style" title="Permalink to this heading"></a></h3>
+<p>TDB</p>
+<section id="c">
+<span id="development-guide-new-pkg-code-style-c"></span><h4>C++<a class="headerlink" href="#c" title="Permalink to this heading"></a></h4>
+<p>Code should follows the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">google c++ style guide</a>.</p>
+<p>Every file should start with the Licence text, which looks like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/*********************************************************************************************</span>
+<span class="cm">*  \file       [file name]</span>
+<span class="cm">*  \brief      [brief description of the file]</span>
+<span class="cm">*  \authors    [name of the author]</span>
+<span class="cm">*  \copyright  Copyright (c) 2021 Universidad Politécnica de Madrid</span>
+<span class="cm">*              All Rights Reserved</span>
+<span class="cm">*</span>
+<span class="cm">* Redistribution and use in source and binary forms, with or without</span>
+<span class="cm">* modification, are permitted provided that the following conditions are met:</span>
+<span class="cm">*</span>
+<span class="cm">* 1. Redistributions of source code must retain the above copyright notice,</span>
+<span class="cm">*    this list of conditions and the following disclaimer.</span>
+<span class="cm">* 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<span class="cm">*    this list of conditions and the following disclaimer in the documentation</span>
+<span class="cm">*    and/or other materials provided with the distribution.</span>
+<span class="cm">* 3. Neither the name of the copyright holder nor the names of its contributors</span>
+<span class="cm">*    may be used to endorse or promote products derived from this software</span>
+<span class="cm">*    without specific prior written permission.</span>
+<span class="cm">*</span>
+<span class="cm">* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
+<span class="cm">* &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="cm">* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span>
+<span class="cm">* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR</span>
+<span class="cm">* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,</span>
+<span class="cm">* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</span>
+<span class="cm">* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;</span>
+<span class="cm">* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,</span>
+<span class="cm">* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE</span>
+<span class="cm">* OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,</span>
+<span class="cm">* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<span class="cm">**********************************************************************************************/</span>
+</pre></div>
+</div>
+<p>Documentation will be generate using <a class="reference external" href="https://www.doxygen.nl/manual/docblocks.html">Doxygen</a>.
+Therefore, header files should include a comment over every definition in order to generate the documentation properly.
+The comments made in the current nodes are writing using Javadoc style.</p>
+<p>Please, do not use std::cout or similar functions to show messages in command line. Instead, use logging macros like RCLCPP_INFO from ROS logging library.</p>
+</section>
+<section id="python">
+<span id="development-guide-new-pkg-code-style-python"></span><h4>Python<a class="headerlink" href="#python" title="Permalink to this heading"></a></h4>
+<p>TDB: PEP8</p>
+</section>
+</section>
+<section id="test">
+<span id="development-guide-new-pkg-test"></span><h3>Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h3>
+<p>TDB: How to pass tests</p>
+<section id="code-style-test">
+<span id="development-guide-new-pkg-test-style"></span><h4>Code Style Test<a class="headerlink" href="#code-style-test" title="Permalink to this heading"></a></h4>
+<p>A Cpp style check must be done in order to use the same style through all the packages.
+Each package must have the same <code class="docutils literal notranslate"><span class="pre">.clang-format</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
+<p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_cppcheck</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_cmake_clang_format</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">ament_cppcheck</span><span class="p">(</span><span class="s">src/</span><span class="w"> </span><span class="s">include/</span><span class="w"> </span><span class="s">tests/</span><span class="p">)</span>
+<span class="nb">ament_clang_format</span><span class="p">(</span><span class="s">src/</span><span class="w"> </span><span class="s">include/</span><span class="w"> </span><span class="s">tests/</span><span class="w"> </span><span class="s">--config</span><span class="w"> </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/.clang-format</span><span class="p">)</span>
+
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Also, these packages must be added to the <code class="docutils literal notranslate"><span class="pre">package.xml</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_clang_format</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">test_depend</span><span class="o">&gt;</span><span class="n">ament_cmake_cppcheck</span><span class="o">&lt;/</span><span class="n">test_depend</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>if ament clang format test fails you can autoformat the code using :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ament_clang_format<span class="w"> </span>./src/<span class="w"> </span>./include/<span class="w"> </span>./tests/<span class="w"> </span>--reformat<span class="w"> </span>--config<span class="w"> </span>.clang-format
+</pre></div>
+</div>
+</section>
+<section id="code-functional-test">
+<span id="development-guide-new-pkg-test-functional"></span><h4>Code Functional Test<a class="headerlink" href="#code-functional-test" title="Permalink to this heading"></a></h4>
+<p>In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
+GTest complete documentation about how to write your own unit tests can be found at:
+<a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
+<p>In order to compile this tests some lines must be added into a <strong>NEW</strong> <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file located in a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> folder.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Add gtest dependencies and install them if they are not already installed</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">gtest</span><span class="w"> </span><span class="s">QUIET</span><span class="p">)</span>
+<span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">MESSAGE</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Found Gtest.&quot;</span><span class="p">)</span>
+<span class="nb">else</span><span class="w"> </span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">MESSAGE</span><span class="p">(</span><span class="s">STATUS</span><span class="w"> </span><span class="s2">&quot;Could not locate Gtest.&quot;</span><span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">FetchContent</span><span class="p">)</span>
+<span class="nb">FetchContent_Declare</span><span class="p">(</span>
+<span class="w">    </span><span class="s">googletest</span>
+<span class="w">    </span><span class="s">URL</span><span class="w"> </span><span class="s">https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip</span>
+<span class="p">)</span>
+<span class="c"># For Windows: Prevent overriding the parent project&#39;s compiler/linker settings</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">gtest_force_shared_crt</span><span class="w"> </span><span class="s">ON</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+<span class="nb">FetchContent_MakeAvailable</span><span class="p">(</span><span class="s">googletest</span><span class="p">)</span>
+
+<span class="nb">endif</span><span class="p">(</span><span class="o">${</span><span class="nv">Gtest_FOUND</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s">GoogleTest</span><span class="p">)</span>
+
+<span class="nb">enable_testing</span><span class="p">()</span>
+<span class="c"># find all *.cpp files in the tests directory</span>
+
+<span class="nb">file</span><span class="p">(</span><span class="s">GLOB</span><span class="w"> </span><span class="s">TEST_SOURCES</span><span class="w"> </span><span class="s">tests/*.cpp</span><span class="w"> </span><span class="p">)</span>
+
+<span class="c"># create a test executable for each test file</span>
+<span class="nb">foreach</span><span class="p">(</span><span class="s">TEST_SOURCE</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">get_filename_component</span><span class="p">(</span><span class="s">_src_filename</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCE</span><span class="o">}</span><span class="w"> </span><span class="s">NAME</span><span class="p">)</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">LENGTH</span><span class="w"> </span><span class="o">${</span><span class="nv">_src_filename</span><span class="o">}</span><span class="w"> </span><span class="s">name_length</span><span class="p">)</span>
+<span class="nb">math</span><span class="p">(</span><span class="s">EXPR</span><span class="w"> </span><span class="s">final_length</span><span class="w">  </span><span class="s2">&quot;${name_length}-4&quot;</span><span class="p">)</span><span class="w"> </span><span class="c"># remove .cpp of the name</span>
+<span class="nb">string</span><span class="p">(</span><span class="s">SUBSTRING</span><span class="w"> </span><span class="o">${</span><span class="nv">_src_filename</span><span class="o">}</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="o">${</span><span class="nv">final_length</span><span class="o">}</span><span class="w"> </span><span class="s">TEST_NAME</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w"> </span><span class="o">${</span><span class="nv">TEST_SOURCE</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w">  </span><span class="o">${</span><span class="nv">PROJECT_DEPENDENCIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="w"> </span><span class="s">gtest_main</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># add the test executable to the list of executables to build</span>
+<span class="nb">gtest_discover_tests</span><span class="p">(</span><span class="o">${</span><span class="nv">TEST_NAME</span><span class="o">}</span><span class="s">_test</span><span class="p">)</span>
+
+<span class="nb">endforeach</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In order to link this <code class="docutils literal notranslate"><span class="pre">./tests/CMakeLists.txt</span></code> file into the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file of the package, the following line must be added:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+<span class="c"># all the other tests</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">./tests/CMakeLists.txt</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To run these tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>colcon<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="code-coverage-test">
+<span id="development-guide-new-pkg-test-coverage"></span><h4>Code Coverage Test<a class="headerlink" href="#code-coverage-test" title="Permalink to this heading"></a></h4>
+<p>TDB</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

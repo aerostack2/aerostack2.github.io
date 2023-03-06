@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing a New Motion Controller Plugin &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Writing a New State Estimator Plugin" href="estimator_plugin.html" />
+    <link rel="prev" title="Writing a New Aerial Platform" href="aerial_platform.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../index.html" class="icon icon-home"> Aerostack2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/keyboard_single_drone/index.html">Keyboard Teleoperation Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/keyboard_swarm_drones/index.html">Swarm Keyboard Teleoperation Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/python_single_drone/index.html">Python Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/python_swarm_drones/index.html">Swarm Python Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html">Ryze Tello</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html">DJI Matrice Series</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/index.html#behavior-tree">Behavior Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/index.html#keyboard-teleoperation">Keyboard Teleoperation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/index.html#alphanumeric-viewer">Alphanumeric Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/index.html#web-gui">Web Gui</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_07_python_api/index.html">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_07_python_api/index.html#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/about.html">About</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/examples.html">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/modules.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/as2_msgs/index.html">AS2 Msgs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html">Writing a New Bheavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/index.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/index.html#test">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#as2-core">AS2 Core</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/index.html#code">Code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#as2-msgs">AS2 Msgs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#as2-motion-controller">AS2 Motion Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#as2-state-estimator">AS2 State Estimator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#as2-behavior">AS2 Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_10_roadmaps/index.html">Roadmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Development</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Writing a New Motion Controller Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_tutorials/_tutorials/controller_plugin.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="writing-a-new-motion-controller-plugin">
+<span id="development-tutorials-motion-controller"></span><h1>Writing a New Motion Controller Plugin<a class="headerlink" href="#writing-a-new-motion-controller-plugin" title="Permalink to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id3">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#tutorial-steps" id="id4">Tutorial Steps</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<span id="development-tutorials-motion-controller-overview"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This tutorial shows how to create your own Controller within the AeroStack2 framework.
+You may want to remember AeroStack2 <span class="xref std std-ref">as2_architecture</span> and its <span class="xref std std-ref">as2_controller</span>
+operation.</p>
+<p>This tutorial will be a walktrough of one existing controller to easily understand its creation.
+The one explained will be a simplified version of the PID controller (<span class="xref std std-ref">speed_controller</span>).
+The code used in this tutorial can be found in <a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_controller/as2_controller_plugin_speed_controller">Github</a>.</p>
+</section>
+<section id="requirements">
+<span id="development-tutorials-motion-controller-requirements"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>ROS 2 Humble</p></li>
+<li><p>AeroStack2</p></li>
+</ul>
+</section>
+<section id="tutorial-steps">
+<span id="development-tutorials-motion-controller-steps"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Permalink to this heading"></a></h2>
+<section id="controller-plugin-base">
+<span id="development-tutorials-motion-controller-steps-class"></span><h3>1. Controller Plugin Base<a class="headerlink" href="#controller-plugin-base" title="Permalink to this heading"></a></h3>
+<p>Following the plugin structure, all the controllers should inherit from a base class
+<code class="docutils literal notranslate"><span class="pre">controller_plugin_base::ControllerBase</span></code>. The base class provides a set of virtual methods
+to override with expected controller functionality. The list of methods is presented in the
+table below:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">List of Virtual Methods</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Virtual method</p></th>
+<th class="head"><p>Method description</p></th>
+<th class="head"><p>Requires override?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ownInitialize()</p></td>
+<td><p>Controller plugin own initialize method.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>updateState()</p></td>
+<td><p>State update with the information received from the current pose and twist.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>updateReference()</p></td>
+<td><p>Update the pose, twist, trajectory and thrust references. Use only the ones you need.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>computeOutput()</p></td>
+<td><p>Compute the controller output signal.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>setMode()</p></td>
+<td><p>Update the controller input and output control modes.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>updateParams()</p></td>
+<td><p>Update the controller parameters.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>reset()</p></td>
+<td><p>Reset the controller inner state.</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>getDesiredPoseFrameId()</p></td>
+<td><p>Return the desired pose state and reference frame_id. <code class="docutils literal notranslate"><span class="pre">odom</span></code> by default.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>getDesiredTwistFrameId()</p></td>
+<td><p>Return the desired twist state and reference frame_id. <code class="docutils literal notranslate"><span class="pre">base_link</span></code> by default.</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="overriden-methods">
+<span id="development-tutorials-motion-controller-steps-methods"></span><h3>2. Overriden methods<a class="headerlink" href="#overriden-methods" title="Permalink to this heading"></a></h3>
+<section id="initialization">
+<span id="development-tutorials-motion-controller-steps-methods-init"></span><h4>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading"></a></h4>
+<p><strong>TDB</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::ownInitialize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">speed_limits_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">pid_yaw_handler_</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_position_handler_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_velocity_handler_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_1D_speed_in_a_plane_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_speed_in_a_plane_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_trajectory_handler_</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">tf_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">TfHandler</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">enu_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">);</span>
+<span class="w">    </span><span class="n">flu_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">input_pose_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">input_pose_frame_id_</span><span class="p">);</span>
+<span class="w">    </span><span class="n">input_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">input_twist_frame_id_</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">output_twist_frame_id_</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">reset</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="update-state">
+<span id="development-tutorials-motion-controller-steps-methods-state"></span><h4>Update State<a class="headerlink" href="#update-state" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose_msg</span><span class="p">,</span>
+<span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hover_flag_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">resetReferences</span><span class="p">();</span>
+<span class="w">        </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">        </span><span class="n">hover_flag_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="update-reference">
+<span id="development-tutorials-motion-controller-steps-methods-reference"></span><h4>Update Reference<a class="headerlink" href="#update-reference" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="w">        </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">speed_limits_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+<span class="w">                                        </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_SPEED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TrajectoryPoint</span><span class="w"> </span><span class="o">&amp;</span><span class="n">traj_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">yaw_angle</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Thrust is not overriden since is not needed.</p>
+</section>
+<section id="compute-output">
+<span id="development-tutorials-motion-controller-steps-methods-output"></span><h4>Compute Output<a class="headerlink" href="#compute-output" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::computeOutput</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist</span><span class="p">,</span>
+<span class="w">                        </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Thrust</span><span class="w"> </span><span class="o">&amp;</span><span class="n">thrust</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;State not received yet&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">                            </span><span class="s">&quot;State changed, but ref not recived yet&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">resetCommands</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">HOVER</span><span class="p">:</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">POSITION</span><span class="p">:</span>
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">saturateOutput</span><span class="p">(</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">speed_limits_</span><span class="p">,</span><span class="w"> </span><span class="n">proportional_limitation_</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">SPEED</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">use_bypass_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
+<span class="w">                </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">SPEED_IN_A_PLANE</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">use_bypass_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_speed_in_a_plane_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
+<span class="w">                </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_1D_speed_in_a_plane_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
+<span class="w">            </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">(),</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">());</span>
+
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">TRAJECTORY</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">                                                        </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">saturateOutput</span><span class="p">(</span>
+<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">speed_limits_</span><span class="p">,</span><span class="w"> </span><span class="n">proportional_limitation_</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
+<span class="w">        </span><span class="n">RCLCPP_ERROR_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown control mode&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">YAW_ANGLE</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">yaw_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">angleMinError</span><span class="p">(</span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">(),</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">());</span>
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">yaw_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_yaw_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">yaw_error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">YAW_SPEED</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">yaw_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">y</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
+<span class="w">        </span><span class="n">RCLCPP_ERROR_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown yaw mode&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">getOutput</span><span class="p">(</span><span class="n">twist</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="set-mode">
+<span id="development-tutorials-motion-controller-steps-methods-mode"></span><h4>Set Mode<a class="headerlink" href="#set-mode" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::setMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in_mode</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">plugin_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Plugin parameters not read yet, can not set mode&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">position_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">                    </span><span class="s">&quot;Position controller parameters not read, can not set mode&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">position_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">trajectory_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">                    </span><span class="s">&quot;Trajectory controller parameters not read yet, can not set mode to TRAJECTORY&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">trajectory_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">velocity_controller_parameters_read</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">use_bypass_</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">                    </span><span class="s">&quot;Velocity controller parameters not read yet and bypass is not used, can not set &quot;</span>
+<span class="w">                    </span><span class="s">&quot;mode to SPEED or SPEED_IN_A_PLANE&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">velocity_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">speed_in_a_plane_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">yaw_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">                    </span><span class="s">&quot;Yaw controller parameters not read yet, can not set mode to YAW_ANGLE&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">HOVER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="p">;</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="p">;</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">reference_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">LOCAL_ENU_FRAME</span><span class="p">;</span>
+<span class="w">        </span><span class="n">hover_flag_</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_mode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">control_mode_out_</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">out_mode</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">HOVER</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">input_pose_frame_id_</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
+<span class="w">        </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">input_pose_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_out_</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">BODY_FLU_FRAME</span><span class="p">:</span>
+<span class="w">            </span><span class="n">input_twist_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">;</span>
+<span class="w">            </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">LOCAL_ENU_FRAME</span><span class="p">:</span>
+<span class="w">        </span><span class="k">default</span><span class="o">:</span>
+<span class="w">            </span><span class="n">input_twist_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
+<span class="w">            </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters-update">
+<span id="development-tutorials-motion-controller-steps-methods-params"></span><h4>Parameters Update<a class="headerlink" href="#parameters-update" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::updateParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_params_list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parametersCallback</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_parameters</span><span class="p">(</span><span class="n">_params_list</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">successful</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="reset">
+<span id="development-tutorials-motion-controller-steps-methods-reset"></span><h4>Reset<a class="headerlink" href="#reset" title="Permalink to this heading"></a></h4>
+<p><strong>TBD</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">resetReferences</span><span class="p">();</span>
+<span class="w">    </span><span class="n">resetState</span><span class="p">();</span>
+<span class="w">    </span><span class="n">resetCommands</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_yaw_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
+<span class="w">    </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="exporting-the-plugin">
+<span id="development-tutorials-motion-controller-steps-export"></span><h3>3. Exporting the plugin<a class="headerlink" href="#exporting-the-plugin" title="Permalink to this heading"></a></h3>
+<p>Now that we have created our new controller, we need to export it so that it would be visible
+to the Controller Manager. Plugins are loaded at runtime and if they are not visible, then our
+controller manager won’t be able to load it. In ROS 2, exporting and loading plugins is handled
+by <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>.</p>
+<p>To achieve that, class <code class="docutils literal notranslate"><span class="pre">controller_plugin_speed_controller::Plugin</span></code> is loaded dynamically from
+<code class="docutils literal notranslate"><span class="pre">controller_plugin_base::ControllerBase</span></code> which is the base class.</p>
+<ol class="arabic simple">
+<li><p>To export the controller, we need to provide two lines</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span>
+<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span><span class="n">controller_plugin_speed_controller</span><span class="o">::</span><span class="n">Plugin</span><span class="p">,</span><span class="w"> </span><span class="n">controller_plugin_base</span><span class="o">::</span><span class="n">ControllerBase</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is good practice to place these lines at the end of the file but technically, you can also
+write at the top.</p>
+<p>2. Next step would be to create plugin’s description file in the root directory of the package.
+For example, <code class="docutils literal notranslate"><span class="pre">plugins.xml</span></code> file in our tutorial package. This file contains following
+information:</p>
+<ul class="simple">
+<li><p><cite>library path</cite>: Plugin’s library name and it’s location.</p></li>
+<li><p><cite>class name</cite>: Name of the class.</p></li>
+<li><p><cite>class type</cite>: Type of class.</p></li>
+<li><p><cite>base class</cite>: Name of the base class.</p></li>
+<li><p><cite>description</cite>: Description of the plugin.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;library</span><span class="w"> </span><span class="na">path=</span><span class="s">&quot;as2_controller_plugin_speed_controller&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;controller_plugin_speed_controller::Plugin&quot;</span><span class="w"> </span><span class="na">base_class_type=</span><span class="s">&quot;controller_plugin_base::ControllerBase&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;description&gt;</span>Controller<span class="w"> </span>plugin<span class="w"> </span>for<span class="w"> </span>speed<span class="w"> </span>controller.<span class="nt">&lt;/description&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/class&gt;</span>
+<span class="nt">&lt;/library&gt;</span>
+</pre></div>
+</div>
+<p>3. Next step would be to export plugin using <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> by using cmake function
+<code class="docutils literal notranslate"><span class="pre">pluginlib_export_plugin_description_file()</span></code>. This function installs plugin description
+file to share directory and sets ament indexes to make it discoverable.</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">as2_controller_plugin_base</span><span class="w"> </span><span class="s">plugins.xml</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Compile and it should be registered. Next, we’ll use this plugin.</p></li>
+</ol>
+</section>
+<section id="controller-manager-and-configuration-files">
+<span id="development-tutorials-motion-controller-steps-config"></span><h3>4. Controller manager and configuration files<a class="headerlink" href="#controller-manager-and-configuration-files" title="Permalink to this heading"></a></h3>
+<p>To use the plugin, we should create two configuration files.</p>
+<p><strong>TBD</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">input_control_modes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00000000</span><span class="w"> </span><span class="c1"># UNSET</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00010000</span><span class="w"> </span><span class="c1"># HOVER</span>
+<span class="w">  </span><span class="c1"># - 0b00100100 # ACRO (p,q,r, Thrust)</span>
+<span class="w">  </span><span class="c1"># - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust)</span>
+<span class="w">  </span><span class="c1"># - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000000</span><span class="w"> </span><span class="c1"># SPEED with yaw ANGLE in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000001</span><span class="w"> </span><span class="c1"># SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000100</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000101</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010000</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010001</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010100</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010101</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01100001</span><span class="w"> </span><span class="c1"># POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01100101</span><span class="w"> </span><span class="c1"># POSITION with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01110001</span><span class="w"> </span><span class="c1"># TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01110101</span><span class="w"> </span><span class="c1"># TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+
+<span class="nt">output_control_modes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00000000</span><span class="w"> </span><span class="c1"># UNSET</span>
+<span class="w">  </span><span class="c1"># - 0b00010000 # HOVER</span>
+<span class="w">  </span><span class="c1"># - 0b00100100 # ACRO (p,q,r, Thrust)</span>
+<span class="w">  </span><span class="c1"># - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust)</span>
+<span class="w">  </span><span class="c1"># - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust)</span>
+<span class="w">  </span><span class="c1"># - 0b01000000 # SPEED with yaw ANGLE in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01000001 # SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000100</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000101</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01010000 # SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01010001 # SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01010100 # SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01010101 # SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01100001 # POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01100101 # POSITION with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01110001 # TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
+<span class="w">  </span><span class="c1"># - 0b01110101 # TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+</pre></div>
+</div>
+<p><strong>TBD</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">proportional_limitation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">position_control</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">speed_control</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">speed_in_a_plane_control</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">height</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">speed</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">kp</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">kd</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">ki</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">trajectory_control</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">yaw_control</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">            </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</pre></div>
+</div>
+</section>
+<section id="launching">
+<span id="development-tutorials-motion-controller-steps-launch"></span><h3>5. Launching<a class="headerlink" href="#launching" title="Permalink to this heading"></a></h3>
+<p>¿<strong>TBD</strong>?</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
