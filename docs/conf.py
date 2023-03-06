@@ -5,8 +5,6 @@ import re
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath(
     './_python_api/temp_ws/src/as2_python_api/as2_python_api'))
-sys.path.insert(0, os.path.abspath(
-    './_python_api/temp_ws/src/as2_keyboard_teleoperation/as2_keyboard_teleoperation'))
 
 # Configuration file for the Sphinx documentation builder.
 #
