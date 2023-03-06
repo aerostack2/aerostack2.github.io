@@ -37,7 +37,7 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 
 breathe_projects = {
-    "as2_core": "./_core/as2_core/doxygen/xml"
+    "as2_core": "./_09_development/_api_documentation/as2_core/doxygen/xml"
 }
 
 # Add any Sphinx extension module names here, as strings. They can be
