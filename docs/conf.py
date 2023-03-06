@@ -4,7 +4,7 @@ import sys
 import re
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath(
-    './_python_api/temp_ws/src/as2_python_api/as2_python_api'))
+    './_07_python_api/temp_ws/src/as2_python_api/as2_python_api'))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -63,7 +63,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 autodoc_mock_imports = ['as2_msgs', 'geographic_msgs',
                         'as2_motion_reference_handlers',
-                        'PySimpleGUI']
+                        'PySimpleGUI', 'pymap3d']
 
 autodoc_default_options = {'autosummary': False}
 
