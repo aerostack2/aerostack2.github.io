@@ -26,98 +26,133 @@ TDB
 Installation
 ------------
 
+You can see the `PX4 Autopilot ROS2 Guide <https://docs.px4.io/main/en/ros/ros2_comm.html>`_ for it installation, or follow the steps below.
+
+We will use a colcon workspace for the installation:
+
+  .. code-block:: bash
+
+    mkdir -p ~/px4_ws/src
+
+.. note::
+  You can add the following line to your ``~/.bashrc`` file to source the workspace automatically.
+
+  .. code-block:: bash
+
+    echo "source ~/px4_ws/install/setup.bash" >> ~/.bashrc
 
 
-.. _aerial_platform_px4_installation_prerequisites:
 
-Prerequisites
-=============
+.. _aerial_platform_px4_installation_dependencies:
 
-TBD: PX4 Autopilot is close to be released native to work in ROS2.
+PX4 Dependencies
+================
 
-Since PX4 has a lot of external dependencies we opted to separate it in a diferent repo.
-The complete installations step are as follows:
+Follow the steps below to install the dependencies for PX4:
 
-In order to be able to use a Pixhawk autopilot some additional software must be installed:
-This documentation is obtained from ( ADD LINK )
+1. Clone the PX4 Messages repository:
 
+  .. code-block:: bash
 
-Fast-DDS-Gen
-------------
+    cd ~/px4_ws/src
+    git clone https://github.com/PX4/px4_msgs.git
 
-.. code-block:: bash
+3. Clone the PX4 ROS COM:
 
-  sudo apt install -y openjdk-11-jdk
-  
-.. code-block:: bash
+  .. code-block:: bash
 
-  git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git -b v1.0.4 \
-      && cd Fast-DDS-Gen \
-      && ./gradlew assemble \
-      && sudo ./gradlew install
+    cd ~/px4_ws/src
+    git clone https://github.com/PX4/px4_ros_com.git
 
-In order to validate the installation in another terminal run:
+4. Build workspace:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-  # Check FastRTPSGen version
-  fastrtpsgen_version_out=""
-  if [[ -z $FASTRTPSGEN_DIR ]]; then
-    fastrtpsgen_version_out="$FASTRTPSGEN_DIR/$(fastrtpsgen -version)"
-  else
-    fastrtpsgen_version_out=$(fastrtpsgen -version)
-  fi
-  if [[ -z $fastrtpsgen_version_out ]]; then
-    echo "FastRTPSGen not found! Please build and install FastRTPSGen..."
-    exit 1
-  else
-    fastrtpsgen_version="${fastrtpsgen_version_out: -5:-2}"
-    if ! [[ $fastrtpsgen_version =~ ^[0-9]+([.][0-9]+)?$ ]] ; then
-      fastrtpsgen_version="1.0"
-      [ ! -v $verbose ] && echo "FastRTPSGen version: ${fastrtpsgen_version}"
-    else
-      [ ! -v $verbose ] && echo "FastRTPSGen version: ${fastrtpsgen_version_out: -5}"
-    fi
-  fi
+    cd ~/px4_ws
+    colcon build --symlink-install
 
 
-The expected output is something similar to:
 
-.. code-block:: bash 
-
-  openjdk version "13.0.7" 2021-04-20
-  OpenJDK Runtime Environment (build 13.0.7+5-Ubuntu-0ubuntu120.04)
-  OpenJDK 64-Bit Server VM (build 13.0.7+5-Ubuntu-0ubuntu120.04, mixed mode)
-
-
-pyros-genmsg
-------------
-
-A pyros-genmsg dependency is needed
-
-.. code-block:: bash
-
-  pip3 install pyros-genmsg
-  
-
-
-.. _aerial_platform_px4_installation_package:
+.. _aerial_platform_px4_installation_platform:
 
 Install platform package
 ========================
 
-We recommend to have this in a diferent colcon_ws since px4_msgs packages spends a lot of time in compiling and we only want to do it once.
+Clone the Aerostack2 Pixhawk Platform repository into the workspace created in the section before:
 
 .. code-block:: bash
 
-  mkdir -p ~/px4_ws/src && cd ~/px4_ws/src
-  git clone git@github.com:aerostack2/as2_platform_pixhawk.git
-  vcs import --recursive < as2_platform_pixhawk/dependencies.repos
+  cd ~/px4_ws/src
+  git clone https://github.com/aerostack2/as2_platform_pixhawk.git
+
+Build it:
+
+.. code-block:: bash
+
+  source ~/px4_ws/install/setup.bash
   cd ~/px4_ws
   colcon build --symlink-install
- 
-.. note::
-  Remind to ``source ~/aerostack2_ws/install/setup.bash`` before runing ``colcon build``
+
+
+
+.. _aerial_platform_px4_installation_xrce_dds:
+
+XRCE-DDS (PX4-FastDDS Bridge)
+=============================
+
+For more information about XRCE-DDS, see `PX4 Autopilot XRCE-DDS bridge <https://docs.px4.io/main/en/middleware/xrce_dds.html>`_.
+For it installation, clone it into the workspace and build it using colcon:
+
+.. code-block:: bash
+
+  cd ~/px4_ws/src
+  git clone https://github.com/eProsima/Micro-XRCE-DDS-Agent.git
+
+Build it:
+
+.. code-block:: bash
+
+  cd ~/px4_ws
+  colcon build --symlink-install
+
+
+
+.. _aerial_platform_px4_installation_px4_autopilot:
+
+PX4 Autopilot
+=============
+
+For more information about PX4 Autopilot, see `PX4 Autopilot <https://docs.px4.io/main/en/>`_.
+
+* For simulation using Gazebo Classic, clone it and set PX4_FOLDER environment variable:
+
+  1. Clone repository
+
+    .. code-block:: bash
+
+      mkdir -p ~/px4_ws/thirdparties
+      cd ~/px4_ws/thirdparties
+      git clone --recurse-submodules https://github.com/PX4/PX4-Autopilot.git
+
+  2. Add colcon ignore file
+
+    .. code-block:: bash
+
+      cd ~/px4_ws/thirdparties/
+      touch COLCON_IGNORE
+
+  3. Set PX4_FOLDER environment variable
+
+    .. code-block:: bash
+
+      echo "export PX4_FOLDER=~/px4_ws/thirdparties/PX4-Autopilot" >> ~/.bashrc
+
+* For using `PX4 Vision Autonomy Development Kit <https://docs.px4.io/main/en/complete_vehicles/px4_vision_kit.html>`_ see our :ref:`PX4 Vision Guide <aerial_platform_px4_installation_px4_autopilot_px4_vision>`.
+
+.. toctree::
+  :hidden:
+
+  px4_vision/setup.rst
 
 
 
