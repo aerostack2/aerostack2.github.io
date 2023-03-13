@@ -132,7 +132,7 @@ For more information about PX4 Autopilot, see `PX4 Autopilot <https://docs.px4.i
 
       mkdir -p ~/px4_ws/thirdparties
       cd ~/px4_ws/thirdparties
-      git clone --recurse-submodules https://github.com/PX4/PX4-Autopilot.git
+      git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 
   2. Add colcon ignore file
 
