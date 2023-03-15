@@ -19,8 +19,12 @@ figure {
 
 figure img {
     vertical-align: top !important;
+}
+
+figure img.with-shadow {
     border: 1px groove gray !important;
 }
+
 
 figure figcaption {
     text-align: center !important;
