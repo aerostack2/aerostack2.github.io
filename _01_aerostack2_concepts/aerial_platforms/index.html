@@ -13,7 +13,8 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
@@ -67,9 +68,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../architecture/index.html#applications">Applications</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../as2_communications/index.html">Aerostack2 Inter-process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Aerial Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../motion_controller/index.html">Motion Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../motion_controller/index.html#outpu-control-modes">Outpu Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../state_estimator/index.html">State Estimator</a></li>
 </ul>
 </li>
@@ -290,13 +306,9 @@
              
   <section id="aerial-platform">
 <span id="as2-concepts-aerial-platform"></span><h1>Aerial Platform<a class="headerlink" href="#aerial-platform" title="Permalink to this heading"></a></h1>
-<p>TDB</p>
-<ul class="simple">
-<li><p>Actuator commands</p></li>
-<li><p>Control Modes</p></li>
-<li><p>Reference Frames (tf2)</p></li>
-<li><p>Services: arm, offboard, platform takeoff, platform land</p></li>
-</ul>
+<p>Aerial Platform component in Aerostack2 is the one in charge of communicate the drone with the rest of the system.
+It is the one that receives the commands from the Motion Controller and sends them to the drone.
+It is also the one that receives the information from the drone and sends it to the rest of the system.</p>
 </section>
 
 

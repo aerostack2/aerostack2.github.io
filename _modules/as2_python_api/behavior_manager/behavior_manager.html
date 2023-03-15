@@ -12,7 +12,8 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
@@ -64,9 +65,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#outpu-control-modes">Outpu Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
 </ul>
 </li>
@@ -505,9 +521,7 @@
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">drone_interface</span><span class="o">.</span><span class="n">drone_id</span><span class="p">:</span> <span class="n">DroneBehaviorManager</span><span class="o">.</span><span class="n">pause_all_behaviors</span><span class="p">(</span>
-            <span class="n">drone_interface</span><span class="p">)</span> <span class="k">for</span> <span class="n">drone_interface</span> <span class="ow">in</span> <span class="n">drone_interface_list</span><span class="p">}</span>
-        <span class="k">return</span> <span class="n">success</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;pause_all_behaviors&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SwarmBehaviorManager.resume_all_behaviors"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.resume_all_behaviors">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">resume_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
@@ -518,9 +532,7 @@
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">drone_interface</span><span class="o">.</span><span class="n">drone_id</span><span class="p">:</span> <span class="n">DroneBehaviorManager</span><span class="o">.</span><span class="n">resume_all_behaviors</span><span class="p">(</span>
-            <span class="n">drone_interface</span><span class="p">)</span> <span class="k">for</span> <span class="n">drone_interface</span> <span class="ow">in</span> <span class="n">drone_interface_list</span><span class="p">}</span>
-        <span class="k">return</span> <span class="n">success</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;resume_all_behaviors&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SwarmBehaviorManager.stop_all_behaviors"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.stop_all_behaviors">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">stop_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
@@ -531,9 +543,7 @@
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">drone_interface</span><span class="o">.</span><span class="n">drone_id</span><span class="p">:</span> <span class="n">DroneBehaviorManager</span><span class="o">.</span><span class="n">stop_all_behaviors</span><span class="p">(</span>
-            <span class="n">drone_interface</span><span class="p">)</span> <span class="k">for</span> <span class="n">drone_interface</span> <span class="ow">in</span> <span class="n">drone_interface_list</span><span class="p">}</span>
-        <span class="k">return</span> <span class="n">success</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;stop_all_behaviors&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SwarmBehaviorManager.get_behaviors_status"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.get_behaviors_status">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_behaviors_status</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
@@ -565,6 +575,33 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">_t</span> <span class="o">=</span> <span class="n">ThreadWithReturnValue</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">DroneBehaviorManager</span><span class="p">,</span> <span class="n">func</span><span class="p">),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">behavior_dict</span><span class="p">[</span><span class="n">drone_interface</span><span class="p">],</span> <span class="n">drone_interface</span><span class="p">,))</span>
+                <span class="n">threads</span><span class="p">[</span><span class="n">drone_interface</span><span class="o">.</span><span class="n">drone_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t</span>
+                <span class="n">_t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">ThreadError</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>
+                <span class="n">drone_interface</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">_e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">drone_id</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+            <span class="n">success</span><span class="p">[</span><span class="n">drone_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">threads</span><span class="p">[</span><span class="n">drone_id</span><span class="p">]</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">success</span></div>
+
+<div class="viewcode-block" id="SwarmBehaviorManager.swarm_all_behavior_func"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_all_behavior_func">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">        :param func: _description_</span>
+<span class="sd">        :type func: _type_</span>
+<span class="sd">        :param drone_interface_list: _description_</span>
+<span class="sd">        :type drone_interface_list: _type_</span>
+<span class="sd">        :return: _description_</span>
+<span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">threads</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">drone_interface</span> <span class="ow">in</span> <span class="n">drone_interface_list</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">_t</span> <span class="o">=</span> <span class="n">ThreadWithReturnValue</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">DroneBehaviorManager</span><span class="p">,</span> <span class="n">func</span><span class="p">),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">drone_interface</span><span class="p">,))</span>
                 <span class="n">threads</span><span class="p">[</span><span class="n">drone_interface</span><span class="o">.</span><span class="n">drone_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t</span>
                 <span class="n">_t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
             <span class="k">except</span> <span class="n">ThreadError</span> <span class="k">as</span> <span class="n">_e</span><span class="p">:</span>

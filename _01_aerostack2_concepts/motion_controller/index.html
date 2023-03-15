@@ -13,7 +13,8 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
@@ -67,9 +68,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../architecture/index.html#applications">Applications</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../as2_communications/index.html">Aerostack2 Inter-process Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../aerial_platforms/index.html">Aerial Platform</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Motion Controller</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outpu-control-modes">Outpu Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../state_estimator/index.html">State Estimator</a></li>
 </ul>
 </li>
@@ -290,15 +306,62 @@
              
   <section id="motion-controller">
 <span id="as2-concepts-motion-controller"></span><h1>Motion Controller<a class="headerlink" href="#motion-controller" title="Permalink to this heading"></a></h1>
-<p>TDB</p>
+<p>The Motion Controller is the component of Aerostack2 that is responsible for the control of the robot actuators.
+It is in charge of convert <a class="reference internal" href="../as2_communications/index.html#as2-concepts-as2-communication-motion-references"><span class="std std-ref">Motion References</span></a> from the different modules of Aerostack2 and sending the corresponding <a class="reference internal" href="../as2_communications/index.html#as2-concepts-as2-communication-actuator-commands"><span class="std std-ref">Actuator Commands</span></a> to the Aerial Platform.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/as2_robot_communications.png"><img alt="../../_images/as2_robot_communications.png" src="../../_images/as2_robot_communications.png" style="width: 720.9px; height: 261.90000000000003px;" /></a>
+</figure>
+<section id="motion-reference-handler">
+<span id="as2-concepts-motion-reference-handler"></span><h2>Motion Reference Handler<a class="headerlink" href="#motion-reference-handler" title="Permalink to this heading"></a></h2>
+<p>Motion Reference Handler is the component of Aerostack2 that is responsible for the generation of the <a class="reference internal" href="../as2_communications/index.html#as2-concepts-as2-communication-motion-references"><span class="std std-ref">Motion References</span></a> that are sent to the Motion Controller.</p>
+<p>This utility allows users to encode the desired motion reference of the robot into the three motion reference topics. Also, it manage the different control modes of the Motion Controller.</p>
+<p>The Motion Controller will convert the Motion Reference from the input frame to the desired one in the time specified by the reference.</p>
+</section>
+<section id="control-modes">
+<span id="as2-concepts-motion-controller-control-modes"></span><h2>Control Modes<a class="headerlink" href="#control-modes" title="Permalink to this heading"></a></h2>
+<p>The Motion Controller will convert the Motion Reference into Actuator Commands using the Input Control Mode and Output Control Mode to know how to interpret the Motion Reference.</p>
+<p>The input control mode is set by the Motion Reference Handler and the output control mode is set automatically by communicating with the Aerial Platform.</p>
+<section id="input-control-modes">
+<span id="as2-concepts-motion-controller-control-modes-input"></span><h3>Input Control Modes<a class="headerlink" href="#input-control-modes" title="Permalink to this heading"></a></h3>
+<p>Aerostack2 Motion Controller supports the following input control modes:</p>
 <ul class="simple">
-<li><p>Motion commands</p></li>
-<li><p>Actuator commands</p></li>
-<li><p>Control Modes</p></li>
-<li><p>Reference Frames (tf2)</p></li>
-<li><p>Services: setMode</p></li>
-<li><p>Emergency channel</p></li>
+<li><p><strong>Hover Control</strong>: The robot is commanded to stay in the same position.</p></li>
+<li><p><strong>Position Control</strong>: The robot is commanded to reach a desired 3D position in the desired frame.</p></li>
+<li><p><strong>Speed Control</strong>: The robot is commanded to reach a desired 3D speed in the desired frame.</p></li>
+<li><p><strong>Speed in a Plane Control</strong>: The robot is commanded to reach a desired 2D plane speed in the desired frame with the desired height.</p></li>
+<li><p><strong>Trajectory Control</strong>: The robot is commanded to follow a desired 3D trajectory in the desired frame.</p></li>
 </ul>
+<p>Each one are combined with the desired yaw angle control mode:</p>
+<ul class="simple">
+<li><p><strong>Yaw Angle Control</strong>: The robot is commanded to reach a desired yaw angle.</p></li>
+<li><p><strong>Yaw Rate Control</strong>: The robot is commanded to reach a desired yaw rate.</p></li>
+</ul>
+<p>Also, the frame of each command is specified in the header of the message, allowing the use of any reference frame.</p>
+</section>
+<section id="outpu-control-modes">
+<span id="as2-concepts-motion-controller-control-modes-output"></span><h3>Outpu Control Modes<a class="headerlink" href="#outpu-control-modes" title="Permalink to this heading"></a></h3>
+<p>Aerostack2 Motion Controller supports the following ouput control modes:</p>
+<ul class="simple">
+<li><p><strong>Hover Control</strong>: The robot is commanded to stay in the same position.</p></li>
+<li><p><strong>Position Control</strong>: The robot is commanded to reach a desired 3D position in the desired frame.</p></li>
+<li><p><strong>Speed Control</strong>: The robot is commanded to reach a desired 3D speed in the desired frame.</p></li>
+<li><p><strong>Speed in a Plane Control</strong>: The robot is commanded to reach a desired 2D plane speed in the desired frame with the desired height.</p></li>
+<li><p><strong>Trajectory Control</strong>: The robot is commanded to follow a desired 3D trajectory in the desired frame.</p></li>
+<li><p><strong>Attitude Control</strong>: The robot is commanded to reach a desired attitude angles and thrust in the base link frame.</p></li>
+<li><p><strong>Acro Control</strong>: The robot is commanded to reach a desired angular velocity and thrust in the base link frame.</p></li>
+</ul>
+<p>Except Acro Control, the rest of them are combined with the desired yaw angle control mode:</p>
+<ul class="simple">
+<li><p><strong>Yaw Angle Control</strong>: The robot is commanded to reach a desired yaw angle.</p></li>
+<li><p><strong>Yaw Rate Control</strong>: The robot is commanded to reach a desired yaw rate.</p></li>
+</ul>
+<p>Also, the frame of each command is specified the following control reference frames:</p>
+<ul class="simple">
+<li><p><strong>ENU Frame</strong>: The frame is fixed to the Earth frame and its origin is set with the State Estimator. The X axis points to the East, the Y axis points to the North and the Z axis points to the Up.</p></li>
+<li><p><strong>FLU Frame</strong>: The frame is fixed to the Aircraft base link frame. The X axis points to the Front, the Y axis points to the Left and the Z axis points to the Up.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
 
