@@ -12,6 +12,14 @@ as2\_python\_api.behavior\_actions.behavior\_handler module
    :undoc-members:
    :show-inheritance:
 
+as2\_python\_api.behavior\_actions.follow\_reference\_behavior module
+---------------------------------------------------------------------
+
+.. automodule:: as2_python_api.behavior_actions.follow_reference_behavior
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 as2\_python\_api.behavior\_actions.followpath\_behavior module
 --------------------------------------------------------------
 
