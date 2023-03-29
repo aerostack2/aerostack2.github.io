@@ -34,7 +34,7 @@ Instructions
 
 When the previous launch command is executed, a window like the following will open:
 
-.. figure:: images/summary_window.png
+.. figure:: images/alphanumeric_view_summary.png
    :scale: 100
    :class: with-shadow
    
@@ -42,19 +42,19 @@ When the previous launch command is executed, a window like the following will o
 
 Different tabs can be displayed when pressing the correspondent key. Each of the tabs shows different information for different purposes. 
 
-.. figure:: images/sensor_window.png
+.. figure:: images/alphanumeric_view_sensors.png
    :scale: 100
    :class: with-shadow
    
    Alphanumeric viewer sensors window.
 
-.. figure:: images/navigation_window.png
+.. figure:: images/alphanumeric_view_navigation.png
    :scale: 100
    :class: with-shadow
    
    Alphanumeric viewer navigation window.
 
-.. figure:: images/platform_window.png
+.. figure:: images/alphanumeric_view_platform.png
    :scale: 100
    :class: with-shadow
    
