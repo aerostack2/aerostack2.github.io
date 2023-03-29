@@ -180,7 +180,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Alphanumeric Viewer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instructions">Instructions</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#behavior-tree">Behavior Tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#web-gui">Web Gui</a></li>
 </ul>
@@ -306,7 +311,95 @@
              
   <section id="alphanumeric-viewer">
 <span id="user-interfaces-alphanumeric-viewer"></span><h1>Alphanumeric Viewer<a class="headerlink" href="#alphanumeric-viewer" title="Permalink to this heading"></a></h1>
-<p>TBD: User Manual</p>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id6">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#interface-launch" id="id7">Interface launch</a></p></li>
+<li><p><a class="reference internal" href="#instructions" id="id8">Instructions</a></p></li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Aerostack2’s alphanumeric viewer interface consists on a window with multiple tabs that shows different data regarding the state
+of the uav.</p>
+</section>
+<section id="interface-launch">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Interface launch</a><a class="headerlink" href="#interface-launch" title="Permalink to this heading"></a></h2>
+<p>Example of keyboard teleoperation tool launch command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>as2_alphanumeric_viewer<span class="w"> </span>as2_alphanumeric_viewer_node<span class="w"> </span><span class="se">\</span>
+--ros-args<span class="w"> </span>-r<span class="w">  </span>__ns:<span class="o">=</span>/drone_sim_0
+</pre></div>
+</div>
+<p>This will open alphanumeric viewer interface for drone with namespace: <code class="docutils literal notranslate"><span class="pre">drone_sim_0</span></code>.</p>
+</section>
+<section id="instructions">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Instructions</a><a class="headerlink" href="#instructions" title="Permalink to this heading"></a></h2>
+<p>When the previous launch command is executed, a window like the following will open:</p>
+<figure class="align-default" id="id1">
+<a class="with-shadow reference internal image-reference" href="../../_images/summary_window.png"><img alt="../../_images/summary_window.png" class="with-shadow" src="../../_images/summary_window.png" style="width: 655.0px; height: 432.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Alphanumeric viewer summary window.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Different tabs can be displayed when pressing the correspondent key. Each of the tabs shows different information for different purposes.</p>
+<figure class="align-default" id="id2">
+<a class="with-shadow reference internal image-reference" href="../../_images/sensor_window.png"><img alt="../../_images/sensor_window.png" class="with-shadow" src="../../_images/sensor_window.png" style="width: 655.0px; height: 432.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Alphanumeric viewer sensors window.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<a class="with-shadow reference internal image-reference" href="../../_images/navigation_window.png"><img alt="../../_images/navigation_window.png" class="with-shadow" src="../../_images/navigation_window.png" style="width: 655.0px; height: 432.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Alphanumeric viewer navigation window.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<a class="with-shadow reference internal image-reference" href="../../_images/platform_window.png"><img alt="../../_images/platform_window.png" class="with-shadow" src="../../_images/platform_window.png" style="width: 655.0px; height: 432.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Alphanumeric viewer platform window.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Those tabs can be summarized in the following table:</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">List of alphanumeric viewer tabs</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Information displayed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M-m</p></td>
+<td><p>Summary tab</p></td>
+<td><div class="line-block">
+<div class="line">Shows all different but what we believe is the most important information to show</div>
+<div class="line">most of the times. It displays information about the IMU measurements, localization,</div>
+<div class="line">control modes for each the controller and the platform, aswell as the platform status.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>S-s</p></td>
+<td><p>Sensors tab</p></td>
+<td><p>Shows information regarding the sensor measurements with a clearer layout.</p></td>
+</tr>
+<tr class="row-even"><td><p>N-n</p></td>
+<td><p>Navigation tab</p></td>
+<td><p>Shows information regarding self localization with a clearer layout.</p></td>
+</tr>
+<tr class="row-odd"><td><p>P-p</p></td>
+<td><p>Platform tab</p></td>
+<td><p>Shows information regarding platform and controller with a clearer layout.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 
