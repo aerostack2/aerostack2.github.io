@@ -32,6 +32,14 @@ Aerostack2 is versatile for building different system configurations with variou
 
 * Project-oriented, allowing to install and use only the necessary packages and configurations for the application to be developed. 
 
+--------
+Credits
+--------
+
+If you use the code in the academic context, please cite\:
+
+* \M. Fernandez-Cortizas, M. Molina, P. Arias-Perez, R. Perez-Segui, D. Perez-Saura, and P. Campoy, 2023,  `"Aerostack2: A software framework for developing multi-robot aerial systems" <https://arxiv.org/abs/2303.18237>`_ , ArXiv DOI 2303.18237.
+
 
 
 .. .. _as2_docs_index:
