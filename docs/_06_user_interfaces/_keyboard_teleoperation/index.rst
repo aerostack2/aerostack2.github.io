@@ -13,7 +13,17 @@ Introduction
 ------------
 
 Aerostack2's keyboard teleoperation interface serves as a multi-purpose control and visualization tool. It is able to send position and speed references to a swarm of drones, ability to select which of the drones is to be controlled, modify the values of the references sent, 
-it has a simple localization window and there is also Aerostack2's behaviors management mechanisms. 
+it has a simple localization window and there is also Aerostack2's behaviors management mechanisms.
+
+--------------------
+Install dependencies
+--------------------
+
+To install PySimpleGUI package please execute the following command.
+
+.. code-block:: bash
+    
+    pip install PySimpleGUI
 
 ----------------
 Interface launch
