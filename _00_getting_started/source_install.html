@@ -49,6 +49,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#ubuntu-debian">Ubuntu (Debian)</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="binary_install.html">Binary Install</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#previous-dependencies">Previous dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#source-installation">Source Installation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#standard-build">Standard Build</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#build-with-as2-cli">Build with AS2 CLI</a></li>
@@ -312,6 +313,14 @@
              
   <section id="source-install">
 <span id="getting-started-ubuntu-installation-source"></span><h1>Source Install<a class="headerlink" href="#source-install" title="Permalink to this heading"></a></h1>
+<section id="previous-dependencies">
+<span id="getting-started-ubuntu-installation-prerequisites"></span><h2>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h2>
+<p>Make sure to have installed ROS2 via Debian Packages for <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a> or <a class="reference external" href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html">Galactic</a>.</p>
+<p>After that, make sure you have installed the following dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-rosdep<span class="w"> </span>python3-pip<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>-y
+</pre></div>
+</div>
+</section>
 <section id="source-installation">
 <span id="getting-started-ubuntu-installation-source-install"></span><h2>Source Installation<a class="headerlink" href="#source-installation" title="Permalink to this heading"></a></h2>
 <p>For using and installing Aerostack2, your ROS2 environment must be settled up.

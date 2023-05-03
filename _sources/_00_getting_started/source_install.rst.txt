@@ -6,6 +6,22 @@ Source Install
 
 
 
+.. _getting_started_ubuntu_installation_prerequisites:
+
+---------------------
+Previous dependencies
+---------------------
+
+Make sure to have installed ROS2 via Debian Packages for `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`__ or `Galactic <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`__.
+
+After that, make sure you have installed the following dependencies:
+
+.. code-block:: bash
+
+    sudo apt install python3-rosdep python3-pip python3-colcon-common-extensions -y
+
+
+
 .. _getting_started_ubuntu_installation_source_install:
 
 -------------------

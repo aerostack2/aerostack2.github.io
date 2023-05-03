@@ -15,6 +15,9 @@ Introduction
 Aerostack2's keyboard teleoperation interface serves as a multi-purpose control and visualization tool. It is able to send position and speed references to a swarm of drones, ability to select which of the drones is to be controlled, modify the values of the references sent, 
 it has a simple localization window and there is also Aerostack2's behaviors management mechanisms.
 
+
+.. _user_interfaces_keyboard_teleoperation_dependencies:
+
 --------------------
 Install dependencies
 --------------------
