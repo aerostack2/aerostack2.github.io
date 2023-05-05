@@ -33,4 +33,9 @@ Go there by:
 
 Here is the list of examples:
 
-TBD
+.. toctree::
+   :maxdepth: 1
+
+   project_crazyflie/index.rst
+
+
