@@ -16,7 +16,11 @@ Bitcraze Crazyflie
 Introduction
 ------------
 
-TDB
+Crazyflie 2.1 by Bitcraze can be found `here <https://www.bitcraze.io/products/crazyflie-2-1/>`_
+
+.. figure:: resources/Crazyflie2_0.jpeg
+   :scale: 50
+   :class: with-shadow
 
 
 
