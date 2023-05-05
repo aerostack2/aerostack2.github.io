@@ -29,6 +29,17 @@ To start using this project, please go to the root folder of the project.
 
 .. _project_crazyflie_simulated:
 
+The flags for the components launcher are:
+
+- ``-s``: launch the components for the simulated version.
+- ``-w``: launch the components for the swarm.
+- ``-k``: launch keyboard teleoperation.
+- ``-r``: record rosbag.
+
+Arguments for the components launcher are:
+
+- ``-e``: estimator type. Allowed values [``ground_truth``, ``raw_odometry``, ``mocap``]. Default: ``ground_truth``.
+
 -------------------
 Simulated execution
 -------------------
@@ -44,9 +55,27 @@ In order to launch the components for a **single drone**, do:
 
 .. code-block:: bash
 
-    ./main_launcher.sh -s -k
+    ./launch_as2.sh -s -k
 
-This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution. It will also open a keyboard teleoperation, which you can use to teleoperate the drone (argument ``-k``).
+This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.
+
+A window like the following image should open.
+
+.. figure:: images/single_drone_ign.png
+   :scale: 50
+   :class: with-shadow
+   
+   Ignition Gazebo simulator
+
+It will also open a keyboard teleoperation (argument ``-k``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
+
+A window like the following image should popup:
+
+.. figure:: images/keyboard_teleop_view.png
+   :scale: 50
+   :class: with-shadow
+   
+   Keyboard teleoperation
 
 To start the mission, go to a new terminal line and execute:
 
@@ -63,9 +92,27 @@ In order to launch the components for a **swarm of 3 drones**, do:
 
 .. code-block:: bash
 
-    ./main_launcher.sh -s -w -k
+    ./launch_as2.sh -s -w -k
 
-This will open a simulation for a swarm of 3 drones alongside the Aerostack2 components necessary for the mission execution. It will also open a keyboard teleoperation, which you can use to teleoperate the drones (argument ``-k``).
+This will open a simulation for a swarm of 3 drones alongside the Aerostack2 components necessary for the mission execution.
+
+A window like the following image should open.
+
+.. figure:: images/swarm_ign.png
+   :scale: 50
+   :class: with-shadow
+   
+   Ignition Gazebo simulator
+
+It will also open a keyboard teleoperation (argument ``-k``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
+
+A window like the following image should popup:
+
+.. figure:: images/keyboard_swarm_view.png
+   :scale: 50
+   :class: with-shadow
+   
+   Keyboard teleoperation
 
 To start the mission, go to a new terminal line and execute:
 
@@ -98,7 +145,7 @@ In order to launch the components for a **single drone** with **optical flow**, 
 
 .. code-block:: bash
 
-    ./main_launcher.sh -e raw_odometry -k
+    ./launch_as2.sh -e raw_odometry -k
 
 Before launching the components with **mocap**, it is also necessary to set the file ``real_config/swarm_config_file.yaml``. This file will be used by the state estimator mocap plugin to 
 get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
@@ -107,7 +154,7 @@ In order to launch the components for a **single drone** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./main_launcher.sh -e mocap -k
+    ./launch_as2.sh -e mocap -k
 
 To start the mission for a **single drone**, go to a new terminal line and execute:
 
@@ -124,13 +171,13 @@ In order to launch the components for a **swarm of 3 drones** with **optical flo
 
 .. code-block:: bash
 
-    ./main_launcher.sh -w -e raw_odometry -k
+    ./launch_as2.sh -w -e raw_odometry -k
 
 In order to launch the components for a **swarm of 3 drones** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./main_launcher.sh -w -e mocap -k
+    ./launch_as2.sh -w -e mocap -k
 
 To start the mission for a **swarm of 3 drones**, go to a new terminal line and execute:
 

@@ -34,9 +34,6 @@ Go there by:
 Here is the list of examples:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   keyboard_single_drone/index.rst
-   keyboard_swarm_drones/index.rst
-   python_single_drone/index.rst
-   python_swarm_drones/index.rst
+   project_gazebo/index.rst
