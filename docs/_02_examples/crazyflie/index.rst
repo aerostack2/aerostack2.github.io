@@ -11,12 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 50
    :class: with-shadow
 
-We are going to use `Aerostack2 Crazyflie Project <https://github.com/aerostack2/project_crazyflie>`_ for running the examples.
-Install it by the following command:
+Every project is installed by the following command:
 
 .. code-block:: bash
 
-    as2 project -n crazyflie
+    as2 project -n project_name
 
 This will clone the project in the directory ``$AEROSTACK2_PATH/projects/``. 
 Reopen the terminal to upload the new project:
@@ -29,7 +28,7 @@ Go there by:
 
 .. code-block:: bash
 
-    as2 cd crazyflie
+    as2 cd project_name
 
 Here is the list of examples:
 

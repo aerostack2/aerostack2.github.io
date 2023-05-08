@@ -33,7 +33,7 @@ The flags for the components launcher are:
 
 - ``-s``: launch the components for the simulated version.
 - ``-w``: launch the components for the swarm.
-- ``-k``: launch keyboard teleoperation.
+- ``-t``: launch keyboard teleoperation.
 - ``-r``: record rosbag.
 
 Arguments for the components launcher are:
@@ -55,7 +55,7 @@ In order to launch the components for a **single drone**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -s -k
+    ./launch_as2.sh -s -t
 
 This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.
 
@@ -67,7 +67,7 @@ A window like the following image should open.
    
    Ignition Gazebo simulator
 
-It will also open a keyboard teleoperation (argument ``-k``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
+It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 
 A window like the following image should popup:
 
@@ -92,7 +92,7 @@ In order to launch the components for a **swarm of 3 drones**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -s -w -k
+    ./launch_as2.sh -s -w -t
 
 This will open a simulation for a swarm of 3 drones alongside the Aerostack2 components necessary for the mission execution.
 
@@ -104,7 +104,7 @@ A window like the following image should open.
    
    Ignition Gazebo simulator
 
-It will also open a keyboard teleoperation (argument ``-k``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
+It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 
 A window like the following image should popup:
 
@@ -145,7 +145,7 @@ In order to launch the components for a **single drone** with **optical flow**, 
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -k
+    ./launch_as2.sh -e raw_odometry -t
 
 Before launching the components with **mocap**, it is also necessary to set the file ``real_config/swarm_config_file.yaml``. This file will be used by the state estimator mocap plugin to 
 get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
@@ -154,7 +154,7 @@ In order to launch the components for a **single drone** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e mocap -k
+    ./launch_as2.sh -e mocap -t
 
 To start the mission for a **single drone**, go to a new terminal line and execute:
 
@@ -171,13 +171,13 @@ In order to launch the components for a **swarm of 3 drones** with **optical flo
 
 .. code-block:: bash
 
-    ./launch_as2.sh -w -e raw_odometry -k
+    ./launch_as2.sh -w -e raw_odometry -t
 
 In order to launch the components for a **swarm of 3 drones** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -w -e mocap -k
+    ./launch_as2.sh -w -e mocap -t
 
 To start the mission for a **swarm of 3 drones**, go to a new terminal line and execute:
 
