@@ -68,19 +68,19 @@ In order to launch the components, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e mocap -t
+    ./launch_as2.bash -e mocap -t
 
 - For the **odometry** indoor version, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -t
+    ./launch_as2.bash -e raw_odometry -t
 
 - For the **odometry** outdoor version, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -g -t
+    ./launch_as2.bash -e raw_odometry -g -t
 
 .. note:: 
 

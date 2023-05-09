@@ -65,7 +65,7 @@ In order to launch the components for the simulated version, you have to execute
 
 .. code-block:: bash
 
-    ./launch_as2.sh -s -t
+    ./launch_as2.bash -s -t
 
 This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.
 
@@ -121,19 +121,19 @@ In order to launch the components, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e mocap -t
+    ./launch_as2.bash -e mocap -t
 
 - For the **odometry** indoor version, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -t
+    ./launch_as2.bash -e raw_odometry -t
 
 - For the **odometry** outdoor version, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -g -t
+    ./launch_as2.bash -e raw_odometry -g -t
 
 .. note:: 
 

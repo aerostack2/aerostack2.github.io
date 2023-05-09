@@ -60,7 +60,7 @@ In order to launch the components for a **single drone**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -t
+    ./launch_as2.bash -t
 
 This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.
 
@@ -113,11 +113,20 @@ In order to launch the components for using **behavior tree**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -b
+    ./launch_as2.bash -b
 
 Then, you can start the mission with:
 
-**TBD**
+.. code-block:: bash
+
+    python3 mission_behavior_tree.py
+
+To do a clean exit of tmux, execute:
+
+.. code-block:: bash
+
+    ./stop.bash
+
 
 
 
@@ -130,7 +139,7 @@ In order to launch the components for a **swarm of 3 drones**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -m -t
+    ./launch_as2.bash -m -t
 
 This will open a simulation for a swarm of drones (argument ``-m``) alongside the Aerostack2 components necessary for the mission execution.
 

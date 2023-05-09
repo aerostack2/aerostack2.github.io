@@ -74,7 +74,7 @@ In order to launch the components for a **single drone**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -s -t
+    ./launch_as2.bash -s -t
 
 This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.
 
@@ -119,7 +119,7 @@ In order to launch the components for a **swarm of 3 drones**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -s -m -t
+    ./launch_as2.bash -s -m -t
 
 This will open a simulation for a swarm (argument ``-m``) of 3 drones alongside the Aerostack2 components necessary for the mission execution.
 
@@ -172,7 +172,7 @@ In order to launch the components for a **single drone** with **optical flow**, 
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e raw_odometry -t
+    ./launch_as2.bash -e raw_odometry -t
 
 Before launching the components with **mocap**, it is also necessary to set the file ``real_config/mocap.yaml``. This file will be used by the state estimator mocap plugin to 
 get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
@@ -181,7 +181,7 @@ In order to launch the components for a **single drone** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -e mocap -t
+    ./launch_as2.bash -e mocap -t
 
 To start the mission for a **single drone**, go to a new terminal line and execute:
 
@@ -206,13 +206,13 @@ In order to launch the components for a **swarm of 3 drones** with **optical flo
 
 .. code-block:: bash
 
-    ./launch_as2.sh -m -e raw_odometry -t
+    ./launch_as2.bash -m -e raw_odometry -t
 
 In order to launch the components for a **swarm of 3 drones** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -m -e mocap -t
+    ./launch_as2.bash -m -e mocap -t
 
 To start the mission for a **swarm of 3 drones**, go to a new terminal line and execute:
 
