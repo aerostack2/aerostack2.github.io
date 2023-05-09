@@ -54,7 +54,7 @@ The flags for the components launcher are:
 .. _project_gazebo_simulated_single_drone:
 
 Single drone
-############
+============
 
 In order to launch the components for a **single drone**, do:
 
@@ -107,7 +107,7 @@ To do a clean exit of tmux, execute:
 .. _project_gazebo_simulated_behavior_tree:
 
 Behavior Tree
-#############
+=============
 
 In order to launch the components for using **behavior tree**, do:
 
@@ -133,7 +133,7 @@ To do a clean exit of tmux, execute:
 .. _project_gazebo_simulated_swarm_drones:
 
 Swarm drones
-############
+============
 
 In order to launch the components for a **swarm of 3 drones**, do:
 

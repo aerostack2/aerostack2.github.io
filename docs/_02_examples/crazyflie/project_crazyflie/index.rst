@@ -68,7 +68,7 @@ We can execute this project in simulation mode. This will open a simulation in G
 .. _project_crazyflie_simulated_single_drone:
 
 Single drone
-############
+============
 
 In order to launch the components for a **single drone**, do:
 
@@ -113,7 +113,7 @@ To do a clean exit of tmux, execute:
 .. _project_crazyflie_simulated_swarm_drones:
 
 Swarm drones
-############
+============
 
 In order to launch the components for a **swarm of 3 drones**, do:
 
@@ -166,7 +166,7 @@ It is also important to decide which state estimator to use. Currently, Aerostac
 .. _project_crazyflie_real_single_drone:
 
 Single drone
-############
+============
 
 In order to launch the components for a **single drone** with **optical flow**, do:
 
@@ -200,7 +200,7 @@ To do a clean exit of tmux, execute the following command::
 .. _project_crazyflie_real_swarm_drones:
 
 Swarm drones
-############
+============
 
 In order to launch the components for a **swarm of 3 drones** with **optical flow**, do:
 
