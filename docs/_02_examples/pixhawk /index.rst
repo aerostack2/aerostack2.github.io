@@ -11,12 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 50
    :class: with-shadow
 
-We are going to use `Aerostack2 PX4 Vision Project <https://github.com/aerostack2/project_px4_vision.git>`_ for running the examples.
-Install it by the following command:
+Every project is installed by the following command:
 
 .. code-block:: bash
 
-    as2 project -n px4_vision
+    as2 project -n project_name
 
 This will clone the project in the directory ``$AEROSTACK2_PATH/projects/``. 
 Reopen the terminal to upload the new project:
@@ -29,8 +28,11 @@ Go there by:
 
 .. code-block:: bash
 
-    as2 cd px4_vision
+    as2 cd project_name
 
 Here is the list of examples:
 
-TBD
+.. toctree::
+   :maxdepth: 1
+
+   project_px4_vision/index.rst

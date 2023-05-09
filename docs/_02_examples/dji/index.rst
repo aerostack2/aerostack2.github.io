@@ -1,8 +1,8 @@
 .. _examples_dji:
 
-==================
-DJI Matrice Series
-==================
+========
+DJI OSKD
+========
 
 For these examples we are going to use :ref:`DJI Platform <aerial_platform_dji_matrice>`. 
 You can install it following the instructions in :ref:`installation section <aerial_platform_dji_matrice_installation>`.
@@ -11,12 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 25
    :class: with-shadow
 
-We are going to use `Aerostack2 DJI Project <https://github.com/aerostack2/project_dji_matrice.git>`_ for running the examples.
-Install it by the following command:
+Every project is installed by the following command:
 
 .. code-block:: bash
 
-    as2 project -n dji_matrice
+    as2 project -n project_name
 
 This will clone the project in the directory ``$AEROSTACK2_PATH/projects/``. 
 Reopen the terminal to upload the new project:
@@ -29,8 +28,12 @@ Go there by:
 
 .. code-block:: bash
 
-    as2 cd dji_matrice
+    as2 cd project_name
 
 Here is the list of examples:
 
-TBD
+.. toctree::
+   :maxdepth: 1
+
+   project_dji_osdk/index.rst
+

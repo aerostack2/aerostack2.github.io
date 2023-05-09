@@ -1,17 +1,10 @@
 .. _project_gazebo:
 
-==============
-Project Gazebo
-==============
+=====================
+Simple Gazebo Example
+=====================
 
-This project contains the simulated version, which uses :ref:`Gazebo Platform <aerial_platform_ignition_gazebo>`. You can install it by following the instructions in :ref:`Gazebo Platform installation section <aerial_platform_ignition_gazebo_installation>`.
-To install this project, you can clone the repository with:
-
-.. code-block:: bash
-
-   git clone https://github.com/aerostack2/project_gazebo
-
-Alternatively, if you configured our :ref:`CLI <development_cli>`, you can install this project with:
+To install this project, if you configured our :ref:`CLI <development_cli>`, you can install this project with:
 
 .. code-block:: bash
 
@@ -24,7 +17,21 @@ Reopen the terminal to upload the new project:
 
     source ~/.bashrc
 
+And move there by executing:
+
+.. code-block:: bash
+
+    as2 cd project_gazebo
+
+Alternatively, you can clone the repository with:
+
+.. code-block:: bash
+
+   git clone https://github.com/aerostack2/project_gazebo
+
 To start using this project, please go to the root folder of the project.
+
+
 
 .. _project_gazebo_simulated:
 
@@ -36,9 +43,13 @@ The execution will open a simulation in Gazebo and the Aerostack2 components wil
 
 The flags for the components launcher are:
 
-- ``-w``: launch the components for the swarm.
+- ``-m``: launch the components for the swarm multiagent system.
 - ``-t``: launch keyboard teleoperation.
 - ``-r``: record rosbag.
+- ``-b``: use `Behavior Tree <https://www.behaviortree.dev/>`_.
+- ``-n``: use custom dron namespace.
+
+
 
 .. _project_gazebo_simulated_single_drone:
 
@@ -71,11 +82,44 @@ A window like the following image should popup:
    
    Keyboard teleoperation
 
-To start the mission, go to a new terminal line and execute:
+To start the mission, execute:
 
 .. code-block:: bash
 
     python3 mission.py
+
+
+
+Also, you can try the mission planner, which describes the mission in a JSON format:
+
+.. code-block:: bash
+
+    python3 mission_planner.py
+
+To do a clean exit of tmux, execute:
+
+.. code-block:: bash
+
+    ./stop.bash
+
+
+
+.. _project_gazebo_simulated_behavior_tree:
+
+Behavior Tree
+#############
+
+In order to launch the components for using **behavior tree**, do:
+
+.. code-block:: bash
+
+    ./launch_as2.sh -b
+
+Then, you can start the mission with:
+
+**TBD**
+
+
 
 .. _project_gazebo_simulated_swarm_drones:
 
@@ -86,9 +130,9 @@ In order to launch the components for a **swarm of 3 drones**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.sh -w -t
+    ./launch_as2.sh -m -t
 
-This will open a simulation for a swarm of drones alongside the Aerostack2 components necessary for the mission execution.
+This will open a simulation for a swarm of drones (argument ``-m``) alongside the Aerostack2 components necessary for the mission execution.
 
 A window like the following image should open.
 
@@ -108,8 +152,14 @@ A window like the following image should popup:
    
    Keyboard teleoperation
 
-To start the mission, go to a new terminal line and execute:
+To start the mission, execute:
 
 .. code-block:: bash
 
     python3 mission_swarm.py
+
+To do a clean exit of tmux, execute the following command with the list of the used drones:
+
+.. code-block:: bash
+
+    ./stop.bash drone0 drone1 drone2

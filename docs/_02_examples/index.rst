@@ -35,3 +35,4 @@ Basics Examples
 
    gazebo/index.rst
    crazyflie/index.rst
+   pixhawk/index.rst
