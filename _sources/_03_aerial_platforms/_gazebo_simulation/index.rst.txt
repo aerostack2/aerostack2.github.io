@@ -183,39 +183,40 @@ In order to add an aerial model with sensors attached to it to the simulated wor
 .. code-block:: json
 
   {
-    "world": "empty",
+    "world_name": "empty",
     "drones": [
         {
-            "model": "quadrotor_base",
-            "name": "drone_sim_0",
-            "xyz": [ 1.0, 1.0, 0.3 ],
-            "rpy": [ 0.0, 0.0, 0.0 ],
-            "sensors": {
-              "gps": {
-                "sensor": "gps"
+          "model_type": "quadrotor_base",
+          "model_name": "drone_sim_0",
+          "xyz": [ 1.0, 1.0, 0.3 ],
+          "rpy": [ 0.0, 0.0, 0.0 ],
+          "payload": [
+              {
+                "model_type": "gps",
+                "model_name": "gps0"
               }
-            }
+          ]
         }
     ]
   }
 
 Where:
 
-* ``world``: name of the defined world in sdf format.
+* ``world_name``: name of the defined world in sdf format.
 * ``drones``: list of drones to be included in the world.
   
 Each of the ``drones`` is defined by:
 
-* ``model``: model of the drone defined in sdf format.
-* ``name``: namespace
+* ``model_type``: model of the drone defined in sdf format.
+* ``model_name``: namespace
 * ``xyz``: spawn position
 * ``rpy``: spawn orientation 
-* ``sensors``: list of sensors attached to the model
+* ``payload``: list of sensors attached to the model
 
-Each of the ``sensors`` is defined by:
+Each element of the ``payload`` is defined by:
 
-* ``type``: name of the sensor inside de simulation (this case ``gps``)
-* ``sensor``: name of the sensor defined in sdf format.
+* ``model_type``: name of the sensor inside de simulation (this case ``gps``)
+* ``model_name``: name of the sensor defined in sdf format.
 
 New models, sensors and worlds are defined in the ``as2_ignition_assets`` package. For more information on how to create new assets, go to the `Ignition Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.
 
