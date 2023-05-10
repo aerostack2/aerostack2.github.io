@@ -16,7 +16,11 @@ Bitcraze Crazyflie
 Introduction
 ------------
 
-TDB
+Crazyflie 2.1 by Bitcraze can be found `here <https://www.bitcraze.io/products/crazyflie-2-1/>`_
+
+.. figure:: resources/Crazyflie2_0.jpeg
+   :scale: 50
+   :class: with-shadow
 
 
 
@@ -37,10 +41,11 @@ First thing to do is to configure your Crazyflie(s). In order to do that, please
 
 * Install the `cfclient <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/installation/install/>`_.
 * Setup `UDEV permissions <https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/installation/usb_permissions/>`_ for using the Crazyradio.
-* Perform a `firmware upgrade <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade>`_. For this step, if two or more crazyflies are going to be used,
-  please use a different radio address for each crazyflie. 
+* Perform a `firmware upgrade <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade>`_.
+* Configure the radio address for your crazyflie. To do this, connect your crazyflie, then open “Connect->Configure 2.X” to open the address configuration dialog.
+  Please use a different address for each crazyflie to be used in a swarm.
 
-These steps are meant to be done once. 
+These steps are meant to be done once.
 
 
 
@@ -181,4 +186,20 @@ Example of launch command with a Crazyflies with motion capture system:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py swarm_config_file:=uris_yaml_path external_odom:=false external_odom_topic:=mocap_topic_name
+  ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py swarm_config_file:=uris_yaml_path external_odom:=true external_odom_topic:=mocap_topic_name
+
+
+
+.. _aerial_platform_crazyflie_platform_examples:
+
+--------
+Examples
+--------
+
+Basic example
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   ../../_02_examples/crazyflie/project_crazyflie/index.rst
