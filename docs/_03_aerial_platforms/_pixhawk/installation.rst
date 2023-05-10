@@ -80,7 +80,7 @@ XRCE-DDS (PX4-FastDDS Bridge)
 -----------------------------
 
 For more information about XRCE-DDS, see `PX4 Autopilot XRCE-DDS bridge <https://docs.px4.io/main/en/middleware/xrce_dds.html>`_.
-For it installation, clone it into the workspace and build it using colcon:
+For its installation, clone it into the workspace and build it using colcon:
 
 .. code-block:: bash
 

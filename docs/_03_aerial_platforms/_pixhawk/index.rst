@@ -16,7 +16,7 @@ Pixhawk 4
 Introduction
 ------------
 
-PX4 is an autopilot, whihc information can be found `here <https://docs.px4.io/main/en/>`_.
+PX4 is an autopilot, which information can be found `here <https://docs.px4.io/main/en/>`_.
 
 .. figure:: resources/px4_vision.jpg
    :scale: 50

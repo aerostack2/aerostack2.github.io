@@ -47,6 +47,8 @@ First thing to do is to configure your Crazyflie(s). In order to do that, please
 
 These steps are meant to be done once.
 
+
+
 .. _aerial_platform_crazyflie_installation_package:
 
 Install platform package
@@ -97,6 +99,8 @@ These are supported control modes:
    * - Speed in a plane
      - Speed
      - ENU
+
+
 
 .. _aerial_platform_crazyflie_as2_common_interface_sensors:
 
@@ -183,6 +187,8 @@ Example of launch command with a Crazyflies with motion capture system:
 .. code-block:: bash
 
   ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py swarm_config_file:=uris_yaml_path external_odom:=true external_odom_topic:=mocap_topic_name
+
+
 
 .. _aerial_platform_crazyflie_platform_examples:
 
