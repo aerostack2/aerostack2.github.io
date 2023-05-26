@@ -17,7 +17,7 @@ Overview
 --------
 
 This tutorial shows how to create your own Controller within the AeroStack2 framework.
-You may want to remember AeroStack2 :ref:`as2_architecture` and its :ref:`as2_controller`
+You may want to remember AeroStack2 :ref:`Architecture <as2_concepts_architecture>` and its :ref:`Controller <as2_concepts_motion_controller>`
 operation.
 
 This tutorial will be a walktrough of one existing controller to easily understand its creation.

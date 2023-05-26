@@ -52,7 +52,7 @@ Install platform package
 .. _aerial_platform_dji_matrice_installation_conection:
 
 Setup connection with DJI Matrice
-================================
+=================================
 
 See `DJI Device Connection tutorial <https://developer.dji.com/onboard-sdk/documentation/quickstart/device-connection.html>`_ for connect onboard computer with Aerostack2 to DJI Matrice aircracft.
 

@@ -17,7 +17,7 @@ Overview
 --------
 
 This tutorial shows how to create your own State Estimator within the AeroStack2 framework.
-You may want to remember AeroStack2 :ref:`as2_architecture` and its :ref:`as2_estimator`
+You may want to remember AeroStack2 :ref:`Architecture <as2_concepts_architecture>` and its :ref:`State Estimator <as2_concepts_state_estimator>`
 operation.
 
 This tutorial will be a walktrough of one existing estimators to easily understand its creation.

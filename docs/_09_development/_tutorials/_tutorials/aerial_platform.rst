@@ -20,7 +20,7 @@ This tutorial shows how to create your own Aerial Platform. To understand what i
 AeroStack2 Aerial Platform, please revisit :ref:`aerial_platforms`.
 
 For better understanding, this tutorial will be a walktrough of one existing platform.
-Due to accesibility, :ref:`ign_gazebo_platform` will be the chosen one. The code used in
+Due to accesibility, :ref:`Ignition Gazebo Platform <aerial_platform_ignition_gazebo>` will be the chosen one. The code used in
 this tutorial can be found in `Github 
 <https://github.com/aerostack2/aerostack2/tree/main/as2_aerial_platforms/as2_ignition_platform>`_.
 
@@ -176,7 +176,7 @@ There is no need to call this method manually. Base class will call it after ins
 
 In this specific platform, there are no need of configure any sensors due to ros-gazebo bridge,
 which is publishing directly the sensors in ROS topics.
-You can find more information about this at :ref:`ign_gazebo_platform`.
+You can find more information about this at :ref:`Ignition Gazebo Platform <aerial_platform_ignition_gazebo>`.
 
 .. note::
 
