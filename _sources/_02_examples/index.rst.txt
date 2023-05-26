@@ -35,4 +35,5 @@ Basics Examples
 
    gazebo/index.rst
    crazyflie/index.rst
+   dji/index.rst
    pixhawk/index.rst

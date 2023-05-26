@@ -66,7 +66,7 @@ Standard Build
 Build with AS2 CLI
 ------------------
 
-Aditionally, Aerostack2 provides with a :ref:`CLI` that is able to perform Aerostack2 build operation from any directory:
+Aditionally, Aerostack2 provides with a :ref:`CLI <development_cli>` that is able to perform Aerostack2 build operation from any directory:
 
 .. code-block:: bash
 

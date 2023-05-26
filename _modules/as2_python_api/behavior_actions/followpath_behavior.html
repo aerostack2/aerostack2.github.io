@@ -98,6 +98,14 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/dji/index.html">DJI OSKD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -409,11 +417,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 
 <div class="viewcode-block" id="FollowPathBehavior.start"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">PoseWithID</span><span class="p">],</span>
-              <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+              <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span><span class="p">,</span>
               <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">FollowPath</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
-        <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span>  <span class="c1"># TODO</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="n">frame_id</span> 
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="n">yaw_msg</span> <span class="o">=</span> <span class="n">YawMode</span><span class="p">()</span>
         <span class="n">yaw_msg</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">yaw_angle</span>
@@ -423,10 +431,10 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="FollowPathBehavior.modify"><a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.modify">[docs]</a>    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">GeoPath</span><span class="p">,</span> <span class="n">PoseWithID</span><span class="p">],</span>
-               <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+               <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span><span class="p">):</span>
         <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">FollowPath</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
-        <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span>  <span class="c1"># TODO</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="n">frame_id</span> 
         <span class="n">goal_msg</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="n">yaw_msg</span> <span class="o">=</span> <span class="n">YawMode</span><span class="p">()</span>
         <span class="n">yaw_msg</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">yaw_angle</span>

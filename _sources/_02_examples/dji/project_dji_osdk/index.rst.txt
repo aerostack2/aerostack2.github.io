@@ -64,7 +64,7 @@ Also, the second one have two versions, the one to indoor flights and the one to
 
 In order to launch the components, do:
 
-- For the **odometmocapry** version, do:
+- For the **mocap** version, do:
 
 .. code-block:: bash
 
