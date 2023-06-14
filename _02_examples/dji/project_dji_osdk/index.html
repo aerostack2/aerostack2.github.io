@@ -372,30 +372,19 @@ Reopen the terminal to upload the new project:</p>
 </pre></div>
 </div>
 <p>Alternatively, you can clone the repository with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/dji_osdk
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_dji_osdk
 </pre></div>
 </div>
 <p>To start using this project, please go to the root folder of the project.</p>
 <section id="execution">
 <span id="project-dji-osdk-execution"></span><h2>Execution<a class="headerlink" href="#execution" title="Permalink to this heading"></a></h2>
-<p>The flags for the components launcher are:</p>
+<p>Available launch arguments are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code>: launch the components for the simulated version.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: use GPS localization for outdoor flight.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>: estimator type. Allowed values [<code class="docutils literal notranslate"><span class="pre">gps_odometry</span></code>, <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code>, <code class="docutils literal notranslate"><span class="pre">mocap</span></code>]. Default: <code class="docutils literal notranslate"><span class="pre">gps_odometry</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: use custom dron namespace.</p></li>
 </ul>
-<p>Arguments for the components launcher are:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>: estimator type. Allowed values [<code class="docutils literal notranslate"><span class="pre">ground_truth</span></code>, <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code>, <code class="docutils literal notranslate"><span class="pre">mocap</span></code>]. Default: <code class="docutils literal notranslate"><span class="pre">ground_truth</span></code>.</p></li>
-</ul>
-<p>Before launching the components, remember to set the correct state estimator to use. Currently, Aerostack2 supports two types of state estimators for the PX4, this are:</p>
-<ul class="simple">
-<li><p><strong>Optitrack</strong>: which uses <code class="docutils literal notranslate"><span class="pre">mocap</span></code> plugin.</p></li>
-<li><p><strong>Odometry</strong>: which uses <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code> plugin.</p></li>
-</ul>
-<p>Also, the second one have two versions, the one to indoor flights and the one to outdoor flights using GPS, that you can select with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>.</p>
 <p>In order to launch the components, do:</p>
 <ul class="simple">
 <li><p>For the <strong>mocap</strong> version, do:</p></li>
@@ -412,7 +401,7 @@ Reopen the terminal to upload the new project:</p>
 <ul class="simple">
 <li><p>For the <strong>odometry</strong> outdoor version, do:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>raw_odometry<span class="w"> </span>-g<span class="w"> </span>-t
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>gps_odometry<span class="w"> </span>-t
 </pre></div>
 </div>
 <div class="admonition note">

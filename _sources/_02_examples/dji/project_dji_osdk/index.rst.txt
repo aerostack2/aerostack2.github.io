@@ -30,7 +30,7 @@ Alternatively, you can clone the repository with:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/dji_osdk
+   git clone https://github.com/aerostack2/project_dji_osdk
 
 To start using this project, please go to the root folder of the project.
 
@@ -42,25 +42,12 @@ To start using this project, please go to the root folder of the project.
 Execution
 ---------
 
-The flags for the components launcher are:
+Available launch arguments are:
 
-- ``-s``: launch the components for the simulated version.
-- ``-g``: use GPS localization for outdoor flight.
+- ``-e``: estimator type. Allowed values [``gps_odometry``, ``raw_odometry``, ``mocap``]. Default: ``gps_odometry``.
 - ``-t``: launch keyboard teleoperation.
 - ``-r``: record rosbag.
 - ``-n``: use custom dron namespace.
-
-Arguments for the components launcher are:
-
-- ``-e``: estimator type. Allowed values [``ground_truth``, ``raw_odometry``, ``mocap``]. Default: ``ground_truth``.
-
-
-Before launching the components, remember to set the correct state estimator to use. Currently, Aerostack2 supports two types of state estimators for the PX4, this are:
-
-- **Optitrack**: which uses ``mocap`` plugin. 
-- **Odometry**: which uses ``raw_odometry`` plugin.
-
-Also, the second one have two versions, the one to indoor flights and the one to outdoor flights using GPS, that you can select with the flag ``-g``.
 
 In order to launch the components, do:
 
@@ -80,7 +67,7 @@ In order to launch the components, do:
 
 .. code-block:: bash
 
-    ./launch_as2.bash -e raw_odometry -g -t
+    ./launch_as2.bash -e gps_odometry -t
 
 .. note:: 
 
