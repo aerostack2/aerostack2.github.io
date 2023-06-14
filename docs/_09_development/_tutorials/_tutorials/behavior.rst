@@ -146,7 +146,7 @@ Behavior Client
 ---------------
 
 The client side will explained with an example in Python. However, feel free to code your Behavior
-in C++ or any other ROS2 supported language.
+in C++ or any other ROS 2 supported language.
 
 The Behavior class inherits from a common behavior handler which implements all common features to
 the AeroStack2 behaviors. Methods like ``pause``, ``resume`` or ``cancel`` are equal between behaviors,
