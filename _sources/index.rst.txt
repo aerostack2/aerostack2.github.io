@@ -12,7 +12,7 @@ Welcome to Aerostack2's documentation!
 Overview
 --------
 
-Aerostack2 is an open source software framework that helps developers design and build the control architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions (e.g., computer vision algorithms, motion controllers, self-localization and mapping methods, motion planning algorithms, etc.), built for ROS2 `Humble <https://docs.ros.org/en/humble/index.html>`_ and ROS2 `Galactic <https://docs.ros.org/en/galactic/index.html>`_.
+Aerostack2 is an open source software framework that helps developers design and build the control architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions (e.g., computer vision algorithms, motion controllers, self-localization and mapping methods, motion planning algorithms, etc.), built for ROS 2 `Humble <https://docs.ros.org/en/humble/index.html>`_ and ROS 2 `Galactic <https://docs.ros.org/en/galactic/index.html>`_.
 
 Aerostack2 is useful for building autonomous aerial systems in complex and dynamic environments and it is also a useful research tool for aerial robotics to test new algorithms and architectures.
 

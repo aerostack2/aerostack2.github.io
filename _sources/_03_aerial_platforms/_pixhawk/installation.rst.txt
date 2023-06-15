@@ -9,7 +9,7 @@ Installation Guide
    :depth: 3
    :local:
 
-You can see the `PX4 Autopilot ROS2 Guide <https://docs.px4.io/main/en/ros/ros2_comm.html>`_ for it installation, or follow the steps below.
+You can see the `PX4 Autopilot ROS 2 Guide <https://docs.px4.io/main/en/ros/ros2_comm.html>`_ for it installation, or follow the steps below.
 
 We will use a colcon workspace for the installation:
 

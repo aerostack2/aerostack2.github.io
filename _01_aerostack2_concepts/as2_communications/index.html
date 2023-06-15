@@ -373,8 +373,8 @@ In addition, there is an extra channel that communicates all the modules of the 
 <li><p><strong>Self Localization</strong>: This channel is used to send the robot localization from the state estimator.</p></li>
 <li><p><strong>Emergency</strong>: This channel is used to send the emergency messages to all the modules of the robot.</p></li>
 </ul>
-<p>All of them use <a class="reference external" href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">ROS2 topics</a> to communicate in a standard way.
-However, Aerostack2 use <a class="reference external" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html">ROS2 Tf2 Library</a> to set topics frame id.
+<p>All of them use <a class="reference external" href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">ROS 2 topics</a> to communicate in a standard way.
+However, Aerostack2 use <a class="reference external" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html">ROS 2 Tf2 Library</a> to set topics frame id.
 This feature allow to stablish messages reference frame and each agent of Aerostack2 can use it to convert the messages to the desired frame.</p>
 <section id="motion-references">
 <span id="as2-concepts-as2-communication-motion-references"></span><h2>Motion References<a class="headerlink" href="#motion-references" title="Permalink to this heading"></a></h2>
@@ -417,7 +417,7 @@ Also, external devices such as a motion capture system use this channel to send 
 <section id="self-localization">
 <span id="as2-concepts-as2-communication-self-localization"></span><h2>Self Localization<a class="headerlink" href="#self-localization" title="Permalink to this heading"></a></h2>
 <p>Aerostack2 have a standard way to publish self localization, given the robot pose and twist. The structure is: <cite>/drone_namespace/self_localization/pose</cite> and <cite>/drone_namespace/self_localization/twist</cite>.</p>
-<p>However, the recommended way to get the robot pose is using <a class="reference external" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html">ROS2 Tf2 Library</a>.</p>
+<p>However, the recommended way to get the robot pose is using <a class="reference external" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html">ROS 2 Tf2 Library</a>.</p>
 </section>
 <section id="emergency">
 <span id="as2-concepts-as2-communication-emergency"></span><h2>Emergency<a class="headerlink" href="#emergency" title="Permalink to this heading"></a></h2>

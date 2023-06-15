@@ -22,8 +22,8 @@ The objective of each channel is:
 * **Self Localization**: This channel is used to send the robot localization from the state estimator.
 * **Emergency**: This channel is used to send the emergency messages to all the modules of the robot.
 
-All of them use `ROS2 topics <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html>`__ to communicate in a standard way.
-However, Aerostack2 use `ROS2 Tf2 Library <https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html>`__ to set topics frame id.
+All of them use `ROS 2 topics <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html>`__ to communicate in a standard way.
+However, Aerostack2 use `ROS 2 Tf2 Library <https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html>`__ to set topics frame id.
 This feature allow to stablish messages reference frame and each agent of Aerostack2 can use it to convert the messages to the desired frame.
 
 
@@ -92,7 +92,7 @@ Self Localization
 
 Aerostack2 have a standard way to publish self localization, given the robot pose and twist. The structure is: `/drone_namespace/self_localization/pose` and `/drone_namespace/self_localization/twist`.
 
-However, the recommended way to get the robot pose is using `ROS2 Tf2 Library <https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html>`__.
+However, the recommended way to get the robot pose is using `ROS 2 Tf2 Library <https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html>`__.
 
 
 
