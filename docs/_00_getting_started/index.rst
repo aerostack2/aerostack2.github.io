@@ -25,7 +25,7 @@ Before the installation, you must read and accept the conditions defined by the 
 Previous dependencies
 ---------------------
 
-Make sure to have installed ROS2 via Debian Packages for `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`__ or `Galactic <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`__
+Make sure to have installed ROS 2 via Debian Packages for `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`__ or `Galactic <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`__
 
 
 
@@ -35,8 +35,8 @@ Make sure to have installed ROS2 via Debian Packages for `Humble <https://docs.r
 Ubuntu (Debian)
 ---------------
 
-Aerostack2 can be install from the Debian packages for ROS2 Humble. 
-For ROS2 Galactic, you can install Aerostack2 from source.
+Aerostack2 can be install from the Debian packages for ROS 2 Humble. 
+For ROS 2 Galactic, you can install Aerostack2 from source.
 
 .. toctree::
    :maxdepth: 1

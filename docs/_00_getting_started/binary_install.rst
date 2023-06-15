@@ -4,4 +4,4 @@
 Binary Install
 ==============
 
-Comming soon, only support ROS2 Humble.
+Comming soon, only on ROS 2 Humble.

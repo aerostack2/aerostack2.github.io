@@ -27,9 +27,9 @@ this tutorial can be found in `Github
 .. note::
 
     Just as a reminder, an aerial platform has two sides. One who deals with AeroStack2
-    communication (ROS2) and another who deals with the specific hardware platform.
+    communication (ROS 2) and another who deals with the specific hardware platform.
     Since all platforms inherit from a common parent class, the user should only focus on
-    how to communicate (send commands and receive data) with the platform hardware. ROS2
+    how to communicate (send commands and receive data) with the platform hardware. ROS 2
     communication will be done by the base class, who has all the subscribers and publishers
     needed in AeroStack2.
 
@@ -67,7 +67,7 @@ is responsible for handling the platform state machine and the platform status. 
 handles the command subscriptions and the basic platform services.
 
 The base class provides a set of virtual methods to implement a platform. It also offers 
-a group of protected attributes where the data received from the ROS2 side is received.
+a group of protected attributes where the data received from the ROS 2 side is received.
 The list of methods is presented in the table below:
 
 .. list-table:: List of Virtual Methods

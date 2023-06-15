@@ -12,7 +12,7 @@ Source Install
 Previous dependencies
 ---------------------
 
-Make sure to have installed ROS2 via Debian Packages for `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`__ or `Galactic <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`__.
+Make sure to have installed ROS 2 via Debian Packages for `Humble <https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html>`__ or `Galactic <https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html>`__.
 
 After that, make sure you have installed the following dependencies:
 
@@ -28,8 +28,8 @@ After that, make sure you have installed the following dependencies:
 Source Installation
 -------------------
 
-For using and installing Aerostack2, your ROS2 environment must be settled up. 
-If ROS2 is installed using debian packages you should source the ros2 environment before running these steps:
+For using and installing Aerostack2, your ROS 2 environment must be settled up. 
+If ROS 2 is installed using debian packages you should source the ros2 environment before running these steps:
 
 .. code-block:: bash
 
