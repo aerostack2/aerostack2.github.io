@@ -18,7 +18,7 @@ Every project in Aerostack2 uses `tmux <https://github.com/tmux/tmux/wiki>`_ and
 
 .. code-block:: bash
     
-    sudo apt install tmux tmuxinator -y
+    sudo apt install tmux tmuxinator iputils-ping -y
 
 Also, :ref:`Aerostack2 CLI <development_cli>` is used to clone and move to the different projects.
 
