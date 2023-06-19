@@ -8,26 +8,7 @@ This project contains the simulated version, which uses :ref:`Gazebo Platform <a
 the real version, which uses :ref:`Crazyflie Platform <aerial_platform_crazyflie>`. You can install them following the instructions in :ref:`Gazebo Platform installation section <aerial_platform_ignition_gazebo_installation>` and :ref:`Crazyflie Platform installation section <aerial_platform_crazyflie_installation>`.
 
 
-To install this project, if you configured our :ref:`CLI <development_cli>`, you can install this project with:
-
-.. code-block:: bash
-
-    as2 project -n crazyflie
-
-This will clone the project in the directory ``$AEROSTACK2_PATH/projects/``. 
-Reopen the terminal to upload the new project:
-
-.. code-block:: bash
-
-    source ~/.bashrc
-
-And move there by executing:
-
-.. code-block:: bash
-
-    as2 cd project_crazyflie
-
-Alternatively, you can clone the repository with:
+To install this project, please clone the repository:
 
 .. code-block:: bash
 
@@ -189,7 +170,7 @@ To start the mission for a **single drone**, go to a new terminal line and execu
 
     python3 mission.py
 
-To do a clean exit of tmux, execute the following command::
+To do a clean exit of tmux, execute the following command:
 
 .. code-block:: bash
 
