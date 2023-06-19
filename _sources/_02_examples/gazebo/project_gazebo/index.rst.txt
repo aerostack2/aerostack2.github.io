@@ -4,26 +4,7 @@
 Simple Gazebo Example
 =====================
 
-To install this project, if you configured our :ref:`CLI <development_cli>`, you can install this project with:
-
-.. code-block:: bash
-
-    as2 project -n gazebo
-
-This will clone the project in the directory ``$AEROSTACK2_PATH/projects/``. 
-Reopen the terminal to upload the new project:
-
-.. code-block:: bash
-
-    source ~/.bashrc
-
-And move there by executing:
-
-.. code-block:: bash
-
-    as2 cd project_gazebo
-
-Alternatively, you can clone the repository with:
+To install this project, clone the repository:
 
 .. code-block:: bash
 

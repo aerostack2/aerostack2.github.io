@@ -4,7 +4,8 @@
 Examples
 ========
 
-In this section, severals examples of how to use Aerostack2 are shown.
+In this section, severals examples of how to use Aerostack2 are shown. Each example is self-contained in a 
+repository, also known as **as2_project**.
 
 
 
@@ -14,14 +15,12 @@ In this section, severals examples of how to use Aerostack2 are shown.
 Prerequisites
 -------------
 
-Every project in Aerostack2 uses `tmux <https://github.com/tmux/tmux/wiki>`_ and `tmuxinator <https://github.com/tmuxinator/tmuxinator>`_ to get a more organized execution. Install it with:
+Every project in Aerostack2 uses `tmux <https://github.com/tmux/tmux/wiki>`_ 
+and `tmuxinator <https://github.com/tmuxinator/tmuxinator>`_ to get a more organized execution. Install it with:
 
 .. code-block:: bash
     
     sudo apt install tmux tmuxinator iputils-ping -y
-
-Also, :ref:`Aerostack2 CLI <development_cli>` is used to clone and move to the different projects.
-
 
 
 .. _examples_basics:

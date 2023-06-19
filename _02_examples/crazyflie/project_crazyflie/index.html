@@ -94,19 +94,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#basics-examples">Basics Examples</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../gazebo/index.html">Gazebo Simulator</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../gazebo/index.html#list-of-examples-based-on-gazebo">List of examples based on Gazebo</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Bitcraze Crazyflie</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Simple Crazyflie Example</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#list-of-examples-based-on-crazyflie">List of examples based on Crazyflie</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../dji/index.html">DJI OSKD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dji/index.html#list-of-examples-based-on-dji-osdk">List of examples based on DJI OSDK</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../pixhawk/index.html">Pixhawk 4</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../pixhawk/index.html#list-of-examples-based-on-pixhawk">List of examples based on Pixhawk</a></li>
 </ul>
 </li>
 </ul>
@@ -358,20 +358,7 @@
 <span id="project-crazyflie"></span><h1>Simple Crazyflie Example<a class="headerlink" href="#simple-crazyflie-example" title="Permalink to this heading"></a></h1>
 <p>This project contains the simulated version, which uses <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo"><span class="std std-ref">Gazebo Platform</span></a>, and
 the real version, which uses <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie"><span class="std std-ref">Crazyflie Platform</span></a>. You can install them following the instructions in <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo-installation"><span class="std std-ref">Gazebo Platform installation section</span></a> and <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie-installation"><span class="std std-ref">Crazyflie Platform installation section</span></a>.</p>
-<p>To install this project, if you configured our <a class="reference internal" href="../../../_09_development/_cli/index.html#development-cli"><span class="std std-ref">CLI</span></a>, you can install this project with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>project<span class="w"> </span>-n<span class="w"> </span>crazyflie
-</pre></div>
-</div>
-<p>This will clone the project in the directory <code class="docutils literal notranslate"><span class="pre">$AEROSTACK2_PATH/projects/</span></code>.
-Reopen the terminal to upload the new project:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</pre></div>
-</div>
-<p>And move there by executing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>project_crazyflie
-</pre></div>
-</div>
-<p>Alternatively, you can clone the repository with:</p>
+<p>To install this project, please clone the repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_crazyflie
 </pre></div>
 </div>
@@ -480,12 +467,9 @@ get the ground truth pose coming from our motion capture system into the Aerosta
 </pre></div>
 </div>
 <p>To do a clean exit of tmux, execute the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash<span class="w"> </span>cf0
 </pre></div>
 </div>
-<blockquote>
-<div><p>./stop.bash cf0</p>
-</div></blockquote>
 </section>
 <section id="project-crazyflie-real-swarm-drones">
 <span id="id2"></span><h3>Swarm drones<a class="headerlink" href="#project-crazyflie-real-swarm-drones" title="Permalink to this heading"></a></h3>
