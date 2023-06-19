@@ -18,7 +18,7 @@ After that, make sure you have installed the following dependencies:
 
 .. code-block:: bash
 
-    sudo apt install python3-rosdep python3-pip python3-colcon-common-extensions -y
+    sudo apt install git python3-rosdep python3-pip python3-colcon-common-extensions -y
 
 
 
