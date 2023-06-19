@@ -374,6 +374,7 @@ If ROS 2 is installed using debian packages you should source the ros2 environme
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/aerostack2_ws/src/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src/
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/aerostack2.git
 <span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
+sudo<span class="w"> </span>rosdep<span class="w"> </span>init
 rosdep<span class="w"> </span>update
 rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>&lt;ros2-distro&gt;
 </pre></div>
