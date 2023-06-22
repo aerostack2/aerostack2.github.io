@@ -128,6 +128,12 @@ To start the mission, execute:
 
     python3 mission_swarm.py -s
 
+To do a clean exit of tmux, execute the following command with the list of the used drones:
+
+.. code-block:: bash
+
+    ./stop.bash cf0 cf1 cf2
+
 .. _project_crazyflie_real:
 
 --------------
@@ -204,11 +210,13 @@ To start the mission for a **swarm of 3 drones**, go to a new terminal line and 
 
     python3 mission_swarm.py
 
-Here is an example of the execution of the mission with a swarm of drones:
+Here is an example of the execution of the real mission with a swarm of drones:
 
-.. image:: https://img.youtube.com/vi/BlF6rU9R8Nk&ab_channel=CVARUPM/maxresdefault.jpg
-    :alt: Gazebo swarm mission
-    :target: https://www.youtube.com/watch?v=BlF6rU9R8Nk&ab_channel=CVARUPM
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 

@@ -69,19 +69,19 @@ To start the mission, execute:
 
     python3 mission.py
 
-
-
 Also, you can try the mission planner, which describes the mission in a JSON format:
 
 .. code-block:: bash
 
     python3 mission_planner.py
 
-Here it's what it should look like:
+Here it's what the execution should look like:
 
-.. image:: https://img.youtube.com/vi/57pg6cQ1MGw&ab_channel=CVARUPM/maxresdefault.jpg
-    :alt: Gazebo simple mission
-    :target: https://www.youtube.com/watch?v=57pg6cQ1MGw&ab_channel=CVARUPM
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/57pg6cQ1MGw" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 To do a clean exit of tmux, execute:
 
@@ -154,11 +154,13 @@ To start the mission, execute:
 
     python3 mission_swarm.py
 
-Here it's what it should look like:
+Here it's what the execution should look like:
 
-.. image:: https://img.youtube.com/vi/gyOPm7apPxo&ab_channel=CVARUPM/maxresdefault.jpg
-    :alt: Gazebo swarm mission
-    :target: https://www.youtube.com/watch?v=gyOPm7apPxo&ab_channel=CVARUPM
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/gyOPm7apPxo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 
