@@ -77,6 +77,12 @@ Also, you can try the mission planner, which describes the mission in a JSON for
 
     python3 mission_planner.py
 
+Here it's what it should look like:
+
+.. image:: https://img.youtube.com/vi/57pg6cQ1MGw&ab_channel=CVARUPM/maxresdefault.jpg
+    :alt: Gazebo simple mission
+    :target: https://www.youtube.com/watch?v=57pg6cQ1MGw&ab_channel=CVARUPM
+
 To do a clean exit of tmux, execute:
 
 .. code-block:: bash
@@ -147,6 +153,12 @@ To start the mission, execute:
 .. code-block:: bash
 
     python3 mission_swarm.py
+
+Here it's what it should look like:
+
+.. image:: https://img.youtube.com/vi/gyOPm7apPxo&ab_channel=CVARUPM/maxresdefault.jpg
+    :alt: Gazebo swarm mission
+    :target: https://www.youtube.com/watch?v=gyOPm7apPxo&ab_channel=CVARUPM
 
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 

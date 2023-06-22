@@ -170,6 +170,9 @@ To start the mission for a **single drone**, go to a new terminal line and execu
 
     python3 mission.py
 
+Here is an example of the real execution of the mission with a single drone:
+
+
 To do a clean exit of tmux, execute the following command:
 
 .. code-block:: bash
@@ -200,6 +203,12 @@ To start the mission for a **swarm of 3 drones**, go to a new terminal line and 
 .. code-block:: bash
 
     python3 mission_swarm.py
+
+Here is an example of the execution of the mission with a swarm of drones:
+
+.. image:: https://img.youtube.com/vi/BlF6rU9R8Nk&ab_channel=CVARUPM/maxresdefault.jpg
+    :alt: Gazebo swarm mission
+    :target: https://www.youtube.com/watch?v=BlF6rU9R8Nk&ab_channel=CVARUPM
 
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 
