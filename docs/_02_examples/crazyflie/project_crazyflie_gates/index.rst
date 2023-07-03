@@ -1,7 +1,7 @@
-.. _project_crazyflie:
+.. _project_crazyflie_gates:
 
 ========================
-Simple Crazyflie Example
+Crazyflie Gates Example
 ========================
 
 This project contains the simulated version, which uses :ref:`Gazebo Platform <aerial_platform_ignition_gazebo>`, and 
@@ -12,13 +12,13 @@ To install this project, please clone the repository:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/project_crazyflie
+   git clone https://github.com/aerostack2/project_crazyflie_gates
 
 To start using this project, please go to the root folder of the project.
 
 
 
-.. _project_crazyflie_simulated:
+.. _project_crazyflie_gates_simulated:
 
 ---------
 Execution
@@ -46,7 +46,7 @@ We can execute this project in simulation mode. This will open a simulation in G
 
 
 
-.. _project_crazyflie_simulated_single_drone:
+.. _project_crazyflie_gates_simulated_single_drone:
 
 Single drone
 ============
@@ -61,7 +61,7 @@ This will open a simulation for a single drone alongside the Aerostack2 componen
 
 A window like the following image should open.
 
-.. figure:: images/single_drone_ign.png
+.. figure:: images/single_drone_sim.png
    :scale: 50
    :class: with-shadow
    
@@ -96,7 +96,7 @@ To do a clean exit of tmux, execute:
 Swarm drones
 ============
 
-In order to launch the components for a **swarm of 3 drones**, do:
+In order to launch the components for a **swarm of 2 drones**, do:
 
 .. code-block:: bash
 
@@ -106,7 +106,7 @@ This will open a simulation for a swarm (argument ``-m``) of 3 drones alongside 
 
 A window like the following image should open.
 
-.. figure:: images/swarm_ign.png
+.. figure:: images/swarm_sim.png
    :scale: 50
    :class: with-shadow
    
@@ -132,7 +132,7 @@ To do a clean exit of tmux, execute the following command with the list of the u
 
 .. code-block:: bash
 
-    ./stop.bash cf0 cf1 cf2
+    ./stop.bash cf0 cf1
 
 .. _project_crazyflie_real:
 
@@ -150,7 +150,7 @@ It is also important to decide which state estimator to use. Currently, Aerostac
 - **Optitrack**: which uses ``mocap`` plugin. 
 - **Optical Flow**: which uses ``raw_odometry`` plugin.
 
-.. _project_crazyflie_real_single_drone:
+.. _project_crazyflie_gates_real_single_drone:
 
 Single drone
 ============
@@ -178,6 +178,11 @@ To start the mission for a **single drone**, go to a new terminal line and execu
 
 Here is an example of the real execution of the mission with a single drone:
 
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/4XE4n07AtD4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 To do a clean exit of tmux, execute the following command:
 
@@ -192,19 +197,19 @@ To do a clean exit of tmux, execute the following command:
 Swarm drones
 ============
 
-In order to launch the components for a **swarm of 3 drones** with **optical flow**, do:
+In order to launch the components for a **swarm of 2 drones** with **optical flow**, do:
 
 .. code-block:: bash
 
     ./launch_as2.bash -m -e raw_odometry -t
 
-In order to launch the components for a **swarm of 3 drones** with **mocap**, do:
+In order to launch the components for a **swarm of 2 drones** with **mocap**, do:
 
 .. code-block:: bash
 
     ./launch_as2.bash -m -e mocap -t
 
-To start the mission for a **swarm of 3 drones**, go to a new terminal line and execute:
+To start the mission for a **swarm of 2 drones**, go to a new terminal line and execute:
 
 .. code-block:: bash
 
@@ -215,11 +220,11 @@ Here is an example of the execution of the real mission with a swarm of drones:
 .. raw:: html
 
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        <iframe src="https://www.youtube.com/embed/WLpjKAOyUC4" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
     </div>
 
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 
 .. code-block:: bash
 
-    ./stop.bash cf0 cf1 cf2
+    ./stop.bash cf0 cf1

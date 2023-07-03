@@ -11,7 +11,7 @@ To install this project, please clone the repository:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/px4_vision
+   git clone https://github.com/aerostack2/project_px4_vision
 
 To start using this project, please go to the root folder of the project.
 
