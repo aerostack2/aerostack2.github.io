@@ -19,4 +19,5 @@ List of examples based on Crazyflie
    :maxdepth: 1
 
    project_crazyflie/index.rst
+   project_crazyflie_gates/index.rst
 
