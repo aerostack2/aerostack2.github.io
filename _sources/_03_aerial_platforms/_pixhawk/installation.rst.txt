@@ -146,5 +146,5 @@ For using `PX4 Vision Autonomy Development Kit <https://docs.px4.io/main/en/comp
 
 3. Enable XRCE_DDS_0_CFG parameter in QGroundControl on the TELEM port. We use TELEM 2 port for this.
 
-4. Set up baud rate for the TELEM port. We use 921600 baud rate for this.
+4. Set up baud rate for the TELEM port. We recommend using 921600 baud rate for this.
    
