@@ -65,12 +65,12 @@ To add a C++ module to the web, follow these steps:
   PROJECT_NAME = as2_cpp_package
   INPUT = ./include/as2_cpp_package ./src
   ```
-  - Create docs/ folder inside the root folder of your project and place an index.rst with the following:
+  - Create docs/ folder inside the root folder of your package and place an index.rst with the following:
   ```
 	  as2_package
 	  ===========
 	.. doxygenindex::
-	   :project: as2_core
+	   :project: as2_package
   ```
   - Add the package name to the input aerostack2_modules to the workflow of this repository. This action will bring the package into a _folder inside the the docker OS being executed in the workflow. Example if we want to add 'as2_cpp_package':
 ``` 
