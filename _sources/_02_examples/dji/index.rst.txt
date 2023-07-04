@@ -1,7 +1,7 @@
 .. _examples_dji:
 
 ========
-DJI OSKD
+DJI OSDK
 ========
 
 These examples use the :ref:`DJI Platform <aerial_platform_dji_matrice>`. 
@@ -11,9 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 15
    :class: with-shadow
 
------------------------------------
-List of examples based on DJI OSDK
------------------------------------
+.. raw:: html
+
+   <h2>List of examples based on DJI OSDK</h2>
+
+---------------------
 
 .. toctree::
    :maxdepth: 1
