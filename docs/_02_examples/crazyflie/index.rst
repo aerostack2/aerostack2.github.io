@@ -11,9 +11,11 @@ Please, make sure to have it :ref:`installed <aerial_platform_crazyflie_installa
    :scale: 50
    :class: with-shadow
 
------------------------------------
-List of examples based on Crazyflie
------------------------------------
+.. raw:: html
+
+   <h2>List of examples based on Crazyflie</h2>
+
+---------------------
 
 .. toctree::
    :maxdepth: 1

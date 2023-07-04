@@ -11,9 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 30
    :class: with-shadow
 
----------------------------------
-List of examples based on Pixhawk
----------------------------------
+.. raw:: html
+
+   <h2>List of examples based on Pixhawk</h2>
+
+---------------------
 
 .. toctree::
    :maxdepth: 1
