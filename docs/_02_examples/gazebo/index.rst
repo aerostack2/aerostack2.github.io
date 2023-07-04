@@ -11,9 +11,11 @@ You can install it following the instructions in :ref:`installation section <aer
    :scale: 50
    :class: with-shadow
 
---------------------------------
-List of examples based on Gazebo
---------------------------------
+.. raw:: html
+
+   <h2>List of examples based on Gazebo</h2>
+
+---------------------
 
 .. toctree::
    :maxdepth: 1
