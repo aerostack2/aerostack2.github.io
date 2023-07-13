@@ -146,5 +146,5 @@ Example of launch command:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_pixhawk pixhawk_launch.launch namespace:=drone1
+  ros2 launch as2_platform_pixhawk pixhawk_launch.py namespace:=drone1
 
