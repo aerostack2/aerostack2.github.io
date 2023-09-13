@@ -13,13 +13,13 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -355,42 +355,42 @@
            <div itemprop="articleBody">
              
   <section id="architecture">
-<span id="as2-concepts-architecture"></span><h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h1>
+<span id="as2-concepts-architecture"></span><h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
 <figure class="align-default" id="id1">
 <a class="with-shadow reference internal image-reference" href="../../_images/software_stack.jpg"><img alt="../../_images/software_stack.jpg" class="with-shadow" src="../../_images/software_stack.jpg" style="width: 880.5999999999999px; height: 461.99999999999994px;" /></a>
 <figcaption>
-<p><span class="caption-text">Aerostack2 architecture</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Aerostack2 architecture</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="inter-process-communication">
-<span id="as2-concepts-architecture-inter-process-communication"></span><h2>Inter-process Communication<a class="headerlink" href="#inter-process-communication" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-inter-process-communication"></span><h2>Inter-process Communication<a class="headerlink" href="#inter-process-communication" title="Link to this heading"></a></h2>
 <p>It includes components to facilitate communication between processes operating concurrently.
 These are message types for information exchange that define data structures (specific to aerial robotics) that are common to facilitate process interoperability.</p>
 </section>
 <section id="platform-and-sensors">
-<span id="as2-concepts-architecture-platform"></span><h2>Platform and Sensors<a class="headerlink" href="#platform-and-sensors" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-platform"></span><h2>Platform and Sensors<a class="headerlink" href="#platform-and-sensors" title="Link to this heading"></a></h2>
 <p>These are components that serve as interfaces with aerial platforms and sensors.
 Aerostack has several interfaces that allow operating with both physical platforms (e.g., with Pixhawk or with DJI platforms) and simulated platforms (e.g., using simulated drones with the Gazebo environment) besides different kinds of sensors (e.g., USB cameras, RealSense depth camera).</p>
 </section>
 <section id="robotics-functions">
-<span id="as2-concepts-architecture-robotics-functions"></span><h2>Robotics Functions<a class="headerlink" href="#robotics-functions" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-robotics-functions"></span><h2>Robotics Functions<a class="headerlink" href="#robotics-functions" title="Link to this heading"></a></h2>
 <p>Aerostack2 includes a set of software components that implement specialized algorithms corresponding to essential aerial robotics functions for autonomous operation such as state estimation, motion control and other basic functions (e.g., emergency handling, etc.).</p>
 </section>
 <section id="behaviors">
-<span id="as2-concepts-architecture-behaviors"></span><h2>Behaviors<a class="headerlink" href="#behaviors" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-behaviors"></span><h2>Behaviors<a class="headerlink" href="#behaviors" title="Link to this heading"></a></h2>
 <p>This level includes a set of components corresponding to different robot behaviors provided by Aerostack for autonomous operation.
 Each component encapsulates the algorithms used to implement a particular behavior (e.g., take off, hover, generate trajectory, etc.) together with mechanisms for execution monitoring to facilitate the specification of mission plans.
 Each behavior has a uniform interface that is common for all behaviors to facilitate its use.</p>
 </section>
 <section id="mission-control">
-<span id="as2-concepts-architecture-mission-controll"></span><h2>Mission Control<a class="headerlink" href="#mission-control" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-mission-controll"></span><h2>Mission Control<a class="headerlink" href="#mission-control" title="Link to this heading"></a></h2>
 <p>This level includes components that facilitate the specification of missions for autonomous drone operation.
 For example, behavior trees can be used to indicate and visualize with a hierarchical graphical structure the tasks performed by the drone.
 On the other hand, Aerostack also provides an API (application programming interface) that allows to specify missions in a flexible way using the Python language.
 This API makes use of another component to abstract relevant information in form of symbolic representation of beliefs. In addition, Aerostack provides tools to the user to monitor and control manually the mission execution.</p>
 </section>
 <section id="applications">
-<span id="as2-concepts-architecture-applications"></span><h2>Applications<a class="headerlink" href="#applications" title="Permalink to this heading"></a></h2>
+<span id="as2-concepts-architecture-applications"></span><h2>Applications<a class="headerlink" href="#applications" title="Link to this heading"></a></h2>
 <p>The top level corresponds to the specific applications built with the components of the lower levels.
 Aerostack has examples of applications that can serve developers as a reference and guide on how to build drones that operate autonomously.
 In addition to applications with real drones, Aerostack has multiple applications on simulated environments with varying degrees of complexity to facilitate learning this technology.</p>

@@ -13,13 +13,13 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -356,7 +356,7 @@
            <div itemprop="articleBody">
              
   <section id="writing-a-new-aerial-platform">
-<span id="development-tutorials-aerial-platforms"></span><h1>Writing a New Aerial Platform<a class="headerlink" href="#writing-a-new-aerial-platform" title="Permalink to this heading"></a></h1>
+<span id="development-tutorials-aerial-platforms"></span><h1>Writing a New Aerial Platform<a class="headerlink" href="#writing-a-new-aerial-platform" title="Link to this heading"></a></h1>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -366,7 +366,7 @@
 </ul>
 </nav>
 <section id="overview">
-<span id="development-tutorials-aerial-platforms-overview"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<span id="development-tutorials-aerial-platforms-overview"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>This tutorial shows how to create your own Aerial Platform. To understand what is an
 AeroStack2 Aerial Platform, please revisit <a class="reference internal" href="../../../_03_aerial_platforms/index.html#aerial-platforms"><span class="std std-ref">Aerial Platforms</span></a>.</p>
 <p>For better understanding, this tutorial will be a walktrough of one existing platform.
@@ -383,7 +383,7 @@ needed in AeroStack2.</p>
 </div>
 </section>
 <section id="requirements">
-<span id="development-tutorials-aerial-platforms-requirements"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<span id="development-tutorials-aerial-platforms-requirements"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>ROS 2 Humble</p></li>
 <li><p>AeroStack2</p></li>
@@ -392,9 +392,9 @@ needed in AeroStack2.</p>
 </ul>
 </section>
 <section id="tutorial-steps">
-<span id="development-tutorials-aerial-platforms-steps"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Permalink to this heading"></a></h2>
+<span id="development-tutorials-aerial-platforms-steps"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Link to this heading"></a></h2>
 <section id="abstract-class-aerial-platform">
-<span id="development-tutorials-aerial-platforms-steps-class"></span><h3>1. Abstract class, Aerial Platform<a class="headerlink" href="#abstract-class-aerial-platform" title="Permalink to this heading"></a></h3>
+<span id="development-tutorials-aerial-platforms-steps-class"></span><h3>1. Abstract class, Aerial Platform<a class="headerlink" href="#abstract-class-aerial-platform" title="Link to this heading"></a></h3>
 <p>All Aerial Platforms should inherit from a common base class <code class="docutils literal notranslate"><span class="pre">as2::AerialPlatform</span></code>, an
 extension of a <code class="docutils literal notranslate"><span class="pre">rclcpp::Node</span></code>. It provides the basic functionality for the platform and
 is responsible for handling the platform state machine and the platform status. It also
@@ -403,7 +403,7 @@ handles the command subscriptions and the basic platform services.</p>
 a group of protected attributes where the data received from the ROS 2 side is received.
 The list of methods is presented in the table below:</p>
 <table class="docutils align-default" id="id1">
-<caption><span class="caption-text">List of Virtual Methods</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">List of Virtual Methods</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Virtual method</p></th>
 <th class="head"><p>Method description</p></th>
@@ -454,7 +454,7 @@ activated the platform will stop hearing commands from AS2. USE WITH CAUTION.</p
 </table>
 <p>Besides, the group of protected attributes are:</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">List of Protected Attributes</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">List of Protected Attributes</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -482,9 +482,9 @@ activated the platform will stop hearing commands from AS2. USE WITH CAUTION.</p
 </table>
 </section>
 <section id="overriden-methods">
-<span id="development-tutorials-aerial-platforms-steps-methods"></span><h3>2. Overriden methods<a class="headerlink" href="#overriden-methods" title="Permalink to this heading"></a></h3>
+<span id="development-tutorials-aerial-platforms-steps-methods"></span><h3>2. Overriden methods<a class="headerlink" href="#overriden-methods" title="Link to this heading"></a></h3>
 <section id="class-constuctor">
-<span id="development-tutorials-aerial-platforms-steps-methods-constructor"></span><h4>Class constuctor<a class="headerlink" href="#class-constuctor" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-constructor"></span><h4>Class constuctor<a class="headerlink" href="#class-constuctor" title="Link to this heading"></a></h4>
 <p>Besides the overriden methods, it is necessary to create all the interface communication with the
 hardware specific hardware. In this case, only two publishers are needed to arm and send commands
 to de platform.</p>
@@ -502,7 +502,7 @@ to de platform.</p>
 </div>
 </section>
 <section id="sensor-configuration">
-<span id="development-tutorials-aerial-platforms-steps-methods-sensors"></span><h4>Sensor configuration<a class="headerlink" href="#sensor-configuration" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-sensors"></span><h4>Sensor configuration<a class="headerlink" href="#sensor-configuration" title="Link to this heading"></a></h4>
 <p>There is no need to call this method manually. Base class will call it after instantiation.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::configureSensors</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Not sensors used within the platform</span>
@@ -518,7 +518,7 @@ You can find more information about this at <a class="reference internal" href="
 </div>
 </section>
 <section id="control-mode">
-<span id="development-tutorials-aerial-platforms-steps-methods-control-mode"></span><h4>Control mode<a class="headerlink" href="#control-mode" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-control-mode"></span><h4>Control mode<a class="headerlink" href="#control-mode" title="Link to this heading"></a></h4>
 <p>When a control mode reach this method, it can be assumed that the control mode is supported by the
 platform (see <a class="reference internal" href="#control-modes-configuration">3. Control modes configuration</a>).</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetPlatformControlMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">control_in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -535,7 +535,7 @@ platform (see <a class="reference internal" href="#control-modes-configuration">
 </div>
 </section>
 <section id="send-command">
-<span id="development-tutorials-aerial-platforms-steps-methods-send-command"></span><h4>Send command<a class="headerlink" href="#send-command" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-send-command"></span><h4>Send command<a class="headerlink" href="#send-command" title="Link to this heading"></a></h4>
 <p>Twist msg received from <code class="docutils literal notranslate"><span class="pre">actuator_command/twist</span></code> topic is sent to the simulated drone. Before,
 current control mode is checked to send null speed if HOVER mode is active.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSendCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -566,7 +566,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="arming">
-<span id="development-tutorials-aerial-platforms-steps-methods-arm"></span><h4>Arming<a class="headerlink" href="#arming" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-arm"></span><h4>Arming<a class="headerlink" href="#arming" title="Link to this heading"></a></h4>
 <p>Send arming message to Gazebo simulator.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetArmingState</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Bool</span><span class="w"> </span><span class="n">arm_msg</span><span class="p">;</span>
@@ -579,7 +579,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="offboard">
-<span id="development-tutorials-aerial-platforms-steps-methods-offboard"></span><h4>Offboard<a class="headerlink" href="#offboard" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-offboard"></span><h4>Offboard<a class="headerlink" href="#offboard" title="Link to this heading"></a></h4>
 <p>Setting offboard mode before fly is not needed on Gazebo simulator.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetOffboardControl</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">offboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// Offboard not needed</span>
@@ -588,7 +588,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="emergency-kill-switch">
-<span id="development-tutorials-aerial-platforms-steps-methods-kill"></span><h4>Emergency kill switch<a class="headerlink" href="#emergency-kill-switch" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-kill"></span><h4>Emergency kill switch<a class="headerlink" href="#emergency-kill-switch" title="Link to this heading"></a></h4>
 <p>Disarms the drone.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownKillSwitch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ownSetArmingState</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
@@ -598,7 +598,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="emergency-stop">
-<span id="development-tutorials-aerial-platforms-steps-methods-stop"></span><h4>Emergency stop<a class="headerlink" href="#emergency-stop" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-stop"></span><h4>Emergency stop<a class="headerlink" href="#emergency-stop" title="Link to this heading"></a></h4>
 <p>Sends null speed to the drone.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownStopPlatform</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Twist</span><span class="w"> </span><span class="n">twist_msg_hover</span><span class="p">;</span>
@@ -616,7 +616,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="takeoff">
-<span id="development-tutorials-aerial-platforms-steps-methods-takeoff"></span><h4>Takeoff<a class="headerlink" href="#takeoff" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-takeoff"></span><h4>Takeoff<a class="headerlink" href="#takeoff" title="Link to this heading"></a></h4>
 <p>Gazebo simulator doesn’t not have a platform takeoff. Call platform takeoff here if supported.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownTakeoff</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Takeoff platform not enabled&quot;</span><span class="p">);</span>
@@ -626,7 +626,7 @@ specified in the platform control mode.</p>
 </div>
 </section>
 <section id="land">
-<span id="development-tutorials-aerial-platforms-steps-methods-land"></span><h4>Land<a class="headerlink" href="#land" title="Permalink to this heading"></a></h4>
+<span id="development-tutorials-aerial-platforms-steps-methods-land"></span><h4>Land<a class="headerlink" href="#land" title="Link to this heading"></a></h4>
 <p>Gazebo simulator doesn’t not have a platform land. Call platform land here if supported.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownLand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Land platform not enabled&quot;</span><span class="p">);</span>
@@ -637,7 +637,7 @@ specified in the platform control mode.</p>
 </section>
 </section>
 <section id="control-modes-configuration">
-<span id="development-tutorials-aerial-platforms-steps-control-mode"></span><h3>3. Control modes configuration<a class="headerlink" href="#control-modes-configuration" title="Permalink to this heading"></a></h3>
+<span id="development-tutorials-aerial-platforms-steps-control-mode"></span><h3>3. Control modes configuration<a class="headerlink" href="#control-modes-configuration" title="Link to this heading"></a></h3>
 <p>Valid control modes are defined in a configuration file <code class="docutils literal notranslate"><span class="pre">control_modes.yaml</span></code>. In the case of
 Gazebo simulator, only two control modes are valid:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">available_modes</span><span class="p">:</span>

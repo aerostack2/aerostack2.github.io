@@ -13,13 +13,13 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -356,7 +356,7 @@
            <div itemprop="articleBody">
              
   <section id="simple-crazyflie-example">
-<span id="project-crazyflie"></span><h1>Simple Crazyflie Example<a class="headerlink" href="#simple-crazyflie-example" title="Permalink to this heading"></a></h1>
+<span id="project-crazyflie"></span><h1>Simple Crazyflie Example<a class="headerlink" href="#simple-crazyflie-example" title="Link to this heading"></a></h1>
 <p>This project contains the simulated version, which uses <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo"><span class="std std-ref">Gazebo Platform</span></a>, and
 the real version, which uses <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie"><span class="std std-ref">Crazyflie Platform</span></a>. You can install them following the instructions in <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo-installation"><span class="std std-ref">Gazebo Platform installation section</span></a> and <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie-installation"><span class="std std-ref">Crazyflie Platform installation section</span></a>.</p>
 <p>To install this project, please clone the repository:</p>
@@ -365,7 +365,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 </div>
 <p>To start using this project, please go to the root folder of the project.</p>
 <section id="execution">
-<span id="project-crazyflie-simulated"></span><h2>Execution<a class="headerlink" href="#execution" title="Permalink to this heading"></a></h2>
+<span id="project-crazyflie-simulated"></span><h2>Execution<a class="headerlink" href="#execution" title="Link to this heading"></a></h2>
 <p>The flags for the components launcher are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code>: launch the components for the simulated version.</p></li>
@@ -380,10 +380,10 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 </ul>
 </section>
 <section id="simulated-execution">
-<h2>Simulated execution<a class="headerlink" href="#simulated-execution" title="Permalink to this heading"></a></h2>
+<h2>Simulated execution<a class="headerlink" href="#simulated-execution" title="Link to this heading"></a></h2>
 <p>We can execute this project in simulation mode. This will open a simulation in Gazebo and the Aerostack2 components will use simulation time.</p>
 <section id="single-drone">
-<span id="project-crazyflie-simulated-single-drone"></span><h3>Single drone<a class="headerlink" href="#single-drone" title="Permalink to this heading"></a></h3>
+<span id="project-crazyflie-simulated-single-drone"></span><h3>Single drone<a class="headerlink" href="#single-drone" title="Link to this heading"></a></h3>
 <p>In order to launch the components for a <strong>single drone</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-s<span class="w"> </span>-t
 </pre></div>
@@ -393,7 +393,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <figure class="align-default" id="id3">
 <a class="with-shadow reference internal image-reference" href="../../../_images/single_drone_ign.png"><img alt="../../../_images/single_drone_ign.png" class="with-shadow" src="../../../_images/single_drone_ign.png" style="width: 499.0px; height: 423.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ignition Gazebo simulator</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ignition Gazebo simulator</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>It will also open a keyboard teleoperation (argument <code class="docutils literal notranslate"><span class="pre">-t</span></code>), which you can use to teleoperate the drone with the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">aerostack2 keyboard teleoperation user interface</span></a>.</p>
@@ -401,7 +401,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <figure class="align-default" id="id4">
 <a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_teleop_view.png"><img alt="../../../_images/keyboard_teleop_view.png" class="with-shadow" src="../../../_images/keyboard_teleop_view.png" style="width: 571.0px; height: 265.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>To start the mission, go to a new terminal line and execute:</p>
@@ -414,7 +414,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 </div>
 </section>
 <section id="swarm-drones">
-<span id="project-crazyflie-simulated-swarm-drones"></span><h3>Swarm drones<a class="headerlink" href="#swarm-drones" title="Permalink to this heading"></a></h3>
+<span id="project-crazyflie-simulated-swarm-drones"></span><h3>Swarm drones<a class="headerlink" href="#swarm-drones" title="Link to this heading"></a></h3>
 <p>In order to launch the components for a <strong>swarm of 3 drones</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-s<span class="w"> </span>-m<span class="w"> </span>-t
 </pre></div>
@@ -424,7 +424,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <figure class="align-default" id="id5">
 <a class="with-shadow reference internal image-reference" href="../../../_images/swarm_ign.png"><img alt="../../../_images/swarm_ign.png" class="with-shadow" src="../../../_images/swarm_ign.png" style="width: 499.0px; height: 423.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">Ignition Gazebo simulator</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ignition Gazebo simulator</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>It will also open a keyboard teleoperation (argument <code class="docutils literal notranslate"><span class="pre">-t</span></code>), which you can use to teleoperate the swarm with the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">aerostack2 keyboard teleoperation user interface</span></a>.</p>
@@ -432,7 +432,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <figure class="align-default" id="id6">
 <a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_swarm_view.png"><img alt="../../../_images/keyboard_swarm_view.png" class="with-shadow" src="../../../_images/keyboard_swarm_view.png" style="width: 568.5px; height: 265.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>To start the mission, execute:</p>
@@ -446,7 +446,7 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 </section>
 </section>
 <section id="real-execution">
-<span id="project-crazyflie-real"></span><h2>Real execution<a class="headerlink" href="#real-execution" title="Permalink to this heading"></a></h2>
+<span id="project-crazyflie-real"></span><h2>Real execution<a class="headerlink" href="#real-execution" title="Link to this heading"></a></h2>
 <p>In order to perform a real execution of this project, it is needed to have the crazyflie(s) <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie-installation-prerequisites"><span class="std std-ref">configured</span></a> and switched on in its initial position.</p>
 <p>Before launching the components, remember to set the correct address in the file <code class="docutils literal notranslate"><span class="pre">real_config/swarm_config_file.yaml</span></code>, as indicated in <a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerial-platform-crazyflie-platform-launch"><span class="std std-ref">Platform Launch</span></a>.
 Leave only the entries for the drone(s) that will be used, even if it is only one.</p>
@@ -456,7 +456,7 @@ Leave only the entries for the drone(s) that will be used, even if it is only on
 <li><p><strong>Optical Flow</strong>: which uses <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code> plugin.</p></li>
 </ul>
 <section id="project-crazyflie-real-single-drone">
-<span id="id1"></span><h3>Single drone<a class="headerlink" href="#project-crazyflie-real-single-drone" title="Permalink to this heading"></a></h3>
+<span id="id1"></span><h3>Single drone<a class="headerlink" href="#project-crazyflie-real-single-drone" title="Link to this heading"></a></h3>
 <p>In order to launch the components for a <strong>single drone</strong> with <strong>optical flow</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>raw_odometry<span class="w"> </span>-t
 </pre></div>
@@ -478,7 +478,7 @@ get the ground truth pose coming from our motion capture system into the Aerosta
 </div>
 </section>
 <section id="project-crazyflie-real-swarm-drones">
-<span id="id2"></span><h3>Swarm drones<a class="headerlink" href="#project-crazyflie-real-swarm-drones" title="Permalink to this heading"></a></h3>
+<span id="id2"></span><h3>Swarm drones<a class="headerlink" href="#project-crazyflie-real-swarm-drones" title="Link to this heading"></a></h3>
 <p>In order to launch the components for a <strong>swarm of 3 drones</strong> with <strong>optical flow</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-m<span class="w"> </span>-e<span class="w"> </span>raw_odometry<span class="w"> </span>-t
 </pre></div>

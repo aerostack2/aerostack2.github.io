@@ -13,13 +13,13 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -355,9 +355,9 @@
            <div itemprop="articleBody">
              
   <section id="source-install">
-<span id="getting-started-ubuntu-installation-source"></span><h1>Source Install<a class="headerlink" href="#source-install" title="Permalink to this heading"></a></h1>
+<span id="getting-started-ubuntu-installation-source"></span><h1>Source Install<a class="headerlink" href="#source-install" title="Link to this heading"></a></h1>
 <section id="previous-dependencies">
-<span id="getting-started-ubuntu-installation-prerequisites"></span><h2>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Permalink to this heading"></a></h2>
+<span id="getting-started-ubuntu-installation-prerequisites"></span><h2>Previous dependencies<a class="headerlink" href="#previous-dependencies" title="Link to this heading"></a></h2>
 <p>Make sure to have installed ROS 2 via Debian Packages for <a class="reference external" href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">Humble</a> or <a class="reference external" href="https://docs.ros.org/en/galactic/Installation/Ubuntu-Install-Debians.html">Galactic</a>.</p>
 <p>After that, make sure you have installed the following dependencies:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>python3-rosdep<span class="w"> </span>python3-pip<span class="w"> </span>python3-colcon-common-extensions<span class="w"> </span>-y
@@ -365,9 +365,9 @@
 </div>
 </section>
 <section id="source-installation">
-<span id="getting-started-ubuntu-installation-source-install"></span><h2>Source Installation<a class="headerlink" href="#source-installation" title="Permalink to this heading"></a></h2>
+<span id="getting-started-ubuntu-installation-source-install"></span><h2>Source Installation<a class="headerlink" href="#source-installation" title="Link to this heading"></a></h2>
 <p>For using and installing Aerostack2, your ROS 2 environment must be settled up.
-If ROS 2 is installed using debian packages you should source the ros2 environment before running these steps:</p>
+If ROS 2 is installed using debian packages you should source the ROS 2 environment before running these steps:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/&lt;ros2-distro&gt;/setup.bash
 </pre></div>
 </div>
@@ -377,19 +377,19 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aeros
 <span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
 sudo<span class="w"> </span>rosdep<span class="w"> </span>init
 rosdep<span class="w"> </span>update
-rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>&lt;ros2-distro&gt;
+rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-r<span class="w"> </span>-q<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src
 </pre></div>
 </div>
 </section>
 <section id="standard-build">
-<span id="getting-started-ubuntu-installation-source-build"></span><h2>Standard Build<a class="headerlink" href="#standard-build" title="Permalink to this heading"></a></h2>
+<span id="getting-started-ubuntu-installation-source-build"></span><h2>Standard Build<a class="headerlink" href="#standard-build" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
 colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 </pre></div>
 </div>
 </section>
 <section id="build-with-as2-cli">
-<span id="getting-started-ubuntu-installation-source-build-cli"></span><h2>Build with AS2 CLI<a class="headerlink" href="#build-with-as2-cli" title="Permalink to this heading"></a></h2>
+<span id="getting-started-ubuntu-installation-source-build-cli"></span><h2>Build with AS2 CLI<a class="headerlink" href="#build-with-as2-cli" title="Link to this heading"></a></h2>
 <p>Aditionally, Aerostack2 provides with a <a class="reference internal" href="../_09_development/_cli/index.html#development-cli"><span class="std std-ref">CLI</span></a> that is able to perform Aerostack2 build operation from any directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export AEROSTACK2_PATH=$HOME/aerostack2_ws/src/aerostack2&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
 <span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source $AEROSTACK2_PATH/as2_cli/setup_env.bash&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc

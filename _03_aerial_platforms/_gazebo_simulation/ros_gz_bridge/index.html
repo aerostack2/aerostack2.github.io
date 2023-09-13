@@ -13,13 +13,13 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -352,7 +352,7 @@
            <div itemprop="articleBody">
              
   <section id="aerostack2-ignition-gazebo-ros-bridge">
-<span id="aerial-platform-ignition-gazebo-ros-gz-bridge"></span><h1>Aerostack2 Ignition Gazebo ROS Bridge<a class="headerlink" href="#aerostack2-ignition-gazebo-ros-bridge" title="Permalink to this heading"></a></h1>
+<span id="aerial-platform-ignition-gazebo-ros-gz-bridge"></span><h1>Aerostack2 Ignition Gazebo ROS Bridge<a class="headerlink" href="#aerostack2-ignition-gazebo-ros-bridge" title="Link to this heading"></a></h1>
 <p>Gazebo defines it’s own messages in a ROS 2 decoupled communication protocol, for instance, in order to get this data to work in ROS 2 network, we need to use a intermediate
 bridge that publish this data into ROS 2.</p>
 <p>Library <a class="reference external" href="https://github.com/gazebosim/ros_gz/tree/ros2/ros_gz_bridge">ros_gz_bridge</a> provides a network bridge which enables the exchange of messages between ROS 2 and Gazebo Transport.
@@ -361,7 +361,7 @@ As Ignition Gazebo’s architecture is based on an Entity Component System (ECS)
 Its support is limited to only certain message types. Aerostack2 uses this component’s functionality to provide message conversion.
 The ign messages regarding the robot model that are passed to ROS 2 are included in the following table:</p>
 <table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Model Bridge IGN-ROS</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Model Bridge IGN-ROS</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -397,7 +397,7 @@ The ign messages regarding the robot model that are passed to ROS 2 are included
 so we can arm the aerial robot and send speed commands from the controller. This is a unique characteristic of this platform as it is only simulated,
 ROS 2 communication tools are used to send speed commands:</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Model Bridge IGN-ROS</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Model Bridge IGN-ROS</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -425,12 +425,12 @@ ROS 2 communication tools are used to send speed commands:</p>
 </tbody>
 </table>
 <section id="sensors">
-<h2>Sensors<a class="headerlink" href="#sensors" title="Permalink to this heading"></a></h2>
+<h2>Sensors<a class="headerlink" href="#sensors" title="Link to this heading"></a></h2>
 <p>Aerostack2 is provided with different types of sensors from <a class="reference external" href="https://github.com/gazebosim/gz-sensors">Ignition Gazebo sensor library</a>. These
 sensors can be attached to models in order to simulate the physical model of the sensor in the world and its functionality.
 To get the information coming from these sensor’s Gazebo plugins, Aerostack2 brings these messages to ROS 2 like the following table indicates:</p>
 <table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Sensor Bridge IGN-ROS</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Sensor Bridge IGN-ROS</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 20%" />

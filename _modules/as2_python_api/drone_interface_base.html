@@ -12,13 +12,13 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -411,7 +411,9 @@
 <span class="kn">from</span> <span class="nn">as2_python_api.tools.utils</span> <span class="kn">import</span> <span class="n">euler_from_quaternion</span><span class="p">,</span> <span class="n">get_class_from_module</span>
 
 
-<div class="viewcode-block" id="DroneInterfaceBase"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase">[docs]</a><span class="k">class</span> <span class="nc">DroneInterfaceBase</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<div class="viewcode-block" id="DroneInterfaceBase">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase">[docs]</a>
+<span class="k">class</span> <span class="nc">DroneInterfaceBase</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface base node&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;drone0&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -469,7 +471,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 
     <span class="c1"># TODO: catch exception if module dont exist</span>
-<div class="viewcode-block" id="DroneInterfaceBase.load_module"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.load_module">[docs]</a>    <span class="k">def</span> <span class="nf">load_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DroneInterfaceBase.load_module">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.load_module">[docs]</a>
+    <span class="k">def</span> <span class="nf">load_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pkg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;load module on drone&quot;&quot;&quot;</span>
         <span class="n">kls</span> <span class="o">=</span> <span class="n">get_class_from_module</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">kls</span><span class="o">.</span><span class="n">__alias__</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
@@ -478,6 +482,7 @@
         <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">kls</span><span class="o">.</span><span class="n">__deps__</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kls</span><span class="o">.</span><span class="n">__alias__</span><span class="p">,</span> <span class="n">kls</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">drone_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -549,21 +554,30 @@
                               <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                               <span class="n">twist_msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">]</span>
 
-<div class="viewcode-block" id="DroneInterfaceBase.arm"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.arm">[docs]</a>    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DroneInterfaceBase.arm">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.arm">[docs]</a>
+    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Arm drone.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
         <span class="n">Arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.disarm"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm">[docs]</a>    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.disarm">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm">[docs]</a>
+    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Disarm drone.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.offboard"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard">[docs]</a>    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.offboard">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard">[docs]</a>
+    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable offboard mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
 
     <span class="c1"># TODO: replace with executor callbacks</span>
     <span class="k">def</span> <span class="nf">__auto_spin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -572,7 +586,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span><span class="o">.</span><span class="n">spin_once</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DroneInterfaceBase.shutdown"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DroneInterfaceBase.shutdown">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown">[docs]</a>
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Shutdown properly&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">destroy_subscription</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">info_sub</span><span class="p">)</span>
@@ -586,6 +602,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">modules</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spin_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
 
+
     <span class="k">def</span> <span class="nf">__send_emergency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">AlertEvent</span><span class="p">()</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">alert</span> <span class="o">=</span> <span class="n">alert</span>
@@ -593,26 +610,42 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">alert_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_land</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_emergency_land</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Emergency landing&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting emergency landing&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">FORCE_LAND</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_emergency_hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set controller to hover mode. You will have to take the control manually&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">FORCE_HOVER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land_to_aircraft"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_land_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_land_to_aircraft">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_emergency_land_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform emergency land&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">EMERGENCY_LAND</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover_to_aircraft"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_hover_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_hover_to_aircraft">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_emergency_hover_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform hover. BE CAREFUL, you will have to take it control manually!&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">EMERGENCY_HOVER</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_killswitch_to_aircraft"><a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft">[docs]</a>    <span class="k">def</span> <span class="nf">send_emergency_killswitch_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DroneInterfaceBase.send_emergency_killswitch_to_aircraft">
+<a class="viewcode-back" href="../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft">[docs]</a>
+    <span class="k">def</span> <span class="nf">send_emergency_killswitch_to_aircraft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Call platform stop. BE CAREFUL, motors will stop!&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">KILL_SWITCH</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__send_emergency</span><span class="p">(</span><span class="n">AlertEvent</span><span class="o">.</span><span class="n">KILL_SWITCH</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

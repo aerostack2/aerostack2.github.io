@@ -13,13 +13,13 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -355,13 +355,13 @@
            <div itemprop="articleBody">
              
   <section id="develop-guide">
-<span id="development-guide"></span><h1>Develop Guide<a class="headerlink" href="#develop-guide" title="Permalink to this heading"></a></h1>
+<span id="development-guide"></span><h1>Develop Guide<a class="headerlink" href="#develop-guide" title="Link to this heading"></a></h1>
 <p>TDB</p>
 <section id="developing-a-new-package">
-<span id="development-guide-new-pkg"></span><h2>Developing a New Package<a class="headerlink" href="#developing-a-new-package" title="Permalink to this heading"></a></h2>
+<span id="development-guide-new-pkg"></span><h2>Developing a New Package<a class="headerlink" href="#developing-a-new-package" title="Link to this heading"></a></h2>
 <p>TDB</p>
 <section id="architecture-of-a-new-package">
-<span id="development-guide-new-pkg-architecture"></span><h3>Architecture of a New Package<a class="headerlink" href="#architecture-of-a-new-package" title="Permalink to this heading"></a></h3>
+<span id="development-guide-new-pkg-architecture"></span><h3>Architecture of a New Package<a class="headerlink" href="#architecture-of-a-new-package" title="Link to this heading"></a></h3>
 <p>Every new package should have the following architecture:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">package_name</span>
 <span class="o">/</span><span class="n">include</span>
@@ -382,10 +382,10 @@
 </div>
 </section>
 <section id="code-style">
-<span id="development-guide-new-pkg-code-style"></span><h3>Code Style<a class="headerlink" href="#code-style" title="Permalink to this heading"></a></h3>
+<span id="development-guide-new-pkg-code-style"></span><h3>Code Style<a class="headerlink" href="#code-style" title="Link to this heading"></a></h3>
 <p>TDB</p>
 <section id="c">
-<span id="development-guide-new-pkg-code-style-c"></span><h4>C++<a class="headerlink" href="#c" title="Permalink to this heading"></a></h4>
+<span id="development-guide-new-pkg-code-style-c"></span><h4>C++<a class="headerlink" href="#c" title="Link to this heading"></a></h4>
 <p>Code should follows the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">google c++ style guide</a>.</p>
 <p>Every file should start with the Licence text, which looks like this:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/*********************************************************************************************</span>
@@ -427,15 +427,15 @@ The comments made in the current nodes are writing using Javadoc style.</p>
 <p>Please, do not use std::cout or similar functions to show messages in command line. Instead, use logging macros like RCLCPP_INFO from ROS logging library.</p>
 </section>
 <section id="python">
-<span id="development-guide-new-pkg-code-style-python"></span><h4>Python<a class="headerlink" href="#python" title="Permalink to this heading"></a></h4>
+<span id="development-guide-new-pkg-code-style-python"></span><h4>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h4>
 <p>TDB: PEP8</p>
 </section>
 </section>
 <section id="test">
-<span id="development-guide-new-pkg-test"></span><h3>Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h3>
+<span id="development-guide-new-pkg-test"></span><h3>Test<a class="headerlink" href="#test" title="Link to this heading"></a></h3>
 <p>TDB: How to pass tests</p>
 <section id="code-style-test">
-<span id="development-guide-new-pkg-test-style"></span><h4>Code Style Test<a class="headerlink" href="#code-style-test" title="Permalink to this heading"></a></h4>
+<span id="development-guide-new-pkg-test-style"></span><h4>Code Style Test<a class="headerlink" href="#code-style-test" title="Link to this heading"></a></h4>
 <p>A Cpp style check must be done in order to use the same style through all the packages.
 Each package must have the same <code class="docutils literal notranslate"><span class="pre">.clang-format</span></code> <a class="reference external" href="https://github.com/aerostack2/as2_node_template/blob/main/.clang-format">file</a>.</p>
 <p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code></p>
@@ -461,7 +461,7 @@ Each package must have the same <code class="docutils literal notranslate"><span
 </div>
 </section>
 <section id="code-functional-test">
-<span id="development-guide-new-pkg-test-functional"></span><h4>Code Functional Test<a class="headerlink" href="#code-functional-test" title="Permalink to this heading"></a></h4>
+<span id="development-guide-new-pkg-test-functional"></span><h4>Code Functional Test<a class="headerlink" href="#code-functional-test" title="Link to this heading"></a></h4>
 <p>In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
 GTest complete documentation about how to write your own unit tests can be found at:
 <a class="reference external" href="https://github.com/google/googletest">https://github.com/google/googletest</a></p>
@@ -522,7 +522,7 @@ GTest complete documentation about how to write your own unit tests can be found
 </div>
 </section>
 <section id="code-coverage-test">
-<span id="development-guide-new-pkg-test-coverage"></span><h4>Code Coverage Test<a class="headerlink" href="#code-coverage-test" title="Permalink to this heading"></a></h4>
+<span id="development-guide-new-pkg-test-coverage"></span><h4>Code Coverage Test<a class="headerlink" href="#code-coverage-test" title="Link to this heading"></a></h4>
 <p>TDB</p>
 </section>
 </section>
