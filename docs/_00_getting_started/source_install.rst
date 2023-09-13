@@ -29,7 +29,7 @@ Source Installation
 -------------------
 
 For using and installing Aerostack2, your ROS 2 environment must be settled up. 
-If ROS 2 is installed using debian packages you should source the ros2 environment before running these steps:
+If ROS 2 is installed using debian packages you should source the ROS 2 environment before running these steps:
 
 .. code-block:: bash
 
@@ -44,7 +44,7 @@ A new workspace for Aerostack2 will be created in order to clone the source code
     cd ~/aerostack2_ws
     sudo rosdep init
     rosdep update
-    rosdep install -y -r -q --from-paths src --ignore-src --rosdistro <ros2-distro>
+    rosdep install -y -r -q --from-paths src --ignore-src
 
 
 
