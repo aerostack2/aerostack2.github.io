@@ -408,7 +408,10 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission.py<span class="w"> </span>-s
 </pre></div>
 </div>
-<p>To do a clean exit of tmux, execute:</p>
+<p>Here is an example of the simulated execution of the mission with a single drone:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe src="https://www.youtube.com/embed/57pg6cQ1MGw" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div><p>To do a clean exit of tmux, execute:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash<span class="w"> </span>cf0
 </pre></div>
 </div>
@@ -439,7 +442,10 @@ the real version, which uses <a class="reference internal" href="../../../_03_ae
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission_swarm.py<span class="w"> </span>-s
 </pre></div>
 </div>
-<p>To do a clean exit of tmux, execute the following command with the list of the used drones:</p>
+<p>Here is an example of the simulated execution of the mission with a swarm of drones:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe src="https://www.youtube.com/embed/gyOPm7apPxo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div><p>To do a clean exit of tmux, execute the following command with the list of the used drones:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash<span class="w"> </span>cf0<span class="w"> </span>cf1<span class="w"> </span>cf2
 </pre></div>
 </div>
@@ -455,14 +461,25 @@ Leave only the entries for the drone(s) that will be used, even if it is only on
 <li><p><strong>Optitrack</strong>: which uses <code class="docutils literal notranslate"><span class="pre">mocap</span></code> plugin.</p></li>
 <li><p><strong>Optical Flow</strong>: which uses <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code> plugin.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before launching the components with <strong>mocap</strong>, it is also necessary to set the file <code class="docutils literal notranslate"><span class="pre">real_config/mocap.yaml</span></code>. This file will be used by the state estimator mocap plugin to
+get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization <a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#ros2-common-interfaces-state-estimator-topics"><span class="std std-ref">topics</span></a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In order to use motion capture system localization, please clone the intermediate component inside Aerostack2 workspace with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/mocap_optitrack
+</pre></div>
+</div>
+<p>and build it alongside the other Aerostack2 components.</p>
+</div>
 <section id="project-crazyflie-real-single-drone">
 <span id="id1"></span><h3>Single drone<a class="headerlink" href="#project-crazyflie-real-single-drone" title="Link to this heading"></a></h3>
 <p>In order to launch the components for a <strong>single drone</strong> with <strong>optical flow</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>raw_odometry<span class="w"> </span>-t
 </pre></div>
 </div>
-<p>Before launching the components with <strong>mocap</strong>, it is also necessary to set the file <code class="docutils literal notranslate"><span class="pre">real_config/mocap.yaml</span></code>. This file will be used by the state estimator mocap plugin to
-get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization <a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#ros2-common-interfaces-state-estimator-topics"><span class="std std-ref">topics</span></a>.</p>
 <p>In order to launch the components for a <strong>single drone</strong> with <strong>mocap</strong>, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>mocap<span class="w"> </span>-t
 </pre></div>

@@ -396,7 +396,9 @@
 
 <span class="kn">from</span> <span class="nn">nav_msgs.msg</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 
 
 <div class="viewcode-block" id="euler_from_quaternion">
@@ -436,7 +438,7 @@
 
 <div class="viewcode-block" id="get_class_from_module">
 <a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.get_class_from_module">[docs]</a>
-<span class="k">def</span> <span class="nf">get_class_from_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleBase</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_class_from_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ModuleBase&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get class from module name</span>
 <span class="sd">    source: https://docs.python.org/3.10/library/importlib.html#importing-programmatically</span>
 <span class="sd">    &quot;&quot;&quot;</span>

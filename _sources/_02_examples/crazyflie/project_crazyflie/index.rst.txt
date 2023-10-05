@@ -37,7 +37,6 @@ Arguments for the components launcher are:
 - ``-e``: estimator type. Allowed values [``ground_truth``, ``raw_odometry``, ``mocap``]. Default: ``ground_truth``.
 
 
-
 -------------------
 Simulated execution
 -------------------
@@ -83,13 +82,19 @@ To start the mission, go to a new terminal line and execute:
 
     python3 mission.py -s
 
+Here is an example of the simulated execution of the mission with a single drone:
+
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/57pg6cQ1MGw" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
 To do a clean exit of tmux, execute:
 
 .. code-block:: bash
 
     ./stop.bash cf0
-
-
 
 .. _project_crazyflie_simulated_swarm_drones:
 
@@ -128,6 +133,14 @@ To start the mission, execute:
 
     python3 mission_swarm.py -s
 
+Here is an example of the simulated execution of the mission with a swarm of drones:
+
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/gyOPm7apPxo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
 To do a clean exit of tmux, execute the following command with the list of the used drones:
 
 .. code-block:: bash
@@ -150,6 +163,21 @@ It is also important to decide which state estimator to use. Currently, Aerostac
 - **Optitrack**: which uses ``mocap`` plugin. 
 - **Optical Flow**: which uses ``raw_odometry`` plugin.
 
+.. note::
+
+    Before launching the components with **mocap**, it is also necessary to set the file ``real_config/mocap.yaml``. This file will be used by the state estimator mocap plugin to 
+    get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
+
+.. warning:: 
+
+    In order to use motion capture system localization, please clone the intermediate component inside Aerostack2 workspace with:
+
+    .. code-block:: bash
+
+        git clone https://github.com/aerostack2/mocap_optitrack
+
+    and build it alongside the other Aerostack2 components.
+
 .. _project_crazyflie_real_single_drone:
 
 Single drone
@@ -160,9 +188,6 @@ In order to launch the components for a **single drone** with **optical flow**, 
 .. code-block:: bash
 
     ./launch_as2.bash -e raw_odometry -t
-
-Before launching the components with **mocap**, it is also necessary to set the file ``real_config/mocap.yaml``. This file will be used by the state estimator mocap plugin to 
-get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
 
 In order to launch the components for a **single drone** with **mocap**, do:
 
