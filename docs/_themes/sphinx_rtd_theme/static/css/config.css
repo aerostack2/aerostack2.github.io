@@ -44,6 +44,11 @@ figure figcaption {
 
 .wy-side-nav-search {
     width: 320px;
+    background: #08adee !important;
+}
+
+.icon.icon-home {
+    color: #000000 !important;
 }
 
 .wy-menu-vertical {
