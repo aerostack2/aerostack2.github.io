@@ -4,7 +4,11 @@
 Welcome to Aerostack2's documentation!
 ======================================
 
+.. raw:: html
 
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/IvItNtSB-QE" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 .. _as2_docs_overview:
 
@@ -31,6 +35,12 @@ Aerostack2 is versatile for building different system configurations with variou
 * Complete modularity, allowing elements to be changed or interchanged without affecting the rest of the system. Plugin-based architecture allows to use different implementations for every tasks.
 
 * Project-oriented, allowing to install and use only the necessary packages and configurations for the application to be developed. 
+
+.. figure:: _images/Slide5.jpg
+   :scale: 70
+   :class: with-shadow
+
+   Aerostack2 architecture overview
 
 --------
 Credits
