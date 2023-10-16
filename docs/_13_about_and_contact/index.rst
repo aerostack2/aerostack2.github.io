@@ -13,7 +13,7 @@ We encourage people to use, modify and create new components to be used in Aeros
 
 Our main collaborators, currently active in the Aerostack2 development are:
 
-.. list-table:: Motion Behaviors
+.. list-table:: Collaborators
    :widths: 50 50 50
    :header-rows: 1
 
