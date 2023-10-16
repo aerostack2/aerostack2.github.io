@@ -110,7 +110,7 @@ For more information about PX4 Autopilot, see `PX4 Autopilot <https://docs.px4.i
 
    mkdir -p ~/px4_ws/thirdparties
    cd ~/px4_ws/thirdparties
-   git clone -b v1.14.0-beta2 https://github.com/PX4/PX4-Autopilot.git --recursive
+   git clone -b v1.14.0-rc2 https://github.com/PX4/PX4-Autopilot.git --recursive
 
 2. Add colcon ignore file to avoid building PX4-Autopilot with colcon
 
