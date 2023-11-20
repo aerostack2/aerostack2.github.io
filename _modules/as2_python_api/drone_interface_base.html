@@ -481,6 +481,7 @@
 
         <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">kls</span><span class="o">.</span><span class="n">__deps__</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
+
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kls</span><span class="o">.</span><span class="n">__alias__</span><span class="p">,</span> <span class="n">kls</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
 
