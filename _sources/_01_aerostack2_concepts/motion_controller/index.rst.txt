@@ -62,7 +62,7 @@ Also, the frame of each command is specified in the header of the message, allow
 
 .. _as2_concepts_motion_controller_control_modes_output:
 
-Outpu Control Modes
+Output Control Modes
 ===================
 
 Aerostack2 Motion Controller supports the following ouput control modes:

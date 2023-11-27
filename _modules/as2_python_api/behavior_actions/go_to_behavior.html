@@ -79,7 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#outpu-control-modes">Outpu Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
 </ul>
 </li>
 </ul>
@@ -413,7 +413,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span> <span class="o">=</span> <span class="n">drone</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">GoToWaypoint</span><span class="p">,</span> <span class="s1">&#39;GoToWaypointBehavior&#39;</span><span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">GoToWaypoint</span><span class="p">,</span> <span class="s1">&#39;GoToBehavior&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 
