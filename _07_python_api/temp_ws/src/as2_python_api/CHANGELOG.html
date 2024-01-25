@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Changelog for package as2_python_api &mdash; Aerostack2 1.0 documentation</title>
@@ -113,7 +113,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_03_aerial_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
@@ -354,21 +354,29 @@
   <section id="changelog-for-package-as2-python-api">
 <h1>Changelog for package as2_python_api<a class="headerlink" href="#changelog-for-package-as2-python-api" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>1.0.5 (2023-11-08)<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2>1.0.6 (2023-12-12)<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Specifying subdirectories in setup.py</p></li>
+<li><p>Takeoff and GoTo behavior renaming</p></li>
+<li><p>Contributors: Miguel Fernandez-Cortizas, pariaspe</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>1.0.5 (2023-11-08)<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Load modules from project path for mission interpreter</p></li>
 <li><p>Improve MissionUpdate message</p></li>
 <li><p>Contributors: Javilinos, RPS98, Rafael Pérez, pariaspe</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>1.0.4 (2023-08-23)<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-</section>
 <section id="id3">
-<h2>1.0.3 (2023-08-22)<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2>1.0.4 (2023-08-23)<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 </section>
 <section id="id4">
-<h2>1.0.2 (2023-08-17)<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<h2>1.0.3 (2023-08-22)<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+</section>
+<section id="id5">
+<h2>1.0.2 (2023-08-17)<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Merge pull request <a class="reference external" href="https://github.com/aerostack2/aerostack2/issues/310">#310</a> from aerostack2/executor_fixes
 Some Mission Control fixes</p></li>
@@ -406,8 +414,8 @@ added frame_id argument to go_to</p></li>
 <li><p>Contributors: Javilinos, Miguel Fernandez-Cortizas, RPS98, Rafael Pérez, Rodrigo Da Silva, pariaspe, rdasilva01</p></li>
 </ul>
 </section>
-<section id="id14">
-<h2>1.0.1 (2023-04-25)<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<section id="id15">
+<h2>1.0.1 (2023-04-25)<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Merge pull request <a class="reference external" href="https://github.com/aerostack2/aerostack2/issues/223">#223</a> from aerostack2/200-unify-maintainer-in-packagexmls
 Maintainer unified to CVAR-UPM</p></li>
@@ -421,11 +429,11 @@ Multi-frame goto</p></li>
 <li><p>Contributors: Miguel Fernandez-Cortizas, RPS98, pariaspe</p></li>
 </ul>
 </section>
-<section id="id18">
-<h2>1.0.0 (2023-03-18)<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
-</section>
 <section id="id19">
-<h2>0.2.2 (2022-12-20)<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<h2>1.0.0 (2023-03-18)<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+</section>
+<section id="id20">
+<h2>0.2.2 (2022-12-20)<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Merge pull request <a class="reference external" href="https://github.com/aerostack2/aerostack2/issues/89">#89</a> from aerostack2/python-new-name
 [as2_python_api] Renamed following naming convention</p></li>
@@ -434,8 +442,8 @@ Multi-frame goto</p></li>
 <li><p>Contributors: Miguel Fernandez-Cortizas, pariaspe</p></li>
 </ul>
 </section>
-<section id="id21">
-<h2>0.2.1 (2022-12-19)<a class="headerlink" href="#id21" title="Link to this heading"></a></h2>
+<section id="id22">
+<h2>0.2.1 (2022-12-19)<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Merge pull request <a class="reference external" href="https://github.com/aerostack2/aerostack2/issues/83">#83</a> from aerostack2/48-as2_motion_reference_handlers-make-private-basic-motion-handler-methods
 Make controller_info_callback and __set_mode privates</p></li>

@@ -4,10 +4,10 @@
 Gazebo Simulator
 ================
 
-These examples use the :ref:`Ignition Gazebo Platform <aerial_platform_ignition_gazebo>`. 
-You can install it following the instructions in :ref:`installation section <aerial_platform_ignition_gazebo>`.
+These examples use the :ref:`Gazebo Platform <aerial_platform_gazebo>`. 
+You can install it following the instructions in :ref:`installation section <aerial_platform_gazebo>`.
 
-.. figure:: resources/single_drone_ign.png
+.. figure:: resources/single_drone_gz.png
    :scale: 50
    :class: with-shadow
 

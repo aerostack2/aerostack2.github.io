@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Writing a New Aerial Platform &mdash; Aerostack2 1.0 documentation</title>
@@ -115,7 +115,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Ignition Gazebo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
@@ -370,8 +370,8 @@
 <p>This tutorial shows how to create your own Aerial Platform. To understand what is an
 AeroStack2 Aerial Platform, please revisit <a class="reference internal" href="../../../_03_aerial_platforms/index.html#aerial-platforms"><span class="std std-ref">Aerial Platforms</span></a>.</p>
 <p>For better understanding, this tutorial will be a walktrough of one existing platform.
-Due to accesibility, <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo"><span class="std std-ref">Ignition Gazebo Platform</span></a> will be the chosen one. The code used in
-this tutorial can be found in <a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_aerial_platforms/as2_ignition_platform">Github</a>.</p>
+Due to accesibility, <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-gazebo"><span class="std std-ref">Gazebo Platform</span></a> will be the chosen one. The code used in
+this tutorial can be found in <a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_aerial_platforms/as2_gazebo_platform">Github</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Just as a reminder, an aerial platform has two sides. One who deals with AeroStack2
@@ -387,7 +387,7 @@ needed in AeroStack2.</p>
 <ul class="simple">
 <li><p>ROS 2 Humble</p></li>
 <li><p>AeroStack2</p></li>
-<li><p>Gazebo Ignition Fortress</p></li>
+<li><p>Gazebo Fortress</p></li>
 <li><p>Quadrotor Gazebo model (as2_gazebo_assets, already included within AeroStack2)</p></li>
 </ul>
 </section>
@@ -488,7 +488,7 @@ activated the platform will stop hearing commands from AS2. USE WITH CAUTION.</p
 <p>Besides the overriden methods, it is necessary to create all the interface communication with the
 hardware specific hardware. In this case, only two publishers are needed to arm and send commands
 to de platform.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">IgnitionPlatform</span><span class="o">::</span><span class="n">IgnitionPlatform</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">AerialPlatform</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">GazeboPlatform</span><span class="o">::</span><span class="n">GazeboPlatform</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">AerialPlatform</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">declare_parameter</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;cmd_vel_topic&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Reading topic from launch argument</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">cmd_vel_topic_param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_parameter</span><span class="p">(</span><span class="s">&quot;cmd_vel_topic&quot;</span><span class="p">).</span><span class="n">as_string</span><span class="p">();</span>
 
@@ -504,14 +504,14 @@ to de platform.</p>
 <section id="sensor-configuration">
 <span id="development-tutorials-aerial-platforms-steps-methods-sensors"></span><h4>Sensor configuration<a class="headerlink" href="#sensor-configuration" title="Link to this heading"></a></h4>
 <p>There is no need to call this method manually. Base class will call it after instantiation.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::configureSensors</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">GazeboPlatform::configureSensors</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Not sensors used within the platform</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>In this specific platform, there are no need of configure any sensors due to ros-gazebo bridge,
 which is publishing directly the sensors in ROS topics.
-You can find more information about this at <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-ignition-gazebo"><span class="std std-ref">Ignition Gazebo Platform</span></a>.</p>
+You can find more information about this at <a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerial-platform-gazebo"><span class="std std-ref">Gazebo Platform</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>TDB</strong>: Reference how to use Sensors</p>
@@ -521,7 +521,7 @@ You can find more information about this at <a class="reference internal" href="
 <span id="development-tutorials-aerial-platforms-steps-methods-control-mode"></span><h4>Control mode<a class="headerlink" href="#control-mode" title="Link to this heading"></a></h4>
 <p>When a control mode reach this method, it can be assumed that the control mode is supported by the
 platform (see <a class="reference internal" href="#control-modes-configuration">3. Control modes configuration</a>).</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetPlatformControlMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">control_in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownSetPlatformControlMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">control_in</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Control mode: [%s]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="n">as2</span><span class="o">::</span><span class="n">control_mode</span><span class="o">::</span><span class="n">controlModeToString</span><span class="p">(</span><span class="n">control_in</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
 <span class="w">    </span><span class="n">control_in_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_in</span><span class="p">;</span><span class="w">  </span><span class="c1">// storing control mode</span>
@@ -538,7 +538,7 @@ platform (see <a class="reference internal" href="#control-modes-configuration">
 <span id="development-tutorials-aerial-platforms-steps-methods-send-command"></span><h4>Send command<a class="headerlink" href="#send-command" title="Link to this heading"></a></h4>
 <p>Twist msg received from <code class="docutils literal notranslate"><span class="pre">actuator_command/twist</span></code> topic is sent to the simulated drone. Before,
 current control mode is checked to send null speed if HOVER mode is active.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSendCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownSendCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">HOVER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Twist</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">;</span>
 <span class="w">        </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -568,7 +568,7 @@ specified in the platform control mode.</p>
 <section id="arming">
 <span id="development-tutorials-aerial-platforms-steps-methods-arm"></span><h4>Arming<a class="headerlink" href="#arming" title="Link to this heading"></a></h4>
 <p>Send arming message to Gazebo simulator.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetArmingState</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownSetArmingState</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">std_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Bool</span><span class="w"> </span><span class="n">arm_msg</span><span class="p">;</span>
 <span class="w">    </span><span class="n">arm_msg</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
 <span class="w">    </span><span class="n">arm_pub_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">arm_msg</span><span class="p">);</span>
@@ -581,7 +581,7 @@ specified in the platform control mode.</p>
 <section id="offboard">
 <span id="development-tutorials-aerial-platforms-steps-methods-offboard"></span><h4>Offboard<a class="headerlink" href="#offboard" title="Link to this heading"></a></h4>
 <p>Setting offboard mode before fly is not needed on Gazebo simulator.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownSetOffboardControl</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">offboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownSetOffboardControl</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">offboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">  </span><span class="c1">// Offboard not needed</span>
 <span class="p">}</span>
 </pre></div>
@@ -590,7 +590,7 @@ specified in the platform control mode.</p>
 <section id="emergency-kill-switch">
 <span id="development-tutorials-aerial-platforms-steps-methods-kill"></span><h4>Emergency kill switch<a class="headerlink" href="#emergency-kill-switch" title="Link to this heading"></a></h4>
 <p>Disarms the drone.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownKillSwitch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">GazeboPlatform::ownKillSwitch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ownSetArmingState</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
@@ -600,7 +600,7 @@ specified in the platform control mode.</p>
 <section id="emergency-stop">
 <span id="development-tutorials-aerial-platforms-steps-methods-stop"></span><h4>Emergency stop<a class="headerlink" href="#emergency-stop" title="Link to this heading"></a></h4>
 <p>Sends null speed to the drone.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownStopPlatform</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">GazeboPlatform::ownStopPlatform</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Twist</span><span class="w"> </span><span class="n">twist_msg_hover</span><span class="p">;</span>
 <span class="w">    </span><span class="n">twist_msg_hover</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
 <span class="w">    </span><span class="n">twist_msg_hover</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
@@ -618,7 +618,7 @@ specified in the platform control mode.</p>
 <section id="takeoff">
 <span id="development-tutorials-aerial-platforms-steps-methods-takeoff"></span><h4>Takeoff<a class="headerlink" href="#takeoff" title="Link to this heading"></a></h4>
 <p>Gazebo simulator doesn’t not have a platform takeoff. Call platform takeoff here if supported.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownTakeoff</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownTakeoff</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Takeoff platform not enabled&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>
@@ -628,7 +628,7 @@ specified in the platform control mode.</p>
 <section id="land">
 <span id="development-tutorials-aerial-platforms-steps-methods-land"></span><h4>Land<a class="headerlink" href="#land" title="Link to this heading"></a></h4>
 <p>Gazebo simulator doesn’t not have a platform land. Call platform land here if supported.</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">IgnitionPlatform::ownLand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">GazeboPlatform::ownLand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Land platform not enabled&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>

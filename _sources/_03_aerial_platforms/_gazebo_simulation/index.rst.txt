@@ -1,8 +1,8 @@
-.. _aerial_platform_ignition_gazebo:
+.. _aerial_platform_gazebo:
 
-===============
-Ignition Gazebo
-===============
+======
+Gazebo
+======
 
 .. contents:: Table of Contents
    :depth: 3
@@ -10,17 +10,17 @@ Ignition Gazebo
 
 
 
-.. _aerial_platform_ignition_gazebo_introduction:
+.. _aerial_platform_gazebo_introduction:
 
 ------------
 Introduction
 ------------
 
-For simulation purposes with `Ignition Gazebo simulator <https://gazebosim.org/api/gazebo>`__ , Aerostack2 provides with a platform that serves as an entry point for aerial robotics simulated in this environment.
+For simulation purposes with `Gazebo simulator <https://gazebosim.org/api/gazebo>`__ , Aerostack2 provides with a platform that serves as an entry point for aerial robotics simulated in this environment.
 
 
 
-.. _aerial_platform_ignition_gazebo_installation:
+.. _aerial_platform_gazebo_installation:
 
 ------------
 Installation
@@ -28,16 +28,16 @@ Installation
 
 
 
-.. _aerial_platform_ignition_gazebo_installation_prerequisites:
+.. _aerial_platform_gazebo_installation_prerequisites:
 
 Prerequisites
 =============
 
-Ignition Gazebo in Fortress version is required. For installation instructions, follow the `Ignition Gazebo Fortress installation guide <https://gazebosim.org/docs/fortress/install_ubuntu>`__.
+Gazebo in Fortress version is required. For installation instructions, follow the `Gazebo Fortress installation guide <https://gazebosim.org/docs/fortress/install_ubuntu>`__.
 
 
 
-.. _aerial_platform_ignition_gazebo_installation_package:
+.. _aerial_platform_gazebo_installation_package:
 
 Install platform package
 ========================
@@ -46,7 +46,7 @@ Install platform package
 
 .. code-block:: bash
 
-   sudo apt install ros-humble-as2-platform-ign-gazebo
+   sudo apt install ros-humble-as2-platform-gazebo
 
 .. warning:: This package is not available for binary installation yet. Cooming soon.
 
@@ -54,7 +54,7 @@ Install platform package
 
 
 
-.. _aerial_platform_ignition_gazebo_installation_assets:
+.. _aerial_platform_gazebo_installation_assets:
 
 Install simulation assets
 =========================
@@ -63,7 +63,7 @@ Install simulation assets
 
 .. code-block:: bash
 
-   sudo apt install ros-humble-as2-ign-gazebo-assets
+   sudo apt install ros-humble-as2-gazebo-assets
 
 .. warning:: This package is not available for binary installation yet. Cooming soon.
 
@@ -71,25 +71,25 @@ Install simulation assets
 
 
 
-.. _aerial_platform_ignition_gazebo_as2_common_interface:
+.. _aerial_platform_gazebo_as2_common_interface:
 
 ---------------------------
 Aerostack2 Common Interface
 ---------------------------
 
 For more details about platform control modes and sensors, see :ref:`Aerostack2 Aerial Platform Concepts <as2_concepts_aerial_platform>`.
-For more details, about bridge between Ignition Gazebo and ROS, see the :ref:`Aerostack2 Ignition Gazebo ROS Bridge <aerial_platform_ignition_gazebo_ros_gz_bridge>`.
+For more details, about bridge between Gazebo and ROS, see the :ref:`Aerostack2 Gazebo ROS Bridge <aerial_platform_gazebo_ros_gz_bridge>`.
 
 
 
-.. _aerial_platform_ignition_gazebo_as2_common_interface_control_modes:
+.. _aerial_platform_gazebo_as2_common_interface_control_modes:
 
 Control Modes
 =============
 
 These are supported control modes:
 
-.. list-table:: Control Modes Ignition Gazebo Platform
+.. list-table:: Control Modes Gazebo Platform
    :widths: 50 50 50
    :header-rows: 1
 
@@ -105,14 +105,14 @@ These are supported control modes:
 
 
 
-.. _aerial_platform_ignition_gazebo_as2_common_interface_sensors:
+.. _aerial_platform_gazebo_as2_common_interface_sensors:
 
 Sensors
 =======
 
 These are supported sensors:
   
-.. list-table:: Sensors Ignition Gazebo Platform
+.. list-table:: Sensors Gazebo Platform
    :widths: 50 50 50
    :header-rows: 1
 
@@ -152,7 +152,7 @@ These are supported sensors:
 
 
 
-.. _aerial_platform_ignition_gazebo_config_simulation:
+.. _aerial_platform_gazebo_config_simulation:
 
 -----------------
 Config Simulation
@@ -218,19 +218,19 @@ Each element of the ``payload`` is defined by:
 * ``model_type``: name of the sensor inside de simulation (this case ``gps``)
 * ``model_name``: name of the sensor defined in sdf format.
 
-New models, sensors and worlds are defined in the ``as2_ignition_assets`` package. For more information on how to create new assets, go to the `Ignition Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.
+New models, sensors and worlds are defined in the ``as2_gazebo_assets`` package. For more information on how to create new assets, go to the `Gazebo Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.
 
 
 
-.. _aerial_platform_ignition_gazebo_platform_launch:
+.. _aerial_platform_gazebo_platform_launch:
 
 ---------------
 Platform Launch
 ---------------
 
-Aerostack2 Ignition Gazebo platform provides a launch file, which parameters are:
+Aerostack2 Gazebo platform provides a launch file, which parameters are:
 
-.. list-table:: Ignition Gazebo Platform Parameters
+.. list-table:: Gazebo Platform Parameters
    :widths: 50 50 50
    :header-rows: 1
 
@@ -260,10 +260,10 @@ Example of launch command:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_ign_gazebo ign_gazebo_launch.py namespace:=drone_sim_0 config_file:=world_json_path
+  ros2 launch as2_platform_gazebo platform_gazebo_launch.py namespace:=drone_sim_0 config_file:=world_json_path
 
 For launch the simulation, run the following command:
 
 .. code-block:: bash
 
-  ros2 launch as2_ign_gazebo_assets launch_simulation.py config_file:=world_json_path
+  ros2 launch as2_gazebo_assets launch_simulation.py config_file:=world_json_path
