@@ -20,9 +20,9 @@ This tutorial shows how to create your own Aerial Platform. To understand what i
 AeroStack2 Aerial Platform, please revisit :ref:`aerial_platforms`.
 
 For better understanding, this tutorial will be a walktrough of one existing platform.
-Due to accesibility, :ref:`Ignition Gazebo Platform <aerial_platform_ignition_gazebo>` will be the chosen one. The code used in
+Due to accesibility, :ref:`Gazebo Platform <aerial_platform_gazebo>` will be the chosen one. The code used in
 this tutorial can be found in `Github 
-<https://github.com/aerostack2/aerostack2/tree/main/as2_aerial_platforms/as2_ignition_platform>`_.
+<https://github.com/aerostack2/aerostack2/tree/main/as2_aerial_platforms/as2_gazebo_platform>`_.
 
 .. note::
 
@@ -43,7 +43,7 @@ Requirements
 
 - ROS 2 Humble
 - AeroStack2
-- Gazebo Ignition Fortress
+- Gazebo Fortress
 - Quadrotor Gazebo model (as2_gazebo_assets, already included within AeroStack2)
 
 
@@ -148,7 +148,7 @@ to de platform.
 
 .. code-block:: c++
 
-    IgnitionPlatform::IgnitionPlatform() : as2::AerialPlatform() {
+    GazeboPlatform::GazeboPlatform() : as2::AerialPlatform() {
         this->declare_parameter<std::string>("cmd_vel_topic");  // Reading topic from launch argument
         std::string cmd_vel_topic_param = this->get_parameter("cmd_vel_topic").as_string();
 
@@ -170,13 +170,13 @@ There is no need to call this method manually. Base class will call it after ins
 
 .. code-block:: c++
 
-    void IgnitionPlatform::configureSensors() {
+    void GazeboPlatform::configureSensors() {
         // Not sensors used within the platform
     }
 
 In this specific platform, there are no need of configure any sensors due to ros-gazebo bridge,
 which is publishing directly the sensors in ROS topics.
-You can find more information about this at :ref:`Ignition Gazebo Platform <aerial_platform_ignition_gazebo>`.
+You can find more information about this at :ref:`Gazebo Platform <aerial_platform_gazebo>`.
 
 .. note::
 
@@ -194,7 +194,7 @@ platform (see `3. Control modes configuration`_).
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownSetPlatformControlMode(const as2_msgs::msg::ControlMode &control_in) {
+    bool GazeboPlatform::ownSetPlatformControlMode(const as2_msgs::msg::ControlMode &control_in) {
         RCLCPP_INFO(this->get_logger(), "Control mode: [%s]",
                     as2::control_mode::controlModeToString(control_in).c_str());
         control_in_ = control_in;  // storing control mode
@@ -217,7 +217,7 @@ current control mode is checked to send null speed if HOVER mode is active.
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownSendCommand() {
+    bool GazeboPlatform::ownSendCommand() {
         if (control_in_.control_mode == as2_msgs::msg::ControlMode::HOVER) {
             geometry_msgs::msg::Twist twist_msg;
             twist_msg.linear.x  = 0;
@@ -253,7 +253,7 @@ Send arming message to Gazebo simulator.
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownSetArmingState(bool state) {
+    bool GazeboPlatform::ownSetArmingState(bool state) {
         std_msgs::msg::Bool arm_msg;
         arm_msg.data = state;
         arm_pub_->publish(arm_msg);
@@ -272,7 +272,7 @@ Setting offboard mode before fly is not needed on Gazebo simulator.
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownSetOffboardControl(bool offboard) {
+    bool GazeboPlatform::ownSetOffboardControl(bool offboard) {
         return true;  // Offboard not needed
     }
 
@@ -287,7 +287,7 @@ Disarms the drone.
 
 .. code-block:: c++
 
-    void IgnitionPlatform::ownKillSwitch() {
+    void GazeboPlatform::ownKillSwitch() {
         ownSetArmingState(false);
         return;
     }
@@ -303,7 +303,7 @@ Sends null speed to the drone.
 
 .. code-block:: c++
 
-    void IgnitionPlatform::ownStopPlatform() {
+    void GazeboPlatform::ownStopPlatform() {
         geometry_msgs::msg::Twist twist_msg_hover;
         twist_msg_hover.linear.x  = 0.0;
         twist_msg_hover.linear.y  = 0.0;
@@ -327,7 +327,7 @@ Gazebo simulator doesn't not have a platform takeoff. Call platform takeoff here
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownTakeoff() {
+    bool GazeboPlatform::ownTakeoff() {
         RCLCPP_WARN(this->get_logger(), "Takeoff platform not enabled");
         return false;
     }
@@ -343,7 +343,7 @@ Gazebo simulator doesn't not have a platform land. Call platform land here if su
 
 .. code-block:: c++
 
-    bool IgnitionPlatform::ownLand() {
+    bool GazeboPlatform::ownLand() {
         RCLCPP_WARN(this->get_logger(), "Land platform not enabled");
         return false;
     }
