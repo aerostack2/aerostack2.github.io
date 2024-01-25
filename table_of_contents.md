@@ -47,7 +47,7 @@ Extended Table of Contents:
         - Python Example
         - Swarm Python Example
 03. Aerial Platform
-    - Ignition Gazebo
+    - Gazebo
         - Introduction
         - Installation
             - Prerequisites
