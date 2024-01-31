@@ -150,7 +150,40 @@ These are supported sensors:
      - sensor_measurements/{model_name}/points
      - sensor_msgs/msg/PointCloud2
 
+Gimbal
+======
 
+Gimbal is supported in simulation. These are the supported gimbal model types:
+
+.. list-table:: Gimbal Control Modes Ignition Gazebo Platform
+   :widths: 50 50 50 50
+   :header-rows: 1
+
+   * - Gimbal type
+     - Topic
+     - Type
+     - Control mode id
+   * - gimbal_speed
+     - platform/{model_name}/gimbal_command
+     - as2_msgs/msg/GimbalControl
+     - "0"
+   * - gimbal_position
+     - platform/{model_name}/gimbal_command
+     - as2_msgs/msg/GimbalControl
+     - "1"
+
+Gimbal state is published in the following topics:
+
+.. list-table:: Gimbal State Ignition Gazebo Platform
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Topic
+     - Type
+   * - sensor_measurements/{model_name}/twist
+     - geometry_msgs/msg/QuaternionStamped
+   * - sensor_measurements/{model_name}/attitude
+     - geometry_msgs/msg/QuaternionStamped
 
 .. _aerial_platform_ignition_gazebo_config_simulation:
 
@@ -194,6 +227,14 @@ In order to add an aerial model with sensors attached to it to the simulated wor
               {
                 "model_type": "gps",
                 "model_name": "gps0"
+              },
+              {
+                "model_name": "gimbal",
+                "model_type": "gimbal_speed",
+                "payload": {
+                    "model_name": "hd_camera0",
+                    "model_type": "hd_camera"
+                }
               }
           ]
         }
@@ -211,12 +252,14 @@ Each of the ``drones`` is defined by:
 * ``model_name``: namespace
 * ``xyz``: spawn position
 * ``rpy``: spawn orientation 
-* ``payload``: list of sensors attached to the model
+* ``payload``: list of sensors/gimbal attached to the model
 
 Each element of the ``payload`` is defined by:
 
-* ``model_type``: name of the sensor inside de simulation (this case ``gps``)
-* ``model_name``: name of the sensor defined in sdf format.
+* ``model_type``: name of the sensor/gimbal inside the simulation (this case ``gps`` and ``gimbal_speed``)
+* ``model_name``: name of the sensor/gimbal defined in sdf format.
+
+If a drone ``payload`` contains a gimbal, a gimbal should contain a payload which must containt a sensor.
 
 New models, sensors and worlds are defined in the ``as2_ignition_assets`` package. For more information on how to create new assets, go to the `Ignition Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.
 
