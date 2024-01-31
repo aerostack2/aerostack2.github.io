@@ -83,7 +83,7 @@ Control Modes
 
 These are supported control modes:
 
-.. list-table:: Control Modes Ignition Gazebo Platform
+.. list-table:: Control Modes Gazebo Platform
    :widths: 50 50 50
    :header-rows: 1
 
@@ -109,7 +109,7 @@ Sensors
 
 These are supported sensors:
   
-.. list-table:: Sensors Ignition Gazebo Platform
+.. list-table:: Sensors Gazebo Platform
    :widths: 50 50 50
    :header-rows: 1
 
@@ -150,7 +150,7 @@ This configuration file's path shall serve as an input to the platform launch pa
 
 Aerostack2 Crazyflie platform provides a launch file, which parameters are:
 
-.. list-table:: Ignition Gazebo Platform Parameters
+.. list-table:: Gazebo Platform Parameters
    :widths: 50 50 50
    :header-rows: 1
 

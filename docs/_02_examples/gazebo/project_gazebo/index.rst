@@ -47,11 +47,11 @@ This will open a simulation for a single drone alongside the Aerostack2 componen
 
 A window like the following image should open.
 
-.. figure:: images/single_drone_ign.png
+.. figure:: images/single_drone_gz.png
    :scale: 50
    :class: with-shadow
    
-   Ignition Gazebo simulator
+   Gazebo simulator
 
 It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 
@@ -132,11 +132,11 @@ This will open a simulation for a swarm of drones (argument ``-m``) alongside th
 
 A window like the following image should open.
 
-.. figure:: images/swarm_ign.png
+.. figure:: images/swarm_gz.png
    :scale: 50
    :class: with-shadow
    
-   Ignition Gazebo simulator
+   Gazebo simulator
 
 It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 

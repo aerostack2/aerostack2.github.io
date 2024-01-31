@@ -4,8 +4,8 @@
 Simple Crazyflie Example
 ========================
 
-This project contains the simulated version, which uses :ref:`Gazebo Platform <aerial_platform_ignition_gazebo>`, and 
-the real version, which uses :ref:`Crazyflie Platform <aerial_platform_crazyflie>`. You can install them following the instructions in :ref:`Gazebo Platform installation section <aerial_platform_ignition_gazebo_installation>` and :ref:`Crazyflie Platform installation section <aerial_platform_crazyflie_installation>`.
+This project contains the simulated version, which uses :ref:`Gazebo Platform <aerial_platform_gazebo>`, and 
+the real version, which uses :ref:`Crazyflie Platform <aerial_platform_crazyflie>`. You can install them following the instructions in :ref:`Gazebo Platform installation section <aerial_platform_gazebo_installation>` and :ref:`Crazyflie Platform installation section <aerial_platform_crazyflie_installation>`.
 
 
 To install this project, please clone the repository:
@@ -60,11 +60,11 @@ This will open a simulation for a single drone alongside the Aerostack2 componen
 
 A window like the following image should open.
 
-.. figure:: images/single_drone_ign.png
+.. figure:: images/single_drone_gz.png
    :scale: 50
    :class: with-shadow
    
-   Ignition Gazebo simulator
+   Gazebo simulator
 
 It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 
@@ -111,11 +111,11 @@ This will open a simulation for a swarm (argument ``-m``) of 3 drones alongside 
 
 A window like the following image should open.
 
-.. figure:: images/swarm_ign.png
+.. figure:: images/swarm_gz.png
    :scale: 50
    :class: with-shadow
    
-   Ignition Gazebo simulator
+   Gazebo simulator
 
 It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
 
