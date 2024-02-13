@@ -164,11 +164,11 @@ Gimbal is supported in simulation. These are the supported gimbal model types:
      - Type
      - Control mode id
    * - gimbal_speed
-     - platform/{model_name}/gimbal_command
+     - platform/{gimbal_name}/gimbal_command
      - as2_msgs/msg/GimbalControl
      - "0"
    * - gimbal_position
-     - platform/{model_name}/gimbal_command
+     - platform/{gimbal_name}/gimbal_command
      - as2_msgs/msg/GimbalControl
      - "1"
 
@@ -180,9 +180,9 @@ Gimbal state is published in the following topics:
 
    * - Topic
      - Type
-   * - sensor_measurements/{model_name}/twist
+   * - sensor_measurements/{gimbal_name}/twist
      - geometry_msgs/msg/QuaternionStamped
-   * - sensor_measurements/{model_name}/attitude
+   * - sensor_measurements/{gimbal_name}/attitude
      - geometry_msgs/msg/QuaternionStamped
 
 .. _aerial_platform_gazebo_config_simulation:
