@@ -534,12 +534,12 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </thead>
 <tbody>
 <tr class="row-even"><td><p>gimbal_speed</p></td>
-<td><p>platform/{model_name}/gimbal_command</p></td>
+<td><p>platform/{gimbal_name}/gimbal_command</p></td>
 <td><p>as2_msgs/msg/GimbalControl</p></td>
 <td><p>“0”</p></td>
 </tr>
 <tr class="row-odd"><td><p>gimbal_position</p></td>
-<td><p>platform/{model_name}/gimbal_command</p></td>
+<td><p>platform/{gimbal_name}/gimbal_command</p></td>
 <td><p>as2_msgs/msg/GimbalControl</p></td>
 <td><p>“1”</p></td>
 </tr>
@@ -558,10 +558,10 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>sensor_measurements/{model_name}/twist</p></td>
+<tr class="row-even"><td><p>sensor_measurements/{gimbal_name}/twist</p></td>
 <td><p>geometry_msgs/msg/QuaternionStamped</p></td>
 </tr>
-<tr class="row-odd"><td><p>sensor_measurements/{model_name}/attitude</p></td>
+<tr class="row-odd"><td><p>sensor_measurements/{gimbal_name}/attitude</p></td>
 <td><p>geometry_msgs/msg/QuaternionStamped</p></td>
 </tr>
 </tbody>

@@ -447,11 +447,16 @@
     <span class="c1"># check if absolute name</span>
     <span class="k">if</span> <span class="s1">&#39;module&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">module_name</span><span class="p">:</span>
         <span class="n">module_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1">_module&#39;</span>
-    <span class="n">spec</span> <span class="o">=</span> <span class="n">find_module_in_envvar</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">find_spec_in_pkg</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">find_spec_in_envvar</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Module </span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s2"> not found in AS2_MODULES_PATH&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;spec: </span><span class="si">{</span><span class="n">spec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>  <span class="c1"># get module from spec</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span>  <span class="c1"># adding manually to loaded modules</span>
-    
+
     <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>  <span class="c1"># load module</span>
 
     <span class="c1"># get class from module</span>
@@ -460,9 +465,20 @@
 
 
 
-<div class="viewcode-block" id="find_module_in_envvar">
-<a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.find_module_in_envvar">[docs]</a>
-<span class="k">def</span> <span class="nf">find_module_in_envvar</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ModuleSpec&#39;</span><span class="p">:</span>
+<div class="viewcode-block" id="find_spec_in_pkg">
+<a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.find_spec_in_pkg">[docs]</a>
+<span class="k">def</span> <span class="nf">find_spec_in_pkg</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ModuleSpec&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Search for ModuleSpec in as2_python_api package default modules folder</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spec_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;as2_python_api.modules.</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="n">spec_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">spec</span></div>
+
+
+
+<div class="viewcode-block" id="find_spec_in_envvar">
+<a class="viewcode-back" href="../../../_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.find_spec_in_envvar">[docs]</a>
+<span class="k">def</span> <span class="nf">find_spec_in_envvar</span><span class="p">(</span><span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ModuleSpec&#39;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Search for ModuleSpec in aerostack2 modules path environment variable</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">as2_modules_path_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AS2_MODULES_PATH&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
