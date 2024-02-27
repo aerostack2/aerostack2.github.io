@@ -9,6 +9,8 @@ Subpackages
 
    as2_python_api.behavior_actions
    as2_python_api.behavior_manager
+   as2_python_api.mission_interpreter
+   as2_python_api.modules
    as2_python_api.service_clients
    as2_python_api.shared_data
    as2_python_api.tools

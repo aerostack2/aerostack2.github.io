@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>as2_python_api &mdash; Aerostack2 1.0 documentation</title>
+  <title>as2_python_api.modules package &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" />
-    <link rel="next" title="as2_python_api package" href="as2_python_api.html" />
-    <link rel="prev" title="Drone Interface" href="drone_interface.html" /> 
+    <link rel="next" title="as2_python_api.service_clients package" href="as2_python_api.service_clients.html" />
+    <link rel="prev" title="as2_python_api.mission_interpreter package" href="as2_python_api.mission_interpreter.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -242,7 +242,7 @@
 <li class="toctree-l4"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">as2_python_api</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="modules.html">as2_python_api</a></li>
 </ul>
 </li>
 </ul>
@@ -346,9 +346,11 @@
       <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../../../index.html">Python API</a></li>
           <li class="breadcrumb-item"><a href="index.html">as2_python_api</a></li>
-      <li class="breadcrumb-item active">as2_python_api</li>
+          <li class="breadcrumb-item"><a href="modules.html">as2_python_api</a></li>
+          <li class="breadcrumb-item"><a href="as2_python_api.html">as2_python_api package</a></li>
+      <li class="breadcrumb-item active">as2_python_api.modules package</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_07_python_api/temp_ws/src/as2_python_api/docs/source/modules.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_07_python_api/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -356,114 +358,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="as2-python-api">
-<h1>as2_python_api<a class="headerlink" href="#as2-python-api" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="as2_python_api.html">as2_python_api package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html">as2_python_api.behavior_actions package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.behavior_handler">as2_python_api.behavior_actions.behavior_handler module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.follow_reference_behavior">as2_python_api.behavior_actions.follow_reference_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.followpath_behavior">as2_python_api.behavior_actions.followpath_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.go_to_behavior">as2_python_api.behavior_actions.go_to_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.land_behavior">as2_python_api.behavior_actions.land_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.point_gimbal_behavior">as2_python_api.behavior_actions.point_gimbal_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.takeoff_behavior">as2_python_api.behavior_actions.takeoff_behavior module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_manager.html">as2_python_api.behavior_manager package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#module-as2_python_api.behavior_manager.behavior_manager">as2_python_api.behavior_manager.behavior_manager module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#module-as2_python_api.behavior_manager">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html">as2_python_api.mission_interpreter package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2-python-api-mission-interpreter-mission-module">as2_python_api.mission_interpreter.mission module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2-python-api-mission-interpreter-mission-interpreter-module">as2_python_api.mission_interpreter.mission_interpreter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter.mission_stack">as2_python_api.mission_interpreter.mission_stack module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2-python-api-mission-interpreter-ros2-adapter-module">as2_python_api.mission_interpreter.ros2_adapter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html">as2_python_api.modules package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-dummy-module-module">as2_python_api.modules.dummy_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-follow-path-gps-module-module">as2_python_api.modules.follow_path_gps_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-follow-path-module-module">as2_python_api.modules.follow_path_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-follow-reference-module-module">as2_python_api.modules.follow_reference_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-go-to-gps-module-module">as2_python_api.modules.go_to_gps_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-go-to-module-module">as2_python_api.modules.go_to_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-gps-module-module">as2_python_api.modules.gps_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-land-module-module">as2_python_api.modules.land_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-module-base-module">as2_python_api.modules.module_base module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-motion-reference-handler-module-module">as2_python_api.modules.motion_reference_handler_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-point-gimbal-module-module">as2_python_api.modules.point_gimbal_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-rtl-module-module">as2_python_api.modules.rtl_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2-python-api-modules-takeoff-module-module">as2_python_api.modules.takeoff_module module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.service_clients.html">as2_python_api.service_clients package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.arming">as2_python_api.service_clients.arming module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.offboard">as2_python_api.service_clients.offboard module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.service_handler">as2_python_api.service_clients.service_handler module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html">as2_python_api.shared_data package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.gps_data">as2_python_api.shared_data.gps_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.orientation_data">as2_python_api.shared_data.orientation_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.platform_info_data">as2_python_api.shared_data.platform_info_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.pose_data">as2_python_api.shared_data.pose_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.position_data">as2_python_api.shared_data.position_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.twist_data">as2_python_api.shared_data.twist_data module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html">as2_python_api.tools package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.tools.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.tools.html#module-as2_python_api.tools.utils">as2_python_api.tools.utils module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.tools.html#module-as2_python_api.tools">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#as2-python-api-drone-interface-module">as2_python_api.drone_interface module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#module-as2_python_api.drone_interface_base">as2_python_api.drone_interface_base module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.arm"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.arm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.disarm()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.drone_id"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.drone_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.info"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.info</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.load_module"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.load_module()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.offboard()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.orientation"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.orientation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.position"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.position</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.send_emergency_hover()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.send_emergency_hover_to_aircraft()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.send_emergency_killswitch_to_aircraft()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.send_emergency_land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.send_emergency_land_to_aircraft()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.shutdown()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.speed"><code class="docutils literal notranslate"><span class="pre">DroneInterfaceBase.speed</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#as2-python-api-drone-interface-gps-module">as2_python_api.drone_interface_gps module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#as2-python-api-drone-interface-teleop-module">as2_python_api.drone_interface_teleop module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as2_python_api.html#module-as2_python_api">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <section id="as2-python-api-modules-package">
+<h1>as2_python_api.modules package<a class="headerlink" href="#as2-python-api-modules-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-dummy-module-module">
+<h2>as2_python_api.modules.dummy_module module<a class="headerlink" href="#as2-python-api-modules-dummy-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-follow-path-gps-module-module">
+<h2>as2_python_api.modules.follow_path_gps_module module<a class="headerlink" href="#as2-python-api-modules-follow-path-gps-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-follow-path-module-module">
+<h2>as2_python_api.modules.follow_path_module module<a class="headerlink" href="#as2-python-api-modules-follow-path-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-follow-reference-module-module">
+<h2>as2_python_api.modules.follow_reference_module module<a class="headerlink" href="#as2-python-api-modules-follow-reference-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-go-to-gps-module-module">
+<h2>as2_python_api.modules.go_to_gps_module module<a class="headerlink" href="#as2-python-api-modules-go-to-gps-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-go-to-module-module">
+<h2>as2_python_api.modules.go_to_module module<a class="headerlink" href="#as2-python-api-modules-go-to-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-gps-module-module">
+<h2>as2_python_api.modules.gps_module module<a class="headerlink" href="#as2-python-api-modules-gps-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-land-module-module">
+<h2>as2_python_api.modules.land_module module<a class="headerlink" href="#as2-python-api-modules-land-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-module-base-module">
+<h2>as2_python_api.modules.module_base module<a class="headerlink" href="#as2-python-api-modules-module-base-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-motion-reference-handler-module-module">
+<h2>as2_python_api.modules.motion_reference_handler_module module<a class="headerlink" href="#as2-python-api-modules-motion-reference-handler-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-point-gimbal-module-module">
+<h2>as2_python_api.modules.point_gimbal_module module<a class="headerlink" href="#as2-python-api-modules-point-gimbal-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-rtl-module-module">
+<h2>as2_python_api.modules.rtl_module module<a class="headerlink" href="#as2-python-api-modules-rtl-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="as2-python-api-modules-takeoff-module-module">
+<h2>as2_python_api.modules.takeoff_module module<a class="headerlink" href="#as2-python-api-modules-takeoff-module-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-as2_python_api.modules">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_python_api.modules" title="Link to this heading"></a></h2>
+</section>
 </section>
 
 
