@@ -41,7 +41,7 @@ A new workspace for Aerostack2 will be created in order to clone the source code
 
     mkdir -p ~/aerostack2_ws/src/ && cd ~/aerostack2_ws/src/ 
     git clone https://github.com/aerostack2/aerostack2.git
-    cd ~/aerostack2_ws
+    cd ~/aerostack2_ws/src
     sudo rosdep init
     rosdep update
     rosdep install -y -r -q --from-paths src --ignore-src
