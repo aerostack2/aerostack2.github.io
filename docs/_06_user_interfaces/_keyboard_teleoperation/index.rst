@@ -26,7 +26,7 @@ To install PySimpleGUI package please execute the following command.
 
 .. code-block:: bash
     
-    pip install PySimpleGUI
+    pip install pysimplegui==4.60
 
 ----------------
 Interface launch
