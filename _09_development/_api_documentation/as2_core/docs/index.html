@@ -587,14 +587,99 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform14setArmingStateEb">
+<span id="_CPPv3N3as214AerialPlatform14setArmingStateEb"></span><span id="_CPPv2N3as214AerialPlatform14setArmingStateEb"></span><span id="as2::AerialPlatform::setArmingState__b"></span><span class="target" id="classas2_1_1AerialPlatform_1ad98c2f9356712cf61d8a24296ddbe518"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setArmingState</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform14setArmingStateEb" title="Link to this definition"></a><br /></dt>
+<dd><p>Set the arm state of the platform. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> – True to arm the platform, false to disarm it. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true Armimg state setted successfully. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false Armimg state not setted successfully. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform18setOffboardControlEb">
+<span id="_CPPv3N3as214AerialPlatform18setOffboardControlEb"></span><span id="_CPPv2N3as214AerialPlatform18setOffboardControlEb"></span><span id="as2::AerialPlatform::setOffboardControl__b"></span><span class="target" id="classas2_1_1AerialPlatform_1a1a6eeef51aa4a2e8610da22bd2c0de1f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setOffboardControl</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offboard</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform18setOffboardControlEb" title="Link to this definition"></a><br /></dt>
+<dd><p>Set the offboard control mode. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>offboard</strong> – True if the offboard control mode is enabled. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true if the offboard control mode is setted properly </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false if the offboard control mode could not be setted. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE">
+<span id="_CPPv3N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE"></span><span id="_CPPv2N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE"></span><span id="as2::AerialPlatform::setPlatformControlMode__as2_msgs::msg::ControlModeCR"></span><span class="target" id="classas2_1_1AerialPlatform_1a9350f730ac4ec54b5ae5893b7ac52d23"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPlatformControlMode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">as2_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ControlMode</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Set the control mode of the platform. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – as2_msgs::msg::ControlMode message with the new control mode desired. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true If the control mode is set properly. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false If the control mode could not be set properly. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform7takeoffEv">
+<span id="_CPPv3N3as214AerialPlatform7takeoffEv"></span><span id="_CPPv2N3as214AerialPlatform7takeoffEv"></span><span id="as2::AerialPlatform::takeoff"></span><span class="target" id="classas2_1_1AerialPlatform_1a8bb5ca5787bc75cf5dcb4c3725918a9a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">takeoff</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform7takeoffEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Handles the platform takeoff command. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true Takeoff command is sended successfully. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>false Takeoff command is not sended. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform4landEv">
+<span id="_CPPv3N3as214AerialPlatform4landEv"></span><span id="_CPPv2N3as214AerialPlatform4landEv"></span><span id="as2::AerialPlatform::land"></span><span class="target" id="classas2_1_1AerialPlatform_1a874a285407adcfccc2e9fa21386cf78f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">land</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform4landEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Handles the platform landing command. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true Landing command is sended successfully. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>false Landing command is not sended. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform10alertEventERKN8as2_msgs3msg10AlertEventE">
+<span id="_CPPv3N3as214AerialPlatform10alertEventERKN8as2_msgs3msg10AlertEventE"></span><span id="_CPPv2N3as214AerialPlatform10alertEventERKN8as2_msgs3msg10AlertEventE"></span><span id="as2::AerialPlatform::alertEvent__as2_msgs::msg::AlertEventCR"></span><span class="target" id="classas2_1_1AerialPlatform_1a9377e5d9a2363b0a6768996df9412f70"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alertEvent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">as2_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AlertEvent</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform10alertEventERKN8as2_msgs3msg10AlertEventE" title="Link to this definition"></a><br /></dt>
+<dd><p>Handles the platform emergency event. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – as2_msgs::msg::AlertEvent message with the emergency event. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform11sendCommandEv">
 <span id="_CPPv3N3as214AerialPlatform11sendCommandEv"></span><span id="_CPPv2N3as214AerialPlatform11sendCommandEv"></span><span id="as2::AerialPlatform::sendCommand"></span><span class="target" id="classas2_1_1AerialPlatform_1aa0b83fb0e32a716ec30c031521c93908"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sendCommand</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform11sendCommandEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Send command to the platform. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>true if the command was sent successfully, false otherwise </p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -647,57 +732,6 @@
 <dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform10initializeEv">
 <span id="_CPPv3N3as214AerialPlatform10initializeEv"></span><span id="_CPPv2N3as214AerialPlatform10initializeEv"></span><span id="as2::AerialPlatform::initialize"></span><span class="target" id="classas2_1_1AerialPlatform_1aa503f341d763934bb2bda6917d053286"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initialize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform10initializeEv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform14setArmingStateEb">
-<span id="_CPPv3N3as214AerialPlatform14setArmingStateEb"></span><span id="_CPPv2N3as214AerialPlatform14setArmingStateEb"></span><span id="as2::AerialPlatform::setArmingState__b"></span><span class="target" id="classas2_1_1AerialPlatform_1ad98c2f9356712cf61d8a24296ddbe518"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setArmingState</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform14setArmingStateEb" title="Link to this definition"></a><br /></dt>
-<dd><p>Set the arm state of the platform. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>state</strong> – True to arm the platform, false to disarm it. </p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true Armimg state setted successfully. </p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>false Armimg state not setted successfully. </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform18setOffboardControlEb">
-<span id="_CPPv3N3as214AerialPlatform18setOffboardControlEb"></span><span id="_CPPv2N3as214AerialPlatform18setOffboardControlEb"></span><span id="as2::AerialPlatform::setOffboardControl__b"></span><span class="target" id="classas2_1_1AerialPlatform_1a1a6eeef51aa4a2e8610da22bd2c0de1f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setOffboardControl</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offboard</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform18setOffboardControlEb" title="Link to this definition"></a><br /></dt>
-<dd><p>Set the offboard control mode. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>offboard</strong> – True if the offboard control mode is enabled. </p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true if the offboard control mode is setted properly </p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>false if the offboard control mode could not be setted. </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE">
-<span id="_CPPv3N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE"></span><span id="_CPPv2N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE"></span><span id="as2::AerialPlatform::setPlatformControlMode__as2_msgs::msg::ControlModeCR"></span><span class="target" id="classas2_1_1AerialPlatform_1a9350f730ac4ec54b5ae5893b7ac52d23"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPlatformControlMode</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">as2_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ControlMode</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as214AerialPlatform22setPlatformControlModeERKN8as2_msgs3msg11ControlModeE" title="Link to this definition"></a><br /></dt>
-<dd><p>Set the control mode of the platform. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>msg</strong> – as2_msgs::msg::ControlMode message with the new control mode desired. </p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true If the control mode is set properly. </p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>false If the control mode could not be set properly. </p>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N3as214AerialPlatform16loadControlModesERKNSt6stringE">
@@ -1172,8 +1206,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEi">
-<span id="_CPPv3N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEi"></span><span id="_CPPv2N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEi"></span><span id="as2::sensors::GenericSensor::GenericSensor__ssCR.as2::NodeP.i"></span><span class="target" id="classas2_1_1sensors_1_1GenericSensor_1a29d6c772d1531b126f115f31c9f0c8fb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GenericSensor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4St" title="std"><span class="n"><span class="pre">std</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">topic_name</span></span>, <a class="reference internal" href="#_CPPv43as2" title="as2"><span class="n"><span class="pre">as2</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N3as24NodeE" title="as2::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">node_ptr</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pub_freq</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEi" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEib">
+<span id="_CPPv3N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEib"></span><span id="_CPPv2N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEib"></span><span id="as2::sensors::GenericSensor::GenericSensor__ssCR.as2::NodeP.i.b"></span><span class="target" id="classas2_1_1sensors_1_1GenericSensor_1ae8b2a42397d9e952578d8b80b86c7b70"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GenericSensor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4St" title="std"><span class="n"><span class="pre">std</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">topic_name</span></span>, <a class="reference internal" href="#_CPPv43as2" title="as2"><span class="n"><span class="pre">as2</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N3as24NodeE" title="as2::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">node_ptr</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pub_freq</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">add_sensor_measurements_base</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors13GenericSensor13GenericSensorERKNSt6stringEPN3as24NodeEib" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -1390,6 +1424,133 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N3as23gps10GpsHandler14is_origin_set_E">
 <span id="_CPPv3N3as23gps10GpsHandler14is_origin_set_E"></span><span id="_CPPv2N3as23gps10GpsHandler14is_origin_set_E"></span><span id="as2::gps::GpsHandler::is_origin_set___b"></span><span class="target" id="classas2_1_1gps_1_1GpsHandler_1ad8de1f88fe947f6dd82ad2cc42b1fca9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_origin_set_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N3as23gps10GpsHandler14is_origin_set_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruthE">
+<span id="_CPPv3N3as27sensors11GroundTruthE"></span><span id="_CPPv2N3as27sensors11GroundTruthE"></span><span id="as2::sensors::GroundTruth"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GroundTruth</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruthE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#sensor_8hpp"><span class="std std-ref">sensor.hpp</span></a>&gt;</em></div>
+<p>Class to handle the ground truth of the platform. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth11GroundTruthEPN3as24NodeEKiRKNSt6stringE">
+<span id="_CPPv3N3as27sensors11GroundTruth11GroundTruthEPN3as24NodeEKiRKNSt6stringE"></span><span id="_CPPv2N3as27sensors11GroundTruth11GroundTruthEPN3as24NodeEKiRKNSt6stringE"></span><span id="as2::sensors::GroundTruth::GroundTruth__as2::NodeP.iC.ssCR"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1affdc78139e2c3d147c13ea440ad4eec0"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GroundTruth</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv43as2" title="as2"><span class="n"><span class="pre">as2</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N3as24NodeE" title="as2::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">node_ptr</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pub_freq</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4St" title="std"><span class="n"><span class="pre">std</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">topic_name_base</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth11GroundTruthEPN3as24NodeEKiRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct a new <a class="reference internal" href="#classas2_1_1sensors_1_1GroundTruth"><span class="std std-ref">GroundTruth</span></a> object. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_ptr</strong> – Pointer to the node </p></li>
+<li><p><strong>pub_freq</strong> – Frequency to publish the data (-1 to publish every time updateData is called) </p></li>
+<li><p><strong>topic_name_base</strong> – Base name of the topics. Default is “” </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruthD0Ev">
+<span id="_CPPv3N3as27sensors11GroundTruthD0Ev"></span><span id="_CPPv2N3as27sensors11GroundTruthD0Ev"></span><span id="as2::sensors::GroundTruth::~GroundTruth"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a88dfe9aa18fa0e7eae1e10cca6e1669d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~GroundTruth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruthD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Destroy the <a class="reference internal" href="#classas2_1_1sensors_1_1GroundTruth"><span class="std std-ref">GroundTruth</span></a> object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedE">
+<span id="_CPPv3N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedE"></span><span id="_CPPv2N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedE"></span><span id="as2::sensors::GroundTruth::updateData__geometry_msgs::msg::PoseStampedCR"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1ae1813ef2aaf333166a84ef052715ed4d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updateData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedE" title="Link to this definition"></a><br /></dt>
+<dd><p>Update the data of the ground truth. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pose_msg</strong> – Pose message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg12TwistStampedE">
+<span id="_CPPv3N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg12TwistStampedE"></span><span id="_CPPv2N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg12TwistStampedE"></span><span id="as2::sensors::GroundTruth::updateData__geometry_msgs::msg::TwistStampedCR"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a85a7f571583cc8c141e9e990cdefce9a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updateData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TwistStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">twist_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg12TwistStampedE" title="Link to this definition"></a><br /></dt>
+<dd><p>Update the data of the ground truth. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>twist_msg</strong> – Twist message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedERKN13geometry_msgs3msg12TwistStampedE">
+<span id="_CPPv3N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedERKN13geometry_msgs3msg12TwistStampedE"></span><span id="_CPPv2N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedERKN13geometry_msgs3msg12TwistStampedE"></span><span id="as2::sensors::GroundTruth::updateData__geometry_msgs::msg::PoseStampedCR.geometry_msgs::msg::TwistStampedCR"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a4e91a8fcd670a350665ec5c4bb306e41"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">updateData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose_msg</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TwistStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">twist_msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth10updateDataERKN13geometry_msgs3msg11PoseStampedERKN13geometry_msgs3msg12TwistStampedE" title="Link to this definition"></a><br /></dt>
+<dd><p>Update the data of the ground truth. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose_msg</strong> – Pose message </p></li>
+<li><p><strong>twist_msg</strong> – Twist message </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3as27sensors11GroundTruth13timerCallbackEv">
+<span id="_CPPv3NK3as27sensors11GroundTruth13timerCallbackEv"></span><span id="_CPPv2NK3as27sensors11GroundTruth13timerCallbackEv"></span><span id="as2::sensors::GroundTruth::timerCallbackC"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a74a5a9f152e0b704ecf7102ce6ece479"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timerCallback</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK3as27sensors11GroundTruth13timerCallbackEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback function for the timer. Publishes the data. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3as27sensors11GroundTruth11publishPoseEv">
+<span id="_CPPv3NK3as27sensors11GroundTruth11publishPoseEv"></span><span id="_CPPv2NK3as27sensors11GroundTruth11publishPoseEv"></span><span id="as2::sensors::GroundTruth::publishPoseC"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a1750dbcd9108d03cd89b83e0c264a378"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publishPose</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK3as27sensors11GroundTruth11publishPoseEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Publish the pose data. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3as27sensors11GroundTruth12publishTwistEv">
+<span id="_CPPv3NK3as27sensors11GroundTruth12publishTwistEv"></span><span id="_CPPv2NK3as27sensors11GroundTruth12publishTwistEv"></span><span id="as2::sensors::GroundTruth::publishTwistC"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1ab3837c4af8d9626493eb37ca0293a361"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">publishTwist</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK3as27sensors11GroundTruth12publishTwistEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Publish the twist data. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth9node_ptr_E">
+<span id="_CPPv3N3as27sensors11GroundTruth9node_ptr_E"></span><span id="_CPPv2N3as27sensors11GroundTruth9node_ptr_E"></span><span id="as2::sensors::GroundTruth::node_ptr___as2::NodeP"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1ae316f7d3f26d09854f3d9fe5e24b1ec5"></span><a class="reference internal" href="#_CPPv43as2" title="as2"><span class="n"><span class="pre">as2</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N3as24NodeE" title="as2::Node"><span class="n"><span class="pre">Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">node_ptr_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth9node_ptr_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth9pub_freq_E">
+<span id="_CPPv3N3as27sensors11GroundTruth9pub_freq_E"></span><span id="_CPPv2N3as27sensors11GroundTruth9pub_freq_E"></span><span id="as2::sensors::GroundTruth::pub_freq___float"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a9207d893a5583d22c74d7b0338a02636"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pub_freq_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth9pub_freq_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth6timer_E">
+<span id="_CPPv3N3as27sensors11GroundTruth6timer_E"></span><span id="_CPPv2N3as27sensors11GroundTruth6timer_E"></span><span id="as2::sensors::GroundTruth::timer___rclcpp::TimerBase::SharedPtr"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a722b7cc651cc290eab918e596a20f349"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TimerBase</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth6timer_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth15pose_publisher_E">
+<span id="_CPPv3N3as27sensors11GroundTruth15pose_publisher_E"></span><span id="_CPPv2N3as27sensors11GroundTruth15pose_publisher_E"></span><span id="as2::sensors::GroundTruth::pose_publisher___rclcpp::Publisher:geometry_msgs::msg::PoseStamped:::SharedPtr"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a5074f885d3702dc9a558dffa32823607"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pose_publisher_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth15pose_publisher_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth16twist_publisher_E">
+<span id="_CPPv3N3as27sensors11GroundTruth16twist_publisher_E"></span><span id="_CPPv2N3as27sensors11GroundTruth16twist_publisher_E"></span><span id="as2::sensors::GroundTruth::twist_publisher___rclcpp::Publisher:geometry_msgs::msg::TwistStamped:::SharedPtr"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a473f4c6e85bcc91ba42b0948764dc723"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TwistStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twist_publisher_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth16twist_publisher_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth14pose_msg_data_E">
+<span id="_CPPv3N3as27sensors11GroundTruth14pose_msg_data_E"></span><span id="_CPPv2N3as27sensors11GroundTruth14pose_msg_data_E"></span><span id="as2::sensors::GroundTruth::pose_msg_data___geometry_msgs::msg::PoseStamped"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a04e8bcb62b6feab6f631739622eb7360"></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pose_msg_data_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth14pose_msg_data_E" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N3as27sensors11GroundTruth15twist_msg_data_E">
+<span id="_CPPv3N3as27sensors11GroundTruth15twist_msg_data_E"></span><span id="_CPPv2N3as27sensors11GroundTruth15twist_msg_data_E"></span><span id="as2::sensors::GroundTruth::twist_msg_data___geometry_msgs::msg::TwistStamped"></span><span class="target" id="classas2_1_1sensors_1_1GroundTruth_1a209f6903bdafba924e71751f91772393"></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TwistStamped</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">twist_msg_data_</span></span></span><a class="headerlink" href="#_CPPv4N3as27sensors11GroundTruth15twist_msg_data_E" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -3897,6 +4058,10 @@
 <em>#include “sensor_msgs/msg/nav_sat_fix.hpp”</em></div>
 <div class="docutils container">
 <em>#include “sensor_msgs/msg/range.hpp”</em></div>
+<div class="docutils container">
+<em>#include “geometry_msgs/msg/pose_stamped.hpp”</em></div>
+<div class="docutils container">
+<em>#include “geometry_msgs/msg/twist_stamped.hpp”</em></div>
 <div class="docutils container">
 <em>#include “<a class="reference internal" href="#tf__utils_8hpp"><span class="std std-ref">utils/tf_utils.hpp</span></a>”</em></div>
 <div class="docutils container">
