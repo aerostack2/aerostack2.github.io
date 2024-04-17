@@ -30,6 +30,7 @@ jobs:
       uses: aerostack2/pages@v2
       with:
         aerostack2_modules: as2_python_api, as2_core
+        sphinx_version: 7.2.6
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
