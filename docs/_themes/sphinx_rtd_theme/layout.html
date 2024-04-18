@@ -137,6 +137,7 @@
             <a href="{{ pathto(master_doc) }}">
           {%- else %}
             <a href="{{ pathto(master_doc) }}" class="icon icon-home"> {{ project }}
+            <img src="_static/logo.png" class="logo" alt="Logo">
           {%- endif %}
 
           {%- if logo %}
@@ -144,9 +145,9 @@
                 it properly, without weird scripting or heaps of work
             #}
             {%- if sphinx_version_info < (4, 0) -%}
-            <img src="{{ pathto('_static/' + logo, 1) }}" class="logo" alt="{{ _('Logo') }}"/>
+            <!-- <img src="{{ pathto('_static/' + logo, 1) }}" class="logo" alt="{{ _('Logo') }}"/> -->
             {%- else %}
-            <img src="{{ logo_url }}" class="logo" alt="{{ _('Logo') }}"/>
+            <!-- <img src="{{ logo_url }}" class="logo" alt="{{ _('Logo') }}"/> -->
             {%- endif %}
           {%- endif %}
           </a>

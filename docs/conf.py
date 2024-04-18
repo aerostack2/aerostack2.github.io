@@ -101,7 +101,6 @@ else:
         'canonical_url': '',
         'analytics_id': '',
         'logo_only': False,
-        'logo': "_images/logo.png",
         'display_version': True,
         'prev_next_buttons_location': 'None',
         'style_nav_header_background': 'blue',
@@ -115,7 +114,6 @@ html_theme_path = ['_themes']
 
 html_theme = 'sphinx_rtd_theme'
 html_logo = "_images/logo.png"
-logo = "_images/logo.png"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
