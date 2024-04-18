@@ -363,11 +363,229 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="as2-python-api-mission-interpreter-mission-module">
-<h2>as2_python_api.mission_interpreter.mission module<a class="headerlink" href="#as2-python-api-mission-interpreter-mission-module" title="Link to this heading"></a></h2>
+<section id="module-as2_python_api.mission_interpreter.mission">
+<span id="as2-python-api-mission-interpreter-mission-module"></span><h2>as2_python_api.mission_interpreter.mission module<a class="headerlink" href="#module-as2_python_api.mission_interpreter.mission" title="Link to this heading"></a></h2>
+<p>mission.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission.</span></span><span class="sig-name descname"><span class="pre">InterpreterStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#InterpreterStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Mission status</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.current_item">
+<span class="sig-name descname"><span class="pre">current_item</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.current_item" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.done_items">
+<span class="sig-name descname"><span class="pre">done_items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.done_items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.feedback_current">
+<span class="sig-name descname"><span class="pre">feedback_current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.feedback_current" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.pending_items">
+<span class="sig-name descname"><span class="pre">pending_items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.pending_items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.state">
+<span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'IDLE'</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.state" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.InterpreterStatus.total_items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus.total_items" title="Link to this definition"></a></dt>
+<dd><p>Total amount of items in mission, done + current + pending</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#Mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Mission data model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.plan">
+<span class="sig-name descname"><span class="pre">plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.plan" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.stack">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack" title="as2_python_api.mission_interpreter.mission_stack.MissionStack"><span class="pre">MissionStack</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.stack" title="Link to this definition"></a></dt>
+<dd><p>Return mission stack</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>exc</strong> – if behavior arg doesn’t exist</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack" title="as2_python_api.mission_interpreter.mission_stack.MissionStack">MissionStack</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.target">
+<span class="sig-name descname"><span class="pre">target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.target" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.verbose">
+<span class="sig-name descname"><span class="pre">verbose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.verbose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission.</span></span><span class="sig-name descname"><span class="pre">MissionItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#MissionItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Mission Item data model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.args">
+<span class="sig-name descname"><span class="pre">args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.args_extended">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">args_extended</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.args_extended" title="Link to this definition"></a></dt>
+<dd><p>Check if module exist and return full list of arguments, default</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.behavior">
+<span class="sig-name descname"><span class="pre">behavior</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.behavior" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.method">
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__call__'</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="as2-python-api-mission-interpreter-mission-interpreter-module">
-<h2>as2_python_api.mission_interpreter.mission_interpreter module<a class="headerlink" href="#as2-python-api-mission-interpreter-mission-interpreter-module" title="Link to this heading"></a></h2>
+<section id="module-as2_python_api.mission_interpreter.mission_interpreter">
+<span id="as2-python-api-mission-interpreter-mission-interpreter-module"></span><h2>as2_python_api.mission_interpreter.mission_interpreter module<a class="headerlink" href="#module-as2_python_api.mission_interpreter.mission_interpreter" title="Link to this heading"></a></h2>
+<p>mission_interpreter.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission_interpreter.</span></span><span class="sig-name descname"><span class="pre">MissionInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Mission Interpreter and Executer</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.append_mission">
+<span class="sig-name descname"><span class="pre">append_mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.append_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.append_mission" title="Link to this definition"></a></dt>
+<dd><p>Insert mission at the end of the stack</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.drone">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drone</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><span class="pre">DroneInterfaceBase</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.drone" title="Link to this definition"></a></dt>
+<dd><p>Build a DroneInterface based on the mission requirements</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">feedback</span></span><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback" title="Link to this definition"></a></dt>
+<dd><p>Current behavior feedback</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback_dict">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">feedback_dict</span></span><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback_dict" title="Link to this definition"></a></dt>
+<dd><p>Current behavior feedback dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.insert_mission">
+<span class="sig-name descname"><span class="pre">insert_mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.insert_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.insert_mission" title="Link to this definition"></a></dt>
+<dd><p>Insert mission in front of the stack</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.mission_stack">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mission_stack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack" title="as2_python_api.mission_interpreter.mission_stack.MissionStack"><span class="pre">MissionStack</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.mission_stack" title="Link to this definition"></a></dt>
+<dd><p>Mission stack</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current">
+<span class="sig-name descname"><span class="pre">modify_current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.modify_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current" title="Link to this definition"></a></dt>
+<dd><p>Modify current item in mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.next_item">
+<span class="sig-name descname"><span class="pre">next_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.next_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.next_item" title="Link to this definition"></a></dt>
+<dd><p>Advance to next item in mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.pause_mission">
+<span class="sig-name descname"><span class="pre">pause_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.pause_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.pause_mission" title="Link to this definition"></a></dt>
+<dd><p>Pause mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.perform_mission">
+<span class="sig-name descname"><span class="pre">perform_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.perform_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.perform_mission" title="Link to this definition"></a></dt>
+<dd><p>Perform a mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset Mission Interpreter with other mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.resume_mission">
+<span class="sig-name descname"><span class="pre">resume_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.resume_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.resume_mission" title="Link to this definition"></a></dt>
+<dd><p>Resume mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.shutdown">
+<span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.shutdown" title="Link to this definition"></a></dt>
+<dd><p>Shutdown properly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.start_mission">
+<span class="sig-name descname"><span class="pre">start_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.start_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.start_mission" title="Link to this definition"></a></dt>
+<dd><p>Start mission in different thread</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.InterpreterStatus" title="as2_python_api.mission_interpreter.mission.InterpreterStatus"><span class="pre">InterpreterStatus</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.status" title="Link to this definition"></a></dt>
+<dd><p>Mission status</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.stop_mission">
+<span class="sig-name descname"><span class="pre">stop_mission</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.stop_mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.stop_mission" title="Link to this definition"></a></dt>
+<dd><p>Stop mission</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.test">
+<span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission_interpreter.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.test" title="Link to this definition"></a></dt>
+<dd><p>a doctest in a docstring</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="p">()</span>
+<span class="go">test called with height=1.0, speed=2.0 and wait=True</span>
+<span class="go">test called with height=98.0, speed=99.0 and wait=True</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </section>
 <section id="module-as2_python_api.mission_interpreter.mission_stack">
 <span id="as2-python-api-mission-interpreter-mission-stack-module"></span><h2>as2_python_api.mission_interpreter.mission_stack module<a class="headerlink" href="#module-as2_python_api.mission_interpreter.mission_stack" title="Link to this heading"></a></h2>
@@ -384,7 +602,7 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.current">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">MissionItem</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.current" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.current" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -399,7 +617,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.next">
-<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MissionItem</span></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.next" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.next" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -415,8 +633,57 @@
 </dd></dl>
 
 </section>
-<section id="as2-python-api-mission-interpreter-ros2-adapter-module">
-<h2>as2_python_api.mission_interpreter.ros2_adapter module<a class="headerlink" href="#as2-python-api-mission-interpreter-ros2-adapter-module" title="Link to this heading"></a></h2>
+<section id="module-as2_python_api.mission_interpreter.ros2_adapter">
+<span id="as2-python-api-mission-interpreter-ros2-adapter-module"></span><h2>as2_python_api.mission_interpreter.ros2_adapter module<a class="headerlink" href="#module-as2_python_api.mission_interpreter.ros2_adapter" title="Link to this heading"></a></h2>
+<p>ros2_adapter.py</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.ros2_adapter.</span></span><span class="sig-name descname"><span class="pre">Adapter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>ROS 2 Adapter to mission interpreter</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.STATUS_FREQ">
+<span class="sig-name descname"><span class="pre">STATUS_FREQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.STATUS_FREQ" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.abort_callback">
+<span class="sig-name descname"><span class="pre">abort_callback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter.abort_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.abort_callback" title="Link to this definition"></a></dt>
+<dd><p>Abort mission on interpreter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.execute_callback">
+<span class="sig-name descname"><span class="pre">execute_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter.execute_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.execute_callback" title="Link to this definition"></a></dt>
+<dd><p>Load and start mission</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.mission_update_callback">
+<span class="sig-name descname"><span class="pre">mission_update_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">as2_msgs.msg.MissionUpdate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter.mission_update_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.mission_update_callback" title="Link to this definition"></a></dt>
+<dd><p>New mission update</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback">
+<span class="sig-name descname"><span class="pre">start_callback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter.start_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback" title="Link to this definition"></a></dt>
+<dd><p>Start mission on interpreter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.Adapter.status_timer_callback">
+<span class="sig-name descname"><span class="pre">status_timer_callback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#Adapter.status_timer_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.Adapter.status_timer_callback" title="Link to this definition"></a></dt>
+<dd><p>Publish new mission status</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.ros2_adapter.main">
+<span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.ros2_adapter.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/as2_python_api/mission_interpreter/ros2_adapter.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.ros2_adapter.main" title="Link to this definition"></a></dt>
+<dd><p>Run node</p>
+</dd></dl>
+
 </section>
 <section id="module-as2_python_api.mission_interpreter">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_python_api.mission_interpreter" title="Link to this heading"></a></h2>
