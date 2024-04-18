@@ -34,25 +34,32 @@ figure figcaption {
 }
 
 /* increase the size of the side bar from 300px default to 320px */
-.wy-nav-side {
-    width: 320px;
+.wy-nav-side.shift {
+    width: 320px !important;
+    left: 0;
 }
 
 .wy-side-scroll {
-    width: 340px;
+    width: 320px;
+    overflow: hidden;
 }
 
 .wy-side-nav-search {
     width: 320px;
-    background: #08adee !important;
+    background: #090b22 !important;
 }
 
 .icon.icon-home {
-    color: #000000 !important;
+    color: #ffffff !important;
+    width: 70%;
 }
 
 .wy-menu-vertical {
     width: 320px;
+}
+
+.wy-nav-content-wrap.shift {
+    left: 320px;
 }
 
 /* (temporarily) add an under development tagline to the bread crumb
