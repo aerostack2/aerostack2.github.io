@@ -37,7 +37,7 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 
 breathe_projects = {
-    "aerostack2": "./_09_development/_api_documentation/aerostack2/doxygen/xml"
+    "aerostack2": "./_09_development/_api_documentation/aerostack2/aerostack2/doxygen/xml"
 }
 
 # Add any Sphinx extension module names here, as strings. They can be
