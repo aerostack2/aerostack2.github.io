@@ -11,6 +11,7 @@ Currently, the following aerial platforms are supported:
 .. toctree::
   :maxdepth: 2
 
+  _multirotor_simulator/index.rst
   _gazebo_simulation/index.rst
   _pixhawk/index.rst
   _crazyflie/index.rst
