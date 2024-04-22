@@ -59,7 +59,7 @@ This is to be improved in later versions.
 ## Adding a C++ project to docs
 
 To add a C++ module to the web, follow these steps:
-- Grab from this repository https://github.com/aerostack2/aerostack2.github.io the doxygen.dox file inside the doxygen_template/ folder and put it into the C++ project root folder. 
+- Grab from this repository https://github.com/aerostack2/aerostack2.github.io the Doxyfile file inside the doxygen_template/ folder and put it into the C++ project root folder. 
 - Modify first two lines of this file, substituting as2_package for the name of your C++ project.
 ```
   PROJECT_NAME = as2_cpp_package
