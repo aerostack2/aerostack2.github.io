@@ -16,7 +16,7 @@ Aerostack2
 .. toctree::
    :maxdepth: 2
 
-   aerostack2/docs/index.rst
+   aerostack2/aerostack2/docs/index.rst
 
 .. _development_guide_api_python_api:
 
