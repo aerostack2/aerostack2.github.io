@@ -12,18 +12,7 @@ Aerostack2 provides with a series of user interfaces. These interfaces includes 
    _keyboard_teleoperation/index.rst
    _alphanumeric_viewer/index.rst
 
-.. _user_interfaces_behavior_tree:
-
--------------
-Behavior Tree
--------------
-
-TBD: User Manual
-
-.. _user_interfaces_web_gui:
-
--------
-Web Gui
--------
-
-TBD: User Manual
+..
+  TBD: Add the following interfaces
+  Behavior Tree
+  Web-GUI

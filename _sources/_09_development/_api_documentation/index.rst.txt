@@ -7,57 +7,24 @@
 API Documentation
 =================
 
-TDB
+.. _development_guide_api_aerostack2:
 
-
-
-.. _development_guide_api_as2_core:
-
---------
-AS2 Core
---------
-
-Code
-####
+----------
+Aerostack2
+----------
 
 .. toctree::
    :maxdepth: 2
 
-   as2_core/docs/index.rst
+   aerostack2/docs/index.rst
 
-.. _development_guide_api_as2_msgs:
+.. _development_guide_api_python_api:
 
---------
-AS2 Msgs
---------
+----------
+Python API
+----------
 
-TDB
+.. toctree::
+   :maxdepth: 2
 
-
-.. _development_guide_api_as2_motion_controller:
-
----------------------
-AS2 Motion Controller
----------------------
-
-TDB
-
-
-
-.. _development_guide_api_as2_state_estimator:
-
--------------------
-AS2 State Estimator
--------------------
-
-TDB
-
-
-
-.. _development_guide_api_as2_behavior:
-
-------------
-AS2 Behavior
-------------
-
-TDB
+   temp_ws/src/as2_python_api/docs/source/index.rst
