@@ -7,13 +7,11 @@ Pages:
 04. Robot Behaviors
 05. AS2 Plugins
 06. User Interfaces
-07. Python API
-08. ROS 2 Common interfaces
-09. Development
-10. Roadmaps
-11. License Agreement: 3-Clause BSD License
-12. Citations
-13. About and Contact 
+07. ROS 2 Common interfaces
+08. Development
+09. License Agreement: 3-Clause BSD License
+10. Citations
+11. About and Contact 
 
 
 Extended Table of Contents:
@@ -95,8 +93,7 @@ Extended Table of Contents:
     - Keyboard Teleoperation
     - Alphanumeric Viewer
     - Web Gui
-07. Python API
-08. ROS 2 Common interfaces
+07. ROS 2 Common interfaces
     - Aerial Platform
         - Topics
         - Services
@@ -109,7 +106,7 @@ Extended Table of Contents:
         - Actions
     - AS2 Msgs
     - Using AS2 Interfaces
-09. Development
+08. Development
     - Command Line Interface (CLI)
     - Tutorials
         - Writing a New Aerial Platform
@@ -176,7 +173,6 @@ Extended Table of Contents:
         - AS2 State Estimator
         - AS2 Behavior
 
-10. Roadmaps
-11. License Agreement: 3-Clause BSD License
-12. Citations
-13. About and Contact
+09. License Agreement: 3-Clause BSD License
+10. Citations
+11. About and Contact

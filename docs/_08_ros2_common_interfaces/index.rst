@@ -16,12 +16,12 @@ This page describes common ROS 2 interfaces for inter-process communication used
    state_estimator/index.rst
    behaviors/index.rst
 
-Also, Aerostack2 provides a set of ROS 2 messages in the package `as2_msgs <ros2_common_interfaces_as2_msgs>`_.
-
-.. toctree::
-   :maxdepth: 1
-
-   as2_msgs/index.rst
+.. 
+  TBD: Add as2_msgs documentation
+  Also, Aerostack2 provides a set of ROS 2 messages in the package `as2_msgs <ros2_common_interfaces_as2_msgs>`_.
+  .. toctree::
+    :maxdepth: 1
+    as2_msgs/index.rst
 
 
 

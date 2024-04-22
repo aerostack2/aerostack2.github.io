@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@master
       with:
         repository: aerostack2/aerostack2
-        ref: main
+        ref: as2_github_api_documentation
         path: aerostack2
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Apt update
@@ -27,9 +27,9 @@ jobs:
     - name: Install doxygen
       run: sudo apt-get install -y doxygen
     - name: Build and Commit
-      uses: aerostack2/pages@v2
+      uses: aerostack2/pages@doxygen_command
       with:
-        aerostack2_modules: as2_python_api, as2_core
+        aerostack2_modules: aerostack2
         sphinx_version: 7.2.6
     - name: Push changes
       uses: ad-m/github-push-action@master
