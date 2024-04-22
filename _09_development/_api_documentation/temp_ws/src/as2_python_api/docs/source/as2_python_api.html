@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>as2_python_api package &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="as2_python_api.behavior_actions package" href="as2_python_api.behavior_actions.html" />
+    <link rel="prev" title="as2_python_api" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../../../../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_02_examples/gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_02_examples/gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_02_examples/crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_02_examples/crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_02_examples/dji/index.html">DJI OSDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/installation.html">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_crazyflie/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html">DJI Matrice Series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#setup-connection-with-dji-matrice">Setup connection with DJI Matrice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/behavior.html">Writing a New Bheavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#test">Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../../index.html">API Documentation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../../../index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../../../../index.html#python-api">Python API</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../../index.html">Development</a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">API Documentation</a></li>
+          <li class="breadcrumb-item"><a href="index.html">as2_python_api</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">as2_python_api</a></li>
+      <li class="breadcrumb-item active">as2_python_api package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="as2-python-api-package">
+<h1>as2_python_api package<a class="headerlink" href="#as2-python-api-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.behavior_actions.html">as2_python_api.behavior_actions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.behavior_handler">as2_python_api.behavior_actions.behavior_handler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.BehaviorNotAvailable"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.BehaviorNotAvailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.GoalRejected"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.GoalRejected</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.ResultUnknown"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.ResultUnknown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.TIMEOUT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.destroy"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.feedback"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.feedback</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.pause"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.pause()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.result_status"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.result_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.resume"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.resume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.start"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.status"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.stop"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.wait_to_result"><code class="docutils literal notranslate"><span class="pre">BehaviorHandler.wait_to_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.follow_reference_behavior">as2_python_api.behavior_actions.follow_reference_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.follow_reference_behavior.FollowReferenceBehavior"><code class="docutils literal notranslate"><span class="pre">FollowReferenceBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.follow_reference_behavior.FollowReferenceBehavior.modify"><code class="docutils literal notranslate"><span class="pre">FollowReferenceBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.follow_reference_behavior.FollowReferenceBehavior.start"><code class="docutils literal notranslate"><span class="pre">FollowReferenceBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.followpath_behavior">as2_python_api.behavior_actions.followpath_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.modify"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.followpath_behavior.FollowPathBehavior.start"><code class="docutils literal notranslate"><span class="pre">FollowPathBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.go_to_behavior">as2_python_api.behavior_actions.go_to_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.go_to_behavior.GoToBehavior"><code class="docutils literal notranslate"><span class="pre">GoToBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.go_to_behavior.GoToBehavior.modify"><code class="docutils literal notranslate"><span class="pre">GoToBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.go_to_behavior.GoToBehavior.start"><code class="docutils literal notranslate"><span class="pre">GoToBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.land_behavior">as2_python_api.behavior_actions.land_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.land_behavior.LandBehavior"><code class="docutils literal notranslate"><span class="pre">LandBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.land_behavior.LandBehavior.modify"><code class="docutils literal notranslate"><span class="pre">LandBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.land_behavior.LandBehavior.start"><code class="docutils literal notranslate"><span class="pre">LandBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.point_gimbal_behavior">as2_python_api.behavior_actions.point_gimbal_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.point_gimbal_behavior.PointGimbalBehavior"><code class="docutils literal notranslate"><span class="pre">PointGimbalBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.point_gimbal_behavior.PointGimbalBehavior.modify"><code class="docutils literal notranslate"><span class="pre">PointGimbalBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.point_gimbal_behavior.PointGimbalBehavior.start"><code class="docutils literal notranslate"><span class="pre">PointGimbalBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions.takeoff_behavior">as2_python_api.behavior_actions.takeoff_behavior module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior"><code class="docutils literal notranslate"><span class="pre">TakeoffBehavior</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.modify"><code class="docutils literal notranslate"><span class="pre">TakeoffBehavior.modify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior.start"><code class="docutils literal notranslate"><span class="pre">TakeoffBehavior.start()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_actions.html#module-as2_python_api.behavior_actions">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.behavior_manager.html">as2_python_api.behavior_manager package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_manager.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_manager.html#module-as2_python_api.behavior_manager.behavior_manager">as2_python_api.behavior_manager.behavior_manager module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.drone_behavior_func"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.drone_behavior_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.get_behavior_status"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.get_behavior_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.pause_all_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.pause_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.pause_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.pause_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.resume_all_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.resume_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.resume_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.resume_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.stop_all_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.stop_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.stop_behaviors"><code class="docutils literal notranslate"><span class="pre">DroneBehaviorManager.stop_behaviors()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.get_behaviors_status"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.get_behaviors_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.pause_all_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.pause_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.pause_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.pause_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.resume_all_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.resume_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.resume_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.resume_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.stop_all_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.stop_all_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.stop_behaviors"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.stop_behaviors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_all_behavior_func"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.swarm_all_behavior_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_behavior_func"><code class="docutils literal notranslate"><span class="pre">SwarmBehaviorManager.swarm_behavior_func()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.ThreadWithReturnValue"><code class="docutils literal notranslate"><span class="pre">ThreadWithReturnValue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.ThreadWithReturnValue.join"><code class="docutils literal notranslate"><span class="pre">ThreadWithReturnValue.join()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.ThreadWithReturnValue.run"><code class="docutils literal notranslate"><span class="pre">ThreadWithReturnValue.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.behavior_manager.html#module-as2_python_api.behavior_manager">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.mission_interpreter.html">as2_python_api.mission_interpreter package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter.mission">as2_python_api.mission_interpreter.mission module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.current_item"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.current_item</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.done_items"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.done_items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.feedback_current"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.feedback_current</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.pending_items"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.pending_items</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.state"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.total_items"><code class="docutils literal notranslate"><span class="pre">InterpreterStatus.total_items</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission"><code class="docutils literal notranslate"><span class="pre">Mission</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.plan"><code class="docutils literal notranslate"><span class="pre">Mission.plan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.stack"><code class="docutils literal notranslate"><span class="pre">Mission.stack</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.target"><code class="docutils literal notranslate"><span class="pre">Mission.target</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.verbose"><code class="docutils literal notranslate"><span class="pre">Mission.verbose</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem"><code class="docutils literal notranslate"><span class="pre">MissionItem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.args"><code class="docutils literal notranslate"><span class="pre">MissionItem.args</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.args_extended"><code class="docutils literal notranslate"><span class="pre">MissionItem.args_extended</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.behavior"><code class="docutils literal notranslate"><span class="pre">MissionItem.behavior</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.method"><code class="docutils literal notranslate"><span class="pre">MissionItem.method</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter.mission_interpreter">as2_python_api.mission_interpreter.mission_interpreter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.append_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.append_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.drone"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.drone</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.feedback</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.feedback_dict"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.feedback_dict</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.insert_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.insert_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.mission_stack"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.mission_stack</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.modify_current()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.next_item"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.next_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.pause_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.pause_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.perform_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.perform_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.reset"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.resume_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.resume_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.shutdown"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.shutdown()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.start_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.start_mission()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.status"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.stop_mission"><code class="docutils literal notranslate"><span class="pre">MissionInterpreter.stop_mission()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.test"><code class="docutils literal notranslate"><span class="pre">test()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter.mission_stack">as2_python_api.mission_interpreter.mission_stack module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack"><code class="docutils literal notranslate"><span class="pre">MissionStack</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.add"><code class="docutils literal notranslate"><span class="pre">MissionStack.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.current"><code class="docutils literal notranslate"><span class="pre">MissionStack.current</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.done"><code class="docutils literal notranslate"><span class="pre">MissionStack.done</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.last_done"><code class="docutils literal notranslate"><span class="pre">MissionStack.last_done</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.next"><code class="docutils literal notranslate"><span class="pre">MissionStack.next()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.pending"><code class="docutils literal notranslate"><span class="pre">MissionStack.pending</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.previous"><code class="docutils literal notranslate"><span class="pre">MissionStack.previous()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter.ros2_adapter">as2_python_api.mission_interpreter.ros2_adapter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter"><code class="docutils literal notranslate"><span class="pre">Adapter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.STATUS_FREQ"><code class="docutils literal notranslate"><span class="pre">Adapter.STATUS_FREQ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.abort_callback"><code class="docutils literal notranslate"><span class="pre">Adapter.abort_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.execute_callback"><code class="docutils literal notranslate"><span class="pre">Adapter.execute_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.mission_update_callback"><code class="docutils literal notranslate"><span class="pre">Adapter.mission_update_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback"><code class="docutils literal notranslate"><span class="pre">Adapter.start_callback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.status_timer_callback"><code class="docutils literal notranslate"><span class="pre">Adapter.status_timer_callback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.mission_interpreter.html#module-as2_python_api.mission_interpreter">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.modules.html">as2_python_api.modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.dummy_module">as2_python_api.modules.dummy_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule"><code class="docutils literal notranslate"><span class="pre">DummyModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule.destroy"><code class="docutils literal notranslate"><span class="pre">DummyModule.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule.stop"><code class="docutils literal notranslate"><span class="pre">DummyModule.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.follow_path_gps_module">as2_python_api.modules.follow_path_gps_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_path_gps_module.FollowPathGpsModule"><code class="docutils literal notranslate"><span class="pre">FollowPathGpsModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.follow_path_module">as2_python_api.modules.follow_path_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_path_module.FollowPathModule"><code class="docutils literal notranslate"><span class="pre">FollowPathModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_path_module.FollowPathModule.follow_path_with_keep_yaw"><code class="docutils literal notranslate"><span class="pre">FollowPathModule.follow_path_with_keep_yaw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_path_module.FollowPathModule.follow_path_with_path_facing"><code class="docutils literal notranslate"><span class="pre">FollowPathModule.follow_path_with_path_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_path_module.FollowPathModule.follow_path_with_yaw"><code class="docutils literal notranslate"><span class="pre">FollowPathModule.follow_path_with_yaw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.follow_reference_module">as2_python_api.modules.follow_reference_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule"><code class="docutils literal notranslate"><span class="pre">FollowReferenceModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference"><code class="docutils literal notranslate"><span class="pre">FollowReferenceModule.follow_reference()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference_with_reference_facing"><code class="docutils literal notranslate"><span class="pre">FollowReferenceModule.follow_reference_with_reference_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference_with_yaw"><code class="docutils literal notranslate"><span class="pre">FollowReferenceModule.follow_reference_with_yaw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.go_to_gps_module">as2_python_api.modules.go_to_gps_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_path_facing"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps_path_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point_path_facing"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps_point_path_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point_with_yaw"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps_point_with_yaw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_with_yaw"><code class="docutils literal notranslate"><span class="pre">GoToGpsModule.go_to_gps_with_yaw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.go_to_module">as2_python_api.modules.go_to_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule"><code class="docutils literal notranslate"><span class="pre">GoToModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_path_facing"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to_path_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_point"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to_point()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_point_path_facing"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to_point_path_facing()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_point_with_yaw"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to_point_with_yaw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_with_yaw"><code class="docutils literal notranslate"><span class="pre">GoToModule.go_to_with_yaw()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.gps_module">as2_python_api.modules.gps_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule"><code class="docutils literal notranslate"><span class="pre">GpsModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule.destroy"><code class="docutils literal notranslate"><span class="pre">GpsModule.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule.origin"><code class="docutils literal notranslate"><span class="pre">GpsModule.origin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule.pose"><code class="docutils literal notranslate"><span class="pre">GpsModule.pose</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule.set_origin"><code class="docutils literal notranslate"><span class="pre">GpsModule.set_origin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.land_module">as2_python_api.modules.land_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.land_module.LandModule"><code class="docutils literal notranslate"><span class="pre">LandModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.module_base">as2_python_api.modules.module_base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase"><code class="docutils literal notranslate"><span class="pre">ModuleBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase.get_plan_item"><code class="docutils literal notranslate"><span class="pre">ModuleBase.get_plan_item()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.motion_reference_handler_module">as2_python_api.modules.motion_reference_handler_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule"><code class="docutils literal notranslate"><span class="pre">MotionReferenceHandlerModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.destroy"><code class="docutils literal notranslate"><span class="pre">MotionReferenceHandlerModule.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.hover"><code class="docutils literal notranslate"><span class="pre">MotionReferenceHandlerModule.hover()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.point_gimbal_module">as2_python_api.modules.point_gimbal_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.point_gimbal_module.PointGimbalModule"><code class="docutils literal notranslate"><span class="pre">PointGimbalModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.point_gimbal_module.PointGimbalModule.point_gimbal"><code class="docutils literal notranslate"><span class="pre">PointGimbalModule.point_gimbal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.rtl_module">as2_python_api.modules.rtl_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.rtl_module.RTLModule"><code class="docutils literal notranslate"><span class="pre">RTLModule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.rtl_module.RTLModule.destroy"><code class="docutils literal notranslate"><span class="pre">RTLModule.destroy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.rtl_module.RTLModule.feedback"><code class="docutils literal notranslate"><span class="pre">RTLModule.feedback</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules.takeoff_module">as2_python_api.modules.takeoff_module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.takeoff_module.TakeoffModule"><code class="docutils literal notranslate"><span class="pre">TakeoffModule</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.modules.html#module-as2_python_api.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.service_clients.html">as2_python_api.service_clients package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.service_clients.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.arming">as2_python_api.service_clients.arming module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.arming.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.arming.Disarm"><code class="docutils literal notranslate"><span class="pre">Disarm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.offboard">as2_python_api.service_clients.offboard module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.offboard.Offboard"><code class="docutils literal notranslate"><span class="pre">Offboard</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients.service_handler">as2_python_api.service_clients.service_handler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler"><code class="docutils literal notranslate"><span class="pre">ServiceHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler.ServiceFailed"><code class="docutils literal notranslate"><span class="pre">ServiceHandler.ServiceFailed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler.ServiceNotAvailable"><code class="docutils literal notranslate"><span class="pre">ServiceHandler.ServiceNotAvailable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.service_clients.html#as2_python_api.service_clients.service_handler.ServiceHandler.TIMEOUT"><code class="docutils literal notranslate"><span class="pre">ServiceHandler.TIMEOUT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.service_clients.html#module-as2_python_api.service_clients">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.shared_data.html">as2_python_api.shared_data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.gps_data">as2_python_api.shared_data.gps_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.gps_data.GpsData"><code class="docutils literal notranslate"><span class="pre">GpsData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.gps_data.GpsData.fix"><code class="docutils literal notranslate"><span class="pre">GpsData.fix</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.gps_data.lock_decor"><code class="docutils literal notranslate"><span class="pre">lock_decor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.orientation_data">as2_python_api.shared_data.orientation_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.orientation_data.OrientationData"><code class="docutils literal notranslate"><span class="pre">OrientationData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.orientation_data.OrientationData.orientation"><code class="docutils literal notranslate"><span class="pre">OrientationData.orientation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.orientation_data.lock_decor"><code class="docutils literal notranslate"><span class="pre">lock_decor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.platform_info_data">as2_python_api.shared_data.platform_info_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.platform_info_data.PlatformInfoData"><code class="docutils literal notranslate"><span class="pre">PlatformInfoData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.platform_info_data.PlatformInfoData.data"><code class="docutils literal notranslate"><span class="pre">PlatformInfoData.data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.platform_info_data.lock_decor"><code class="docutils literal notranslate"><span class="pre">lock_decor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.pose_data">as2_python_api.shared_data.pose_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.pose_data.PoseData"><code class="docutils literal notranslate"><span class="pre">PoseData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.pose_data.PoseData.orientation"><code class="docutils literal notranslate"><span class="pre">PoseData.orientation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.pose_data.PoseData.position"><code class="docutils literal notranslate"><span class="pre">PoseData.position</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.position_data">as2_python_api.shared_data.position_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.position_data.PositionData"><code class="docutils literal notranslate"><span class="pre">PositionData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.position_data.PositionData.position"><code class="docutils literal notranslate"><span class="pre">PositionData.position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.position_data.lock_decor"><code class="docutils literal notranslate"><span class="pre">lock_decor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data.twist_data">as2_python_api.shared_data.twist_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.twist_data.TwistData"><code class="docutils literal notranslate"><span class="pre">TwistData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.twist_data.TwistData.twist"><code class="docutils literal notranslate"><span class="pre">TwistData.twist</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.shared_data.html#as2_python_api.shared_data.twist_data.lock_decor"><code class="docutils literal notranslate"><span class="pre">lock_decor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.shared_data.html#module-as2_python_api.shared_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="as2_python_api.tools.html">as2_python_api.tools package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.tools.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.tools.html#module-as2_python_api.tools.utils">as2_python_api.tools.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.euler_from_quaternion"><code class="docutils literal notranslate"><span class="pre">euler_from_quaternion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.find_spec_in_envvar"><code class="docutils literal notranslate"><span class="pre">find_spec_in_envvar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.find_spec_in_pkg"><code class="docutils literal notranslate"><span class="pre">find_spec_in_pkg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.get_class_from_module"><code class="docutils literal notranslate"><span class="pre">get_class_from_module()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.get_module_call_signature"><code class="docutils literal notranslate"><span class="pre">get_module_call_signature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="as2_python_api.tools.html#as2_python_api.tools.utils.path_to_list"><code class="docutils literal notranslate"><span class="pre">path_to_list()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="as2_python_api.tools.html#module-as2_python_api.tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-as2_python_api.drone_interface">
+<span id="as2-python-api-drone-interface-module"></span><h2>as2_python_api.drone_interface module<a class="headerlink" href="#module-as2_python_api.drone_interface" title="Link to this heading"></a></h2>
+<p>Drone interface to easily command drones with AeroStack2.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface.DroneInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface.</span></span><span class="sig-name descname"><span class="pre">DroneInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface.html#DroneInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface.DroneInterface" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
+<p>Drone interface node.</p>
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.drone_interface_base">
+<span id="as2-python-api-drone-interface-base-module"></span><h2>as2_python_api.drone_interface_base module<a class="headerlink" href="#module-as2_python_api.drone_interface_base" title="Link to this heading"></a></h2>
+<p>Python interface base.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface_base.</span></span><span class="sig-name descname"><span class="pre">DroneInterfaceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>Drone interface base node</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.arm">
+<span class="sig-name descname"><span class="pre">arm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.arm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.arm" title="Link to this definition"></a></dt>
+<dd><p>Arm drone.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.disarm">
+<span class="sig-name descname"><span class="pre">disarm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.disarm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm" title="Link to this definition"></a></dt>
+<dd><p>Disarm drone.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.drone_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">drone_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.drone_id" title="Link to this definition"></a></dt>
+<dd><p>Get drone id (namespace).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.info" title="Link to this definition"></a></dt>
+<dd><p>Get drone info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Union[bool, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.load_module">
+<span class="sig-name descname"><span class="pre">load_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.load_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.load_module" title="Link to this definition"></a></dt>
+<dd><p>load module on drone</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.offboard">
+<span class="sig-name descname"><span class="pre">offboard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.offboard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard" title="Link to this definition"></a></dt>
+<dd><p>Enable offboard mode.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.orientation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.orientation" title="Link to this definition"></a></dt>
+<dd><p>Get drone orientation (roll, pitch, yaw) in rad.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.position" title="Link to this definition"></a></dt>
+<dd><p>Get drone position (x, y, z) in m.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover">
+<span class="sig-name descname"><span class="pre">send_emergency_hover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.send_emergency_hover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover" title="Link to this definition"></a></dt>
+<dd><p>Set controller to hover mode. You will have to take the control manually</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft">
+<span class="sig-name descname"><span class="pre">send_emergency_hover_to_aircraft</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.send_emergency_hover_to_aircraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_hover_to_aircraft" title="Link to this definition"></a></dt>
+<dd><p>Call platform hover. BE CAREFUL, you will have to take it control manually!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft">
+<span class="sig-name descname"><span class="pre">send_emergency_killswitch_to_aircraft</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.send_emergency_killswitch_to_aircraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_killswitch_to_aircraft" title="Link to this definition"></a></dt>
+<dd><p>Call platform stop. BE CAREFUL, motors will stop!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land">
+<span class="sig-name descname"><span class="pre">send_emergency_land</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.send_emergency_land"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land" title="Link to this definition"></a></dt>
+<dd><p>Emergency landing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft">
+<span class="sig-name descname"><span class="pre">send_emergency_land_to_aircraft</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.send_emergency_land_to_aircraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.send_emergency_land_to_aircraft" title="Link to this definition"></a></dt>
+<dd><p>Call platform emergency land</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown">
+<span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_base.html#DroneInterfaceBase.shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown" title="Link to this definition"></a></dt>
+<dd><p>Shutdown properly</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_base.DroneInterfaceBase.speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.drone_interface_base.DroneInterfaceBase.speed" title="Link to this definition"></a></dt>
+<dd><p>Get drone speed (vx, vy, vz) in m/s.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.drone_interface_gps">
+<span id="as2-python-api-drone-interface-gps-module"></span><h2>as2_python_api.drone_interface_gps module<a class="headerlink" href="#module-as2_python_api.drone_interface_gps" title="Link to this heading"></a></h2>
+<p>Drone interface GPS to easily command drones with AeroStack2.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_gps.DroneInterfaceGPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface_gps.</span></span><span class="sig-name descname"><span class="pre">DroneInterfaceGPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_gps.html#DroneInterfaceGPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_gps.DroneInterfaceGPS" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface_base.DroneInterfaceBase" title="as2_python_api.drone_interface_base.DroneInterfaceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterfaceBase</span></code></a></p>
+<p>Drone interface node</p>
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.drone_interface_teleop">
+<span id="as2-python-api-drone-interface-teleop-module"></span><h2>as2_python_api.drone_interface_teleop module<a class="headerlink" href="#module-as2_python_api.drone_interface_teleop" title="Link to this heading"></a></h2>
+<p>Drone interface with motion handlers to teleoperate.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.drone_interface_teleop.DroneInterfaceTeleop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.drone_interface_teleop.</span></span><span class="sig-name descname"><span class="pre">DroneInterfaceTeleop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'drone0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/drone_interface_teleop.html#DroneInterfaceTeleop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.drone_interface.DroneInterface" title="as2_python_api.drone_interface.DroneInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">DroneInterface</span></code></a></p>
+<p>Drone interface</p>
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-as2_python_api" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

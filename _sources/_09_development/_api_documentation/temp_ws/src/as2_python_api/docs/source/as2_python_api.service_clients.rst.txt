@@ -1,0 +1,37 @@
+as2\_python\_api.service\_clients package
+=========================================
+
+Submodules
+----------
+
+as2\_python\_api.service\_clients.arming module
+-----------------------------------------------
+
+.. automodule:: as2_python_api.service_clients.arming
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+as2\_python\_api.service\_clients.offboard module
+-------------------------------------------------
+
+.. automodule:: as2_python_api.service_clients.offboard
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+as2\_python\_api.service\_clients.service\_handler module
+---------------------------------------------------------
+
+.. automodule:: as2_python_api.service_clients.service_handler
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: as2_python_api.service_clients
+   :members:
+   :undoc-members:
+   :show-inheritance:
