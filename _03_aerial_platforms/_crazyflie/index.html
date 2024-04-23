@@ -413,8 +413,17 @@ Please use a different address for each crazyflie to be used in a swarm.</p></li
 <p>This package is not available for binary installation yet. Cooming soon.</p>
 </div>
 <ul class="simple">
-<li><p>For source installation, clone Aerostack2 repository into your workspace and build it. See it in <a class="reference internal" href="../../_00_getting_started/source_install.html#getting-started-ubuntu-installation-source"><span class="std std-ref">Aerostack2 installation guide</span></a>.</p></li>
+<li><p>For source installation, clone the platform repository into your workspace and build it.</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you have installed Aerostack2 from sources we recommend to clone the package in the src folder of your workspace otherwise you can clone it in any ROS 2 workspace you want.</span>
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src/aerostack2/as2_aerial_platforms
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:aerostack2/as2_platform_crazyflie.git
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
+rosdep<span class="w"> </span>install<span class="w"> </span>as2_platform_crazyflie<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span class="w"> </span>as2_platform_crazyflie
+</pre></div>
+</div>
+<p>See it in <a class="reference internal" href="../../_00_getting_started/source_install.html#getting-started-ubuntu-installation-source"><span class="std std-ref">Aerostack2 installation guide</span></a>.</p>
 </section>
 </section>
 <section id="aerostack2-common-interface">

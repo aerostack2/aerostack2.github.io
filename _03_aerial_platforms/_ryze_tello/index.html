@@ -382,6 +382,24 @@
 </section>
 <section id="installation">
 <span id="aerial-platform-dji-tello-installation"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-as2-platform-tello
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This package is not available for binary installation yet. Cooming soon.</p>
+</div>
+<ul class="simple">
+<li><p>For source installation, clone the platform repository into your workspace and build it.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you have installed Aerostack2 from sources we recommend to clone the package in the src folder of your workspace otherwise you can clone it in any ROS 2 workspace you want.</span>
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws/src/aerostack2/as2_aerial_platforms
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:aerostack2/as2_platform_tello.git
+<span class="nb">cd</span><span class="w"> </span>~/aerostack2_ws
+rosdep<span class="w"> </span>install<span class="w"> </span>as2_platform_tello<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span class="w"> </span>as2_platform_tello
+</pre></div>
+</div>
 <section id="install-platform-package">
 <span id="aerial-platform-dji-tello-installation-package"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">Install platform package</a><a class="headerlink" href="#install-platform-package" title="Link to this heading"></a></h3>
 <ul class="simple">
