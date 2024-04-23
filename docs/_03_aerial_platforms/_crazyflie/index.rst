@@ -62,7 +62,19 @@ Install platform package
 
 .. warning:: This package is not available for binary installation yet. Cooming soon.
 
-* For source installation, clone Aerostack2 repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
+* For source installation, clone the platform repository into your workspace and build it. 
+
+.. code-block:: bash
+
+    # If you have installed Aerostack2 from sources we recommend to clone the package in the src folder of your workspace otherwise you can clone it in any ROS 2 workspace you want.
+    cd ~/aerostack2_ws/src/aerostack2/as2_aerial_platforms
+    git clone git@github.com:aerostack2/as2_platform_crazyflie.git
+    cd ~/aerostack2_ws
+    rosdep install as2_platform_crazyflie --from-paths src --ignore-src -r -y
+    colcon build --packages-up-to as2_platform_crazyflie
+
+
+See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
 
 
 
