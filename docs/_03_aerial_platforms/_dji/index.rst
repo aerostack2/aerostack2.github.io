@@ -30,6 +30,24 @@ DJI Matrice Series using `DJI Onboard SDK <https://github.com/dji-sdk/Onboard-SD
 Installation
 ------------
 
+* For binary installation, install by running:
+
+.. code-block:: bash
+
+   sudo apt install ros-humble-as2-platform-dji-osdk
+
+.. warning:: This package is not available for binary installation yet. Cooming soon.
+
+* For source installation, clone the platform repository into your workspace and build it. 
+
+.. code-block:: bash
+
+    # If you have installed Aerostack2 from sources we recommend to clone the package in the src folder of your workspace otherwise you can clone it in any ROS 2 workspace you want.
+    cd ~/aerostack2_ws/src/aerostack2/as2_aerial_platforms
+    git clone git@github.com:aerostack2/as2_platform_dji_osdk.git
+    cd ~/aerostack2_ws
+    rosdep install as2_platform_dji_osdk --from-paths src --ignore-src -r -y
+    colcon build --packages-up-to as2_platform_dji_osdk
 
 
 .. _aerial_platform_dji_matrice_installation_package:
