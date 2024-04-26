@@ -32,6 +32,7 @@ Basics Examples
 .. toctree::
    :maxdepth: 2
 
+   multirotor_simulator/index.rts
    gazebo/index.rst
    crazyflie/index.rst
    dji/index.rst
