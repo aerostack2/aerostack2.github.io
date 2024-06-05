@@ -66,12 +66,23 @@ Open your ``settings.json`` file from VSCode and add the following content to it
     },
     "autopep8.args": ["--max-line-length=99", "--ignore=''"],
 
-    // ROS2 uses as a linter flake8==4.0.1 (apt installation). Pip installation should be 
+    // ROS2 HUMBLE uses as a linter flake8==4.0.1 (apt installation). Pip installation should be 
     // at the same version to avoid errors. pycodestyle==2.8.0 is also required.
     // vscode flake8 extension requires at least flake8 v5.0.0. Pylint extension is used 
     // instead with identical configuration.
     "pylint.args": ["--disable=B902,C816,D100,D101,D102,D103,D104,D105,D106,D107,D203,D212,D404,I202",
                     "--max-line-length=99", "--import-order-style=google", "--show-source=true",
+                    "--statistics=true"],
+
+Newer versions of ROS 2 include upgraded flake8 (in ament_flake8), so it is preferable to use
+flake8 from VSCode too instead of pylint. To do so, use, instead of the 'pylint.args' settings,
+the following settings:
+
+.. code-block:: json
+
+    // flake8
+    "flake8.args": ["--extend-ignore=B902,C816,D100,D101,D102,D103,D104,D105,D106,D107,D203,D212,D404,I202",
+                    "--import-order-style=google", "--max-line-length=99", "--show-source=true",
                     "--statistics=true"],
 
 .. _development_guide_code_config_variables:
