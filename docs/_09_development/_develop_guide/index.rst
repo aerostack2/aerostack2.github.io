@@ -4,7 +4,8 @@
 Develop Guide
 =============
 
-TDB
+The Develop Guide includes some guidelines for new packages implementation and contributing to Aerostack2.
+
 
 .. toctree::
    :maxdepth: 1
