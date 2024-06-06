@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.modules.follow_reference_module</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">follow_reference_module.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Follow reference module.&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,18 +391,17 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí, Javier Melero Deza&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí, </span><span class="se">\</span>
+<span class="s1">    Javier Melero Deza&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">YawMode</span>
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span>
-
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.follow_reference_behavior</span> <span class="kn">import</span> <span class="n">FollowReferenceBehavior</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
@@ -407,93 +410,166 @@
 <div class="viewcode-block" id="FollowReferenceModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule">[docs]</a>
 <span class="k">class</span> <span class="nc">FollowReferenceModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">,</span> <span class="n">FollowReferenceBehavior</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Follow reference Module</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;follow_reference&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Follow reference Module.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;follow_reference&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-              <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> 
-              <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow reference (m) with speed (m/s).</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Follow reference.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x position relative to the frame_id</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y position relative to the frame_id</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z position relative to the frame_id</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: frame_id of the reference</span>
 <span class="sd">        :type frame_id: str</span>
-<span class="sd">        :type speed_x: float</span>
-<span class="sd">        :type speed_y: float</span>
-<span class="sd">        :type speed_z: float</span>
-<span class="sd">        :type yaw_mode: int</span>
-<span class="sd">        :type yaw_angle: float</span>
-<span class="sd">        :type wait: bool</span>
+<span class="sd">        :param speed_x: speed limit, defaults to 0.0</span>
+<span class="sd">        :type speed_x: float, optional</span>
+<span class="sd">        :param speed_y: speed limit, defaults to 0.0</span>
+<span class="sd">        :type speed_y: float, optional</span>
+<span class="sd">        :param speed_z: speed limit, defaults to 0.0</span>
+<span class="sd">        :type speed_z: float, optional</span>
+<span class="sd">        :param yaw_mode: yaw mode, defaults to YawMode.KEEP_YAW</span>
+<span class="sd">        :type yaw_mode: int, optional</span>
+<span class="sd">        :param yaw_angle: yaw angle (rad) when fixed yaw is set, defaults to None</span>
+<span class="sd">        :type yaw_angle: float, optional</span>
+<span class="sd">        :param wait: blocking call, defaults to False</span>
+<span class="sd">        :type wait: bool, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
+                                       <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__follow_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__follow_reference</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+            <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Follow reference.</span>
+
+<span class="sd">        :param x: x position relative to the frame_id</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y position relative to the frame_id</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z position relative to the frame_id</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: frame_id of the reference</span>
+<span class="sd">        :type frame_id: str</span>
+<span class="sd">        :param speed_x: speed limit</span>
+<span class="sd">        :type speed_x: float</span>
+<span class="sd">        :param speed_y: speed limit</span>
+<span class="sd">        :type speed_y: float</span>
+<span class="sd">        :param speed_z: speed limit</span>
+<span class="sd">        :type speed_z: float</span>
+<span class="sd">        :param yaw_mode: yaw mode</span>
+<span class="sd">        :type yaw_mode: int</span>
+<span class="sd">        :param yaw_angle: yaw angle (rad) when fixed yaw is set</span>
+<span class="sd">        :type yaw_angle: float</span>
+<span class="sd">        :param wait: blocking call, defaults to False</span>
+<span class="sd">        :type wait: bool</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_x</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_y</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_z</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span>
+                          <span class="n">speed_z</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
     <span class="c1"># Method simplifications</span>
 <div class="viewcode-block" id="FollowReferenceModule.follow_reference">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference">[docs]</a>
-    <span class="k">def</span> <span class="nf">follow_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow reference (m) with speed (m/s).</span>
+    <span class="k">def</span> <span class="nf">follow_reference</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Follow reference. With keep yaw. Non-blocking call.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x position relative to the frame_id</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y position relative to the frame_id</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z position relative to the frame_id</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: frame_id of the reference</span>
 <span class="sd">        :type frame_id: str</span>
+<span class="sd">        :param speed_x: speed limit</span>
 <span class="sd">        :type speed_x: float</span>
+<span class="sd">        :param speed_y: speed limit</span>
 <span class="sd">        :type speed_y: float</span>
+<span class="sd">        :param speed_z: speed limit</span>
 <span class="sd">        :type speed_z: float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
+                                       <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FollowReferenceModule.follow_reference_with_yaw">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference_with_yaw">[docs]</a>
-    <span class="k">def</span> <span class="nf">follow_reference_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow reference with speed and yaw_angle</span>
+    <span class="k">def</span> <span class="nf">follow_reference_with_yaw</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Follow reference. With desired yaw angle. Non-blocking call.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x position relative to the frame_id</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y position relative to the frame_id</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z position relative to the frame_id</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: frame_id of the reference</span>
 <span class="sd">        :type frame_id: str</span>
+<span class="sd">        :param speed_x: speed limit</span>
 <span class="sd">        :type speed_x: float</span>
+<span class="sd">        :param speed_y: speed limit</span>
 <span class="sd">        :type speed_y: float</span>
+<span class="sd">        :param speed_z: speed limit</span>
 <span class="sd">        :type speed_z: float</span>
+<span class="sd">        :param yaw_angle: yaw angle (rad)</span>
 <span class="sd">        :type yaw_angle: float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
+                                       <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
 
-        
+
 <div class="viewcode-block" id="FollowReferenceModule.follow_reference_with_reference_facing">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule.follow_reference_with_reference_facing">[docs]</a>
-    <span class="k">def</span> <span class="nf">follow_reference_with_reference_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow reference with speed and yaw_angle</span>
+    <span class="k">def</span> <span class="nf">follow_reference_with_reference_facing</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">speed_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Follow reference. With reference facing yaw mode. Non-blocking call.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x position relative to the frame_id</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y position relative to the frame_id</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z position relative to the frame_id</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: frame_id of the reference</span>
 <span class="sd">        :type frame_id: str</span>
+<span class="sd">        :param speed_x: speed limit</span>
 <span class="sd">        :type speed_x: float</span>
+<span class="sd">        :param speed_y: speed limit</span>
 <span class="sd">        :type speed_y: float</span>
+<span class="sd">        :param speed_z: speed limit</span>
 <span class="sd">        :type speed_z: float</span>
-<span class="sd">        :type yaw_angle: float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">YAW_TO_FRAME</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__follow_reference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">speed_x</span><span class="p">,</span> <span class="n">speed_y</span><span class="p">,</span> <span class="n">speed_z</span><span class="p">,</span>
+                                       <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">YAW_TO_FRAME</span><span class="p">)</span></div>
 </div>
-
 
 </pre></div>
 

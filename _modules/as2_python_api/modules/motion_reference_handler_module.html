@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.modules.motion_reference_handler_module</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">motion_reference_handler_module.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Motion Reference Handler module.&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,20 +391,18 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
 <span class="kn">import</span> <span class="nn">typing</span>
 
-<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span>
-
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 <span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.hover_motion</span> <span class="kn">import</span> <span class="n">HoverMotion</span>
 <span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.position_motion</span> <span class="kn">import</span> <span class="n">PositionMotion</span>
-<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.speed_motion</span> <span class="kn">import</span> <span class="n">SpeedMotion</span>
 <span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.speed_in_a_plane</span> <span class="kn">import</span> <span class="n">SpeedInAPlaneMotion</span>
+<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.speed_motion</span> <span class="kn">import</span> <span class="n">SpeedMotion</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
@@ -409,8 +411,9 @@
 <div class="viewcode-block" id="MotionReferenceHandlerModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule">[docs]</a>
 <span class="k">class</span> <span class="nc">MotionReferenceHandlerModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Motion Reference Handlers module&quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;motion_ref_handler&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Motion Reference Handlers module.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;motion_ref_handler&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
@@ -418,9 +421,9 @@
 
         <span class="c1"># FIXME: temporaly, manually stoping behaviors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-            <span class="n">SetBool</span><span class="p">,</span> <span class="s2">&quot;traj_gen/run_node&quot;</span><span class="p">)</span>
+            <span class="n">SetBool</span><span class="p">,</span> <span class="s1">&#39;traj_gen/run_node&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Trajectory generator service not found&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Trajectory generator service not found&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__hover_motion_handler</span> <span class="o">=</span> <span class="n">HoverMotion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="p">)</span>
@@ -431,24 +434,22 @@
 <div class="viewcode-block" id="MotionReferenceHandlerModule.hover">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.hover">[docs]</a>
     <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop and hover current position.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop and hover current position.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Calling trajectory generator&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calling trajectory generator&#39;</span><span class="p">)</span>
             <span class="n">req</span> <span class="o">=</span> <span class="n">SetBool</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
             <span class="n">req</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Cannot stop trajectory generator&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Cannot stop trajectory generator&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__hover_motion_handler</span><span class="o">.</span><span class="n">send_hover</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Hover sent&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Hover sent&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MotionReferenceHandlerModule.destroy">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.destroy">[docs]</a>
     <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Destroy module, clean exit</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Destroy module, clean exit.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__hover_motion_handler</span> <span class="o">=</span> <span class="kc">None</span>

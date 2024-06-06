@@ -306,10 +306,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../../../_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -368,39 +374,39 @@
 </section>
 <section id="module-as2_python_api.tools.utils">
 <span id="as2-python-api-tools-utils-module"></span><h2>as2_python_api.tools.utils module<a class="headerlink" href="#module-as2_python_api.tools.utils" title="Link to this heading"></a></h2>
-<p>Different utility methods</p>
+<p>Different utility methods.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.euler_from_quaternion">
-<span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">euler_from_quaternion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#euler_from_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.euler_from_quaternion" title="Link to this definition"></a></dt>
-<dd><p>Convert a quaternion into euler angles (roll, pitch, yaw)
-roll is rotation around _x in radians (counterclockwise)
-pitch is rotation around _y in radians (counterclockwise)
-yaw is rotation around _z in radians (counterclockwise)</p>
+<span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">euler_from_quaternion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#euler_from_quaternion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.euler_from_quaternion" title="Link to this definition"></a></dt>
+<dd><p>Convert a quaternion into euler angles [roll, pitch, yaw].</p>
+<p>roll is rotation around x in radians (counterclockwise)
+pitch is rotation around y in radians (counterclockwise)
+yaw is rotation around z in radians (counterclockwise)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.find_spec_in_envvar">
 <span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">find_spec_in_envvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ModuleSpec</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#find_spec_in_envvar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.find_spec_in_envvar" title="Link to this definition"></a></dt>
-<dd><p>Search for ModuleSpec in aerostack2 modules path environment variable</p>
+<dd><p>Search for ModuleSpec in aerostack2 modules path environment variable.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.find_spec_in_pkg">
 <span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">find_spec_in_pkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ModuleSpec</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#find_spec_in_pkg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.find_spec_in_pkg" title="Link to this definition"></a></dt>
-<dd><p>Search for ModuleSpec in as2_python_api package default modules folder</p>
+<dd><p>Search for ModuleSpec in as2_python_api package default modules folder.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.get_class_from_module">
 <span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">get_class_from_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase" title="as2_python_api.modules.module_base.ModuleBase"><span class="pre">ModuleBase</span></a></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#get_class_from_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.get_class_from_module" title="Link to this definition"></a></dt>
-<dd><p>Get class from module name
-source: <a class="reference external" href="https://docs.python.org/3.10/library/importlib.html#importing-programmatically">https://docs.python.org/3.10/library/importlib.html#importing-programmatically</a></p>
+<dd><p>Get class from module name.</p>
+<p>source: <a class="reference external" href="https://docs.python.org/3.10/library/importlib.html#importing-programmatically">https://docs.python.org/3.10/library/importlib.html#importing-programmatically</a></p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.get_module_call_signature">
 <span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">get_module_call_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Signature</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#get_module_call_signature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.get_module_call_signature" title="Link to this definition"></a></dt>
-<dd><p>get call method signature from given module name</p>
+<dd><p>Get call method signature from given module name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>inspect.Signature</p>
@@ -410,8 +416,8 @@ source: <a class="reference external" href="https://docs.python.org/3.10/library
 
 <dl class="py function">
 <dt class="sig sig-object py" id="as2_python_api.tools.utils.path_to_list">
-<span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">path_to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#path_to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.path_to_list" title="Link to this definition"></a></dt>
-<dd><p>Converts path into list</p>
+<span class="sig-prename descclassname"><span class="pre">as2_python_api.tools.utils.</span></span><span class="sig-name descname"><span class="pre">path_to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/tools/utils.html#path_to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.tools.utils.path_to_list" title="Link to this definition"></a></dt>
+<dd><p>Convert path into list.</p>
 </dd></dl>
 
 </section>

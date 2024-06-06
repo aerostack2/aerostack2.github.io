@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,9 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.modules.go_to_gps_module</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">go_to_gps_module.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Go to GPS Module.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,18 +393,16 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright(c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD - 3 - Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">geographic_msgs.msg</span> <span class="kn">import</span> <span class="n">GeoPose</span>
 <span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">YawMode</span>
-
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.go_to_behavior</span> <span class="kn">import</span> <span class="n">GoToBehavior</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span> <span class="nn">geographic_msgs.msg</span> <span class="kn">import</span> <span class="n">GeoPose</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
@@ -407,119 +411,187 @@
 <div class="viewcode-block" id="GoToGpsModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule">[docs]</a>
 <span class="k">class</span> <span class="nc">GoToGpsModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">,</span> <span class="n">GoToBehavior</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Go to GPS Module</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;go_to_gps&quot;</span>
-    <span class="n">__deps__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gps&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Go to GPS Module.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;go_to_gps&#39;</span>
+    <span class="n">__deps__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gps&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                 <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span>
-                 <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to point (m) with speed (m/s).</span>
+                 <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span>
+                 <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point.</span>
 
+<span class="sd">        :param lat: latitude (deg) of the point</span>
 <span class="sd">        :type lat: float</span>
+<span class="sd">        :param lon: longitude (deg) of the point</span>
 <span class="sd">        :type lon: float</span>
+<span class="sd">        :param alt: altitude (m) of the point</span>
 <span class="sd">        :type alt: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
-<span class="sd">        :type yaw_mode: int</span>
-<span class="sd">        :type yaw_angle: float</span>
-<span class="sd">        :type wait: bool</span>
+<span class="sd">        :param yaw_mode: yaw mode, defaults to YawMode.KEEP_YAW</span>
+<span class="sd">        :type yaw_mode: int, optional</span>
+<span class="sd">        :param yaw_angle: yaw angle (rad) when fixed yaw is set, defaults to None</span>
+<span class="sd">        :type yaw_angle: float, optional</span>
+<span class="sd">        :param wait: blocking call, defaults to True</span>
+<span class="sd">        :type wait: bool, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point.</span>
+
+<span class="sd">        :param lat: latitude (deg) of the point</span>
+<span class="sd">        :type lat: float</span>
+<span class="sd">        :param lon: longitude (deg) of the point</span>
+<span class="sd">        :type lon: float</span>
+<span class="sd">        :param alt: altitude (m) of the point</span>
+<span class="sd">        :type alt: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :param yaw_mode: yaw mode</span>
+<span class="sd">        :type yaw_mode: int</span>
+<span class="sd">        :param yaw_angle: yaw angle (rad) when fixed yaw is set</span>
+<span class="sd">        :type yaw_angle: float</span>
+<span class="sd">        :param wait: blocking call, defaults to True</span>
+<span class="sd">        :type wait: bool, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">GeoPose</span><span class="p">()</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">lat</span><span class="p">)</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">lon</span><span class="p">)</span>
         <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">altitude</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">alt</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">pose</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">yaw_mode</span><span class="p">,</span>
-                   <span class="n">yaw_angle</span><span class="o">=</span><span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait_result</span><span class="o">=</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">pose</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">yaw_mode</span><span class="p">,</span>
+                          <span class="n">yaw_angle</span><span class="o">=</span><span class="n">yaw_angle</span><span class="p">,</span> <span class="n">wait_result</span><span class="o">=</span><span class="n">wait</span><span class="p">)</span>
 
     <span class="c1"># Method simplications</span>
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to GPS point (deg, m) with speed (m/s).</span>
+    <span class="k">def</span> <span class="nf">go_to_gps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. Blocking call.</span>
 
+<span class="sd">        :param lat: latitude (deg) of the point</span>
 <span class="sd">        :type lat: float</span>
+<span class="sd">        :param lon: longitude (deg) of the point</span>
 <span class="sd">        :type lon: float</span>
+<span class="sd">        :param alt: altitude (m) of the point</span>
 <span class="sd">        :type alt: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
+                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps_with_yaw">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_with_yaw">[docs]</a>
     <span class="k">def</span> <span class="nf">go_to_gps_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                           <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to gps position with speed and angle</span>
+                           <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. With desired yaw angle. Blocking call.</span>
 
+<span class="sd">        :param lat: latitude (deg) of the point</span>
 <span class="sd">        :type lat: float</span>
+<span class="sd">        :param lon: longitude (deg) of the point</span>
 <span class="sd">        :type lon: float</span>
+<span class="sd">        :param alt: altitude (m) of the point</span>
 <span class="sd">        :type alt: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
-<span class="sd">        :type angle: float</span>
+<span class="sd">        :param yaw_angle: go to desired yaw angle (rad)</span>
+<span class="sd">        :type yaw_angle: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
+                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps_path_facing">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_path_facing">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to_gps_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to gps position with speed facing the goal</span>
+    <span class="k">def</span> <span class="nf">go_to_gps_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lon</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alt</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. With desired path facing. Blocking call.</span>
 
+<span class="sd">        :param lat: latitude (deg) of the point</span>
 <span class="sd">        :type lat: float</span>
+<span class="sd">        :param lon: longitude (deg) of the point</span>
 <span class="sd">        :type lon: float</span>
+<span class="sd">        :param alt: altitude (m) of the point</span>
 <span class="sd">        :type alt: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                     <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">alt</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
+                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps_point">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to_gps_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to GPS point (deg, m) with speed (m/s).</span>
+    <span class="k">def</span> <span class="nf">go_to_gps_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. Blocking call.</span>
 
-<span class="sd">        :type waypoint: List[float]</span>
+<span class="sd">        :param point: GPS point [lat, lon, alt]</span>
+<span class="sd">        :type point: list[float]</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                     <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps_point_with_yaw">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point_with_yaw">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to_gps_point_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to gps point with speed and yaw angle</span>
+    <span class="k">def</span> <span class="nf">go_to_gps_point_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. With desired yaw angle. Blocking call.</span>
 
-<span class="sd">        :type waypoint: List[float]</span>
+<span class="sd">        :param point: GPS point [lat, lon, alt]</span>
+<span class="sd">        :type point: list[float]</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
-<span class="sd">        :type angle: float</span>
+<span class="sd">        :param yaw_angle: go to desired yaw angle (rad)</span>
+<span class="sd">        :type yaw_angle: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                     <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToGpsModule.go_to_gps_point_path_facing">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_gps_module.GoToGpsModule.go_to_gps_point_path_facing">[docs]</a>
-    <span class="k">def</span> <span class="nf">go_to_gps_point_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Go to gps point with speed facing the goal</span>
+    <span class="k">def</span> <span class="nf">go_to_gps_point_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waypoint</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to GPS point. With desired path facing. Blocking call.</span>
 
-<span class="sd">        :type waypoint: List[float]</span>
+<span class="sd">        :param point: GPS point [lat, lon, alt]</span>
+<span class="sd">        :type point: list[float]</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
 <span class="sd">        :type speed: float</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                     <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">waypoint</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">waypoint</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

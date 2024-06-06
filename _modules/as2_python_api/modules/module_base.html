@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.modules.module_base</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">module_base.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Module Base.&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,13 +391,14 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez, Miguel Fernández Cortizas, David Pérez Saura, Rafael Pérez Seguí&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+
 <span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission</span> <span class="kn">import</span> <span class="n">MissionItem</span>
+
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
 
@@ -401,9 +406,9 @@
 <div class="viewcode-block" id="ModuleBase">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase">[docs]</a>
 <span class="k">class</span> <span class="nc">ModuleBase</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Module Base</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Module Base.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">__deps__</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">,</span> <span class="n">alias</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -427,28 +432,13 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase.get_plan_item">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_plan_item</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MissionItem</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get a MissionItem from a method call</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a MissionItem from a method call.</span>
 
-<span class="sd">        Example:</span>
-<span class="sd">        # Take Off</span>
-<span class="sd">        mission.plan.append(TakeoffModule.get_plan_item(</span>
-<span class="sd">            TakeoffModule.__call__,</span>
-<span class="sd">            height=takeoff_height, speed=takeoff_speed))</span>
-
-<span class="sd">        # Go To Take Off Height</span>
-<span class="sd">        mission.plan.append(GoToModule.get_plan_item(</span>
-<span class="sd">            GoToModule.go_to,</span>
-<span class="sd">            go_to_x, go_to_y, takeoff_height, takeoff_speed))</span>
-
-<span class="sd">        # Land</span>
-<span class="sd">        mission.plan.append(LandModule.get_plan_item(</span>
-<span class="sd">            speed=land_speed, wait=True))</span>
-<span class="sd">        </span>
-<span class="sd">        Args:</span>
-<span class="sd">            method_name (Callable, optional): Method to be called. Defaults to &quot;cls.__call__&quot;.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            MissionItem: MissionItem with the method call </span>
+<span class="sd">        :param method_name: Method to be called. Defaults to &quot;cls.__call__&quot;.</span>
+<span class="sd">        :type method_name: Callable, optional</span>
+<span class="sd">        :return: MissionItem with the method call</span>
+<span class="sd">        :rtype: MissionItem</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">method_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">method_name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="fm">__call__</span>  <span class="c1"># Use the default __call__ method</span>
@@ -464,7 +454,6 @@
 
         <span class="k">return</span> <span class="n">MissionItem</span><span class="p">(</span><span class="n">behavior</span><span class="o">=</span><span class="n">alias</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method_name_str</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">arg_dict</span><span class="p">)</span></div>
 </div>
-
 
 </pre></div>
 

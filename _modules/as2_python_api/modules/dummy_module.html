@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -355,7 +361,9 @@
              
   <h1>Source code for as2_python_api.modules.dummy_module</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">dummy_module.py</span>
+<span class="sd">Dummy Module for testing purpouses.</span>
+
+<span class="sd">This module is a dummy module that does nothing but print the arguments it receives.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
@@ -387,13 +395,12 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">import</span> <span class="nn">typing</span>
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">typing</span>
 
 <span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 
@@ -404,37 +411,38 @@
 <div class="viewcode-block" id="DummyModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule">[docs]</a>
 <span class="k">class</span> <span class="nc">DummyModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dummy Module</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;dummy&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dummy Module.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;dummy&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dummy call</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Do dummy call.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">wait</span> <span class="o">=</span> <span class="n">wait</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">wait</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="si">}</span><span class="s2"> called with </span><span class="si">{</span><span class="n">arg1</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">arg2</span><span class="si">=}</span><span class="s2"> and </span><span class="si">{</span><span class="n">wait</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="si">}</span><span class="s1"> called with </span><span class="si">{</span><span class="n">arg1</span><span class="si">=}</span><span class="s1">, </span><span class="si">{</span><span class="n">arg2</span><span class="si">=}</span><span class="s1"> and </span><span class="si">{</span><span class="n">wait</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="si">}</span><span class="s2"> called with </span><span class="si">{</span><span class="n">arg1</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="n">arg2</span><span class="si">=}</span><span class="s2"> and </span><span class="si">{</span><span class="n">wait</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="si">}</span><span class="s1"> called with </span><span class="si">{</span><span class="n">arg1</span><span class="si">=}</span><span class="s1">, </span><span class="si">{</span><span class="n">arg2</span><span class="si">=}</span><span class="s1"> and </span><span class="si">{</span><span class="n">wait</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DummyModule.stop">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule.stop">[docs]</a>
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;stop dummy module&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop dummy module.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="kc">True</span></div>
 
 
 <div class="viewcode-block" id="DummyModule.destroy">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule.destroy">[docs]</a>
     <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;DummyModule does not inherit from a behavior with a destroy method, so self defining it</span>
-<span class="sd">        Does nothing...</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Do nothing.</span>
+
+<span class="sd">        Dummy Module does not inherit from a behavior with a destroy method, so self defining it</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 </div>
 

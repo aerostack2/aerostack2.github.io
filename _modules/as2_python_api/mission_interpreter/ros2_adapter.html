@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.mission_interpreter.ros2_adapter</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">ros2_adapter.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Mission interpreter ROS 2 adapter.&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,27 +391,28 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
 <span class="kn">import</span> <span class="nn">argparse</span>
-<span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">rclpy.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
 
-<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">qos_profile_system_default</span><span class="p">,</span> <span class="n">qos_profile_sensor_data</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> <span class="n">QoSReliabilityPolicy</span><span class="p">,</span> <span class="n">QoSHistoryPolicy</span>
-<span class="kn">import</span> <span class="nn">rclpy.executors</span>
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
 <span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">MissionUpdate</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission</span> <span class="kn">import</span> <span class="n">Mission</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission_interpreter</span> <span class="kn">import</span> <span class="n">MissionInterpreter</span>
+<span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">import</span> <span class="nn">rclpy.executors</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">rclpy.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">qos_profile_system_default</span><span class="p">,</span> <span class="n">QoSHistoryPolicy</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> \
+    <span class="n">QoSReliabilityPolicy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
 
 
 <div class="viewcode-block" id="Adapter">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter">[docs]</a>
 <span class="k">class</span> <span class="nc">Adapter</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;ROS 2 Adapter to mission interpreter&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ROS 2 Adapter to mission interpreter.&quot;&quot;&quot;</span>
 
     <span class="n">STATUS_FREQ</span> <span class="o">=</span> <span class="mf">0.5</span>
 
@@ -438,19 +443,19 @@
             <span class="n">String</span><span class="p">,</span> <span class="n">topic_prefix</span> <span class="o">+</span> <span class="s1">&#39;mission_status&#39;</span><span class="p">,</span> <span class="n">qos_profile</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">mission_state_timer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span>
-            <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">STATUS_FREQ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_timer_callback</span><span class="p">)</span>
+            <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">STATUS_FREQ</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">status_timer_callback</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adapter ready&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Adapter ready&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Adapter.status_timer_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.status_timer_callback">[docs]</a>
     <span class="k">def</span> <span class="nf">status_timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish new mission status&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish new mission status.&quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to deserialize status: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to deserialize status: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mission_status_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
@@ -458,17 +463,17 @@
 <div class="viewcode-block" id="Adapter.mission_update_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.mission_update_callback">[docs]</a>
     <span class="k">def</span> <span class="nf">mission_update_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">MissionUpdate</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;New mission update&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mission update callback.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">drone_id</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Received mission update for </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">drone_id</span><span class="si">}</span><span class="s2"> but I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="sa">f</span><span class="s1">&#39;Received mission update for </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">drone_id</span><span class="si">}</span><span class="s1"> but I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="n">MissionUpdate</span><span class="o">.</span><span class="n">EXECUTE</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">execute_callback</span><span class="p">(</span><span class="n">Mission</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">mission</span><span class="p">))</span>
         <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="n">MissionUpdate</span><span class="o">.</span><span class="n">LOAD</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mission: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span><span class="si">}</span><span class="s2"> loaded.&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mission: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">mission</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mission: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span><span class="si">}</span><span class="s1"> loaded.&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mission: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">mission</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">Mission</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">mission</span><span class="p">))</span>
             <span class="c1"># Send updated status</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">status_timer_callback</span><span class="p">()</span>
@@ -487,7 +492,7 @@
 <div class="viewcode-block" id="Adapter.execute_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.execute_callback">[docs]</a>
     <span class="k">def</span> <span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load and start mission&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load and start mission.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">mission</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_callback</span><span class="p">()</span></div>
 
@@ -495,30 +500,31 @@
 <div class="viewcode-block" id="Adapter.start_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback">[docs]</a>
     <span class="k">def</span> <span class="nf">start_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission on interpreter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission on interpreter.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">drone</span><span class="o">.</span><span class="n">arm</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">drone</span><span class="o">.</span><span class="n">offboard</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">start_mission</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Trying to start mission but no mission is loaded.&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Trying to start mission but no mission is loaded.&#39;</span><span class="p">)</span></div>
 
 
     <span class="c1"># TODO: WARNING! This is temporary, move abort mission to MissionInterpreter</span>
 <div class="viewcode-block" id="Adapter.abort_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.abort_callback">[docs]</a>
     <span class="k">def</span> <span class="nf">abort_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Abort mission on interpreter&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Abort mission on interpreter.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort_mission</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span>
-                <span class="s2">&quot;Abort command received but not abort mission available. Change to manual control!&quot;</span><span class="p">)</span>
+                <span class="s1">&#39;Abort command received but not abort mission available. &#39;</span> <span class="o">+</span>
+                <span class="s1">&#39;Change to manual control!&#39;</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">abort_mission</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">start_mission</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Trying to start mission but no mission is loaded.&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Trying to start mission but no mission is loaded.&#39;</span><span class="p">)</span></div>
 </div>
 
 
@@ -526,7 +532,7 @@
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.main">[docs]</a>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run node&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run node.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;drone0&#39;</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Namespace&#39;</span><span class="p">)</span>
@@ -550,7 +556,7 @@
 
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 

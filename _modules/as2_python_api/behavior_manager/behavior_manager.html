@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -356,6 +362,8 @@
   <h1>Source code for as2_python_api.behavior_manager.behavior_manager</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Behavior manager.&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
 <span class="c1"># Redistribution and use in source and binary forms, with or without</span>
@@ -384,13 +392,13 @@
 <span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Javier Melero Deza, Pedro Arias Pérez, Rafael Pérez Seguí&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2022 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Javier Melero Deza, Pedro Arias Pérez, Rafael Pérez Seguí&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span><span class="p">,</span> <span class="n">ThreadError</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
 <span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.behavior_handler</span> <span class="kn">import</span> <span class="n">BehaviorHandler</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 
@@ -429,8 +437,9 @@
 <div class="viewcode-block" id="DroneBehaviorManager.pause_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.pause_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pause_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">pause_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pause all behaviors in list.</span>
 
 <span class="sd">        :param behavior: _description_</span>
 <span class="sd">        :type behavior: _type_</span>
@@ -445,8 +454,9 @@
 <div class="viewcode-block" id="DroneBehaviorManager.resume_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.resume_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">resume_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">resume_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resume all behaviors in list.</span>
 
 <span class="sd">        :param behavior: _description_</span>
 <span class="sd">        :type behavior: _type_</span>
@@ -459,15 +469,15 @@
 <div class="viewcode-block" id="DroneBehaviorManager.stop_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.stop_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">stop_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">stop_behaviors</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop all behaviors in list.</span>
 
 <span class="sd">        :param behavior: _description_</span>
 <span class="sd">        :type behavior: _type_</span>
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">return</span> <span class="n">DroneBehaviorManager</span><span class="o">.</span><span class="n">drone_behavior_func</span><span class="p">(</span><span class="n">behaviors</span><span class="p">,</span> <span class="n">uav</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">)</span></div>
 
 
@@ -475,13 +485,15 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.pause_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pause_all_behaviors</span><span class="p">(</span><span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pause all behaviors for a drone.</span>
 
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {behavior: bool}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">behavior</span><span class="p">:</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">]</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
-                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span> <span class="n">BehaviorHandler</span><span class="p">)}</span>
+                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span>
+                                                             <span class="n">BehaviorHandler</span><span class="p">)}</span>
         <span class="k">return</span> <span class="n">success</span></div>
 
 
@@ -489,13 +501,15 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.resume_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">resume_all_behaviors</span><span class="p">(</span><span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resume all behaviors for a drone.</span>
 
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {behavior: bool}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">behavior</span><span class="p">:</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">]</span><span class="o">.</span><span class="n">resume</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span> <span class="n">BehaviorHandler</span><span class="p">)}</span>
+                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span>
+                                                             <span class="n">BehaviorHandler</span><span class="p">)}</span>
 
         <span class="k">return</span> <span class="n">success</span></div>
 
@@ -504,13 +518,15 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.stop_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">stop_all_behaviors</span><span class="p">(</span><span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop all behaviors for a drone.</span>
 
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {behavior: bool}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">success</span> <span class="o">=</span> <span class="p">{</span><span class="n">behavior</span><span class="p">:</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">]</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span> <span class="n">BehaviorHandler</span><span class="p">)}</span>
+                   <span class="k">for</span> <span class="n">behavior</span> <span class="ow">in</span> <span class="n">uav</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uav</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">behavior</span><span class="p">],</span>
+                                                             <span class="n">BehaviorHandler</span><span class="p">)}</span>
         <span class="k">return</span> <span class="n">success</span></div>
 
 
@@ -532,8 +548,9 @@
 <div class="viewcode-block" id="DroneBehaviorManager.drone_behavior_func">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.DroneBehaviorManager.drone_behavior_func">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">drone_behavior_func</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">drone_behavior_func</span><span class="p">(</span><span class="n">behaviors</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">uav</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call behavior method.</span>
 
 <span class="sd">        :param behavior: _description_</span>
 <span class="sd">        :type behavior: list | str</span>
@@ -568,13 +585,14 @@
 <div class="viewcode-block" id="SwarmBehaviorManager">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager">[docs]</a>
 <span class="k">class</span> <span class="nc">SwarmBehaviorManager</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;_summary_&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Swam Behavior Manager.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="SwarmBehaviorManager.pause_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.pause_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">pause_behaviors</span><span class="p">(</span><span class="n">behavior_dict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pause behaviors.</span>
 
 <span class="sd">        :param behavior_dict: _description_</span>
 <span class="sd">        :type behavior_dict: _type_</span>
@@ -588,7 +606,8 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.resume_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">resume_behaviors</span><span class="p">(</span><span class="n">behavior_dict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resume behaviors.</span>
 
 <span class="sd">        :param behavior_dict: _description_</span>
 <span class="sd">        :type behavior_dict: _type_</span>
@@ -602,7 +621,8 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.stop_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">stop_behaviors</span><span class="p">(</span><span class="n">behavior_dict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop behaviors.</span>
 
 <span class="sd">        :param behavior_dict: _description_</span>
 <span class="sd">        :type behavior_dict: _type_</span>
@@ -615,49 +635,55 @@
 <div class="viewcode-block" id="SwarmBehaviorManager.pause_all_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.pause_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pause_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">pause_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pause all behaviors for each interface.</span>
 
 <span class="sd">        :param drone_id_list: _description_, defaults to None</span>
 <span class="sd">        :type drone_id_list: _type_, optional</span>
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;pause_all_behaviors&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span>
+                                                            <span class="s1">&#39;pause_all_behaviors&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SwarmBehaviorManager.resume_all_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.resume_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">resume_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">resume_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resume all behaviors for all drones in the swarm.</span>
 
 <span class="sd">        :param drone_id_list: _description_, defaults to None</span>
 <span class="sd">        :type drone_id_list: _type_, optional</span>
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;resume_all_behaviors&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span>
+                                                            <span class="s1">&#39;resume_all_behaviors&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SwarmBehaviorManager.stop_all_behaviors">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.stop_all_behaviors">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">stop_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+    <span class="k">def</span> <span class="nf">stop_all_behaviors</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stop all behaviors for all drones in the swarm.</span>
 
 <span class="sd">        :param drone_id_list: _description_, defaults to None</span>
 <span class="sd">        :type drone_id_list: _type_, optional</span>
 <span class="sd">        :return: _description_</span>
 <span class="sd">        :rtype: dict {drone_id:{behavior: bool}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="s1">&#39;stop_all_behaviors&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">SwarmBehaviorManager</span><span class="o">.</span><span class="n">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span>
+                                                            <span class="s1">&#39;stop_all_behaviors&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SwarmBehaviorManager.get_behaviors_status">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.get_behaviors_status">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_behaviors_status</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">get_behaviors_status</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DroneInterfaceBase</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get behavior status for each interface.</span>
 
@@ -674,7 +700,8 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_behavior_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">swarm_behavior_func</span><span class="p">(</span><span class="n">behavior_dict</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a behavior function for all drones in the swarm.</span>
 
 <span class="sd">        :param func: _description_</span>
 <span class="sd">        :type func: _type_</span>
@@ -704,7 +731,8 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_all_behavior_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">swarm_all_behavior_func</span><span class="p">(</span><span class="n">drone_interface_list</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a behavior function for all drones in the swarm.</span>
 
 <span class="sd">        :param func: _description_</span>
 <span class="sd">        :type func: _type_</span>

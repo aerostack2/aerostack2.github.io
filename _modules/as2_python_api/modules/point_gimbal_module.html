@@ -303,10 +303,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#developing-a-new-package">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html#test">Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -354,9 +360,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for as2_python_api.modules.point_gimbal_module</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">point_gimbal_module.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Point Gimbal Module.&quot;&quot;&quot;</span>
 
 <span class="c1"># Copyright 2024 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
@@ -387,17 +391,16 @@
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
 
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s2">&quot;Pedro Arias Pérez&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (c) 2024 Universidad Politécnica de Madrid&quot;</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;BSD-3-Clause&quot;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2024 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span>
-
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.point_gimbal_behavior</span> <span class="kn">import</span> <span class="n">PointGimbalBehavior</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
@@ -406,44 +409,59 @@
 <div class="viewcode-block" id="PointGimbalModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.point_gimbal_module.PointGimbalModule">[docs]</a>
 <span class="k">class</span> <span class="nc">PointGimbalModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">,</span> <span class="n">PointGimbalBehavior</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Point Gimbal Module</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__alias__</span> <span class="o">=</span> <span class="s2">&quot;point_gimbal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Point Gimbal Module.&quot;&quot;&quot;</span>
+
+    <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;point_gimbal&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Follow reference (m) with speed (m/s).</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Point Gimbal to reference.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x coordinate (m) to point gimbal to</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y coordinate (m) to point gimbal to</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z coordinate (m) to point gimbal to</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: reference frame of the coordinates</span>
 <span class="sd">        :type frame_id: str</span>
-<span class="sd">        :type wait: bool</span>
+<span class="sd">        :param wait: blocking call, defaults to True</span>
+<span class="sd">        :type wait: bool, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__point_gimbal</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__point_gimbal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__point_gimbal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__point_gimbal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                        <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_x</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_y</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">_z</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">z</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
     <span class="c1"># Method simplifications</span>
 <div class="viewcode-block" id="PointGimbalModule.point_gimbal">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.point_gimbal_module.PointGimbalModule.point_gimbal">[docs]</a>
-    <span class="k">def</span> <span class="nf">point_gimbal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">_z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Point Gimbal to reference (m).</span>
+    <span class="k">def</span> <span class="nf">point_gimbal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Point Gimbal to reference, blocking call.</span>
 
-<span class="sd">        :type _x: float</span>
-<span class="sd">        :type _y: float</span>
-<span class="sd">        :type _z: float</span>
+<span class="sd">        :param x: x coordinate (m) to point gimbal to</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y coordinate (m) to point gimbal to</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z coordinate (m) to point gimbal to</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param frame_id: reference frame of the coordinates</span>
 <span class="sd">        :type frame_id: str</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__point_gimbal</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">,</span> <span class="n">_z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__point_gimbal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
