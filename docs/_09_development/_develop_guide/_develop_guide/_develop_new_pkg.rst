@@ -19,24 +19,32 @@ Every new C++ package should have the following architecture:
     /package_name
         /include
             /package_name
-                ### header files ###
-                node_name(.hpp)
+                ### header files (.hpp) ###
+                package_name.hpp
+                header_files.hpp
         /launch
         /src
-            ### implementation_files ###
-            node_name(.cpp)
-            ### main_files ###
-            node_name_node(.cpp)
+            ### implementation_files (.cpp)###
+            package_name.cpp
+            implementation_files.cpp
+            ### main_files (_node.cpp) ###
+            package_name_node.cpp
         /tests
             CMakeLists.txt
-            ### test_files ###
-            gtest_test(.cpp)
+            ### test_files (_test.cpp, _gtest.cpp) ###
+            test_executable_test.cpp
+            google_test_gtest.cpp
         CmakeLists.txt
         package.xml
         README.md
         LICENSE
         CONTRIBUTING.md
         .gitignore
+
+Note that every executable test file must end with ``_test.cpp`` and every Google test file must end with ``_gtest.cpp``.
+
+Simple packages with just one node should have its only node named as the package. Packages with more than one node or
+implementation files may have different naming.
 
 Structure of a Python Package
 -----------------------------
@@ -48,12 +56,12 @@ Every new Python package should have the following architecture:
     /package_name
         /package_name
             __init__.py
-            ### source_files ###
-            file(.py)
+            ### source_files (.py) ###
+            package_name.py
         /launch
         /tests
-            ### test_files ###
-            test(.py)
+            ### test_files (test_***.py) ###
+            test_file.py
         setup.cfg
         setup.py
         package.xml
@@ -72,22 +80,22 @@ A package that includes both Python and C++ files should have the following arch
     /package_name
         /package_name
             __init__.py
-            ### python_source_files ###
-            file(.py)
+            ### python_source_files(.py) ###
+            package_name.py
         /include
             /package_name
-                ### C++ header files ###
-                node_name(.hpp)
+                ### C++ header files(.hpp) ###
+                package_name.hpp
         
         /launch
         /src
-            ### C++ implementation_files ###
-            node_name(.cpp)
-            ### C++ main_files ###
-            node_name_node(.cpp)
+            ### C++ implementation_files(.cpp) ###
+            package_name.cpp
+            ### C++ main_files (_node.cpp) ###
+            package_name_node(.cpp)
         /tests
             ### test_files ###
-            test(.py)
+            test_file.py
         CMakeList.txt
         package.xml
         README.md
@@ -101,8 +109,8 @@ Code Style
 ==========
 
 Aerostack2 mainly follows the `ROS 2 code style and language versions <https://docs.ros.org/en/humble/The-ROS2-Project/Contributing/Code-Style-Language-Versions.html>`_. 
-There are, though, some exceptions, as ROS 2 claims to follow Goggle code style but uses snake_case
-instead of camelCase. Aerostack2 uses camelCase.
+There are, though, some exceptions, as ROS 2 claims to follow Google code style but uses snake_case
+instead of camelCase. Aerostack2 uses Google code style.
 
 
 .. _development_guide_new_pkg_code_style_c++:
@@ -143,6 +151,18 @@ Every file should start with the Licence text, which looks like this:
     // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
     // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     // POSSIBILITY OF SUCH DAMAGE.
+
+After the License text, files should include a header like this:
+
+.. code-block:: c++
+
+    /**
+    * @file file_name.cpp
+    *
+    * File description
+    *
+    * @author Author name <author email>
+    */
 
 Documentation will be generate using `Doxygen <https://www.doxygen.nl/manual/docblocks.html>`_.
 Therefore, header files should include a comment over every definition in order to generate the documentation properly.
@@ -374,5 +394,5 @@ To run these tests:
 
 .. code-block:: bash
 
-    $ colcon test 
+    colcon test
 
