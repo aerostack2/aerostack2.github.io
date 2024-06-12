@@ -20,7 +20,7 @@ After that, make sure you have installed the following dependencies:
 
     sudo apt install git python3-rosdep python3-pip python3-colcon-common-extensions -y
 
-For simulation purposes, please :ref:`install Gazebo Fortress <aerial_platform_gazebo_installation_prerequisites>` to install the necessary dependencies.
+For simulation purposes, please :ref:`install Gazebo <aerial_platform_gazebo_installation_prerequisites>` in any of the supported versions to install the necessary dependencies.
 
 
 
