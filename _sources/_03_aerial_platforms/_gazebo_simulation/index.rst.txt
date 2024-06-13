@@ -33,9 +33,41 @@ Installation
 Prerequisites
 =============
 
-Gazebo in Fortress version is required. For installation instructions, follow the `Gazebo Fortress installation guide <https://gazebosim.org/docs/fortress/install_ubuntu>`__.
+Ignition Gazebo is required for simulation using this simulator. The default Gazebo version for working
+and simulating with Aerostack2 is Gazebo Fortress, which can be installed following the
+`Gazebo Fortress installation guide <https://gazebosim.org/docs/fortress/install_ubuntu>`__.
 
+Using 'Gazebo Harmonic'
+-----------------------
 
+Gazebo Harmonic is also supported by Aerostack2. For simulations to work with this version,
+make sure Gazebo Fortress is completely removed from your machine, since both versions are not
+compatible with Aerostack2 at the same time. To do so, first run:
+
+.. code-block:: bash
+
+  sudo apt-get remove ignition-fortress
+  sudo apt remove ignition*
+  sudo apt autoremove
+
+To ensure no ignition-fortress packages are cached with the Aerostack2 compilation, run the following
+`Aerostack2 CLI <https://aerostack2.github.io/_09_development/_cli/index.html#development-cli>`_ command to clean Aerostack2 if you have it compilled:
+
+.. code-block:: bash
+
+  as2 clean -a
+  source ~/.bashrc
+
+After that, you can follow the `Gazebo Harmonic installation guide <https://gazebosim.org/docs/harmonic/install_ubuntu>`__
+to install the new Gazebo version. 
+
+.. warning:: An additional package must be installed for Aerostack2 to build:
+
+  .. code-block:: bash
+
+    sudo apt install ros-humble-ros-gzharmonic
+
+.. note:: Gazebo Fortress can be re-installed to your machine after Aerostack2 has been compiled with Gazebo Harmonic if you need it, but compiling Aerostack2 with Fortress again will not be possible.
 
 .. _aerial_platform_gazebo_installation_package:
 

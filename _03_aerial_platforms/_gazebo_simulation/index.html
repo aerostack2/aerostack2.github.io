@@ -371,20 +371,24 @@
 <li><p><a class="reference internal" href="#introduction" id="id8">Introduction</a></p></li>
 <li><p><a class="reference internal" href="#installation" id="id9">Installation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#prerequisites" id="id10">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#install-platform-package" id="id11">Install platform package</a></p></li>
-<li><p><a class="reference internal" href="#install-simulation-assets" id="id12">Install simulation assets</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#aerostack2-common-interface" id="id13">Aerostack2 Common Interface</a></p>
+<li><p><a class="reference internal" href="#prerequisites" id="id10">Prerequisites</a></p>
 <ul>
-<li><p><a class="reference internal" href="#control-modes" id="id14">Control Modes</a></p></li>
-<li><p><a class="reference internal" href="#sensors" id="id15">Sensors</a></p></li>
-<li><p><a class="reference internal" href="#gimbal" id="id16">Gimbal</a></p></li>
+<li><p><a class="reference internal" href="#using-gazebo-harmonic" id="id11">Using ‘Gazebo Harmonic’</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#config-simulation" id="id17">Config Simulation</a></p></li>
-<li><p><a class="reference internal" href="#platform-launch" id="id18">Platform Launch</a></p></li>
+<li><p><a class="reference internal" href="#install-platform-package" id="id12">Install platform package</a></p></li>
+<li><p><a class="reference internal" href="#install-simulation-assets" id="id13">Install simulation assets</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#aerostack2-common-interface" id="id14">Aerostack2 Common Interface</a></p>
+<ul>
+<li><p><a class="reference internal" href="#control-modes" id="id15">Control Modes</a></p></li>
+<li><p><a class="reference internal" href="#sensors" id="id16">Sensors</a></p></li>
+<li><p><a class="reference internal" href="#gimbal" id="id17">Gimbal</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#config-simulation" id="id18">Config Simulation</a></p></li>
+<li><p><a class="reference internal" href="#platform-launch" id="id19">Platform Launch</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
@@ -395,10 +399,42 @@
 <span id="aerial-platform-gazebo-installation"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <section id="prerequisites">
 <span id="aerial-platform-gazebo-installation-prerequisites"></span><h3><a class="toc-backref" href="#id10" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
-<p>Gazebo in Fortress version is required. For installation instructions, follow the <a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">Gazebo Fortress installation guide</a>.</p>
+<p>Ignition Gazebo is required for simulation using this simulator. The default Gazebo version for working
+and simulating with Aerostack2 is Gazebo Fortress, which can be installed following the
+<a class="reference external" href="https://gazebosim.org/docs/fortress/install_ubuntu">Gazebo Fortress installation guide</a>.</p>
+<section id="using-gazebo-harmonic">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Using ‘Gazebo Harmonic’</a><a class="headerlink" href="#using-gazebo-harmonic" title="Link to this heading"></a></h4>
+<p>Gazebo Harmonic is also supported by Aerostack2. For simulations to work with this version,
+make sure Gazebo Fortress is completely removed from your machine, since both versions are not
+compatible with Aerostack2 at the same time. To do so, first run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>ignition-fortress
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>ignition*
+sudo<span class="w"> </span>apt<span class="w"> </span>autoremove
+</pre></div>
+</div>
+<p>To ensure no ignition-fortress packages are cached with the Aerostack2 compilation, run the following
+<a class="reference external" href="https://aerostack2.github.io/_09_development/_cli/index.html#development-cli">Aerostack2 CLI</a> command to clean Aerostack2 if you have it compilled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>as2<span class="w"> </span>clean<span class="w"> </span>-a
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>After that, you can follow the <a class="reference external" href="https://gazebosim.org/docs/harmonic/install_ubuntu">Gazebo Harmonic installation guide</a>
+to install the new Gazebo version.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An additional package must be installed for Aerostack2 to build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-ros-gzharmonic
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Gazebo Fortress can be re-installed to your machine after Aerostack2 has been compiled with Gazebo Harmonic if you need it, but compiling Aerostack2 with Fortress again will not be possible.</p>
+</div>
+</section>
 </section>
 <section id="install-platform-package">
-<span id="aerial-platform-gazebo-installation-package"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">Install platform package</a><a class="headerlink" href="#install-platform-package" title="Link to this heading"></a></h3>
+<span id="aerial-platform-gazebo-installation-package"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">Install platform package</a><a class="headerlink" href="#install-platform-package" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>For binary installation, install by running:</p></li>
 </ul>
@@ -414,7 +450,7 @@
 </ul>
 </section>
 <section id="install-simulation-assets">
-<span id="aerial-platform-gazebo-installation-assets"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">Install simulation assets</a><a class="headerlink" href="#install-simulation-assets" title="Link to this heading"></a></h3>
+<span id="aerial-platform-gazebo-installation-assets"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">Install simulation assets</a><a class="headerlink" href="#install-simulation-assets" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>For binary installation, install by running:</p></li>
 </ul>
@@ -431,11 +467,11 @@
 </section>
 </section>
 <section id="aerostack2-common-interface">
-<span id="aerial-platform-gazebo-as2-common-interface"></span><h2><a class="toc-backref" href="#id13" role="doc-backlink">Aerostack2 Common Interface</a><a class="headerlink" href="#aerostack2-common-interface" title="Link to this heading"></a></h2>
+<span id="aerial-platform-gazebo-as2-common-interface"></span><h2><a class="toc-backref" href="#id14" role="doc-backlink">Aerostack2 Common Interface</a><a class="headerlink" href="#aerostack2-common-interface" title="Link to this heading"></a></h2>
 <p>For more details about platform control modes and sensors, see <a class="reference internal" href="../../_01_aerostack2_concepts/aerial_platforms/index.html#as2-concepts-aerial-platform"><span class="std std-ref">Aerostack2 Aerial Platform Concepts</span></a>.
 For more details, about bridge between Gazebo and ROS, see the <a class="reference internal" href="ros_gz_bridge/index.html#aerial-platform-gazebo-ros-gz-bridge"><span class="std std-ref">Aerostack2 Gazebo ROS Bridge</span></a>.</p>
 <section id="control-modes">
-<span id="aerial-platform-gazebo-as2-common-interface-control-modes"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">Control Modes</a><a class="headerlink" href="#control-modes" title="Link to this heading"></a></h3>
+<span id="aerial-platform-gazebo-as2-common-interface-control-modes"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">Control Modes</a><a class="headerlink" href="#control-modes" title="Link to this heading"></a></h3>
 <p>These are supported control modes:</p>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Control Modes Gazebo Platform</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
@@ -463,7 +499,7 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </table>
 </section>
 <section id="sensors">
-<span id="aerial-platform-gazebo-as2-common-interface-sensors"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">Sensors</a><a class="headerlink" href="#sensors" title="Link to this heading"></a></h3>
+<span id="aerial-platform-gazebo-as2-common-interface-sensors"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">Sensors</a><a class="headerlink" href="#sensors" title="Link to this heading"></a></h3>
 <p>These are supported sensors:</p>
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-text">Sensors Gazebo Platform</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
@@ -523,7 +559,7 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </table>
 </section>
 <section id="gimbal">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">Gimbal</a><a class="headerlink" href="#gimbal" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Gimbal</a><a class="headerlink" href="#gimbal" title="Link to this heading"></a></h3>
 <p>Gimbal is supported in simulation. These are the supported gimbal model types:</p>
 <table class="docutils align-default" id="id3">
 <caption><span class="caption-text">Gimbal Control Modes Ignition Gazebo Platform</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
@@ -577,7 +613,7 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </section>
 </section>
 <section id="config-simulation">
-<span id="aerial-platform-gazebo-config-simulation"></span><h2><a class="toc-backref" href="#id17" role="doc-backlink">Config Simulation</a><a class="headerlink" href="#config-simulation" title="Link to this heading"></a></h2>
+<span id="aerial-platform-gazebo-config-simulation"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">Config Simulation</a><a class="headerlink" href="#config-simulation" title="Link to this heading"></a></h2>
 <p>There are two aerial models available for simulation. These models are:</p>
 <ul class="simple">
 <li><p>Quadrotor base.</p></li>
@@ -647,7 +683,7 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 <p>New models, sensors and worlds are defined in the <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets</span></code> package. For more information on how to create new assets, go to the <a class="reference external" href="https://gazebosim.org/docs/fortress/tutorials">Gazebo Fortress tutorial page</a>.</p>
 </section>
 <section id="platform-launch">
-<span id="aerial-platform-gazebo-platform-launch"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">Platform Launch</a><a class="headerlink" href="#platform-launch" title="Link to this heading"></a></h2>
+<span id="aerial-platform-gazebo-platform-launch"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">Platform Launch</a><a class="headerlink" href="#platform-launch" title="Link to this heading"></a></h2>
 <p>Aerostack2 Gazebo platform provides a launch file, which parameters are:</p>
 <table class="docutils align-default" id="id7">
 <caption><span class="caption-text">Gazebo Platform Parameters</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
