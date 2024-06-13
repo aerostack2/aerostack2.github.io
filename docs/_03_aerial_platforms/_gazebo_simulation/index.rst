@@ -58,7 +58,7 @@ To ensure no ignition-fortress packages are cached with the Aerostack2 compilati
   as2 clean -a
   source ~/.bashrc
 
-After that, you can follow the `Gazebo Harmonic installation guide <https://gazebosim.org/docs/fortress/install_ubuntu>`__
+After that, you can follow the `Gazebo Harmonic installation guide <https://gazebosim.org/docs/harmonic/install_ubuntu>`__
 to install the new Gazebo version. 
 
 .. warning:: An additional package must be installed for Aerostack2 to build:
