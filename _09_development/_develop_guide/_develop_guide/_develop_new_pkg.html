@@ -624,7 +624,7 @@ These CLI tools can be found on the folder of the specific test on the <a class=
 </div>
 <p>and launched over the <code class="docutils literal notranslate"><span class="pre">.py</span></code> files by running:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>&lt;path/to/package/directory&gt;<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span>python-lint<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+<span class="w">    </span>docformatter<span class="w"> </span>--in-place<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
 <span class="k">done</span>
 </pre></div>
 </div>

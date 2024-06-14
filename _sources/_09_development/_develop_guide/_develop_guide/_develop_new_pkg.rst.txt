@@ -334,7 +334,7 @@ and launched over the ``.py`` files by running:
 .. code-block:: bash
 
     for file in $(find <path/to/package/directory> -name "*.py"); do
-        python-lint "$file"
+        docformatter --in-place "$file"
     done
 
 This may NOT fix all the errors, but it will eliminate some of them.

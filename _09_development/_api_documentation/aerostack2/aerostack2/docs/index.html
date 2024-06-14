@@ -4439,8 +4439,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N15gazebo_platform14GazeboPlatform14GazeboPlatformEv">
-<span id="_CPPv3N15gazebo_platform14GazeboPlatform14GazeboPlatformEv"></span><span id="_CPPv2N15gazebo_platform14GazeboPlatform14GazeboPlatformEv"></span><span id="gazebo_platform::GazeboPlatform::GazeboPlatform"></span><span class="target" id="classgazebo__platform_1_1GazeboPlatform_1ade10be50900d48b74e5188574bdf3544"></span><span class="sig-name descname"><span class="n"><span class="pre">GazeboPlatform</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15gazebo_platform14GazeboPlatform14GazeboPlatformEv" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15gazebo_platform14GazeboPlatform14GazeboPlatformERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N15gazebo_platform14GazeboPlatform14GazeboPlatformERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N15gazebo_platform14GazeboPlatform14GazeboPlatformERKN6rclcpp11NodeOptionsE"></span><span id="gazebo_platform::GazeboPlatform::GazeboPlatform__rclcpp::NodeOptionsCR"></span><span class="target" id="classgazebo__platform_1_1GazeboPlatform_1a06ed984717b9c017eb74b4f3b758de83"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GazeboPlatform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46rclcpp" title="rclcpp"><span class="n"><span class="pre">rclcpp</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv46rclcpp" title="rclcpp"><span class="n"><span class="pre">rclcpp</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15gazebo_platform14GazeboPlatform14GazeboPlatformERKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -14127,13 +14127,19 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="gazebo__platform_8hpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">gazebo_platform.hpp</span></span></dt>
+<span class="target" id="as2__platform__gazebo_8hpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">as2_platform_gazebo.hpp</span></span></dt>
 <dd><div class="docutils container">
+<em>#include &lt;memory&gt;</em></div>
+<div class="docutils container">
 <em>#include &lt;rclcpp/logging.hpp&gt;</em></div>
 <div class="docutils container">
 <em>#include &lt;rclcpp/rclcpp.hpp&gt;</em></div>
 <div class="docutils container">
 <em>#include &lt;std_msgs/msg/bool.hpp&gt;</em></div>
+<div class="docutils container">
+<em>#include &lt;geometry_msgs/msg/pose_stamped.hpp&gt;</em></div>
+<div class="docutils container">
+<em>#include &lt;geometry_msgs/msg/twist_stamped.hpp&gt;</em></div>
 <div class="docutils container">
 <em>#include “<a class="reference internal" href="#aerial__platform_8hpp"><span class="std std-ref">as2_core/aerial_platform.hpp</span></a>”</em></div>
 <div class="docutils container">
@@ -14144,77 +14150,43 @@
 <em>#include “<a class="reference internal" href="#control__mode__utils_8hpp"><span class="std std-ref">as2_core/utils/control_mode_utils.hpp</span></a>”</em></div>
 <div class="docutils container">
 <em>#include “<a class="reference internal" href="#tf__utils_8hpp"><span class="std std-ref">as2_core/utils/tf_utils.hpp</span></a>”</em></div>
-<div class="docutils container">
-<em>#include &lt;geometry_msgs/msg/pose_stamped.hpp&gt;</em></div>
-<div class="docutils container">
-<em>#include &lt;geometry_msgs/msg/twist_stamped.hpp&gt;</em></div>
-<p>Implementation of an Gazebo UAV platform. </p>
-<p>
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<dl class="simple">
-<dt><strong>Authors</strong></dt><dd><p>Miguel Fernández Cortizas Pedro Arias Pérez David Pérez Saura Rafael Pérez Seguí</p>
-</dd>
-<dt><strong>Copyright</strong></dt><dd><p>Copyright (c) 2022 Universidad Politécnica de Madrid All Rights Reserved</p>
+<p>Implementation of an Gazebo UAV platform</p>
+<p><dl class="simple">
+<dt><strong>Authors</strong></dt><dd><p>Rafael Pérez Seguí </p>
 </dd>
 </dl>
 </p>
-<p><ol class="arabic simple">
-<li><p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p></li>
-<li><p>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p></li>
-<li><p>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p></li>
-</ol>
-</p>
-<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
 </dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="gazebo__platform_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">gazebo_platform.cpp</span></span></dt>
+<span class="target" id="as2__platform__gazebo_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">as2_platform_gazebo.cpp</span></span></dt>
 <dd><div class="docutils container">
-<em>#include “<a class="reference internal" href="#gazebo__platform_8hpp"><span class="std std-ref">gazebo_platform.hpp</span></a>”</em></div>
-<p>Implementation of an Gazebo UAV platform. </p>
+<em>#include “<a class="reference internal" href="#as2__platform__gazebo_8hpp"><span class="std std-ref">as2_platform_gazebo.hpp</span></a>”</em></div>
+<p>Implementation of an Gazebo UAV platform</p>
 <p>
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<dl class="simple">
-<dt><strong>Authors</strong></dt><dd><p>Miguel Fernández Cortizas Pedro Arias Pérez David Pérez Saura Rafael Pérez Seguí</p>
-</dd>
-<dt><strong>Copyright</strong></dt><dd><p>Copyright (c) 2022 Universidad Politécnica de Madrid All Rights Reserved</p>
+ROS2 node for gazebo platform<dl class="simple">
+<dt><strong>Authors</strong></dt><dd><p>Rafael Pérez Seguí</p>
 </dd>
 </dl>
 </p>
-<p><ol class="arabic simple">
-<li><p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p></li>
-<li><p>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p></li>
-<li><p>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p></li>
-</ol>
+<p><dl class="simple">
+<dt><strong>Authors</strong></dt><dd><p>Rafael Pérez Seguí </p>
+</dd>
+</dl>
 </p>
-<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
 </dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="gazebo__platform__main_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">gazebo_platform_main.cpp</span></span></dt>
+<span class="target" id="as2__platform__gazebo__node_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">as2_platform_gazebo_node.cpp</span></span></dt>
 <dd><div class="docutils container">
-<em>#include “<a class="reference internal" href="#gazebo__platform_8hpp"><span class="std std-ref">gazebo_platform.hpp</span></a>”</em></div>
-<p>ROS2 node for gazebo platform. </p>
-<p>
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<dl class="simple">
-<dt><strong>Authors</strong></dt><dd><p>Miguel Fernández Cortizas Pedro Arias Pérez David Pérez Saura Rafael Pérez Seguí</p>
-</dd>
-<dt><strong>Copyright</strong></dt><dd><p>Copyright (c) 2022 Universidad Politécnica de Madrid All Rights Reserved</p>
-</dd>
-</dl>
-</p>
-<p><ol class="arabic simple">
-<li><p>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</p></li>
-<li><p>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</p></li>
-<li><p>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</p></li>
-</ol>
-</p>
-<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
+<em>#include “<a class="reference internal" href="#as2__platform__gazebo_8hpp"><span class="std std-ref">as2_platform_gazebo.hpp</span></a>”</em></div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv44mainiA_Pc">
-<span id="_CPPv34mainiA_Pc"></span><span id="_CPPv24mainiA_Pc"></span><span id="main__i.cPA"></span><span class="target" id="gazebo__platform__main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiA_Pc" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv34mainiA_Pc"></span><span id="_CPPv24mainiA_Pc"></span><span id="main__i.cPA"></span><span class="target" id="as2__platform__gazebo__node_8cpp_1a0ddf1224851353fc92bfbff6f499fa97"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiA_Pc" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
