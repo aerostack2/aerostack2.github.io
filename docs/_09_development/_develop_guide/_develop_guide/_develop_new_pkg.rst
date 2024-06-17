@@ -242,18 +242,16 @@ For configuring style tests, this must be added on the ``CMakeList.txt`` of your
 .. code-block:: cmake
 
     if(BUILD_TESTING)
-
-    find_package(ament_lint_auto REQUIRED)
-    ament_lint_auto_find_test_dependencies()
-
+        find_package(ament_lint_auto REQUIRED)
+        ament_lint_auto_find_test_dependencies()
     endif()
 
 Also, these packages must be added to the ``package.xml``
 
 .. code-block::
 
-    <test_depend>ament_lint_auto</test_depend>
-    <test_depend>ament_lint_common</test_depend>
+        <test_depend>ament_lint_auto</test_depend>
+        <test_depend>ament_lint_common</test_depend>
 
 The tests that are performed as part of ament_lint_common can be found `here <https://github.com/ament/ament_lint/blob/humble/ament_lint_common/doc/index.rst>`_.
 
