@@ -561,10 +561,8 @@ The comments made in the current nodes are writing using Javadoc style.</p>
 <p>Aerostack2 uses <a class="reference external" href="https://github.com/ament/ament_lint">ament_lint</a> to perform style checks over the packages files.</p>
 <p>For configuring style tests, this must be added on the <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code> of your package:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
-
-<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_lint_auto</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">ament_lint_auto_find_test_dependencies</span><span class="p">()</span>
-
+<span class="w">    </span><span class="nb">find_package</span><span class="p">(</span><span class="s">ament_lint_auto</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">ament_lint_auto_find_test_dependencies</span><span class="p">()</span>
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
