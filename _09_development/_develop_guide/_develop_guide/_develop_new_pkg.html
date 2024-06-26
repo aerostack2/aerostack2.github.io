@@ -309,6 +309,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#test">Test</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#node-template-for-new-packages">Node Template for New Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_setting_code.html">Setting Up Visual Studio Code</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="_setting_code.html#install-required-extensions">Install required Extensions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
@@ -695,12 +696,120 @@ GTest complete documentation about how to write your own unit tests can be found
 <span class="nb">endif</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In order to link this <code class="docutils literal notranslate"><span class="pre">./tests/CMakeLists.txt</span></code> file into the <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file of the package, the following line must be added:</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Build tests if testing is enabled</span>
-<span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
-<span class="w">    </span><span class="c"># all other tests</span>
-<span class="w">    </span><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">tests</span><span class="p">)</span>
+<p>In order to link and run your functional tests alongside with the code style ones, your package’s CMakeLists.txt should follow the next structure:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># Set the minimum required CMake version</span>
+<span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.5</span><span class="p">)</span>
+
+<span class="c"># Set the project name</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_NAME</span><span class="w"> </span><span class="s">as2_node_template</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Default to C++17 if not set</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_CXX_STANDARD</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
 <span class="nb">endif</span><span class="p">()</span>
+
+<span class="c"># Set Release as default build type if not set</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">NOT</span><span class="w"> </span><span class="s">CMAKE_BUILD_TYPE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_BUILD_TYPE</span><span class="w"> </span><span class="s">Release</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+
+<span class="c"># find dependencies</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PROJECT_DEPENDENCIES</span>
+<span class="s">ament_cmake</span>
+<span class="s">rclcpp</span>
+<span class="s">as2_core</span>
+<span class="s">as2_msgs</span>
+<span class="s">std_msgs</span>
+<span class="p">)</span>
+
+<span class="nb">foreach</span><span class="p">(</span><span class="s">DEPENDENCY</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_DEPENDENCIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="o">${</span><span class="nv">DEPENDENCY</span><span class="o">}</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+
+<span class="c"># Include necessary directories</span>
+<span class="nb">include_directories</span><span class="p">(</span>
+<span class="s">include</span>
+<span class="s">include/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="c"># Set source files</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">SOURCE_CPP_FILES</span>
+<span class="s">src/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node.cpp</span>
+<span class="s">src/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">.cpp</span>
+<span class="p">)</span>
+
+<span class="c"># Create the node executable</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span><span class="w"> </span><span class="o">${</span><span class="nv">SOURCE_CPP_FILES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_DEPENDENCIES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Create the dynamic library</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_POSITION_INDEPENDENT_CODE</span><span class="w"> </span><span class="s">ON</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="s">SHARED</span><span class="w"> </span><span class="o">${</span><span class="nv">SOURCE_CPP_FILES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_DEPENDENCIES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Set the public include directories for the library</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="w"> </span><span class="s">PUBLIC</span>
+<span class="o">$&lt;</span><span class="nv">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include</span><span class="o">&gt;</span>
+<span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="c"># Install the headers</span>
+<span class="nb">install</span><span class="p">(</span>
+<span class="s">DIRECTORY</span><span class="w"> </span><span class="s">include/</span>
+<span class="s">DESTINATION</span><span class="w"> </span><span class="s">include</span>
+<span class="p">)</span>
+
+<span class="c"># Install the node executable</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span>
+<span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span>
+<span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="c"># Install the shared library</span>
+<span class="nb">install</span><span class="p">(</span>
+<span class="s">TARGETS</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="s">EXPORT</span><span class="w"> </span><span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="s">ARCHIVE</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="s">LIBRARY</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">lib</span>
+<span class="s">RUNTIME</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s">bin</span>
+<span class="p">)</span>
+
+<span class="c"># Export the libraries</span>
+<span class="nb">ament_export_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Export the targets</span>
+<span class="nb">ament_export_targets</span><span class="p">(</span><span class="s">export_</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># Export the include directories</span>
+<span class="nb">ament_export_include_directories</span><span class="p">(</span><span class="s">include</span><span class="p">)</span>
+
+<span class="c"># Install the launch directory</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+<span class="s">launch</span>
+<span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="c"># Install the config directory</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">DIRECTORY</span>
+<span class="s">config</span>
+<span class="s">DESTINATION</span><span class="w"> </span><span class="s">share/</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span>
+<span class="p">)</span>
+
+<span class="c"># Build tests if testing is enabled</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">BUILD_TESTING</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">ament_lint_auto</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">(</span><span class="s">GLOB_RECURSE</span><span class="w"> </span><span class="s">EXCLUDE_FILES</span>
+<span class="w">    </span><span class="s">build/*</span>
+<span class="w">    </span><span class="s">install/*</span>
+<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">AMENT_LINT_AUTO_FILE_EXCLUDE</span><span class="w"> </span><span class="o">${</span><span class="nv">EXCLUDE_FILES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">ament_lint_auto_find_test_dependencies</span><span class="p">()</span>
+
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">tests</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+
+<span class="c"># Create the ament package</span>
+<span class="nb">ament_package</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>To run these tests:</p>
@@ -709,6 +818,10 @@ GTest complete documentation about how to write your own unit tests can be found
 </div>
 </section>
 </section>
+</section>
+<section id="node-template-for-new-packages">
+<h1>Node Template for New Packages<a class="headerlink" href="#node-template-for-new-packages" title="Link to this heading"></a></h1>
+<p>An example node with the proper structure and all the templates can be found <a class="reference external" href="https://github.com/aerostack2/as2_node_template">here</a>.</p>
 </section>
 
 
