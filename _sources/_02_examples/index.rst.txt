@@ -7,7 +7,7 @@ Examples
 In this section, severals examples of how to use Aerostack2 are shown. Each example is self-contained in a 
 repository, also known as **as2_project**.
 
-
+.. warning:: Projects main branch is linked with Aerostack2 main branch. If you want to use a specific Aerostack2 binary version, you should checkout the project tag that matches the Aerostack2 version.
 
 .. _examples_prerequisites:
 

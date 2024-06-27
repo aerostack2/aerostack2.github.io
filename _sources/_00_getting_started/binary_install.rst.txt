@@ -13,3 +13,5 @@ To install all aerostack2 packages, run the following command:
 
 
 You can also install only the packages you need. The available packages can be checked at `ROS Index <https://index.ros.org/search/?term=aerostack2&section=pkgs>`__.
+
+.. warning:: Projects main branch is linked with Aerostack2 main branch. If you want to use a specific Aerostack2 binary version, you should checkout the project tag that matches the Aerostack2 version.
