@@ -36,26 +36,9 @@ Example of keyboard teleoperation tool launch command:
 
 .. code-block:: bash
 
-    ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py namespace:=drone_sim_0,drone_sim_1,drone_sim_2 use_sim_time:=true config_file:=/path/to/config/file.yaml
+    ros2 launch as2_keyboard_teleoperation as2_keyboard_teleoperation_launch.py namespace:=drone_sim_0,drone_sim_1,drone_sim_2 use_sim_time:=true
 
 This will open keyboard teleoperation interface for drones with namespace: ``drone_sim_0``, ``drone_sim_1`` and ``drone_sim_2``.
-
-.. note::
-
-    The ``config_file`` parameter is optional. If not provided, default values will be used.
-
-An example of a configuration file is shown below:
-
-.. code-block:: yaml
-
-  /**:
-    ros__parameters:
-      speed_value: 0.5
-      altitude_speed_value: 0.5
-      turn_speed_value: 0.5
-      position_value: 1.00
-      altitude_value: 1.00
-      turn_angle_value: 0.78
 
 ------------
 Instructions
@@ -69,7 +52,6 @@ When the previous launch command is executed, a window like the following will o
    
    Keyboard teleoperation initial window.
 
-When in **speed mode**, motion key needs to be pressed and held to move the drone. When in **pose mode**, motion key needs to be pressed and released to move the drone. 
 
 Interface Components
 ####################

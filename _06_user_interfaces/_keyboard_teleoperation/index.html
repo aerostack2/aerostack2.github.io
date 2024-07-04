@@ -394,25 +394,10 @@ it has a simple localization window and there is also Aerostack2’s behaviors m
 <section id="interface-launch">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Interface launch</a><a class="headerlink" href="#interface-launch" title="Link to this heading"></a></h2>
 <p>Example of keyboard teleoperation tool launch command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_keyboard_teleoperation<span class="w"> </span>as2_keyboard_teleoperation_launch.py<span class="w"> </span>namespace:<span class="o">=</span>drone_sim_0,drone_sim_1,drone_sim_2<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>config_file:<span class="o">=</span>/path/to/config/file.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_keyboard_teleoperation<span class="w"> </span>as2_keyboard_teleoperation_launch.py<span class="w"> </span>namespace:<span class="o">=</span>drone_sim_0,drone_sim_1,drone_sim_2<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
 </pre></div>
 </div>
 <p>This will open keyboard teleoperation interface for drones with namespace: <code class="docutils literal notranslate"><span class="pre">drone_sim_0</span></code>, <code class="docutils literal notranslate"><span class="pre">drone_sim_1</span></code> and <code class="docutils literal notranslate"><span class="pre">drone_sim_2</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">config_file</span></code> parameter is optional. If not provided, default values will be used.</p>
-</div>
-<p>An example of a configuration file is shown below:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">speed_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">altitude_speed_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">turn_speed_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">position_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.00</span>
-<span class="w">    </span><span class="nt">altitude_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.00</span>
-<span class="w">    </span><span class="nt">turn_angle_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.78</span>
-</pre></div>
-</div>
 </section>
 <section id="instructions">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink">Instructions</a><a class="headerlink" href="#instructions" title="Link to this heading"></a></h2>
@@ -423,7 +408,6 @@ it has a simple localization window and there is also Aerostack2’s behaviors m
 <p><span class="caption-text">Keyboard teleoperation initial window.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>When in <strong>speed mode</strong>, motion key needs to be pressed and held to move the drone. When in <strong>pose mode</strong>, motion key needs to be pressed and released to move the drone.</p>
 <section id="interface-components">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Interface Components</a><a class="headerlink" href="#interface-components" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
