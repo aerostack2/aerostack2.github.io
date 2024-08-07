@@ -44,6 +44,14 @@ as2\_python\_api.behavior\_actions.land\_behavior module
    :undoc-members:
    :show-inheritance:
 
+as2\_python\_api.behavior\_actions.navigate\_to\_behavior module
+----------------------------------------------------------------
+
+.. automodule:: as2_python_api.behavior_actions.navigate_to_behavior
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 as2\_python\_api.behavior\_actions.point\_gimbal\_behavior module
 -----------------------------------------------------------------
 

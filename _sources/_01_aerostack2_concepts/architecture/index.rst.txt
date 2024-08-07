@@ -50,9 +50,15 @@ Aerostack2 includes a set of software components that implement specialized algo
 Behaviors
 ---------
 
-This level includes a set of components corresponding to different robot behaviors provided by Aerostack for autonomous operation. 
-Each component encapsulates the algorithms used to implement a particular behavior (e.g., take off, hover, generate trajectory, etc.) together with mechanisms for execution monitoring to facilitate the specification of mission plans. 
-Each behavior has a uniform interface that is common for all behaviors to facilitate its use.
+Aerostack2 uses a specialized type of component, called behavior, that implements functional robotic abilities such as motion control, motion planning, or perception processing.
+Behaviors provide a logical layer to formulate mission plans.
+Using behaviors, a mission plan is expressed as a controlled sequence of activations (or deactivations) of multiple behaviors that may operate concurrently.
+Each behavior activation initiates the execution of a particular task described with certain parameters (e.g., following a particular path described with a list of waypoints). 
+Compared to directly use of state estimators and actuator controllers, behaviors provide a simple and uniform method to define missions.
+
+Each behavior component corresponds to a specific robot skill allowing self-supervised and streamlined execution of tasks.
+Depending on the ability addressed by the behavior, it can correspond to motion control, e.g. taking off or hovering, to motion planning, e.g. trajectory generation, 
+or perception processing, e.g. video recording or gimbal control.
 
 
 

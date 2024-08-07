@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setting Up Visual Studio Code &mdash; Aerostack2 1.0 documentation</title>
+  <title>as2_python_api.behavior_actions.navigate_to_behavior &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -22,9 +21,7 @@
         <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="API Documentation" href="../../_api_documentation/index.html" />
-    <link rel="prev" title="Developing a New Package" href="_develop_new_pkg.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +41,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
@@ -273,59 +270,59 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../_cli/index.html">Command Line Interface (CLI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_09_development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Develop Guide</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="_develop_new_pkg.html">Developing a New Package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#code-style">Code Style</a></li>
-<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#test">Test</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting Up Visual Studio Code</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#install-required-extensions">Install required Extensions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modify-settings-json">Modify ‘settings.json’</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#set-configuration-variables">Set Configuration Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../_api_documentation/index.html">API Documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#python-api">Python API</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
 </ul>
 </li>
 </ul>
@@ -351,11 +348,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Development</a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Develop Guide</a></li>
-      <li class="breadcrumb-item active">Setting Up Visual Studio Code</li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">as2_python_api.behavior_actions.navigate_to_behavior</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_develop_guide/_develop_guide/_setting_code.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -363,98 +358,109 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="setting-up-visual-studio-code">
-<span id="development-guide-code"></span><h1>Setting Up Visual Studio Code<a class="headerlink" href="#setting-up-visual-studio-code" title="Link to this heading"></a></h1>
-<p>A set of tools can be configured on Visual Studio Code to help adjusting your code to the Aerostack2 Code Style guidelines during the development proccess.</p>
-<section id="install-required-extensions">
-<span id="development-guide-code-extensions"></span><h2>Install required Extensions<a class="headerlink" href="#install-required-extensions" title="Link to this heading"></a></h2>
-<p>Install the following required extensions from the ‘Extensions’ tab in VSCode:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">zachflower.uncrustify</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mine.cpplint</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ms-python.autopep8</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ms-python.pylint</span></code></p></li>
-</ul>
-</section>
-<section id="modify-settings-json">
-<span id="development-guide-code-settings"></span><h2>Modify ‘settings.json’<a class="headerlink" href="#modify-settings-json" title="Link to this heading"></a></h2>
-<p>Open your <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file from VSCode and add the following content to it:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="c1">// cpp</span>
-<span class="nt">&quot;[cpp]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zachflower.uncrustify&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;editor.codeActionsOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;source.fixAll&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;explicit&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">},</span>
-<span class="nt">&quot;uncrustify.configPath.linux&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path-to&gt;/.uncrustify.cfg&quot;</span><span class="p">,</span>
+  <h1>Source code for as2_python_api.behavior_actions.navigate_to_behavior</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Navigate To Behavior.&quot;&quot;&quot;</span>
 
-<span class="c1">// cpplint</span>
-<span class="nt">&quot;cpplint.cpplintPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path-to-bin&gt;/cpplint&quot;</span><span class="p">,</span>
-<span class="nt">&quot;cpplint.lineLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="nt">&quot;cpplint.verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="nt">&quot;cpplint.filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// header guards are user defined</span>
-<span class="w">    </span><span class="s2">&quot;-build/header_guard&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we do allow C++11</span>
-<span class="w">    </span><span class="s2">&quot;-build/c++11&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we consider passing non-const references to be ok</span>
-<span class="w">    </span><span class="s2">&quot;-runtime/references&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we wrap open curly braces for namespaces, classes and functions</span>
-<span class="w">    </span><span class="s2">&quot;-whitespace/braces&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we don&#39;t indent keywords like public, protected and private with one space</span>
-<span class="w">    </span><span class="s2">&quot;-whitespace/indent&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we allow closing parenthesis to be on the next line</span>
-<span class="w">    </span><span class="s2">&quot;-whitespace/parens&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// we allow the developer to decide about whitespace after a semicolon</span>
-<span class="w">    </span><span class="s2">&quot;-whitespace/semicolon&quot;</span><span class="p">,</span>
-<span class="p">],</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="c1">// python</span>
-<span class="nt">&quot;[python]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ms-python.autopep8&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="p">},</span>
-<span class="nt">&quot;autopep8.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--max-line-length=99&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--ignore=&#39;&#39;&quot;</span><span class="p">],</span>
+<span class="c1"># Copyright 2024 Universidad Politécnica de Madrid</span>
+<span class="c1">#</span>
+<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
+<span class="c1"># modification, are permitted provided that the following conditions are met:</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions of source code must retain the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Redistributions in binary form must reproduce the above copyright</span>
+<span class="c1">#      notice, this list of conditions and the following disclaimer in the</span>
+<span class="c1">#      documentation and/or other materials provided with the distribution.</span>
+<span class="c1">#</span>
+<span class="c1">#    * Neither the name of the the copyright holder nor the names of its</span>
+<span class="c1">#      contributors may be used to endorse or promote products derived from</span>
+<span class="c1">#      this software without specific prior written permission.</span>
+<span class="c1">#</span>
+<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+<span class="c1"># AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+<span class="c1"># IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE</span>
+<span class="c1"># ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE</span>
+<span class="c1"># LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR</span>
+<span class="c1"># CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF</span>
+<span class="c1"># SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS</span>
+<span class="c1"># INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN</span>
+<span class="c1"># CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)</span>
+<span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
+<span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
-<span class="c1">// ROS2 HUMBLE uses as a linter flake8==4.0.1 (apt installation). Pip installation should be</span>
-<span class="c1">// at the same version to avoid errors. pycodestyle==2.8.0 is also required.</span>
-<span class="c1">// vscode flake8 extension requires at least flake8 v5.0.0. Pylint extension is used</span>
-<span class="c1">// instead with identical configuration.</span>
-<span class="nt">&quot;pylint.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--disable=B902,C816,D100,D101,D102,D103,D104,D105,D106,D107,D203,D212,D404,I202&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;--max-line-length=99&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--import-order-style=google&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--show-source=true&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;--statistics=true&quot;</span><span class="p">],</span>
+
+<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Pedro Arias Pérez&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2024 Universidad Politécnica de Madrid&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
+
+<span class="kn">import</span> <span class="nn">typing</span>
+
+<span class="kn">from</span> <span class="nn">as2_msgs.action</span> <span class="kn">import</span> <span class="n">NavigateToPoint</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.behavior_handler</span> <span class="kn">import</span> <span class="n">BehaviorHandler</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">PoseStamped</span>
+
+<span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
+
+
+<div class="viewcode-block" id="NavigateToBehavior">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior">[docs]</a>
+<span class="k">class</span> <span class="nc">NavigateToBehavior</span><span class="p">(</span><span class="n">BehaviorHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Navigate To Behavior class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span> <span class="o">=</span> <span class="n">drone</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="n">NavigateToPoint</span><span class="p">,</span> <span class="s1">&#39;path_planner&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+
+<div class="viewcode-block" id="NavigateToBehavior.start">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span> <span class="o">|</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+              <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">NavigateToPoint</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="n">frame_id</span>
+        <span class="n">pose_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">pose_</span><span class="o">.</span><span class="n">position</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">navigation_speed</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">yaw_mode</span>
+        <span class="k">if</span> <span class="n">yaw_angle</span><span class="p">:</span>
+            <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">yaw_angle</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">,</span> <span class="n">wait_result</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NavigateToBehavior.modify">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior.modify">[docs]</a>
+    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span> <span class="o">|</span> <span class="n">PoseStamped</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+               <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">):</span>
+        <span class="n">goal_msg</span> <span class="o">=</span> <span class="n">NavigateToPoint</span><span class="o">.</span><span class="n">Goal</span><span class="p">()</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">to_msg</span><span class="p">()</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="n">frame_id</span>
+        <span class="n">pose_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_pose</span><span class="p">(</span><span class="n">pose</span><span class="p">)</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">pose_</span><span class="o">.</span><span class="n">position</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">navigation_speed</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">yaw_mode</span>
+        <span class="k">if</span> <span class="n">yaw_angle</span><span class="p">:</span>
+            <span class="n">goal_msg</span><span class="o">.</span><span class="n">yaw</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">yaw_angle</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">modify</span><span class="p">(</span><span class="n">goal_msg</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">__get_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span> <span class="o">|</span> <span class="n">PoseStamped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get pose msg.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">Pose</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">pose</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">PoseStamped</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">pose</span><span class="o">.</span><span class="n">pose</span>
+
+        <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">(</span><span class="s1">&#39;Goal format invalid&#39;</span><span class="p">)</span></div>
+
 </pre></div>
-</div>
-<p>Newer versions of ROS 2 include upgraded flake8 (in ament_flake8), so it is preferable to use
-flake8 from VSCode too instead of pylint. To do so, use, instead of the ‘pylint.args’ settings,
-the following settings:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="c1">// flake8</span>
-<span class="nt">&quot;flake8.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--extend-ignore=B902,C816,D100,D101,D102,D103,D104,D105,D106,D107,D203,D212,D404,I202&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;--import-order-style=google&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--max-line-length=99&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--show-source=true&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;--statistics=true&quot;</span><span class="p">],</span>
-</pre></div>
-</div>
-</section>
-<section id="set-configuration-variables">
-<span id="development-guide-code-config-variables"></span><h2>Set Configuration Variables<a class="headerlink" href="#set-configuration-variables" title="Link to this heading"></a></h2>
-<section id="create-uncrustify-config-file">
-<h3>Create ‘.uncrustify.config’ file<a class="headerlink" href="#create-uncrustify-config-file" title="Link to this heading"></a></h3>
-<p>To set the ‘uncrustify.configPath.linux’ variable, go to any directory and create a file with the name <code class="docutils literal notranslate"><span class="pre">.uncrustify.config</span></code> and paste in it the content of the <a class="reference external" href="https://github.com/ament/ament_lint/blob/foxy/ament_uncrustify/ament_uncrustify/configuration/ament_code_style.cfg">following file</a>.</p>
-<p>As a recommendation, the file can be created in the ‘Code’ folder that should be placed in the ‘.config’ directory (~/.config/Code).</p>
-<p>Copy the path to the created file to the ‘uncrustify.configPath.linux’ variable in your ‘settings.json’ file.</p>
-</section>
-<section id="install-and-set-cpplint">
-<h3>Install and Set ‘cpplint’<a class="headerlink" href="#install-and-set-cpplint" title="Link to this heading"></a></h3>
-<p>Make sure you have installed <code class="docutils literal notranslate"><span class="pre">cpplint</span></code>. If not, install it by running:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>cpplint
-</pre></div>
-</div>
-<p>Once it is installed, copy the path to the package binaries to the variable ‘cpplint.cpplintPath’ in your ‘settings.json’ file.</p>
-</section>
-</section>
-</section>
-
 
            </div>
           </div>

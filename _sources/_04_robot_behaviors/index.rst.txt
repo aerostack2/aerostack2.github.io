@@ -4,8 +4,9 @@
 Robot Behaviors
 ===============
 
-In this section, we give a list of behaviors that has been implemented in Aerostack2. 
-For more information about what a behavior is, please refer to the :ref:`as2_concepts_behaviors` section, and how work on Aerostack2 architecture in the :ref:`as2_concepts_architecture_behaviors` section.
+This catalog shows the list of behaviors according to the tasks that they perform.
+
+.. note:: For more information about what a behavior is, please refer to the :ref:`as2_concepts_behaviors` section, or how they interact with other Aerostack2 components at :ref:`_as2_concepts_architecture` section.
 
 .. TDB: Reference msgs in parameters column to as2_msgs section.
 .. TDB: Add description to request, result and feedback msgs.

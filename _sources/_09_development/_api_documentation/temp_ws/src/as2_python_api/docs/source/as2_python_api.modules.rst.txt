@@ -84,6 +84,14 @@ as2\_python\_api.modules.motion\_reference\_handler\_module module
    :undoc-members:
    :show-inheritance:
 
+as2\_python\_api.modules.navigate\_to\_module module
+----------------------------------------------------
+
+.. automodule:: as2_python_api.modules.navigate_to_module
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 as2\_python\_api.modules.point\_gimbal\_module module
 -----------------------------------------------------
 

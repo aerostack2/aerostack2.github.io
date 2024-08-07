@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../_02_examples/index.html">Examples</a><ul>
@@ -290,7 +291,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Bheavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
@@ -400,7 +401,7 @@
 
 <span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">AlertEvent</span><span class="p">,</span> <span class="n">PlatformInfo</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.service_clients.arming</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">Disarm</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.service_clients.offboard</span> <span class="kn">import</span> <span class="n">Offboard</span>
+<span class="kn">from</span> <span class="nn">as2_python_api.service_clients.offboard</span> <span class="kn">import</span> <span class="n">Manual</span><span class="p">,</span> <span class="n">Offboard</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.shared_data.platform_info_data</span> <span class="kn">import</span> <span class="n">PlatformInfoData</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.shared_data.pose_data</span> <span class="kn">import</span> <span class="n">PoseData</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.shared_data.twist_data</span> <span class="kn">import</span> <span class="n">TwistData</span>
@@ -420,7 +421,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface base node.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;drone0&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                 <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">spin_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a DroneInterfaceBase.</span>
 
@@ -430,6 +431,8 @@
 <span class="sd">        :type verbose: bool, optional</span>
 <span class="sd">        :param use_sim_time: use simulation time, defaults to False</span>
 <span class="sd">        :type use_sim_time: bool, optional</span>
+<span class="sd">        :param spin_rate: spin rate (Hz), defaults to 20</span>
+<span class="sd">        :type spin_rate: float, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">modules</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -438,6 +441,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">param_use_sim_time</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span>
             <span class="s1">&#39;use_sim_time&#39;</span><span class="p">,</span> <span class="n">Parameter</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">BOOL</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">param_use_sim_time</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__spin_interval</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">spin_rate</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span> <span class="o">=</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">executors</span><span class="o">.</span><span class="n">SingleThreadedExecutor</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -567,24 +572,35 @@
 
 <div class="viewcode-block" id="DroneInterfaceBase.arm">
 <a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.arm">[docs]</a>
-    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Arm drone.&quot;&quot;&quot;</span>
         <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-        <span class="n">Arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arm</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="DroneInterfaceBase.disarm">
 <a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.disarm">[docs]</a>
-    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Disarm drone.&quot;&quot;&quot;</span>
-        <span class="n">Disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">disarm</span> <span class="o">=</span> <span class="n">Disarm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">disarm</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="DroneInterfaceBase.offboard">
 <a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.offboard">[docs]</a>
-    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable offboard mode.&quot;&quot;&quot;</span>
-        <span class="n">Offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">offboard</span> <span class="o">=</span> <span class="n">Offboard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">offboard</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="DroneInterfaceBase.manual">
+<a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.manual">[docs]</a>
+    <span class="k">def</span> <span class="nf">manual</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Disable offboard mode.&quot;&quot;&quot;</span>
+        <span class="n">manual</span> <span class="o">=</span> <span class="n">Manual</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">manual</span><span class="p">()</span></div>
 
 
     <span class="c1"># TODO: replace with executor callbacks</span>
@@ -592,7 +608,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Drone inner spin.&quot;&quot;&quot;</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_running</span> <span class="ow">and</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">ok</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span><span class="o">.</span><span class="n">spin_once</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__spin_interval</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DroneInterfaceBase.shutdown">
 <a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.shutdown">[docs]</a>

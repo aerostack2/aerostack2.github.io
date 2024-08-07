@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_02_examples/index.html">Examples</a><ul>
@@ -290,7 +291,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Bheavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
@@ -393,12 +394,9 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 <span class="kn">import</span> <span class="nn">typing</span>
 
-<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span>
-
-<span class="kn">from</span> <span class="nn">..service_clients.service_handler</span> <span class="kn">import</span> <span class="n">ServiceHandler</span>
+<span class="kn">from</span> <span class="nn">..service_clients.service_handler</span> <span class="kn">import</span> <span class="n">ServiceBoolHandler</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
@@ -406,22 +404,29 @@
 
 <div class="viewcode-block" id="Offboard">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.offboard.Offboard">[docs]</a>
-<span class="k">class</span> <span class="nc">Offboard</span><span class="p">(</span><span class="n">ServiceHandler</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Offboard service handler.&quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">Offboard</span><span class="p">(</span><span class="n">ServiceBoolHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Offboard service handler class.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="s1">&#39;set_offboard_mode&#39;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_service_client</span> <span class="o">=</span> <span class="n">drone</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-            <span class="n">SetBool</span><span class="p">,</span> <span class="s1">&#39;set_offboard_mode&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call the offboard service.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
-        <span class="n">request</span> <span class="o">=</span> <span class="n">SetBool</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_service_client</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">())</span>
-        <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">ServiceNotAvailable</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Manual">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.offboard.Manual">[docs]</a>
+<span class="k">class</span> <span class="nc">Manual</span><span class="p">(</span><span class="n">ServiceBoolHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manual (offboard) service handler class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterfaceBase&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="s1">&#39;set_offboard_mode&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call the offboard service.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
 
 </pre></div>
 
