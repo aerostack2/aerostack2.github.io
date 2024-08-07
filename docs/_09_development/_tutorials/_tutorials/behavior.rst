@@ -1,7 +1,7 @@
 .. _development_tutorials_behavior:
 
 ======================
-Writing a New Bheavior
+Writing a New Behavior
 ======================
 
 .. contents:: Table of Contents
