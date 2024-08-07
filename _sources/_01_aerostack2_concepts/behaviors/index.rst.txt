@@ -21,10 +21,10 @@ The interface also informs about the execution of the behavior with two separate
 The feedback provides information about the progress of the behavior execution, e.g., the current position of the drone while following a path.
 
 .. figure:: images/robot_behaviors.png
-   :scale: 70
+   :scale: 50
    :class: with-shadow
    
-   Aerostack2 behaviors
+   Aerostack2 behaviors interface.
 
 
 .. warning:: Do not mix up aerostack2 behaviors with behavior trees. Behaviors can be used with and without behavior trees. The BT is the "task planner" while the behavior system is the "executor". You can replace BT with other planners available in Aerostack2. ``as2_behavior_trees`` package contains BT NodeTrees wrappers to activate Aerostack2 behaviors. are used to specify the mission plan, while the behaviors are the components that implement the tasks of the mission plan.
