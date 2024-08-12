@@ -335,10 +335,13 @@ Example of launch command:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_gazebo platform_gazebo_launch.py namespace:=drone_sim_0 config_file:=world_json_path
+  ros2 launch as2_platform_gazebo platform_gazebo_launch.py namespace:=drone_sim_0 simulation_config_file:=world_json_path
 
 For launch the simulation, run the following command:
 
 .. code-block:: bash
 
-  ros2 launch as2_gazebo_assets launch_simulation.py config_file:=world_json_path
+  ros2 launch as2_gazebo_assets launch_simulation.py simulation_config_file:=world_json_path
+
+
+Additionally, for launching teleoperation and trying out a basic mission, continue to the [Gazebo Example Project](https://aerostack2.github.io/_02_examples/gazebo/project_gazebo/index.html)
