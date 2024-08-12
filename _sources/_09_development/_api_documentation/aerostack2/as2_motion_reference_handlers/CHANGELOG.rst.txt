@@ -2,6 +2,11 @@
 Changelog for package as2_motion_reference_handlers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.0 (2024-08-08)
+------------------
+* [as2_motion_reference_handlers] Ament common tests compliance
+* Contributors: Miguel Fernandez-Cortizas, Rafael Perez-Segui
+
 1.0.9 (2024-03-25)
 ------------------
 

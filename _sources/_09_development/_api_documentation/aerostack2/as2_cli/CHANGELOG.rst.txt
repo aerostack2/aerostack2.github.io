@@ -2,6 +2,11 @@
 Changelog for package as2_cli
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.0 (2024-08-08)
+------------------
+* [as2_cli] improvement in as2_list and as2_test
+* Contributors: Miguel Fernandez-Cortizas, Rafael Perez-Segui
+
 1.0.9 (2024-03-25)
 ------------------
 

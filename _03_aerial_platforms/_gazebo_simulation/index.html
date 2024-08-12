@@ -725,13 +725,14 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 </tbody>
 </table>
 <p>Example of launch command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_platform_gazebo<span class="w"> </span>platform_gazebo_launch.py<span class="w"> </span>namespace:<span class="o">=</span>drone_sim_0<span class="w"> </span>config_file:<span class="o">=</span>world_json_path
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_platform_gazebo<span class="w"> </span>platform_gazebo_launch.py<span class="w"> </span>namespace:<span class="o">=</span>drone_sim_0<span class="w"> </span>simulation_config_file:<span class="o">=</span>world_json_path
 </pre></div>
 </div>
 <p>For launch the simulation, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_gazebo_assets<span class="w"> </span>launch_simulation.py<span class="w"> </span>config_file:<span class="o">=</span>world_json_path
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_gazebo_assets<span class="w"> </span>launch_simulation.py<span class="w"> </span>simulation_config_file:<span class="o">=</span>world_json_path
 </pre></div>
 </div>
+<p>Additionally, for launching teleoperation and trying out a basic mission, continue to the [Gazebo Example Project](<a class="reference external" href="https://aerostack2.github.io/_02_examples/gazebo/project_gazebo/index.html">https://aerostack2.github.io/_02_examples/gazebo/project_gazebo/index.html</a>)</p>
 </section>
 </section>
 
