@@ -370,102 +370,130 @@
 </pre></div>
 </div>
 <p>To start using this project, please go to the root folder of the project.</p>
-<section id="execution">
-<span id="project-gazebo-simulated"></span><h2>Execution<a class="headerlink" href="#execution" title="Link to this heading"></a></h2>
-<p>The execution will open a simulation in Gazebo and the Aerostack2 components will use simulation time.</p>
-<p>The flags for the components launcher are:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: launch the components for the swarm multiagent system.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-b</span></code>: use <a class="reference external" href="https://www.behaviortree.dev/">Behavior Tree</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: use custom dron namespace.</p></li>
-</ul>
-<section id="single-drone">
-<span id="project-gazebo-simulated-single-drone"></span><h3>Single drone<a class="headerlink" href="#single-drone" title="Link to this heading"></a></h3>
-<p>In order to launch the components for a <strong>single drone</strong>, do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-t
+<section id="launching">
+<span id="project-gazebo-launching"></span><h2>Launching<a class="headerlink" href="#launching" title="Link to this heading"></a></h2>
+<p>The execution on the project is split into two parts: Aerostack2 components and ground station.</p>
+<section id="launching-aerostack2">
+<h3>Launching Aerostack2<a class="headerlink" href="#launching-aerostack2" title="Link to this heading"></a></h3>
+<p>To launch the Aerostack2 components, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash
 </pre></div>
 </div>
-<p>This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.</p>
-<p>A window like the following image should open.</p>
-<figure class="align-default" id="id2">
+<p>This will open a Gazebo simulation alongside with a tmux session with an Aerostack2 instance for each drone launched.</p>
+<p>Launcher offers a few options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: launch multiagent system simulation. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: select drones namespace to launch, values are comma separated. By default, it launches all drones from world description file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code>: disable launch Gazebo simulator. By default launch simulation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal. By default not set, uses tmux.</p></li>
+</ul>
+</section>
+<section id="launching-ground-station">
+<h3>Launching Ground Station<a class="headerlink" href="#launching-ground-station" title="Link to this heading"></a></h3>
+<p>To launch the ground station, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_ground_station.bash
+</pre></div>
+</div>
+<p>Launcher offers a different pool of options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_ground_station.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: launch multiagent system simulation. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>: launch rviz. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: select drones namespace to launch, values are comma separated. By default, it launches all drones from world description file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal. By default not set, uses tmux.</p></li>
+</ul>
+</section>
+<section id="closing">
+<h3>Closing<a class="headerlink" href="#closing" title="Link to this heading"></a></h3>
+<p>Close all nodes (aerostack2 and ground_station) with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator.bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-server</span></code> will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.</p>
+<p>If launcher was executed with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>, closing should be done manually exiting all gnome-terminal tabs.</p>
+</div>
+<p>Close <strong>only</strong> the Aerostack2 nodes with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator_as2.bash
+</pre></div>
+</div>
+<p>Close <strong>only</strong> the ground station nodes with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator_ground_station.bash
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mission-execution">
+<span id="project-gazebo-mission"></span><h2>Mission execution<a class="headerlink" href="#mission-execution" title="Link to this heading"></a></h2>
+<p>The project offers a few examples of mission execution.</p>
+<ul class="simple">
+<li><p><strong>Keyboard Teleoperation control</strong>: Using reactive teleoperation control. For both single and multiagent swarms.</p></li>
+<li><p><strong>Python API missions</strong>: Using Aerostack2 python API for mission definition. For single drone, using GPS and multiple drones.</p></li>
+<li><p><strong>Behavior Tree missions</strong>: Using Behavior Tree as the mission planner. For single drone only.</p></li>
+<li><p><strong>Mission Interpreter</strong>: Using Aerostack2 mission interpreter. For single drone only.</p></li>
+</ul>
+<section id="keyboard-teleoperation-control">
+<span id="project-gazebo-keyboard-teleoperation"></span><h3>Keyboard Teleoperation control<a class="headerlink" href="#keyboard-teleoperation-control" title="Link to this heading"></a></h3>
+<p>In order to launch the components for a <strong>single drone</strong>, Aerostack2 launcher does not need any additional flags. Just execute <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span></code>.
+This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution.</p>
+<figure class="align-default" id="id1">
 <a class="with-shadow reference internal image-reference" href="../../../_images/single_drone_gz2.png"><img alt="../../../_images/single_drone_gz2.png" class="with-shadow" src="../../../_images/single_drone_gz2.png" style="width: 492.0px; height: 422.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">Gazebo simulator</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-text">Gazebo simulator</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>It will also open a keyboard teleoperation (argument <code class="docutils literal notranslate"><span class="pre">-t</span></code>), which you can use to teleoperate the drone with the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">aerostack2 keyboard teleoperation user interface</span></a>.</p>
-<p>A window like the following image should popup:</p>
-<figure class="align-default" id="id3">
+<p>Ground station should be launched with <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag to enable keyboard teleoperation. Take a look at the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">keyboard teleoperation user guide</span></a> for more information.
+A window containing the teleoperation widget should pop up:</p>
+<figure class="align-default" id="id2">
 <a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_teleop_view2.png"><img alt="../../../_images/keyboard_teleop_view2.png" class="with-shadow" src="../../../_images/keyboard_teleop_view2.png" style="width: 563.0px; height: 259.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>To start the mission, execute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission.py
-</pre></div>
-</div>
-<p>Also, you can try the mission planner, which describes the mission in a JSON format:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission_planner.py
-</pre></div>
-</div>
-<p>Here it’s what the execution should look like:</p>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-    <iframe src="https://www.youtube.com/embed/57pg6cQ1MGw" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-</div><p>To do a clean exit of tmux, execute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The teleoperation widget is also available for multi drone missions. To launch a multi drone simulation, use the flag <code class="docutils literal notranslate"><span class="pre">-m</span></code> in both launch commands.</p>
 </div>
 </section>
-<section id="project-gazebo-simulated-behavior-tree">
-<span id="id1"></span><h3>Behavior Tree<a class="headerlink" href="#project-gazebo-simulated-behavior-tree" title="Link to this heading"></a></h3>
-<p>In order to launch the components for using <strong>behavior tree</strong>, do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-b
-</pre></div>
-</div>
-<p>Then, you can start the mission with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission_behavior_tree.py
-</pre></div>
-</div>
-<p>To do a clean exit of tmux, execute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash
-</pre></div>
-</div>
-</section>
-<section id="swarm-drones">
-<span id="project-gazebo-simulated-swarm-drones"></span><h3>Swarm drones<a class="headerlink" href="#swarm-drones" title="Link to this heading"></a></h3>
-<p>In order to launch the components for a <strong>swarm of 3 drones</strong>, do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-m<span class="w"> </span>-t
-</pre></div>
-</div>
-<p>This will open a simulation for a swarm of drones (argument <code class="docutils literal notranslate"><span class="pre">-m</span></code>) alongside the Aerostack2 components necessary for the mission execution.</p>
-<p>A window like the following image should open.</p>
-<figure class="align-default" id="id4">
+<section id="python-api-missions">
+<span id="project-gazebo-python-api"></span><h3>Python API missions<a class="headerlink" href="#python-api-missions" title="Link to this heading"></a></h3>
+<p>In order to launch the components for <strong>multiple drones</strong>, both launchers require the flag <code class="docutils literal notranslate"><span class="pre">-m</span></code>.
+This will open a simulation for a swarm of drones alongside the Aerostack2 components necessary for the mission execution.</p>
+<figure class="align-default" id="id3">
 <a class="with-shadow reference internal image-reference" href="../../../_images/swarm_gz1.png"><img alt="../../../_images/swarm_gz1.png" class="with-shadow" src="../../../_images/swarm_gz1.png" style="width: 492.5px; height: 421.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">Gazebo simulator</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<p><span class="caption-text">Gazebo simulator</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>It will also open a keyboard teleoperation (argument <code class="docutils literal notranslate"><span class="pre">-t</span></code>), which you can use to teleoperate the swarm with the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">aerostack2 keyboard teleoperation user interface</span></a>.</p>
-<p>A window like the following image should popup:</p>
-<figure class="align-default" id="id5">
-<a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_swarm_view2.png"><img alt="../../../_images/keyboard_swarm_view2.png" class="with-shadow" src="../../../_images/keyboard_swarm_view2.png" style="width: 804.5px; height: 260.5px;" /></a>
-<figcaption>
-<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p>To start the mission, execute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission_swarm.py
-</pre></div>
-</div>
-<p>Here it’s what the execution should look like:</p>
+<p>There are three python scripts available for mission execution in the project. For single drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission.py</span></code> for flying a square.
+When flying using GPS, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_gps.py</span></code> which will fly a square using GPS waypoints. Here it is what the execution looks like:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe src="https://www.youtube.com/embed/57pg6cQ1MGw" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div><p>For multi drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_swarm.py</span></code> where a group of drones will fly a swarm coreography. Here it is what the execution looks like:</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
     <iframe src="https://www.youtube.com/embed/gyOPm7apPxo" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-</div><p>To do a clean exit of tmux, execute the following command with the list of the used drones:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash<span class="w"> </span>drone0<span class="w"> </span>drone1<span class="w"> </span>drone2
-</pre></div>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To understand how missions are built using the Aerostack2 python API, take a look at the <a class="reference internal" href="../../../_09_development/_api_documentation/index.html#development-guide-api-python-api"><span class="std std-ref">Python API</span></a> reference guide.</p>
+</div>
+</section>
+<section id="mission-interpreter">
+<span id="project-gazebo-mission-interpreter"></span><h3>Mission Interpreter<a class="headerlink" href="#mission-interpreter" title="Link to this heading"></a></h3>
+<p>Previous missions were defined using python syntaxis. Aerostask2 offers a mission interpreter that allows mission definition using a JSON format.
+Currently, the mission interpreter script at the project is only available for single drone missions.
+To launch the mission interpreter, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_interpreter.py</span></code>.
+The execution is similar to the python API mission where the drone will fly a square.</p>
+</section>
+<section id="behavior-tree">
+<span id="project-gazebo-behavior-tree"></span><h3>Behavior Tree<a class="headerlink" href="#behavior-tree" title="Link to this heading"></a></h3>
+<p>Missions can also be defined using a behavior tree. The project offers a mission example using a behavior tree for a single drone.
+To launch the behavior tree mission, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_behavior_tree.py</span></code>.
+The execution is similar to the python API mission where the drone will fly a square.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Trees can be defined using GUIs like <span class="xref std std-ref">Groot</span>.</p>
 </div>
 </section>
 </section>

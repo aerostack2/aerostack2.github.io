@@ -410,6 +410,7 @@
 
 <span class="kn">import</span> <span class="nn">rclpy</span>
 <span class="kn">import</span> <span class="nn">rclpy.executors</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">SingleThreadedExecutor</span>
 <span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">from</span> <span class="nn">rclpy.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
 <span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">qos_profile_sensor_data</span><span class="p">,</span> <span class="n">qos_profile_system_default</span>
@@ -421,7 +422,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface base node.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;drone0&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">spin_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                 <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">spin_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">,</span>
+                 <span class="n">executor</span><span class="p">:</span> <span class="n">Executor</span> <span class="o">=</span> <span class="n">SingleThreadedExecutor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a DroneInterfaceBase.</span>
 
@@ -433,6 +435,8 @@
 <span class="sd">        :type use_sim_time: bool, optional</span>
 <span class="sd">        :param spin_rate: spin rate (Hz), defaults to 20</span>
 <span class="sd">        :type spin_rate: float, optional</span>
+<span class="sd">        :param executor: executor, defaults to SingleThreadedExecutor</span>
+<span class="sd">        :type executor: Executor, optional</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">modules</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -444,7 +448,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__spin_interval</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">spin_rate</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span> <span class="o">=</span> <span class="n">rclpy</span><span class="o">.</span><span class="n">executors</span><span class="o">.</span><span class="n">SingleThreadedExecutor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__executor</span> <span class="o">=</span> <span class="n">executor</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">set_level</span><span class="p">(</span><span class="n">rclpy</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">LoggingSeverity</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 

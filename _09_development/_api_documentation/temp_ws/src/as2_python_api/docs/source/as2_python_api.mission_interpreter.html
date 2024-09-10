@@ -482,7 +482,7 @@
 <p>Mission Interpreter and Executer.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission_interpreter.</span></span><span class="sig-name descname"><span class="pre">MissionInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.Mission" title="as2_python_api.mission_interpreter.mission.Mission"><span class="pre">Mission</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission_interpreter.</span></span><span class="sig-name descname"><span class="pre">MissionInterpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mission:</span> <span class="pre">~as2_python_api.mission_interpreter.mission.Mission</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_sim_time:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor:</span> <span class="pre">~rclpy.executors.Executor</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'rclpy.executors.SingleThreadedExecutor'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Mission Interpreter and Executer.</p>
 <dl class="py method">
@@ -605,38 +605,51 @@
 <p>Mission stack.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.add" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'MissionItem'</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'MissionItem'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.add" title="Link to this definition"></a></dt>
+<dd><p>Add item(s) to the end of the stack.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.current">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.current" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get current item.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.done">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.done" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.done" title="Link to this definition"></a></dt>
+<dd><p>Get done items.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'MissionItem'</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'MissionItem'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.insert" title="Link to this definition"></a></dt>
+<dd><p>Insert item(s) to the beggining of the stack.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.last_done">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_done</span></span><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.last_done" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get last done item.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.next_item">
 <span class="sig-name descname"><span class="pre">next_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.next_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.next_item" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get next item in the stack.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.pending">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pending</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.pending" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pending</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.pending" title="Link to this definition"></a></dt>
+<dd><p>Get pending items.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.previous_item">
-<span class="sig-name descname"><span class="pre">previous_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.previous_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.previous_item" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">previous_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.previous_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.previous_item" title="Link to this definition"></a></dt>
+<dd><p>Get previous item in the stack.</p>
+</dd></dl>
 
 </dd></dl>
 

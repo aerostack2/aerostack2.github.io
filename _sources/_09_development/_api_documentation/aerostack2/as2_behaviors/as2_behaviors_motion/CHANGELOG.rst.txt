@@ -2,6 +2,12 @@
 Changelog for package as2_behaviors_motion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.2 (2024-08-22)
+------------------
+
+1.1.1 (2024-08-20)
+------------------
+
 1.1.0 (2024-08-08)
 ------------------
 * [as2_behaviors_motion] Not overwritting behavior config file if user config file is empty

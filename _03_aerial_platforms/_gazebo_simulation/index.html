@@ -632,32 +632,61 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 <p><span class="caption-text">Hexrotor base model</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>In order to add an aerial model with sensors attached to it to the simulated world, Aerostack2 uses a configuration file, with JSON format, with the following structure:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;world_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;empty&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;drones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;model_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quadrotor_base&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drone_sim_0&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;xyz&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;rpy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;model_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gps&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gps0&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gimbal&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;model_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gimbal_speed&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hd_camera0&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;model_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hd_camera&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
+<p>In order to add an aerial model with sensors attached to it to the simulated world, Aerostack2 uses a configuration file, with YAML format, with the following structure:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">world_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;empty&quot;</span>
+<span class="nt">drones</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;drone0&quot;</span>
+<span class="w">    </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;quadrotor_base&quot;</span>
+<span class="w">    </span><span class="nt">xyz</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-2.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+<span class="w">    </span><span class="nt">rpy</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">    </span><span class="nt">flight_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">    </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera0&quot;</span>
+<span class="w">        </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gimbal0&quot;</span>
+<span class="w">        </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gimbal_position&quot;</span>
+<span class="w">        </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera1&quot;</span>
+<span class="w">          </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;drone1&quot;</span>
+<span class="w">    </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;quadrotor_base&quot;</span>
+<span class="w">    </span><span class="nt">xyz</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+<span class="w">    </span><span class="nt">rpy</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">    </span><span class="nt">flight_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">    </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gimbal1&quot;</span>
+<span class="w">        </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gimbal_speed&quot;</span>
+<span class="w">        </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera1&quot;</span>
+<span class="w">          </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;drone2&quot;</span>
+<span class="w">    </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;quadrotor_base&quot;</span>
+<span class="w">    </span><span class="nt">xyz</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+<span class="w">    </span><span class="nt">rpy</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">    </span><span class="nt">flight_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">    </span><span class="nt">payload</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera2&quot;</span>
+<span class="w">        </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hd_camera&quot;</span>
 </pre></div>
 </div>
 <p>Where:</p>
@@ -702,7 +731,7 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 <td><p>string</p></td>
 <td><p>Namespace of the platform, also named as drone id.</p></td>
 </tr>
-<tr class="row-odd"><td><p>config_file</p></td>
+<tr class="row-odd"><td><p>simulation_config_file</p></td>
 <td><p>string</p></td>
 <td><p>Path to the simulation configuration file.</p></td>
 </tr>
@@ -710,17 +739,17 @@ For more details, about bridge between Gazebo and ROS, see the <a class="referen
 <td><p>string</p></td>
 <td><p>Optional. File path with the control modes configuration. Default the one in the package.</p></td>
 </tr>
+<tr class="row-odd"><td><p>platform_config_file</p></td>
+<td><p>string</p></td>
+<td><p>Optional. File path with additional platform parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p>log_level</p></td>
+<td><p>string</p></td>
+<td><p>Optional. Set Logging level. Default ‘info’.</p></td>
+</tr>
 <tr class="row-odd"><td><p>use_sim_time</p></td>
 <td><p>bool</p></td>
 <td><p>Optional. Syncronize simulation time with node time. Default false.</p></td>
-</tr>
-<tr class="row-even"><td><p>enable_takeoff_platform</p></td>
-<td><p>bool</p></td>
-<td><p>Optional. Enable takeoff by platfom. Default false.</p></td>
-</tr>
-<tr class="row-odd"><td><p>enable_land_platform</p></td>
-<td><p>bool</p></td>
-<td><p>Optional. Enable land by platfom. Default false.</p></td>
 </tr>
 </tbody>
 </table>

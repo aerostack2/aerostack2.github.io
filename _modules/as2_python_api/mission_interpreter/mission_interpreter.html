@@ -402,6 +402,7 @@
 <span class="kn">from</span> <span class="nn">as2_python_api.drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission</span> <span class="kn">import</span> <span class="n">InterpreterStatus</span><span class="p">,</span> <span class="n">Mission</span>
 <span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission_stack</span> <span class="kn">import</span> <span class="n">MissionStack</span>
+<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">SingleThreadedExecutor</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;[</span><span class="si">%(levelname)s</span><span class="s1">] [</span><span class="si">%(asctime)s</span><span class="s1">] [</span><span class="si">%(name)s</span><span class="s1">]: </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -414,11 +415,13 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Mission Interpreter and Executer.&quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: mission default None -&gt; default values to drone and mission_stack properties</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">executor</span><span class="p">:</span> <span class="n">Executor</span> <span class="o">=</span> <span class="n">SingleThreadedExecutor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;MissionInterpreter&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_mission</span><span class="p">:</span> <span class="n">Mission</span> <span class="o">=</span> <span class="n">mission</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">use_sim_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_executor</span><span class="p">:</span> <span class="n">Executor</span> <span class="o">=</span> <span class="n">executor</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span><span class="p">:</span> <span class="n">DroneInterfaceBase</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mission_stack</span><span class="p">:</span> <span class="n">MissionStack</span> <span class="o">=</span> <span class="kc">None</span>
@@ -455,7 +458,8 @@
             <span class="n">drone</span> <span class="o">=</span> <span class="n">DroneInterfaceBase</span><span class="p">(</span>
                 <span class="n">drone_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_mission</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_mission</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-                <span class="n">use_sim_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_sim_time</span>
+                <span class="n">use_sim_time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_sim_time</span><span class="p">,</span>
+                <span class="n">executor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_executor</span>
             <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">module_name</span> <span class="ow">in</span> <span class="n">needed_modules</span><span class="p">:</span>
@@ -613,7 +617,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">drone</span><span class="p">,</span> <span class="n">behavior</span><span class="p">)</span>
             <span class="n">current_method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">current_method</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+                <span class="c1"># TODO(pariaspe): check current_method result</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">current_method</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Behavior </span><span class="si">{</span><span class="n">behavior</span><span class="si">}</span><span class="s1"> method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s1"> result: </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">BehaviorHandler</span><span class="o">.</span><span class="n">GoalRejected</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Goal rejected by behavior </span><span class="si">{</span><span class="n">behavior</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
                 <span class="k">break</span>
