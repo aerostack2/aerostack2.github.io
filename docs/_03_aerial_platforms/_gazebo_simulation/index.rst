@@ -243,35 +243,64 @@ There are two aerial models available for simulation. These models are:
    
    Hexrotor base model
 
-In order to add an aerial model with sensors attached to it to the simulated world, Aerostack2 uses a configuration file, with JSON format, with the following structure:
+In order to add an aerial model with sensors attached to it to the simulated world, Aerostack2 uses a configuration file, with YAML format, with the following structure:
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "world_name": "empty",
-    "drones": [
-        {
-          "model_type": "quadrotor_base",
-          "model_name": "drone_sim_0",
-          "xyz": [ 1.0, 1.0, 0.3 ],
-          "rpy": [ 0.0, 0.0, 0.0 ],
-          "payload": [
-              {
-                "model_type": "gps",
-                "model_name": "gps0"
-              },
-              {
-                "model_name": "gimbal",
-                "model_type": "gimbal_speed",
-                "payload": {
-                    "model_name": "hd_camera0",
-                    "model_type": "hd_camera"
-                }
-              }
-          ]
-        }
-    ]
-  }
+  world_name: "empty"
+  drones:
+    - model_name: "drone0"
+      model_type: "quadrotor_base"
+      xyz:
+        - -2.0
+        - 0.0
+        - 0.3
+      rpy:
+        - 0
+        - 0
+        - 0.0
+      flight_time: 60
+      payload:
+        - model_name: "hd_camera0"
+          model_type: "hd_camera"
+        - model_name: "gimbal0"
+          model_type: "gimbal_position"
+          payload:
+            model_name: "hd_camera1"
+            model_type: "hd_camera"
+
+    - model_name: "drone1"
+      model_type: "quadrotor_base"
+      xyz:
+        - 2.0
+        - 0.0
+        - 0.3
+      rpy:
+        - 0
+        - 0
+        - 0.0
+      flight_time: 60
+      payload:
+        - model_name: "gimbal1"
+          model_type: "gimbal_speed"
+          payload:
+            model_name: "hd_camera1"
+            model_type: "hd_camera"
+
+    - model_name: "drone2"
+      model_type: "quadrotor_base"
+      xyz:
+        - 0.0
+        - 0.0
+        - 0.3
+      rpy:
+        - 0
+        - 0
+        - 0.0
+      flight_time: 60
+      payload:
+        - model_name: "hd_camera2"
+          model_type: "hd_camera"
 
 Where:
 
@@ -315,21 +344,22 @@ Aerostack2 Gazebo platform provides a launch file, which parameters are:
    * - namespace
      - string
      - Namespace of the platform, also named as drone id. 
-   * - config_file
+   * - simulation_config_file
      - string
      - Path to the simulation configuration file.
    * - control_modes_file
      - string
      - Optional. File path with the control modes configuration. Default the one in the package.
+   * - platform_config_file
+     - string
+     - Optional. File path with additional platform parameters.
+   * - log_level
+     - string
+     - Optional. Set Logging level. Default 'info'.  
    * - use_sim_time
      - bool
      - Optional. Syncronize simulation time with node time. Default false.
-   * - enable_takeoff_platform
-     - bool
-     - Optional. Enable takeoff by platfom. Default false.
-   * - enable_land_platform
-     - bool
-     - Optional. Enable land by platfom. Default false.
+
 
 Example of launch command:
 
