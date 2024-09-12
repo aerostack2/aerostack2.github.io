@@ -548,8 +548,8 @@ To run these tests:
 
     
 
-------------------------------
+
 Node Template for New Packages
-------------------------------
+==============================
 
 An example node with the proper structure and all the templates can be found `here <https://github.com/aerostack2/as2_node_template>`_.
