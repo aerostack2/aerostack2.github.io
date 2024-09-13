@@ -12,4 +12,5 @@ The Develop Guide includes some guidelines for new packages implementation and c
 
    _develop_guide/_develop_new_pkg.rst
    _develop_guide/_setting_code.rst
+   _develop_guide/_create_gazebo_assets.rst
 
