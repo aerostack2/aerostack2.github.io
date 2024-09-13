@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Gazebo Assets &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="API Documentation" href="../../_api_documentation/index.html" />
+    <link rel="prev" title="Setting Up Visual Studio Code" href="_setting_code.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/project_multirotor_simulator/index.html">Multirotor Simulator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/dji/index.html">DJI OSDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/installation.html">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html">DJI Matrice Series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#setup-connection-with-dji-matrice">Setup connection with DJI Matrice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-worlds">Adding New Worlds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-models-and-objects">Adding New Models and Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#configuring-new-sensors">Configuring New Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Develop Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Create New Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-new-gazebo-aerial-platform">Create a New Gazebo Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-new-gazebo-sensor">Create a New Gazebo Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Development</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Develop Guide</a></li>
+      <li class="breadcrumb-item active">Create New Gazebo Assets</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-new-gazebo-assets">
+<span id="development-guide-create-assets"></span><h1>Create New Gazebo Assets<a class="headerlink" href="#create-new-gazebo-assets" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-a-new-gazebo-aerial-platform" id="id1">Create a New Gazebo Aerial Platform</a></p></li>
+<li><p><a class="reference internal" href="#create-a-new-gazebo-sensor" id="id2">Create a New Gazebo Sensor</a></p></li>
+</ul>
+</nav>
+<section id="create-a-new-gazebo-aerial-platform">
+<span id="development-guide-create-assets-add-platform"></span><span id="development-guide-create-assets-overview"></span><h2><a class="toc-backref" href="#id1" role="doc-backlink">Create a New Gazebo Aerial Platform</a><a class="headerlink" href="#create-a-new-gazebo-aerial-platform" title="Link to this heading"></a></h2>
+<p>Adding new platform models so they can fly using Aerostack2 requires the creation of a Jinja template. Aerostack2 uses Jinja to templatize the Gazebo Platform models so that all the components,
+links, joints and topics have the right names and the platform can be built properly.</p>
+<section id="adding-new-quadrotor-models">
+<h3>Adding New Quadrotor Models<a class="headerlink" href="#adding-new-quadrotor-models" title="Link to this heading"></a></h3>
+<p>To add a new quadrotor model, like a BitCraze Crazyflie for instance, a file <code class="docutils literal notranslate"><span class="pre">model-name.sdf.jinja</span></code> must be added to your model folder, with the following content</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+
+<span class="nt">&lt;sdf</span><span class="w"> </span><span class="na">version=</span><span class="s">&#39;1.6&#39;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;{{ namespace }}&#39;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">merge=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;uri&gt;</span>model://MODEL_NAME<span class="nt">&lt;/uri&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/include&gt;</span>
+
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">          </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-pose-publisher-system&quot;</span>
+<span class="w">          </span><span class="na">name=</span><span class="s">&quot;ignition::gazebo::systems::PosePublisher&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_link_pose&gt;</span>true<span class="nt">&lt;/publish_link_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_sensor_pose&gt;</span>true<span class="nt">&lt;/publish_sensor_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_collision_pose&gt;</span>false<span class="nt">&lt;/publish_collision_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_visual_pose&gt;</span>false<span class="nt">&lt;/publish_visual_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_nested_model_pose&gt;</span>true<span class="nt">&lt;/publish_nested_model_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;publish_model_pose&gt;</span>false<span class="nt">&lt;/publish_model_pose&gt;</span>
+<span class="w">          </span><span class="nt">&lt;use_pose_vector_msg&gt;</span>true<span class="nt">&lt;/use_pose_vector_msg&gt;</span>
+<span class="w">          </span><span class="nt">&lt;static_publisher&gt;</span>true<span class="nt">&lt;/static_publisher&gt;</span>
+<span class="w">          </span><span class="nt">&lt;static_update_frequency&gt;</span>100<span class="nt">&lt;/static_update_frequency&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-multicopter-motor-model-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;gz::sim::systems::MulticopterMotorModel&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;robotNamespace&gt;</span>model/{{<span class="w"> </span>namespace<span class="w"> </span>}}<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;jointName&gt;</span>m1_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linkName&gt;</span>m1<span class="nt">&lt;/linkName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;turningDirection&gt;</span>ccw<span class="nt">&lt;/turningDirection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantUp&gt;</span>0.0125<span class="nt">&lt;/timeConstantUp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantDown&gt;</span>0.025<span class="nt">&lt;/timeConstantDown&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maxRotVelocity&gt;</span>800.0<span class="nt">&lt;/maxRotVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorConstant&gt;</span>8.54858e-06<span class="nt">&lt;/motorConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;commandSubTopic&gt;</span>command/motor_speed<span class="nt">&lt;/commandSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorNumber&gt;</span>0<span class="nt">&lt;/motorNumber&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorDragCoefficient&gt;</span>8.06428e-05<span class="nt">&lt;/rotorDragCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rollingMomentCoefficient&gt;</span>1e-06<span class="nt">&lt;/rollingMomentCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorSpeedPubTopic&gt;</span>motor_speed/0<span class="nt">&lt;/motorSpeedPubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorVelocitySlowdownSim&gt;</span>10<span class="nt">&lt;/rotorVelocitySlowdownSim&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorType&gt;</span>velocity<span class="nt">&lt;/motorType&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-multicopter-motor-model-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;gz::sim::systems::MulticopterMotorModel&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;robotNamespace&gt;</span>model/{{<span class="w"> </span>namespace<span class="w"> </span>}}<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;jointName&gt;</span>m2_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linkName&gt;</span>m2<span class="nt">&lt;/linkName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;turningDirection&gt;</span>ccw<span class="nt">&lt;/turningDirection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantUp&gt;</span>0.0125<span class="nt">&lt;/timeConstantUp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantDown&gt;</span>0.025<span class="nt">&lt;/timeConstantDown&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maxRotVelocity&gt;</span>800.0<span class="nt">&lt;/maxRotVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorConstant&gt;</span>8.54858e-06<span class="nt">&lt;/motorConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;commandSubTopic&gt;</span>command/motor_speed<span class="nt">&lt;/commandSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorNumber&gt;</span>1<span class="nt">&lt;/motorNumber&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorDragCoefficient&gt;</span>8.06428e-05<span class="nt">&lt;/rotorDragCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rollingMomentCoefficient&gt;</span>1e-06<span class="nt">&lt;/rollingMomentCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorSpeedPubTopic&gt;</span>motor_speed/1<span class="nt">&lt;/motorSpeedPubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorVelocitySlowdownSim&gt;</span>10<span class="nt">&lt;/rotorVelocitySlowdownSim&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorType&gt;</span>velocity<span class="nt">&lt;/motorType&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-multicopter-motor-model-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;gz::sim::systems::MulticopterMotorModel&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;robotNamespace&gt;</span>model/{{<span class="w"> </span>namespace<span class="w"> </span>}}<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;jointName&gt;</span>m3_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linkName&gt;</span>m3<span class="nt">&lt;/linkName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;turningDirection&gt;</span>cw<span class="nt">&lt;/turningDirection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantUp&gt;</span>0.0125<span class="nt">&lt;/timeConstantUp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantDown&gt;</span>0.025<span class="nt">&lt;/timeConstantDown&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maxRotVelocity&gt;</span>800.0<span class="nt">&lt;/maxRotVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorConstant&gt;</span>8.54858e-06<span class="nt">&lt;/motorConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;commandSubTopic&gt;</span>command/motor_speed<span class="nt">&lt;/commandSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorNumber&gt;</span>2<span class="nt">&lt;/motorNumber&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorDragCoefficient&gt;</span>8.06428e-05<span class="nt">&lt;/rotorDragCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rollingMomentCoefficient&gt;</span>1e-06<span class="nt">&lt;/rollingMomentCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorSpeedPubTopic&gt;</span>motor_speed/2<span class="nt">&lt;/motorSpeedPubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorVelocitySlowdownSim&gt;</span>10<span class="nt">&lt;/rotorVelocitySlowdownSim&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorType&gt;</span>velocity<span class="nt">&lt;/motorType&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-multicopter-motor-model-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;gz::sim::systems::MulticopterMotorModel&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;robotNamespace&gt;</span>model/{{<span class="w"> </span>namespace<span class="w"> </span>}}<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;jointName&gt;</span>m4_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linkName&gt;</span>m4<span class="nt">&lt;/linkName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;turningDirection&gt;</span>cw<span class="nt">&lt;/turningDirection&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantUp&gt;</span>0.0125<span class="nt">&lt;/timeConstantUp&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeConstantDown&gt;</span>0.025<span class="nt">&lt;/timeConstantDown&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maxRotVelocity&gt;</span>800.0<span class="nt">&lt;/maxRotVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorConstant&gt;</span>8.54858e-06<span class="nt">&lt;/motorConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">        </span><span class="nt">&lt;commandSubTopic&gt;</span>command/motor_speed<span class="nt">&lt;/commandSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorNumber&gt;</span>3<span class="nt">&lt;/motorNumber&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorDragCoefficient&gt;</span>8.06428e-05<span class="nt">&lt;/rotorDragCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rollingMomentCoefficient&gt;</span>1e-06<span class="nt">&lt;/rollingMomentCoefficient&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorSpeedPubTopic&gt;</span>motor_speed/3<span class="nt">&lt;/motorSpeedPubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;rotorVelocitySlowdownSim&gt;</span>10<span class="nt">&lt;/rotorVelocitySlowdownSim&gt;</span>
+<span class="w">        </span><span class="nt">&lt;motorType&gt;</span>velocity<span class="nt">&lt;/motorType&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-multicopter-control-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;gz::sim::systems::MulticopterVelocityControl&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;robotNamespace&gt;</span>model/{{<span class="w"> </span>namespace<span class="w"> </span>}}<span class="nt">&lt;/robotNamespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;commandSubTopic&gt;</span>cmd_vel<span class="nt">&lt;/commandSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;enableSubTopic&gt;</span>velocity_controller/enable<span class="nt">&lt;/enableSubTopic&gt;</span>
+<span class="w">        </span><span class="nt">&lt;comLinkName&gt;</span>base_link<span class="nt">&lt;/comLinkName&gt;</span>
+<span class="w">        </span><span class="nt">&lt;velocityGain&gt;</span>3.3<span class="w"> </span>3.3<span class="w"> </span>3.3<span class="nt">&lt;/velocityGain&gt;</span>
+<span class="w">        </span><span class="nt">&lt;attitudeGain&gt;</span>1.25<span class="w"> </span>1.65<span class="w"> </span>0.9<span class="nt">&lt;/attitudeGain&gt;</span>
+<span class="w">        </span><span class="nt">&lt;angularRateGain&gt;</span>0.2<span class="w"> </span>0.25<span class="w"> </span>0.09<span class="nt">&lt;/angularRateGain&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maximumLinearAcceleration&gt;</span>2<span class="w"> </span>2<span class="w"> </span>2<span class="nt">&lt;/maximumLinearAcceleration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maximumLinearVelocity&gt;</span>5<span class="w"> </span>5<span class="w"> </span>5<span class="nt">&lt;/maximumLinearVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;maximumAngularVelocity&gt;</span>3<span class="w"> </span>3<span class="w"> </span>3<span class="nt">&lt;/maximumAngularVelocity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linearVelocityNoiseMean&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0.05<span class="nt">&lt;/linearVelocityNoiseMean&gt;</span>
+<span class="w">        </span><span class="nt">&lt;linearVelocityNoiseStdDev&gt;</span>0.1105<span class="w"> </span>0.1261<span class="w"> </span>0.00947<span class="nt">&lt;/linearVelocityNoiseStdDev&gt;</span>
+<span class="w">        </span><span class="nt">&lt;angularVelocityNoiseMean&gt;</span>0<span class="w"> </span>0<span class="w"> </span>0<span class="nt">&lt;/angularVelocityNoiseMean&gt;</span>
+<span class="w">        </span><span class="nt">&lt;angularVelocityNoiseStdDev&gt;</span>0.004<span class="w"> </span>0.004<span class="w"> </span>0.004<span class="nt">&lt;/angularVelocityNoiseStdDev&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;rotorConfiguration&gt;</span>
+<span class="w">          </span><span class="nt">&lt;rotor&gt;</span>
+<span class="w">            </span><span class="nt">&lt;jointName&gt;</span>m1_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">            </span><span class="nt">&lt;forceConstant&gt;</span>8.54858e-06<span class="nt">&lt;/forceConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;direction&gt;</span>1<span class="nt">&lt;/direction&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/rotor&gt;</span>
+<span class="w">          </span><span class="nt">&lt;rotor&gt;</span>
+<span class="w">            </span><span class="nt">&lt;jointName&gt;</span>m2_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">            </span><span class="nt">&lt;forceConstant&gt;</span>8.54858e-06<span class="nt">&lt;/forceConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;direction&gt;</span>1<span class="nt">&lt;/direction&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/rotor&gt;</span>
+<span class="w">          </span><span class="nt">&lt;rotor&gt;</span>
+<span class="w">            </span><span class="nt">&lt;jointName&gt;</span>m3_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">            </span><span class="nt">&lt;forceConstant&gt;</span>8.54858e-06<span class="nt">&lt;/forceConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;direction&gt;</span>-1<span class="nt">&lt;/direction&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/rotor&gt;</span>
+<span class="w">          </span><span class="nt">&lt;rotor&gt;</span>
+<span class="w">            </span><span class="nt">&lt;jointName&gt;</span>m4_joint<span class="nt">&lt;/jointName&gt;</span>
+<span class="w">            </span><span class="nt">&lt;forceConstant&gt;</span>8.54858e-06<span class="nt">&lt;/forceConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;momentConstant&gt;</span>0.016<span class="nt">&lt;/momentConstant&gt;</span>
+<span class="w">            </span><span class="nt">&lt;direction&gt;</span>-1<span class="nt">&lt;/direction&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/rotor&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/rotorConfiguration&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+
+<span class="w">      </span>{%<span class="w"> </span>for<span class="w"> </span>sensor<span class="w"> </span>in<span class="w"> </span>sensors<span class="w"> </span>-%}
+<span class="w">        </span><span class="cm">&lt;!-- Payload {{ sensor.model }} --&gt;</span>
+<span class="w">          </span>{%<span class="w"> </span>if<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_position&#39;<span class="w"> </span>-%}
+
+<span class="w">              </span>{#<span class="w"> </span>Gimbal<span class="w"> </span>position<span class="w"> </span>-<span class="w"> </span>include<span class="w"> </span>or<span class="w"> </span>basic<span class="w"> </span>render<span class="w">  </span>#}
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/gimbal/position_gimbal.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_speed&#39;<span class="w"> </span>-%}
+
+<span class="w">              </span>{#<span class="w"> </span>Gimbal<span class="w"> </span>speed<span class="w"> </span>-<span class="w"> </span>include<span class="w"> </span>or<span class="w"> </span>basic<span class="w"> </span>render<span class="w">  </span>#}
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/gimbal/speed_gimbal.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;hd_camera&#39;<span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>sensor.gimbaled<span class="w"> </span>-%}
+
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/hd_camera/hd_camera.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;vga_camera&#39;<span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>sensor.gimbaled<span class="w"> </span>-%}
+
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/vga_camera/vga_camera.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;semantic_camera&#39;<span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>sensor.gimbaled<span class="w"> </span>-%}
+
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/semantic_camera/semantic_camera.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;rgbd_camera&#39;<span class="w"> </span>and<span class="w"> </span>not<span class="w"> </span>sensor.gimbaled<span class="w"> </span>-%}
+
+<span class="w">              </span>{%<span class="w"> </span>include<span class="w"> </span>&#39;models/rgbd_camera/rgbd_camera.sdf.jinja&#39;<span class="w"> </span>with<span class="w"> </span>context<span class="w"> </span>%}
+
+<span class="w">          </span>{%<span class="w"> </span>elif<span class="w"> </span>sensor.gimbaled<span class="w"> </span>-%}
+
+<span class="w">          </span>{%<span class="w"> </span>else<span class="w"> </span>-%}
+<span class="w">              </span><span class="nt">&lt;include&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;name&gt;</span>{{<span class="w"> </span>sensor.name<span class="w"> </span>}}<span class="nt">&lt;/name&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;uri&gt;</span>model://{{<span class="w"> </span>sensor.model<span class="w"> </span>}}<span class="nt">&lt;/uri&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;pose</span>
+<span class="w">                      </span><span class="na">relative_to=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>
+<span class="w">                      </span>{{<span class="w"> </span>sensor.pose<span class="w"> </span>}}
+<span class="w">                  </span><span class="nt">&lt;/pose&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/include&gt;</span>
+<span class="w">              </span><span class="nt">&lt;joint</span>
+<span class="w">                  </span><span class="na">name=</span><span class="s">&quot;{{ sensor.name }}_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;parent&gt;</span>base_link<span class="nt">&lt;/parent&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;child&gt;</span>{{<span class="w"> </span>sensor.name<span class="w"> </span>}}<span class="nt">&lt;/child&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/joint&gt;</span>
+<span class="w">          </span>{%<span class="w"> </span>endif<span class="w"> </span>-%}
+<span class="w">      </span>{%<span class="w"> </span>endfor<span class="w"> </span>-%}
+
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">        </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-odometry-publisher-system&quot;</span>
+<span class="w">        </span><span class="na">name=</span><span class="s">&quot;ignition::gazebo::systems::OdometryPublisher&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dimensions&gt;</span>3<span class="nt">&lt;/dimensions&gt;</span>
+<span class="w">        </span><span class="nt">&lt;odom_publish_frequency&gt;</span>100<span class="nt">&lt;/odom_publish_frequency&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">          </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-air-pressure-system&quot;</span>
+<span class="w">          </span><span class="na">name=</span><span class="s">&quot;ignition::gazebo::systems::AirPressure&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">          </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-imu-system&quot;</span>
+<span class="w">          </span><span class="na">name=</span><span class="s">&quot;ignition::gazebo::systems::Imu&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+<span class="w">      </span><span class="nt">&lt;plugin</span>
+<span class="w">          </span><span class="na">filename=</span><span class="s">&quot;ignition-gazebo-magnetometer-system&quot;</span>
+<span class="w">          </span><span class="na">name=</span><span class="s">&quot;ignition::gazebo::systems::Magnetometer&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/plugin&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;/model&gt;</span>
+<span class="nt">&lt;/sdf&gt;</span>
+</pre></div>
+</div>
+<p>For the quadrotor, this template assumes your model has 4 links, one for each rotor, with the names m1, m2, m3, m4. This four links are required to have one joint each. In the example,
+they are named m1_joint, m2_joint, m3_joint and m4_joint. These names can be changed to match your links names. The ‘_joint’ is, however, necessary (if m1 is changed for YOUR_LINK, then its joint would have to be YOUR_LINK_joint).
+In addition to this, the base link of your quadrotor model must be ‘base_link’.</p>
+<p>With this template, your model can be renderized to match all the expected naming by Aerostack2 and is ready to fly using the Gazebo Simulator.</p>
+</section>
+</section>
+<section id="create-a-new-gazebo-sensor">
+<span id="development-guide-create-assets-add-sensor"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Create a New Gazebo Sensor</a><a class="headerlink" href="#create-a-new-gazebo-sensor" title="Link to this heading"></a></h2>
+<section id="add-your-new-sensor-model">
+<h3>1. Add Your New Sensor Model<a class="headerlink" href="#add-your-new-sensor-model" title="Link to this heading"></a></h3>
+<p>For a sensor model to work with Gazebo, your <code class="docutils literal notranslate"><span class="pre">model.sdf</span></code> must include a Gazebo plugin that publishes some information. This can be either an existing plugin in the <code class="docutils literal notranslate"><span class="pre">gz-sensor</span></code> library or a custom plugin.
+Here is an example of a sensor <code class="docutils literal notranslate"><span class="pre">model.sdf</span></code> file for a camera:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;sdf</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.9&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;new_camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;new_camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;inertial&gt;</span>
+<span class="w">                </span><span class="nt">&lt;mass&gt;</span>0.005<span class="nt">&lt;/mass&gt;</span>
+<span class="w">                </span><span class="nt">&lt;inertia&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ixx&gt;</span>8.33e-06<span class="nt">&lt;/ixx&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ixy&gt;</span>0<span class="nt">&lt;/ixy&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;ixz&gt;</span>0<span class="nt">&lt;/ixz&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;iyy&gt;</span>8.33e-06<span class="nt">&lt;/iyy&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;iyz&gt;</span>0<span class="nt">&lt;/iyz&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;izz&gt;</span>8.33e-06<span class="nt">&lt;/izz&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/inertia&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/inertial&gt;</span>
+<span class="w">            </span><span class="nt">&lt;sensor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;camera&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;always_on&gt;</span>1<span class="nt">&lt;/always_on&gt;</span>
+<span class="w">                </span><span class="nt">&lt;update_rate&gt;</span>20<span class="nt">&lt;/update_rate&gt;</span>
+<span class="w">                </span><span class="nt">&lt;camera</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;horizontal_fov&gt;</span>1.0472<span class="nt">&lt;/horizontal_fov&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;lens&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;intrinsics&gt;</span>
+<span class="w">                            </span><span class="cm">&lt;!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) --&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fx&gt;</span>1108.5<span class="nt">&lt;/fx&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;fy&gt;</span>1108.5<span class="nt">&lt;/fy&gt;</span>
+<span class="w">                            </span><span class="cm">&lt;!-- cx = ( width + 1 ) / 2 --&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;cx&gt;</span>640.5<span class="nt">&lt;/cx&gt;</span>
+<span class="w">                            </span><span class="cm">&lt;!-- cy = ( height + 1 ) / 2 --&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;cy&gt;</span>480.5<span class="nt">&lt;/cy&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;s&gt;</span>0<span class="nt">&lt;/s&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/intrinsics&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/lens&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;image&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;width&gt;</span>1280<span class="nt">&lt;/width&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;height&gt;</span>960<span class="nt">&lt;/height&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;format&gt;</span>R8G8B8<span class="nt">&lt;/format&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/image&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;clip&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;near&gt;</span>0.01<span class="nt">&lt;/near&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;far&gt;</span>300<span class="nt">&lt;/far&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/clip&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;noise&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;type&gt;</span>gaussian<span class="nt">&lt;/type&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mean&gt;</span>0<span class="nt">&lt;/mean&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;stddev&gt;</span>0.007<span class="nt">&lt;/stddev&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/noise&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/camera&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/sensor&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/link&gt;</span>
++
+<span class="w">        </span><span class="nt">&lt;frame</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mount_point&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/model&gt;</span>
+<span class="nt">&lt;/sdf&gt;</span>
+</pre></div>
+</div>
+<p>If you want your new type of sensor to be mounted on a Gimbal, a <code class="docutils literal notranslate"><span class="pre">model.sdf.jinja</span></code> template is required for your model and its Gazebo and ROS 2 topics to be properly built. Here is the template of a camera for Gazebo. Change the &lt;link&gt; tag name and the sensor name and type to the ones of your new sensor and its parameters:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>{%<span class="w"> </span>if<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_speed&#39;<span class="w"> </span>or<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_position&#39;<span class="w"> </span>-%}
+
+<span class="w">    </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;{{ sensor.sensor_attached }}&#39;</span><span class="nt">&gt;</span>
+
+{%<span class="w"> </span>else<span class="w"> </span>-%}
+
+<span class="w">    </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">name=</span><span class="s">&#39;{{ sensor.name }}&#39;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;pose</span>
+<span class="w">        </span><span class="na">relative_to=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{{<span class="w"> </span>sensor.pose<span class="w"> </span>}}
+<span class="w">    </span><span class="nt">&lt;/pose&gt;</span>
+
+{%<span class="w"> </span>endif<span class="w"> </span>-%}
+
+<span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hd_camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;inertial&gt;</span>
+<span class="w">            </span><span class="nt">&lt;mass&gt;</span>0.005<span class="nt">&lt;/mass&gt;</span>
+<span class="w">            </span><span class="nt">&lt;inertia&gt;</span>
+<span class="w">                </span><span class="nt">&lt;ixx&gt;</span>8.33e-06<span class="nt">&lt;/ixx&gt;</span>
+<span class="w">                </span><span class="nt">&lt;ixy&gt;</span>0<span class="nt">&lt;/ixy&gt;</span>
+<span class="w">                </span><span class="nt">&lt;ixz&gt;</span>0<span class="nt">&lt;/ixz&gt;</span>
+<span class="w">                </span><span class="nt">&lt;iyy&gt;</span>8.33e-06<span class="nt">&lt;/iyy&gt;</span>
+<span class="w">                </span><span class="nt">&lt;iyz&gt;</span>0<span class="nt">&lt;/iyz&gt;</span>
+<span class="w">                </span><span class="nt">&lt;izz&gt;</span>8.33e-06<span class="nt">&lt;/izz&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/inertia&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/inertial&gt;</span>
+<span class="w">        </span><span class="nt">&lt;sensor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;camera&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;always_on&gt;</span>1<span class="nt">&lt;/always_on&gt;</span>
+<span class="w">            </span><span class="nt">&lt;update_rate&gt;</span>20<span class="nt">&lt;/update_rate&gt;</span>
+<span class="w">            </span><span class="nt">&lt;camera</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;camera&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;horizontal_fov&gt;</span>1.0472<span class="nt">&lt;/horizontal_fov&gt;</span>
+<span class="w">                </span><span class="nt">&lt;lens&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;intrinsics&gt;</span>
+<span class="w">                        </span><span class="cm">&lt;!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) --&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;fx&gt;</span>1108.5<span class="nt">&lt;/fx&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;fy&gt;</span>1108.5<span class="nt">&lt;/fy&gt;</span>
+<span class="w">                        </span><span class="cm">&lt;!-- cx = ( width + 1 ) / 2 --&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;cx&gt;</span>640.5<span class="nt">&lt;/cx&gt;</span>
+<span class="w">                        </span><span class="cm">&lt;!-- cy = ( height + 1 ) / 2 --&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;cy&gt;</span>480.5<span class="nt">&lt;/cy&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;s&gt;</span>0<span class="nt">&lt;/s&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/intrinsics&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/lens&gt;</span>
+<span class="w">                </span><span class="nt">&lt;image&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;width&gt;</span>1280<span class="nt">&lt;/width&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;height&gt;</span>960<span class="nt">&lt;/height&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;format&gt;</span>R8G8B8<span class="nt">&lt;/format&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/image&gt;</span>
+<span class="w">                </span><span class="nt">&lt;clip&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;near&gt;</span>0.01<span class="nt">&lt;/near&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;far&gt;</span>300<span class="nt">&lt;/far&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/clip&gt;</span>
+<span class="w">                </span><span class="nt">&lt;noise&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;type&gt;</span>gaussian<span class="nt">&lt;/type&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;mean&gt;</span>0<span class="nt">&lt;/mean&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;stddev&gt;</span>0.007<span class="nt">&lt;/stddev&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/noise&gt;</span>
+
+<span class="w">                </span>{%<span class="w"> </span>if<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_speed&#39;<span class="w"> </span>or<span class="w"> </span>sensor.model<span class="w"> </span>==<span class="w"> </span>&#39;gimbal_position&#39;<span class="w"> </span>-%}
+
+<span class="w">                    </span><span class="nt">&lt;optical_frame_id&gt;</span>/{{<span class="w"> </span>namespace<span class="w"> </span>}}/{{<span class="w"> </span>sensor.name<span class="w"> </span>}}/_0/_1/_2/{{<span class="w"> </span>sensor.sensor_attached<span class="w"> </span>}}/{{<span class="w"> </span>sensor.sensor_attached_type<span class="w"> </span>}}/camera/optical_frame<span class="nt">&lt;/optical_frame_id&gt;</span>
+
+<span class="w">                </span>{%<span class="w"> </span>else<span class="w"> </span>-%}
+
+<span class="w">                    </span><span class="nt">&lt;optical_frame_id&gt;</span>/{{<span class="w"> </span>namespace<span class="w"> </span>}}/{{<span class="w"> </span>sensor.name<span class="w"> </span>}}/{{<span class="w"> </span>sensor.model<span class="w"> </span>}}/camera/optical_frame<span class="nt">&lt;/optical_frame_id&gt;</span>
+
+<span class="w">                </span>{%<span class="w"> </span>endif<span class="w"> </span>-%}
+
+<span class="w">                </span><span class="nt">&lt;/camera&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/sensor&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/link&gt;</span>
+<span class="w">    </span><span class="nt">&lt;frame</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mount_point&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/model&gt;</span>
+
+{%<span class="w"> </span>if<span class="w"> </span>sensor.model<span class="w"> </span>!=<span class="w"> </span>&#39;gimbal_speed&#39;<span class="w"> </span>and<span class="w"> </span>sensor.model<span class="w"> </span>!=<span class="w"> </span>&#39;gimbal_position&#39;<span class="w"> </span>-%}
+
+<span class="nt">&lt;joint</span>
+<span class="w">    </span><span class="na">name=</span><span class="s">&quot;{{ sensor.name }}_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;parent&gt;</span>base_link<span class="nt">&lt;/parent&gt;</span>
+<span class="w">    </span><span class="nt">&lt;child&gt;</span>{{<span class="w"> </span>sensor.name<span class="w"> </span>}}<span class="nt">&lt;/child&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+
+{%<span class="w"> </span>endif<span class="w"> </span>-%}
+</pre></div>
+</div>
+<p>Just like any other model, the sensor models can be either added to the <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets/models</span></code> folder or to the <code class="docutils literal notranslate"><span class="pre">models</span></code> folder in your project.</p>
+</section>
+<section id="adding-a-bridge-for-your-sensor">
+<h3>2. Adding a bridge for your sensor<a class="headerlink" href="#adding-a-bridge-for-your-sensor" title="Link to this heading"></a></h3>
+<p>To use your sensor data in ROS 2 nodes, you need Gazebo-ROS 2 bridge. Aerostack2 includes a series of bridges for the already supported sensor types. If your sensor is of a different type, a new bridge is required.
+The available bridges can be found in <code class="docutils literal notranslate"><span class="pre">as2_simulation_assets/as2_gazebo_assets/src/as2_gazebo_assets_bridges</span></code>. There is a bridge for each of the Gazebo topics used by the implemented sensor types from the gz-sensor library.
+This is the structure of a bridge in Aerostack2</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">new_image</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span>
+            <span class="n">sensor_model_type</span><span class="p">,</span> <span class="n">sensor_model_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;New Image bridge&quot;&quot;&quot;</span>
+    <span class="n">sensor_prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span> <span class="n">sensor_model_type</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Bridge</span><span class="p">(</span>
+        <span class="n">gz_topic</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sensor_prefix</span><span class="si">}</span><span class="s1">/camera/image&#39;</span><span class="p">,</span>
+        <span class="n">ros_topic</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;sensor_measurements/</span><span class="si">{</span><span class="n">sensor_model_prefix</span><span class="si">}</span><span class="s1">/alternative_topic&#39;</span><span class="p">,</span>
+        <span class="n">gz_type</span><span class="o">=</span><span class="s1">&#39;ignition.msgs.Image&#39;</span><span class="p">,</span>
+        <span class="n">ros_type</span><span class="o">=</span><span class="s1">&#39;sensor_msgs/msg/Image&#39;</span><span class="p">,</span>
+        <span class="n">direction</span><span class="o">=</span><span class="n">BridgeDirection</span><span class="o">.</span><span class="n">GZ_TO_ROS</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>This bridge consists in a node that subscribe to the specified gazebo topic, reformats the message into the ROS 2 message type, and publishes the information again. To know what ROS 2 type you need to connect your Gazebo message to, check
+the <a class="reference external" href="https://github.com/gazebosim/ros_gz/tree/ros2/ros_gz_bridge">Gazebo Transport bridges list</a>. Make sure you modify the <code class="docutils literal notranslate"><span class="pre">gz_topic</span></code> to match the one to which your Gazebo sensor is publishing to, which should be defined in your custom plugin.</p>
+<p>It is important that you use the <code class="docutils literal notranslate"><span class="pre">prefix()</span></code> function that formats the core of the topics naming. By using it, you make sure Aerostack2 can find and subscribe and publish to the right topics.</p>
+</section>
+<section id="creating-a-payload-type-enumerator">
+<h3>3. Creating a payload type enumerator<a class="headerlink" href="#creating-a-payload-type-enumerator" title="Link to this heading"></a></h3>
+<p>With your new bridge created, you can finally create the Payload ‘TypeEnum’ for your new sensor type. Following the structure presented in step 3</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NewCameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Valid camera model types.&quot;&quot;&quot;</span>
+
+    <span class="n">NEW_CAMERA</span> <span class="o">=</span> <span class="s1">&#39;new_camera&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">bridges</span><span class="p">(</span>
+        <span class="n">world_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">drone_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sensor_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sensor_model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sensor_model_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Bridge</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return bridges needed for camera model.</span>
+
+<span class="sd">        :param world_name: gz world name</span>
+<span class="sd">        :param model_name: gz drone model name</span>
+<span class="sd">        :param payload: gz payload (sensor) model type</span>
+<span class="sd">        :param sensor_name: gz payload (sensor) model name</span>
+<span class="sd">        :param model_prefix: ros model prefix, defaults to &#39;&#39;</span>
+<span class="sd">        :return: list with bridges</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bridges</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">gz_bridges</span><span class="o">.</span><span class="n">new_image</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span>
+                                <span class="n">sensor_model_type</span><span class="p">,</span> <span class="n">sensor_model_prefix</span><span class="p">),</span>
+            <span class="n">gz_bridges</span><span class="o">.</span><span class="n">camera_info</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span>
+                                <span class="n">sensor_model_type</span><span class="p">,</span> <span class="n">sensor_model_prefix</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">bridges</span>
+</pre></div>
+</div>
+<p>With your sensor added as a valid type and the bridge (or bridges) created, your sensor is ready to work with the Aerostack2 Gazebo simulation.</p>
+</section>
+<section id="register-your-new-type-enumerator">
+<h3>4. Register your new type enumerator<a class="headerlink" href="#register-your-new-type-enumerator" title="Link to this heading"></a></h3>
+<p>Finally, add the name of your new type enumerator class to the <code class="docutils literal notranslate"><span class="pre">Union[]</span></code> memeber of the general Payload class so that Aerostack2 can recognize your sensor type as a valid Payload for the drones.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Payload</span><span class="p">(</span><span class="n">Entity</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gz Payload Entity.</span>
+
+<span class="sd">    Use model_type as sensor_type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">model_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">CameraTypeEnum</span><span class="p">,</span> <span class="n">DepthCameraTypeEnum</span><span class="p">,</span> <span class="n">LidarTypeEnum</span><span class="p">,</span> <span class="n">GpsTypeEnum</span><span class="p">,</span> <span class="n">GimbalTypeEnum</span><span class="p">,</span> <span class="n">NewCameraTypeEnum</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">sensor_attached</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;None&#39;</span>
+    <span class="n">sensor_attached_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;None&#39;</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Payload</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">gimbaled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gimbal_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;None&#39;</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

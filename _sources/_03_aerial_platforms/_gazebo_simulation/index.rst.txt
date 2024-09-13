@@ -322,7 +322,7 @@ Each element of the ``payload`` is defined by:
 
 If a drone ``payload`` contains a gimbal, a gimbal should contain a payload which must containt a sensor.
 
-New models, sensors and worlds are defined in the ``as2_gazebo_assets`` package. For more information on how to create new assets, go to the `Gazebo Fortress tutorial page <https://gazebosim.org/docs/fortress/tutorials>`_.
+New models, sensors and worlds are defined in the ``as2_gazebo_assets`` package. For more information on how to create new assets, go to the :ref:`Adding New Gazebo Assets tutorial <development_tutorials_gazebo_assets>` or to the Develop Guide section for :ref:`Creating New Gazebo Assets <development_guide_create_assets>`.
 
 
 
