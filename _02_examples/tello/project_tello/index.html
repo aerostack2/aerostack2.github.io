@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Tello Example &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DJI OSDK" href="../../dji/index.html" />
+    <link rel="prev" title="Ryze DJI Tello" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#basics-examples">Basics Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multirotor_simulator/project_multirotor_simulator/index.html">Multirotor Simulator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Ryze DJI Tello</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Simple Tello Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dji/index.html">DJI OSDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/installation.html">Installation Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#basic-example">Basic example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html">DJI Matrice Series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#setup-connection-with-dji-matrice">Setup connection with DJI Matrice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_09_development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-worlds">Adding New Worlds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-models-and-objects">Adding New Models and Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#configuring-new-sensors">Configuring New Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html">Create New Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-aerial-platform">Create a New Gazebo Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-sensor">Create a New Gazebo Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Examples</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Ryze DJI Tello</a></li>
+      <li class="breadcrumb-item active">Simple Tello Example</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_02_examples/tello/project_tello/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simple-tello-example">
+<span id="project-tello"></span><h1>Simple Tello Example<a class="headerlink" href="#simple-tello-example" title="Link to this heading"></a></h1>
+<p>To install this project, clone the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_tello
+</pre></div>
+</div>
+<p>To start using this project, please go to the root folder of the project.</p>
+<section id="launching">
+<span id="project-tello-launching"></span><h2>Launching<a class="headerlink" href="#launching" title="Link to this heading"></a></h2>
+<p>The execution on the project is split into two parts: Aerostack2 components and ground station.</p>
+<section id="launching-aerostack2">
+<h3>Launching Aerostack2<a class="headerlink" href="#launching-aerostack2" title="Link to this heading"></a></h3>
+<p>To launch the Aerostack2 components, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash
+</pre></div>
+</div>
+<p>This will open a tmux session with an Aerostack2 instance for each drone launched.</p>
+<p>Launcher offers a few options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: select drones namespace to launch, values are comma separated. By default, it launches all drones from world description file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal. By default not set, uses tmux.</p></li>
+</ul>
+</section>
+<section id="launching-ground-station">
+<h3>Launching Ground Station<a class="headerlink" href="#launching-ground-station" title="Link to this heading"></a></h3>
+<p>To launch the ground station, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_ground_station.bash
+</pre></div>
+</div>
+<p>Launcher offers a different pool of options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_ground_station.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: disable launch mocap4ros2. By default set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>: launch rviz. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag. By default not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: select drones namespace to launch, values are comma separated. By default, it launches all drones from world description file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal. By default not set, uses tmux.</p></li>
+</ul>
+</section>
+<section id="closing">
+<h3>Closing<a class="headerlink" href="#closing" title="Link to this heading"></a></h3>
+<p>Close all nodes (aerostack2 and ground_station) with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator.bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-server</span></code> will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.</p>
+<p>If launcher was executed with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>, closing should be done manually exiting all gnome-terminal tabs.</p>
+</div>
+<p>Close <strong>only</strong> the Aerostack2 nodes with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator_as2.bash
+</pre></div>
+</div>
+<p>Close <strong>only</strong> the ground station nodes with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator_ground_station.bash
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mission-execution">
+<span id="project-tello-mission"></span><h2>Mission execution<a class="headerlink" href="#mission-execution" title="Link to this heading"></a></h2>
+<p>The project offers a few examples of mission execution.</p>
+<ul class="simple">
+<li><p><strong>Keyboard Teleoperation control</strong>: Using reactive teleoperation control. For both single and multiagent swarms.</p></li>
+<li><p><strong>Python API missions</strong>: Using Aerostack2 python API for mission definition. For single drone, using GPS and multiple drones.</p></li>
+<li><p><strong>Behavior Tree missions</strong>: Using Behavior Tree as the mission planner. For single drone only.</p></li>
+<li><p><strong>Mission Interpreter</strong>: Using Aerostack2 mission interpreter. For single drone only.</p></li>
+</ul>
+<section id="keyboard-teleoperation-control">
+<span id="project-tello-keyboard-teleoperation"></span><h3>Keyboard Teleoperation control<a class="headerlink" href="#keyboard-teleoperation-control" title="Link to this heading"></a></h3>
+<p>In order to launch the components for a <strong>single drone</strong>, Aerostack2 launcher does not need any additional flags. Just execute <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span></code>.</p>
+<p>Ground station should be launched with <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag to enable keyboard teleoperation. Take a look at the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">keyboard teleoperation user guide</span></a> for more information.
+A window containing the teleoperation widget should pop up:</p>
+<figure class="align-default" id="id1">
+<a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_teleop_view5.png"><img alt="../../../_images/keyboard_teleop_view5.png" class="with-shadow" src="../../../_images/keyboard_teleop_view5.png" style="width: 563.0px; height: 259.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="python-api-missions">
+<span id="project-tello-python-api"></span><h3>Python API missions<a class="headerlink" href="#python-api-missions" title="Link to this heading"></a></h3>
+<p>In order to launch the components for <strong>multiple drones</strong>, both launchers require the flag <code class="docutils literal notranslate"><span class="pre">-n</span></code> indicating drone namespaces to use.</p>
+<p>There are three python scripts available for mission execution in the project. For single drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission.py</span></code> for flying a square.</p>
+<p>For multi drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_swarm.py</span></code> where a group of drones will fly a swarm coreography. Here it is what the execution looks like:</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+    <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To understand how missions are built using the Aerostack2 python API, take a look at the <a class="reference internal" href="../../../_09_development/_api_documentation/index.html#development-guide-api-python-api"><span class="std std-ref">Python API</span></a> reference guide.</p>
+</div>
+</section>
+<section id="mission-interpreter">
+<span id="project-tello-mission-interpreter"></span><h3>Mission Interpreter<a class="headerlink" href="#mission-interpreter" title="Link to this heading"></a></h3>
+<p>Previous missions were defined using python syntaxis. Aerostask2 offers a mission interpreter that allows mission definition using a JSON format.
+Currently, the mission interpreter script at the project is only available for single drone missions.
+To launch the mission interpreter, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_interpreter.py</span></code>.
+The execution is similar to the python API mission where the drone will fly a square.</p>
+</section>
+<section id="behavior-tree">
+<span id="project-tello-behavior-tree"></span><h3>Behavior Tree<a class="headerlink" href="#behavior-tree" title="Link to this heading"></a></h3>
+<p>Missions can also be defined using a behavior tree. The project offers a mission example using a behavior tree for a single drone.
+To launch the behavior tree mission, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_behavior_tree.py</span></code>.
+The execution is similar to the python API mission where the drone will fly a square.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Trees can be defined using GUIs like <span class="xref std std-ref">Groot</span>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
