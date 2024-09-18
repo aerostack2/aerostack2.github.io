@@ -35,5 +35,6 @@ Basics Examples
    multirotor_simulator/index.rst
    gazebo/index.rst
    crazyflie/index.rst
+   tello/index.rst
    dji/index.rst
    pixhawk/index.rst
