@@ -30,14 +30,7 @@ PX4 is an autopilot, which information can be found `here <https://docs.px4.io/m
 Installation
 ------------
 
-See our :ref:`PX4 installation guide <aerial_platform_px4_installation_guide>` for more details.
-
-.. toctree::
-  :maxdepth: 1
-  :hidden:
-  
-  installation.rst
-
+Refer to the `PX4 documentation <https://docs.px4.io/main/en/ros2/>`_ for installation instructions using XRCE-DDS.
 
 
 .. _aerial_platform_px4_as2_common_interface:
@@ -117,34 +110,35 @@ These are supported sensors:
 Platform Launch
 ---------------
 
-Aerostack2 Pixhawk platform provides a launch file, which parameters are:
+.. Aerostack2 Pixhawk platform provides a launch file, which parameters are:
 
-.. list-table:: Pixhawk Platform Parameters
-   :widths: 50 50 50
-   :header-rows: 1
+.. .. list-table:: Pixhawk Platform Parameters
+..    :widths: 50 50 50
+..    :header-rows: 1
 
-   * - Parameter
-     - Type
-     - Description
-   * - namespace
-     - string
-     - Namespace of the platform, also named as drone id.
-   * - config
-     - string
-     - | Optional. File yaml path with the config file that set: 
-       | command frequency in Hz (cmd_freq), info frequency in Hz (info_freq), 
-       | mass in Kg (mass), maximum thrust in N (max_thrust), minimum thrust in N (min_thrust) and
-       | file path with the control modes configuration (control_modes_file). Default the file in the package.
-   * - external_odom
-     - bool
-     - Optional. Use external odometry source. Default false.
-   * - use_sim_time
-     - bool
-     - Optional. Syncronize simulation time with node time. Default false.
+..    * - Parameter
+..      - Type
+..      - Description
+..    * - namespace
+..      - string
+..      - Namespace of the platform, also named as drone id.
+..    * - config
+..      - string
+..      - | Optional. File yaml path with the config file that set: 
+..        | command frequency in Hz (cmd_freq), info frequency in Hz (info_freq), 
+..        | mass in Kg (mass), maximum thrust in N (max_thrust), minimum thrust in N (min_thrust) and
+..        | file path with the control modes configuration (control_modes_file). Default the file in the package.
+..    * - external_odom
+..      - bool
+..      - Optional. Use external odometry source. Default false.
+..    * - use_sim_time
+..      - bool
+..      - Optional. Syncronize simulation time with node time. Default false.
 
-Example of launch command:
+Aerostack2 provides a launch file for this platform:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_pixhawk pixhawk_launch.py namespace:=drone1
+  ros2 launch as2_platform_pixhawk pixhawk_launch.py
 
+To see all the **available parameters**, use the **'-s'** flag to show the description of each parameter in the launch file.

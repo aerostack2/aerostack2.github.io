@@ -36,8 +36,6 @@ Installation
 
    sudo apt install ros-humble-as2-platform-tello
 
-.. warning:: This package is not available for binary installation yet. Cooming soon.
-
 * For source installation, clone the platform repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`. 
 
 .. code-block:: bash
@@ -122,23 +120,23 @@ These are supported sensors:
 Platform Launch
 ---------------
 
-Aerostack2 DJI Tello platform provides a launch file, which parameters are:
+.. Aerostack2 DJI Tello platform provides a launch file, which parameters are:
 
-.. list-table:: DJI Tello Platform Parameters
-   :widths: 50 50 50
-   :header-rows: 1
+.. .. list-table:: DJI Tello Platform Parameters
+..    :widths: 50 50 50
+..    :header-rows: 1
 
-   * - Parameter
-     - Type
-     - Description
-   * - namespace
-     - string
-     - Namespace of the platform, also named as drone id.
-   * - config
-     - string
-     - | Optional. File yaml path with the config file that set: 
-       | command frequency in Hz (cmd_freq), info frequency in Hz (info_freq)  and
-       | file path with the control modes configuration (control_modes_file). Default the file in the package.
+..    * - Parameter
+..      - Type
+..      - Description
+..    * - namespace
+..      - string
+..      - Namespace of the platform, also named as drone id.
+..    * - config
+..      - string
+..      - | Optional. File yaml path with the config file that set: 
+..        | command frequency in Hz (cmd_freq), info frequency in Hz (info_freq)  and
+..        | file path with the control modes configuration (control_modes_file). Default the file in the package.
 
 Example of launch command:
 

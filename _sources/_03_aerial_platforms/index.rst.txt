@@ -9,11 +9,13 @@ Aerostack2 is platform-independent, what`s means that you can use any aerial pla
 Currently, the following aerial platforms are supported:
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 1
 
-  _multirotor_simulator/index.rst
   _gazebo_simulation/index.rst
-  _pixhawk/index.rst
+  _multirotor_simulator/index.rst
   _crazyflie/index.rst
   _ryze_tello/index.rst
-  _dji/index.rst
+  _pixhawk/index.rst
+  _mavlink/index.rst
+  _dji_osdk/index.rst
+  _dji_psdk/index.rst
