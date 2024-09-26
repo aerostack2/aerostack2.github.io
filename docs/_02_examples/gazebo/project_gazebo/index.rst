@@ -61,29 +61,17 @@ Launcher offers a different pool of options to customize the execution. ``./laun
 Closing
 =======
 
-Close all nodes (aerostack2 and ground_station) with the following command:
+Close all nodes (aerostack2 and ground_station) with the following command executing outside the tmux session:
 
 .. code-block:: bash
 
-    ./stop_tmuxinator.bash
+    ./stop.bash
 
 .. note::
 
     The command ``tmux kill-server`` will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.
 
     If launcher was executed with the flag ``-g``, closing should be done manually exiting all gnome-terminal tabs.
-
-Close **only** the Aerostack2 nodes with the following command:
-
-.. code-block:: bash
-
-    ./stop_tmuxinator_as2.bash
-
-Close **only** the ground station nodes with the following command:
-
-.. code-block:: bash
-
-    ./stop_tmuxinator_ground_station.bash
 
 
 .. _project_gazebo_mission:
@@ -187,4 +175,4 @@ The execution is similar to the python API mission where the drone will fly a sq
 
 .. note::
 
-    Trees can be defined using GUIs like :ref:`Groot <https://www.behaviortree.dev/groot/>`.
+    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`.
