@@ -1,55 +1,108 @@
-.. _project_multirotor_simulator:
+.. _project_ms:
 
-============================
-Multirotor Simulator Example
-============================
+===================================
+Simple Multirotor Simulator Example
+===================================
 
 To install this project, clone the repository:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/project_as2_multirotor_simulator
+   git clone https://github.com/aerostack2/project_as2_multirotor_simulator.git
 
 To start using this project, please go to the root folder of the project.
 
 
-
-.. _project_multirotor_simulator_simulated:
+.. _project_ms_launching:
 
 ---------
-Execution
+Launching
 ---------
 
-The execution will launch the Aerostack2 components.
+The execution on the project is split into two parts: Aerostack2 components and ground station.
 
-The flags for the components launcher are:
+Launching Aerostack2
+====================
 
-* ``-n <namespace>`` - namespace for the drone. Default, not specified and uses ``config/world.yaml`` configuration. If specified, it uses ``config/platform_config_file.yaml`` configuration.
-* ``-m`` - multi agent mode. Default is disabled. If specified, it uses ``config/world_swarm.yaml`` configuration.
-* ``-d`` - launch rviz visualization. If not specified, it does not launch rviz visualization. If specified, it launches rviz visualization with `config/tf_visualization.rviz` configuration.
-* ``-e <estimator type>`` - estimator type. Default is ``ground_truth``. Available options: ``ground_truth``, ``raw_odometry``, ``raw_odometry_gps``. It uses configuration from ``config/state_estimator*.yaml``.
-* ``-r`` - record rosbag. Default is disabled. If specified, it records rosbag in ``rosbag`` directory.
-* ``-t`` - launch keyboard teleoperation. Default is disabled. If specified, it launches keyboard teleoperation.
-
-
-.. _project_multirotor_simulator_simulated_single_drone:
-
-Single drone
-============
-
-In order to launch the components for a **single drone**, do:
+To launch the Aerostack2 components, execute the following command:
 
 .. code-block:: bash
 
-    ./launch_as2.bash -d -t
-
-This will open a simulation for a single drone alongside the Aerostack2 components necessary for the mission execution. 
-A window with RViz (argument ``-d``) should popup.
+    ./launch_as2.bash
 
 
-It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the drone with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
+Launcher offers a few options to customize the execution. ``./launch_as2.bash -h`` will show option list. Options can be set with the following flags:
 
-A window like the following image should popup:
+- ``-c``: motion controller plugin (pid_speed_controller, differential_flatness_controller), choices: [pid, df]. Default: pid
+- ``-m``: multi agent. Default not set
+- ``-n``: select drones namespace to launch, values are comma separated. By default, it will get all drones from world description file
+- ``-g``: launch using gnome-terminal instead of tmux. Default not set
+
+Launching Ground Station
+========================
+
+To launch the ground station, execute the following command:
+
+.. code-block:: bash
+
+    ./launch_ground_station.bash
+
+Launcher offers a different pool of options to customize the execution. ``./launch_ground_station.bash -h`` will show option list. Options can be set with the following flags:
+
+- ``-m``: multi agent. Default not set
+- ``-t``: launch keyboard teleoperation. Default not launch
+- ``-v``: open rviz. Default launch
+- ``-r``: record rosbag. Default not launch
+- ``-n``: drone namespaces, comma separated. Default get from world description config file
+- ``-g``: launch using gnome-terminal instead of tmux. Default not set
+
+
+Closing
+=======
+
+Close all nodes (aerostack2 and ground_station) with the following command executing outside the tmux session:
+
+.. code-block:: bash
+
+    ./stop.bash
+
+.. note::
+
+    The command ``tmux kill-server`` will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.
+
+    If launcher was executed with the flag ``-g``, closing should be done manually exiting all gnome-terminal tabs.
+
+
+.. _project_ms_mission:
+
+-----------------
+Mission execution
+-----------------
+
+The project offers a few examples of mission execution.
+
+- **Keyboard Teleoperation control**: Using reactive teleoperation control. For both single and multiagent swarms.
+- **Python API missions**: Using Aerostack2 python API for mission definition. For single drone, using GPS and multiple drones.
+- **Behavior Tree missions**: Using Behavior Tree as the mission planner. For single drone only.
+- **Mission Interpreter**: Using Aerostack2 mission interpreter. For single drone only.
+
+
+.. _project_ms_keyboard_teleoperation:
+
+Keyboard Teleoperation control
+==============================
+
+In order to launch the components for a **single drone**, Aerostack2 launcher does not need any additional flags. Just execute ``./launch_as2.bash``.
+This will launch the Aerostack2 components necessary for the mission execution. 
+
+.. figure:: images/multirotor_simulator.png
+   :scale: 50
+   :class: with-shadow
+   
+   Multirotor Simulator simulator
+
+Ground station should be launched with ``-t`` flag to enable keyboard teleoperation. Take a look at the :ref:`keyboard teleoperation user guide <user_interfaces_keyboard_teleoperation>` for more information.
+A window containing the teleoperation widget should pop up:
 
 .. figure:: images/keyboard_teleop_view.png
    :scale: 50
@@ -57,59 +110,55 @@ A window like the following image should popup:
    
    Keyboard teleoperation
 
-To start the mission, execute:
+.. note::
 
-.. code-block:: bash
-
-    python3 mission.py
-
-Also, you can try the mission planner, which describes the mission in a JSON format:
-
-.. code-block:: bash
-
-    python3 mission_planner.py
+    The teleoperation widget is also available for multi drone missions. To launch a multi drone simulation, use the flag ``-m`` in both launch commands.
 
 
-To do a clean exit of tmux, execute:
+.. _project_ms_python_api:
 
-.. code-block:: bash
+Python API missions
+===================
 
-    ./stop.bash
+In order to launch the components for **multiple drones**, both launchers require the flag ``-m``.
+This will launch the Aerostack2 components necessary for the mission execution.
 
-
-
-.. _project_multirotor_simulator_simulated_swarm_drones:
-
-Swarm drones
-============
-
-In order to launch the components for a **swarm of 3 drones**, do:
-
-.. code-block:: bash
-
-    ./launch_as2.bash -m -t -d
-
-This will open a simulation for a swarm of drones (argument ``-m``) alongside the Aerostack2 components necessary for the mission execution.
-A window with RViz (argument ``-d``) should popup.
-
-It will also open a keyboard teleoperation (argument ``-t``), which you can use to teleoperate the swarm with the :ref:`aerostack2 keyboard teleoperation user interface <user_interfaces_keyboard_teleoperation>`.
-
-A window like the following image should popup:
-
-.. figure:: images/keyboard_swarm_view.png
+.. figure:: images/multirotor_simulator_swarm.png
    :scale: 50
    :class: with-shadow
    
-   Keyboard teleoperation
+   Multirotor Simulator simulator
 
-To start the mission, execute:
+There are three python scripts available for mission execution in the project. For single drone missions, use ``python3 mission.py`` for flying a square.
+When flying using GPS, use ``python3 mission_gps.py`` which will fly a square using GPS waypoints.
 
-.. code-block:: bash
+For multi drone missions, use ``python3 mission_swarm.py`` where a group of drones will fly a swarm coreography.
 
-    python3 mission_swarm.py
+.. note::
 
-To do a clean exit of tmux, execute the following command with the list of the used drones:
+    To understand how missions are built using the Aerostack2 python API, take a look at the :ref:`development_guide_api_python_api` reference guide.
 
-.. code-block:: bash
 
-    ./stop.bash drone0 drone1 drone2
+.. _project_ms_mission_interpreter:
+
+Mission Interpreter
+===================
+
+Previous missions were defined using python syntaxis. Aerostask2 offers a mission interpreter that allows mission definition using a JSON format.
+Currently, the mission interpreter script at the project is only available for single drone missions.
+To launch the mission interpreter, execute ``python3 mission_interpreter.py``.
+The execution is similar to the python API mission where the drone will fly a square.
+
+
+.. _project_ms_behavior_tree:
+
+Behavior Tree
+=============
+
+Missions can also be defined using a behavior tree. The project offers a mission example using a behavior tree for a single drone.
+To launch the behavior tree mission, execute ``python3 mission_behavior_tree.py``.
+The execution is similar to the python API mission where the drone will fly a square.
+
+.. note::
+
+    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`.
