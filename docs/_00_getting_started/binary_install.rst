@@ -9,7 +9,18 @@ To install all aerostack2 packages, run the following command:
 
 .. code-block:: bash
 
-    sudo apt install ros-humble-aerostack2 ros-humble-as2-gazebo-assets ros-humble-as2-platform-gazebo
+    sudo apt install ros-humble-aerostack2
+
+For a specific platform, you can install the following packages:
+
+.. code-block:: bash
+
+    sudo apt install ros-humble-as2-platform-crazyflie
+    sudo apt install ros-humble-as2-platform-tello
+    sudo apt install ros-humble-as2-platform-mavlink
+    sudo apt install ros-humble-as2-platform-pixhawk
+    sudo apt install ros-humble-as2-platform-dji-osdk
+    sudo apt install ros-humble-as2-platform-dji-psdk
 
 
 You can also install only the packages you need. The available packages can be checked at `ROS Index <https://index.ros.org/search/?term=aerostack2&section=pkgs>`__.
