@@ -60,9 +60,8 @@ Install platform package
 
    sudo apt install ros-humble-as2-platform-crazyflie
 
-.. warning:: This package is not available for binary installation yet. Cooming soon.
 
-* For source installation, clone the platform repository into your workspace and build it. 
+* For source installation, follow the steps below:
 
 .. code-block:: bash
 
@@ -72,10 +71,6 @@ Install platform package
     cd ~/aerostack2_ws
     rosdep install as2_platform_crazyflie --from-paths src --ignore-src -r -y
     colcon build --packages-up-to as2_platform_crazyflie
-
-
-See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
-
 
 
 .. _aerial_platform_crazyflie_as2_common_interface:
@@ -158,60 +153,39 @@ In order to map the adresses of the crazyflie(s) we just configured to the input
 In this case, we are mapping two Crazyflies with uri's ``radio://0/80/2M/E7E7E7E700`` and ``radio://0/80/2M/E7E7E7E701`` for namespaces ``cf0`` and ``cf1`` respectively.
 As you can see for the radio id part of the uri, the same Crazyradio is going to be used for both. 
 
-This configuration file's path shall serve as an input to the platform launch parameter ``swarm_config_file``. Note that this platform is launched only once, regardless of the number of crazyflies beeing used. 
+.. This configuration file's path shall serve as an input to the platform launch parameter ``swarm_config_file``. Note that this platform is launched only once, regardless of the number of crazyflies beeing used. 
 
-Aerostack2 Crazyflie platform provides a launch file, which parameters are:
+.. .. list-table:: Gazebo Platform Parameters
+..    :widths: 50 50 50
+..    :header-rows: 1
 
-.. list-table:: Gazebo Platform Parameters
-   :widths: 50 50 50
-   :header-rows: 1
+..    * - Parameter
+..      - Type
+..      - Description
+..    * - swarm_config_file
+..      - string
+..      - Path to the swarm URI's configuration file.
+..    * - control_modes_file
+..      - string
+..      - Optional. File path with the control modes configuration. Default the one in the package.
+..    * - external_odom
+..      - bool
+..      - Optional. Use external odometry source. Default false.
+..    * - external_odom_topic
+..      - bool
+..      - Optional. Topic name of external odometry source. Default 'external_odom'.
+..    * - controller_type
+..      - int
+..      - Optional. Controller type: Any(0), PID(1), Mellinger(2), INDI(3). Default PID.
+..    * - estimator_type
+..      - int
+..      - Optional. Estimator type: Any(0), complementary(1), kalman(2). Default Kalman.
 
-   * - Parameter
-     - Type
-     - Description
-   * - swarm_config_file
-     - string
-     - Path to the swarm URI's configuration file.
-   * - control_modes_file
-     - string
-     - Optional. File path with the control modes configuration. Default the one in the package.
-   * - external_odom
-     - bool
-     - Optional. Use external odometry source. Default false.
-   * - external_odom_topic
-     - bool
-     - Optional. Topic name of external odometry source. Default 'external_odom'.
-   * - controller_type
-     - int
-     - Optional. Controller type: Any(0), PID(1), Mellinger(2), INDI(3). Default PID.
-   * - estimator_type
-     - int
-     - Optional. Estimator type: Any(0), complementary(1), kalman(2). Default Kalman.
-
-Example of launch command with a Crazyflies with flow deck:
+Aerostack2 provides a launch file for this platform:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py swarm_config_file:=uris_yaml_path
-
-Example of launch command with a Crazyflies with motion capture system:
-
-.. code-block:: bash
-
-  ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py swarm_config_file:=uris_yaml_path external_odom:=true external_odom_topic:=mocap_topic_name
+  ros2 launch as2_platform_crazyflie crazyflie_swarm_launch.py
 
 
-
-.. _aerial_platform_crazyflie_platform_examples:
-
---------
-Examples
---------
-
-Basic example
-=============
-
-.. toctree::
-   :maxdepth: 1
-
-   ../../_02_examples/crazyflie/project_crazyflie/index.rst
+To see all the **available parameters**, use the **'-s'** flag to show the description of each parameter in the launch file.

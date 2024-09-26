@@ -80,7 +80,6 @@ Install platform package
 
    sudo apt install ros-humble-as2-platform-gazebo
 
-.. warning:: This package is not available for binary installation yet. Cooming soon.
 
 * For source installation, clone Aerostack2 repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
 
@@ -96,8 +95,6 @@ Install simulation assets
 .. code-block:: bash
 
    sudo apt install ros-humble-as2-gazebo-assets
-
-.. warning:: This package is not available for binary installation yet. Cooming soon.
 
 * For source installation, clone Aerostack2 repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
 
@@ -361,7 +358,7 @@ Aerostack2 Gazebo platform provides a launch file, which parameters are:
      - Optional. Syncronize simulation time with node time. Default false.
 
 
-Example of launch command:
+Aerostack2 provides a launch file for this platform:
 
 .. code-block:: bash
 
@@ -373,5 +370,6 @@ For launch the simulation, run the following command:
 
   ros2 launch as2_gazebo_assets launch_simulation.py simulation_config_file:=world_json_path
 
+To see all the **available parameters**, use the **'-s'** flag to show the description of each parameter in the launch file.
 
-Additionally, for launching teleoperation and trying out a basic mission, continue to the [Gazebo Example Project](https://aerostack2.github.io/_02_examples/gazebo/project_gazebo/index.html)
+Additionally, for launching teleoperation and trying out a basic mission, continue to the `Gazebo Example Project <https://aerostack2.github.io/_02_examples/gazebo/project_gazebo/index.html>`_.

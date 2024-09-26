@@ -18,6 +18,9 @@ Introduction
 
 For simulation purposes with `Multirotor simulator <https://github.com/RPS98/multirotor_simulator>`__ , Aerostack2 provides with a platform that serves as an entry point for aerial robotics simulated in this environment.
 
+.. figure:: resources/multirotor_simulator_main.png
+   :scale: 50
+   :class: with-shadow
 
 .. _aerial_platform_multirotor_simulator_installation:
 
@@ -30,8 +33,6 @@ Installation
 .. code-block:: bash
 
    sudo apt install ros-humble-as2-platform-multirotor-simulator
-
-.. warning:: This package is available for aerostack2 v1.1 and onwards.
 
 * For source installation, clone Aerostack2 repository into your workspace and build it. See it in :ref:`Aerostack2 installation guide <getting_started_ubuntu_installation_source>`.
 
@@ -148,8 +149,7 @@ Configuration files are located in ``as2_platform_multirotor_simulator/config/``
 
 * ``control_modes.yaml``: available input control modes for the aerostack2 aerial platform.
 * ``platform_config_file.yaml``: ROS 2 configuration, with tf names, frequencies and aerostack2 parameters.
-* ``simulation_config.yaml``: simulation configuration, with frequency and environment parameters.
-* ``uav_configuav_config.yaml``: UAV configuration, with the drone's physical parameters and controller configuration.
+* ``uav_config.yaml``: UAV configuration, with the drone's physical parameters and controller configuration.
 * ``world_config.yaml``: world configuration, as parameters override for each drone namespace in the configuration file.
 
 
@@ -159,37 +159,10 @@ Configuration files are located in ``as2_platform_multirotor_simulator/config/``
 Platform Launch
 ---------------
 
-Aerostack2 Multirotor Simulator platform provides two launch files:
-
-* ``as2_platform_multirotor_simulator.launch.py``: launch the platform with platform configuration file.
-* ``as2_platform_multirotor_simulator_world.launch.launch.py``: launch the platform with world configuration file.
-
-You can show launcher parameters by running:
+Aerostack2 provides a launch file for this platform:
 
 .. code-block:: bash
 
-  ros2 launch as2_platform_multirotor_simulator as2_platform_multirotor_simulator.launch..py --show-args
+  ros2 launch as2_platform_multirotor_simulator as2_platform_multirotor_simulator.launch.py
 
-.. code-block:: bash
-
-  ros2 launch as2_platform_multirotor_simulator as2_platform_multirotor_simulator_world.launch..py --show-args
-
-
-Launcher parameters order:
-
-1. Default configuration file in ``as2_platform_multirotor_simulator/config/`` folder.
-2. Custom configuration file in the launch command (e.g. *platform_config_file:=path/to/file.yaml*).
-3. Custom parameters in the launch command (e.g. *frequency:=100*).
-4. Custom world configuration in the launch command (e.g. *world_config:=path/to/file.yaml*), for the world launcher.
-
-Example of launch command:
-
-.. code-block:: bash
-
-  ros2 launch as2_platform_multirotor_simulator as2_platform_multirotor_simulator.launch.py namespace:=drone0
-
-For launch the simulation, run the following command:
-
-.. code-block:: bash
-
-  ros2 launch as2_platform_multirotor_simulator as2_platform_multirotor_simulator_world.launch.launch.py namespace:=drone0 world_config:=config/world_config.yaml
+To see all the **available parameters**, use the **'-s'** flag to show the description of each parameter in the launch file.
