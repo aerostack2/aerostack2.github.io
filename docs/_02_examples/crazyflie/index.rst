@@ -5,7 +5,7 @@ Bitcraze Crazyflie
 ==================
 
 These examples use the :ref:`Crazyflie Platform <aerial_platform_crazyflie>`. 
-Please, make sure to have it :ref:`installed <aerial_platform_crazyflie_installation>`.
+Please, make sure to have the platform :ref:`installed <aerial_platform_crazyflie_installation>`.
 
 .. figure:: resources/Crazyflie2_0.jpeg
    :scale: 50
