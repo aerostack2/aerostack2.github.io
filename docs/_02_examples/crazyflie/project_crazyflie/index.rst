@@ -81,7 +81,7 @@ Leave only the entries for every drone that will be used, even if it is only one
 .. note::
 
     For propagating the motion capture system data into the ROS 2 system, we recommend using the 
-    :ref:`mocap4ros2 <https://mocap4ros2-project.github.io/>` package.
+    `mocap4ros2 <https://mocap4ros2-project.github.io/>` package.
 
 .. _project_crazyflie_launching:
 
@@ -227,4 +227,4 @@ The execution is similar to the python API mission where the drone will fly a sq
 
 .. note::
 
-    Trees can be defined using GUIs like :ref:`Groot <https://www.behaviortree.dev/groot/>`.
+    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`.
