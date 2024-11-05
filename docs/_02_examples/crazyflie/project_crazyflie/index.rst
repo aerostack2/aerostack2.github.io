@@ -18,6 +18,7 @@ Setting up
 
 Before launching the project, let's take a look at the configuration options.
 You can find configuation files in the ``config`` folder. The are three configuration files used:
+
 - ``config/config.yaml``: configuration file for the Crazyflie drones.
 - ``config/camera_calibration.yaml``: configuration file for the AI deck camera calibration.
 - ``config/pid_speed_controller.yaml``: configuration file for the pid controller constants.
@@ -137,7 +138,6 @@ Close all nodes (aerostack2 and ground_station) with the following command:
 .. note::
 
     The command ``tmux kill-server`` will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.
-
     If launcher was executed with the flag ``-g``, closing should be done manually exiting all gnome-terminal tabs.
 
 Close **only** the Aerostack2 nodes with the following command:
