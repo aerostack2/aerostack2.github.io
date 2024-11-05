@@ -18,6 +18,7 @@ Setting up
 
 Before launching the project, let's take a look at the configuration options.
 You can find configuation files in the ``config`` folder. The are three configuration files used:
+
 - ``config/config.yaml``: configuration file for the Crazyflie drones.
 - ``config/camera_calibration.yaml``: configuration file for the AI deck camera calibration.
 - ``config/pid_speed_controller.yaml``: configuration file for the pid controller constants.
@@ -80,7 +81,7 @@ Leave only the entries for every drone that will be used, even if it is only one
 .. note::
 
     For propagating the motion capture system data into the ROS 2 system, we recommend using the 
-    :ref:`mocap4ros2 <https://mocap4ros2-project.github.io/>` package.
+    `mocap4ros2 <https://mocap4ros2-project.github.io/>` package.
 
 .. _project_crazyflie_launching:
 
@@ -137,7 +138,6 @@ Close all nodes (aerostack2 and ground_station) with the following command:
 .. note::
 
     The command ``tmux kill-server`` will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.
-
     If launcher was executed with the flag ``-g``, closing should be done manually exiting all gnome-terminal tabs.
 
 Close **only** the Aerostack2 nodes with the following command:
@@ -197,7 +197,7 @@ For multi drone missions, use ``python3 mission_swarm.py`` where a group of dron
 .. raw:: html
 
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk?si=Bq9o8bO5YAIWfH32" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
     </div>
 
 .. note::
@@ -227,4 +227,4 @@ The execution is similar to the python API mission where the drone will fly a sq
 
 .. note::
 
-    Trees can be defined using GUIs like :ref:`Groot <https://www.behaviortree.dev/groot/>`.
+    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`.
