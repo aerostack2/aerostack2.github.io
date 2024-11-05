@@ -161,4 +161,4 @@ The execution is similar to the python API mission where the drone will fly a sq
 
 .. note::
 
-    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`.
+    Trees can be defined using GUIs like `Groot <https://www.behaviortree.dev/groot/>`_.
