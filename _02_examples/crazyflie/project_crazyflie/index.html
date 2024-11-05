@@ -408,10 +408,12 @@
 <section id="setting-up">
 <h2>Setting up<a class="headerlink" href="#setting-up" title="Link to this heading"></a></h2>
 <p>Before launching the project, let’s take a look at the configuration options.
-You can find configuation files in the <code class="docutils literal notranslate"><span class="pre">config</span></code> folder. The are three configuration files used:
-- <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>: configuration file for the Crazyflie drones.
-- <code class="docutils literal notranslate"><span class="pre">config/camera_calibration.yaml</span></code>: configuration file for the AI deck camera calibration.
-- <code class="docutils literal notranslate"><span class="pre">config/pid_speed_controller.yaml</span></code>: configuration file for the pid controller constants.</p>
+You can find configuation files in the <code class="docutils literal notranslate"><span class="pre">config</span></code> folder. The are three configuration files used:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code>: configuration file for the Crazyflie drones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/camera_calibration.yaml</span></code>: configuration file for the AI deck camera calibration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/pid_speed_controller.yaml</span></code>: configuration file for the pid controller constants.</p></li>
+</ul>
 <p>By this time, you should only need to modify the <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code> file.
 There are two drone configurations available, one for flying with internal position estimation
 (e.g. flow deck or lighthouse deck) and another for using an external one (e.g. motion capture system).
@@ -494,7 +496,7 @@ Leave only the entries for every drone that will be used, even if it is only one
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For propagating the motion capture system data into the ROS 2 system, we recommend using the
-<span class="xref std std-ref">mocap4ros2</span> package.</p>
+<cite>mocap4ros2 &lt;https://mocap4ros2-project.github.io/&gt;</cite> package.</p>
 </div>
 </section>
 <section id="launching">
@@ -537,8 +539,8 @@ Leave only the entries for every drone that will be used, even if it is only one
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-server</span></code> will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.</p>
-<p>If launcher was executed with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>, closing should be done manually exiting all gnome-terminal tabs.</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-server</span></code> will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.
+If launcher was executed with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>, closing should be done manually exiting all gnome-terminal tabs.</p>
 </div>
 <p>Close <strong>only</strong> the Aerostack2 nodes with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop_tmuxinator_as2.bash
@@ -577,7 +579,7 @@ A window containing the teleoperation widget should pop up:</p>
 <p>There are three python scripts available for mission execution in the project. For single drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission.py</span></code> for flying a square.</p>
 <p>For multi drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_swarm.py</span></code> where a group of drones will fly a swarm coreography. Here it is what the execution looks like:</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-    <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    <iframe src="https://www.youtube.com/embed/BlF6rU9R8Nk?si=Bq9o8bO5YAIWfH32" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
 </div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To understand how missions are built using the Aerostack2 python API, take a look at the <a class="reference internal" href="../../../_09_development/_api_documentation/index.html#development-guide-api-python-api"><span class="std std-ref">Python API</span></a> reference guide.</p>
@@ -597,7 +599,7 @@ To launch the behavior tree mission, execute <code class="docutils literal notra
 The execution is similar to the python API mission where the drone will fly a square.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Trees can be defined using GUIs like <span class="xref std std-ref">Groot</span>.</p>
+<p>Trees can be defined using GUIs like <cite>Groot &lt;https://www.behaviortree.dev/groot/&gt;</cite>.</p>
 </div>
 </section>
 </section>
