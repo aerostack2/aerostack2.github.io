@@ -366,8 +366,7 @@ Code Functional Test
 --------------------
 
 In aerostack2 we use googletest (GTest) library to perform unit tests across the packages.
-GTest complete documentation about how to write your own unit tests can be found at:
-https://github.com/google/googletest
+GTest complete documentation about how to write your own unit tests can be found `here <https://github.com/google/googletest>`_.`
 
 To use GTest, the next line must be added to your ``package.xml``
 
