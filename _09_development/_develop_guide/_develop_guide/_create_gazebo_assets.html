@@ -636,7 +636,8 @@ links, joints and topics have the right names and the platform can be built prop
 <p>For the quadrotor, this template assumes your model has 4 links, one for each rotor, with the names m1, m2, m3, m4. This four links are required to have one joint each. In the example,
 they are named m1_joint, m2_joint, m3_joint and m4_joint. These names can be changed to match your links names. The ‘_joint’ is, however, necessary (if m1 is changed for YOUR_LINK, then its joint would have to be YOUR_LINK_joint).
 In addition to this, the base link of your quadrotor model must be ‘base_link’.</p>
-<p>For your model to be properly loaded by Aerostack2, it has to be added as a valid drone type at <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets/src/as2_gazebo_assets/models/drone.py</span></code>. This script declares a class <code class="docutils literal notranslate"><span class="pre">DroneTypeEnum</span></code> to which your new drone model must be added.</p>
+<p>With this and your model added to a directory that has been added to the Gazebo resources path variable (check <a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#development-tutorials-gazebo-assets-objects"><span class="std std-ref">this section</span></a> of the adding Gazebo assets tutorial), your new drone is ready to be loaded by Gazebo and fly using Aerostack2. Make sure you use the name of the model folder as the <code class="docutils literal notranslate"><span class="pre">model_type</span></code> field when configuring your new drone in your simulation configuration file.</p>
+<p>Although it is not necessary, if you are building Aerostack2 from source, your model can also be added as a valid drone type at <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets/src/as2_gazebo_assets/models/drone.py</span></code>. This script declares a class <code class="docutils literal notranslate"><span class="pre">DroneTypeEnum</span></code> to which your new drone model can be added.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DroneTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Valid drone model types.&quot;&quot;&quot;</span>
 
@@ -648,7 +649,6 @@ In addition to this, the base link of your quadrotor model must be ‘base_link�
     <span class="n">YOUR_MODEL_TYPE</span> <span class="o">=</span> <span class="s1">&#39;your_model_type&#39;</span>
 </pre></div>
 </div>
-<p>With this and your model added to a directory that has been added to the Gazebo resources path variable (check <a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#development-tutorials-gazebo-assets-objects"><span class="std std-ref">this section</span></a> of the adding Gazebo assets tutorial), your new drone is ready to be loaded by Gazebo and fly using Aerostack2.</p>
 </section>
 </section>
 <section id="create-a-new-gazebo-sensor">

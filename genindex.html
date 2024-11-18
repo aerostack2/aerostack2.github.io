@@ -427,9 +427,11 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6PluginE">a_star::Plugin (C++ class)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin16a_star_searcher_E">a_star::Plugin::a_star_searcher_ (C++ member)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin21enable_visualization_E">a_star::Plugin::enable_visualization_ (C++ member)</a>
 </li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin15get_path_markerENSt6stringEN6rclcpp4TimeENSt6vectorIN2cv5PointEEEN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">a_star::Plugin::get_path_marker (C++ function)</a>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin15get_path_markerENSt6stringEN6rclcpp4TimeENSt6vectorI7Point2iEEN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">a_star::Plugin::get_path_marker (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin10initializeEPN3as24NodeENSt10shared_ptrIN7tf2_ros6BufferEEE">a_star::Plugin::initialize (C++ function)</a>
 </li>
@@ -452,8 +454,6 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin9on_resumeEv">a_star::Plugin::on_resume (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin6on_runEv">a_star::Plugin::on_run (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin18planner_algorithm_E">a_star::Plugin::planner_algorithm_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6a_star6Plugin16safety_distance_E">a_star::Plugin::safety_distance_ (C++ member)</a>
 </li>
@@ -1495,8 +1495,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree13DisarmService13on_completionENSt10shared_ptrIN8std_srvs3srv7SetBool8ResponseEEE">as2_behavior_tree::DisarmService::on_completion (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree13DisarmService7on_tickEv">as2_behavior_tree::DisarmService::on_tick (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree4EchoE">as2_behavior_tree::Echo (C++ class)</a>
@@ -1509,6 +1507,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree4Echo4tickEv">as2_behavior_tree::Echo::tick (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree16FollowPathActionE">as2_behavior_tree::FollowPathAction (C++ class)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N17as2_behavior_tree16FollowPathAction16FollowPathActionERKNSt6stringERKN2BT17NodeConfigurationE">as2_behavior_tree::FollowPathAction::FollowPathAction (C++ function)</a>
@@ -2692,6 +2692,30 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N12AStarPlanner16valid_movements_E">AStarPlanner::valid_movements_ (C++ member)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv413AStarSearcher">AStarSearcher (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11calc_g_costE7Point2i">AStarSearcher::calc_g_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11calc_h_costE7Point2i7Point2i">AStarSearcher::calc_h_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher14cell_in_limitsE7Point2i">AStarSearcher::cell_in_limits (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher14cell_occuppiedE7Point2i">AStarSearcher::cell_occuppied (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11cellToPixelE7Point2iN2cv3MatE">AStarSearcher::cellToPixel (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11cellToPixelE7Point2iN8nav_msgs3msg11MapMetaDataE">[1]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11cellToPixelE7Point2iii">[2]</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher9gridToImgEN8nav_msgs3msg13OccupancyGridEdb">AStarSearcher::gridToImg (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher8hash_keyE7Point2i">AStarSearcher::hash_key (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher9imgToGridEKN2cv3MatERKN8std_msgs3msg6HeaderEd">AStarSearcher::imgToGrid (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11pixelToCellEN2cv7Point2iEN8nav_msgs3msg11MapMetaDataE">AStarSearcher::pixelToCell (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher11update_gridERKN8nav_msgs3msg13OccupancyGridERK7Point2id">AStarSearcher::update_grid (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AStarSearcher14use_heuristic_E">AStarSearcher::use_heuristic_ (C++ member)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv413AzimuthBridge">AzimuthBridge (C++ class)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13AzimuthBridge13AzimuthBridgeEv">AzimuthBridge::AzimuthBridge (C++ function)</a>
@@ -2730,8 +2754,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.BehaviorNotAvailable">BehaviorHandler.BehaviorNotAvailable</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.GoalRejected">BehaviorHandler.GoalRejected</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.ResultUnknown">BehaviorHandler.ResultUnknown</a>
@@ -2740,6 +2762,34 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4IEN2BT17convertFromStringEN13geometry_msgs3msg4PoseEN2BT10StringViewE">BT::convertFromString (C++ function)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4I0E15BucketPrioQueue">BucketPrioQueue (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue15BucketPrioQueueEv">BucketPrioQueue::BucketPrioQueue (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue7bucketsE">BucketPrioQueue::buckets (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue10BucketTypeE">BucketPrioQueue::BucketType (C++ type)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue5clearEv">BucketPrioQueue::clear (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue5countE">BucketPrioQueue::count (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue5emptyEv">BucketPrioQueue::empty (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue13getNumBucketsEv">BucketPrioQueue::getNumBuckets (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue14getTopPriorityEv">BucketPrioQueue::getTopPriority (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue7nextPopE">BucketPrioQueue::nextPop (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue3popEv">BucketPrioQueue::pop (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue4pushEi1T">BucketPrioQueue::push (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15BucketPrioQueue4sizeEv">BucketPrioQueue::size (C++ function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -2747,6 +2797,36 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv414CallbackReturn">CallbackReturn (C++ type)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv414CallbackReturn">[1]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv414CallbackReturn">[2]</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv48CellNode">CellNode (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode8CellNodeERK7Point2iRK11CellNodePtrdd">CellNode::CellNode (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode11coordinatesEv">CellNode::coordinates (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode12coordinates_E">CellNode::coordinates_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode7g_cost_E">CellNode::g_cost_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode10get_g_costEv">CellNode::get_g_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode10get_h_costEv">CellNode::get_h_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode14get_total_costEv">CellNode::get_total_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode7h_cost_E">CellNode::h_cost_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode10parent_ptrEv">CellNode::parent_ptr (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode11parent_ptr_E">CellNode::parent_ptr_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode10set_g_costEd">CellNode::set_g_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode1xEv">CellNode::x (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8CellNode1yEv">CellNode::y (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv411CellNodePtr">CellNodePtr (C++ type)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv418controller_handler">controller_handler (C++ type)</a>
 </li>
@@ -2826,6 +2906,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler21prefered_output_mode_E">controller_handler::ControllerHandler::prefered_output_mode_ (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler14publishCommandEv">controller_handler::ControllerHandler::publishCommand (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler9ref_pose_E">controller_handler::ControllerHandler::ref_pose_ (C++ member)</a>
@@ -2840,8 +2922,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler13ref_traj_sub_E">controller_handler::ControllerHandler::ref_traj_sub_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler10ref_twist_E">controller_handler::ControllerHandler::ref_twist_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler14ref_twist_sub_E">controller_handler::ControllerHandler::ref_twist_sub_ (C++ member)</a>
@@ -3104,8 +3184,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N32differential_flatness_controller6Plugin10resetStateEv">differential_flatness_controller::Plugin::resetState (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N32differential_flatness_controller6Plugin7setModeERKN8as2_msgs3msg11ControlModeERKN8as2_msgs3msg11ControlModeE">differential_flatness_controller::Plugin::setMode (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N32differential_flatness_controller6Plugin10uav_state_E">differential_flatness_controller::Plugin::uav_state_ (C++ member)</a>
@@ -3178,6 +3256,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator36DynamicPolynomialTrajectoryGeneratorERKN6rclcpp11NodeOptionsE">DynamicPolynomialTrajectoryGenerator::DynamicPolynomialTrajectoryGenerator (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator13enable_debug_E">DynamicPolynomialTrajectoryGenerator::enable_debug_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator10eval_time_E">DynamicPolynomialTrajectoryGenerator::eval_time_ (C++ member)</a>
@@ -3265,6 +3345,148 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator11yawCallbackEKN8std_msgs3msg7Float329SharedPtrE">DynamicPolynomialTrajectoryGenerator::yawCallback (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGeneratorD0Ev">DynamicPolynomialTrajectoryGenerator::~DynamicPolynomialTrajectoryGenerator (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv414DynamicVoronoi">DynamicVoronoi (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi7addListE">DynamicVoronoi::addList (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi16allocatedGridMapE">DynamicVoronoi::allocatedGridMap (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi18alternativeDiagramE">DynamicVoronoi::alternativeDiagram (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi24alternativePrunedDiagramEv">DynamicVoronoi::alternativePrunedDiagram (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi9checkVoroEiiiiR8dataCellR8dataCell">DynamicVoronoi::checkVoro (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi9clearCellEii">DynamicVoronoi::clearCell (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17commitAndColorizeEb">DynamicVoronoi::commitAndColorize (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi4dataE">DynamicVoronoi::data (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCellE">DynamicVoronoi::dataCell (C++ struct)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell4distE">DynamicVoronoi::dataCell::dist (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell10needsRaiseE">DynamicVoronoi::dataCell::needsRaise (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell5obstXE">DynamicVoronoi::dataCell::obstX (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell5obstYE">DynamicVoronoi::dataCell::obstY (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell8queueingE">DynamicVoronoi::dataCell::queueing (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell6sqdistE">DynamicVoronoi::dataCell::sqdist (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8dataCell7voronoiE">DynamicVoronoi::dataCell::voronoi (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi15doubleThresholdE">DynamicVoronoi::doubleThreshold (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi14DynamicVoronoiEv">DynamicVoronoi::DynamicVoronoi (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17exchangeObstaclesERNSt6vectorI8INTPOINTEE">DynamicVoronoi::exchangeObstacles (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi11getDistanceEii">DynamicVoronoi::getDistance (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi33getNumVoronoiNeighborsAlternativeEii">DynamicVoronoi::getNumVoronoiNeighborsAlternative (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8getSizeXEv">DynamicVoronoi::getSizeX (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi8getSizeYEv">DynamicVoronoi::getSizeY (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi22getVoronoiPruneValenceEii">DynamicVoronoi::getVoronoiPruneValence (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi7gridMapE">DynamicVoronoi::gridMap (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi15initializeEmptyEiib">DynamicVoronoi::initializeEmpty (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13initializeMapEiiPPb">DynamicVoronoi::initializeMap (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi10isOccupiedERiRiR8dataCell">DynamicVoronoi::isOccupied (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi10isOccupiedEii">[1]</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi9isVoronoiEii">DynamicVoronoi::isVoronoi (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi20isVoronoiAlternativeEii">DynamicVoronoi::isVoronoiAlternative (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13lastObstaclesE">DynamicVoronoi::lastObstacles (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi11markerMatchEii">DynamicVoronoi::markerMatch (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi22markerMatchAlternativeEii">DynamicVoronoi::markerMatchAlternative (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17markerMatchResultE">DynamicVoronoi::markerMatchResult (C++ enum)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17markerMatchResult4keepE">DynamicVoronoi::markerMatchResult::keep (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17markerMatchResult6prunedE">DynamicVoronoi::markerMatchResult::pruned (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi17markerMatchResult5retryE">DynamicVoronoi::markerMatchResult::retry (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13ObstDataStateE">DynamicVoronoi::ObstDataState (C++ enum)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13ObstDataState15invalidObstDataE">DynamicVoronoi::ObstDataState::invalidObstData (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi10occupyCellEii">DynamicVoronoi::occupyCell (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi4openE">DynamicVoronoi::open (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi7paddingE">DynamicVoronoi::padding (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5pruneEv">DynamicVoronoi::prune (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi10pruneQueueE">DynamicVoronoi::pruneQueue (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingStateE">DynamicVoronoi::QueueingState (C++ enum)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingState11bwProcessedE">DynamicVoronoi::QueueingState::bwProcessed (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingState8bwQueuedE">DynamicVoronoi::QueueingState::bwQueued (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingState11fwNotQueuedE">DynamicVoronoi::QueueingState::fwNotQueued (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingState11fwProcessedE">DynamicVoronoi::QueueingState::fwProcessed (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi13QueueingState8fwQueuedE">DynamicVoronoi::QueueingState::fwQueued (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi11recheckVoroEv">DynamicVoronoi::recheckVoro (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi10removeListE">DynamicVoronoi::removeList (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi14removeObstacleEii">DynamicVoronoi::removeObstacle (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi19reviveVoroNeighborsERiRi">DynamicVoronoi::reviveVoroNeighbors (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi11setObstacleEii">DynamicVoronoi::setObstacle (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5sizeXE">DynamicVoronoi::sizeX (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5sizeYE">DynamicVoronoi::sizeY (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi16sortedPruneQueueE">DynamicVoronoi::sortedPruneQueue (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5sqrt2E">DynamicVoronoi::sqrt2 (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5StateE">DynamicVoronoi::State (C++ enum)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State4freeE">DynamicVoronoi::State::free (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State10freeQueuedE">DynamicVoronoi::State::freeQueued (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State8occupiedE">DynamicVoronoi::State::occupied (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State11voronoiKeepE">DynamicVoronoi::State::voronoiKeep (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State12voronoiPruneE">DynamicVoronoi::State::voronoiPrune (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi5State12voronoiRetryE">DynamicVoronoi::State::voronoiRetry (C++ enumerator)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi6updateEb">DynamicVoronoi::update (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi30updateAlternativePrunedDiagramEv">DynamicVoronoi::updateAlternativePrunedDiagram (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoi9visualizeEPKc">DynamicVoronoi::visualize (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N14DynamicVoronoiD0Ev">DynamicVoronoi::~DynamicVoronoi (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3446,10 +3668,10 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N29follow_path_plugin_trajectory6Plugin14own_deactivateERKNSt10shared_ptrINSt6stringEEE">follow_path_plugin_trajectory::Plugin::own_deactivate (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N29follow_path_plugin_trajectory6Plugin17own_execution_endERKN12as2_behavior15ExecutionStatusE">follow_path_plugin_trajectory::Plugin::own_execution_end (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N29follow_path_plugin_trajectory6Plugin10own_modifyERN8as2_msgs6action10FollowPath4GoalE">follow_path_plugin_trajectory::Plugin::own_modify (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N29follow_path_plugin_trajectory6Plugin9own_pauseERKNSt10shared_ptrINSt6stringEEE">follow_path_plugin_trajectory::Plugin::own_pause (C++ function)</a>
@@ -3613,6 +3835,8 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23FollowReferenceBehaviorD0Ev">FollowReferenceBehavior::~FollowReferenceBehavior (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.follow_reference_module.FollowReferenceModule">FollowReferenceModule (class in as2_python_api.modules.follow_reference_module)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.FREE_SPACE">FREE_SPACE (C macro)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3888,8 +4112,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBase7ownInitEv">go_to_base::GoToBase::ownInit (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBase7params_E">go_to_base::GoToBase::params_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBase22platform_info_callbackEKN8as2_msgs3msg12PlatformInfo9SharedPtrE">go_to_base::GoToBase::platform_info_callback (C++ function)</a>
@@ -3904,6 +4126,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBase14state_callbackERN13geometry_msgs3msg11PoseStampedERN13geometry_msgs3msg12TwistStampedE">go_to_base::GoToBase::state_callback (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBase10tf_handlerE">go_to_base::GoToBase::tf_handler (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10go_to_base8GoToBaseD0Ev">go_to_base::GoToBase::~GoToBase (C++ function)</a>
@@ -4090,6 +4314,34 @@
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.gps_module.GpsModule">GpsModule (class in as2_python_api.modules.gps_module)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4I0E13GraphSearcher">GraphSearcher (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher11calc_g_costE7Point2i">GraphSearcher::calc_g_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher11calc_h_costE7Point2i7Point2i">GraphSearcher::calc_h_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher14cell_in_limitsE7Point2i">GraphSearcher::cell_in_limits (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher14cell_occuppiedE7Point2i">GraphSearcher::cell_occuppied (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher6graph_E">GraphSearcher::graph_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher13GraphSearcherEv">GraphSearcher::GraphSearcher (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher8hash_keyE7Point2i">GraphSearcher::hash_key (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher15nodes_to_visit_E">GraphSearcher::nodes_to_visit_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher14nodes_visited_E">GraphSearcher::nodes_visited_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher11solve_graphE7Point2i7Point2i">GraphSearcher::solve_graph (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher12update_graphERK1T">GraphSearcher::update_graph (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher14use_heuristic_E">GraphSearcher::use_heuristic_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N13GraphSearcher16valid_movements_E">GraphSearcher::valid_movements_ (C++ member)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv412ground_truth">ground_truth (C++ type)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N12ground_truth6PluginE">ground_truth::Plugin (C++ class)</a>
@@ -4186,13 +4438,23 @@
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_base.DroneInterfaceBase.info">info (as2_python_api.drone_interface_base.DroneInterfaceBase property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.insert">insert() (as2_python_api.mission_interpreter.mission_stack.MissionStack method)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.insert_mission">insert_mission() (as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter method)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus">InterpreterStatus (class in as2_python_api.mission_interpreter.mission)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.INTPOINT">INTPOINT (C macro)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv48IntPoint">IntPoint (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8IntPoint8IntPointEii">IntPoint::IntPoint (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8IntPoint8IntPointEv">[1]</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8IntPoint1xE">IntPoint::x (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N8IntPoint1yE">IntPoint::y (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.is_running">is_running() (as2_python_api.behavior_actions.behavior_handler.BehaviorHandler method)</a>
 </li>
@@ -4502,6 +4764,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.MATCH_YAW_MODE">MATCH_YAW_MODE (C macro)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.MAX_DIST">MAX_DIST (C macro)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv46mbzirc">mbzirc (C++ type)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N6mbzirc20SuctionGripperPluginE">mbzirc::SuctionGripperPlugin (C++ class)</a>
@@ -4600,10 +4864,10 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10mocap_pose6Plugin15twist_from_poseERKN13geometry_msgs3msg11PoseStampedEPNSt6vectorIN3tf29TransformEEE">mocap_pose::Plugin::twist_from_pose (C++ function)</a>
 </li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10mocap_pose6Plugin10twist_msg_E">mocap_pose::Plugin::twist_msg_ (C++ member)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10mocap_pose6Plugin10twist_msg_E">mocap_pose::Plugin::twist_msg_ (C++ member)</a>
+</li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify">modify() (as2_python_api.behavior_actions.behavior_handler.BehaviorHandler method)</a>
 
       <ul>
@@ -4929,11 +5193,13 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20ObjectFramePublisher13use_sim_time_E">ObjectFramePublisher::use_sim_time_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20ObjectFramePublisher12world_frame_E">ObjectFramePublisher::world_frame_ (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20ObjectFramePublisher10world_nameE">ObjectFramePublisher::world_name (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.OCC_SPACE">OCC_SPACE (C macro)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.service_clients.html#as2_python_api.service_clients.offboard.Offboard">Offboard (class in as2_python_api.service_clients.offboard)</a>
 </li>
@@ -4968,6 +5234,8 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior14drone_pose_cbkEKN13geometry_msgs3msg11PoseStamped9SharedPtrE">PathPlannerBehavior::drone_pose_cbk (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior15drone_pose_sub_E">PathPlannerBehavior::drone_pose_sub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior22enable_path_optimizer_E">PathPlannerBehavior::enable_path_optimizer_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior21enable_visualization_E">PathPlannerBehavior::enable_visualization_ (C++ member)</a>
 </li>
@@ -5017,6 +5285,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior19PathPlannerBehaviorERKN6rclcpp11NodeOptionsE">PathPlannerBehavior::PathPlannerBehavior (C++ function)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior12plugin_name_E">PathPlannerBehavior::plugin_name_ (C++ member)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior7result_E">PathPlannerBehavior::result_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior16safety_distance_E">PathPlannerBehavior::safety_distance_ (C++ member)</a>
@@ -5024,8 +5294,6 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior10tf_buffer_E">PathPlannerBehavior::tf_buffer_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior12tf_listener_E">PathPlannerBehavior::tf_listener_ (C++ member)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior19use_path_optimizer_E">PathPlannerBehavior::use_path_optimizer_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19PathPlannerBehavior8viz_pub_E">PathPlannerBehavior::viz_pub_ (C++ member)</a>
 </li>
@@ -5135,12 +5403,12 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20pid_speed_controller6Plugin33position_control_parameters_list_E">pid_speed_controller::Plugin::position_control_parameters_list_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20pid_speed_controller6Plugin36position_control_parameters_to_read_E">pid_speed_controller::Plugin::position_control_parameters_to_read_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20pid_speed_controller6Plugin24proportional_limitation_E">pid_speed_controller::Plugin::proportional_limitation_ (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20pid_speed_controller6Plugin5resetEv">pid_speed_controller::Plugin::reset (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20pid_speed_controller6Plugin13resetCommandsEv">pid_speed_controller::Plugin::resetCommands (C++ function)</a>
@@ -5216,6 +5484,18 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4I0EN6Pnpoly7isEqualEb1T1T">Pnpoly::isEqual (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4I0EN6Pnpoly4isInEbRNSt6vectorINSt5arrayI1TXL2EEEEEERNSt5arrayI1TXL2EEEE">Pnpoly::isIn (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv47Point2i">Point2i (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2ineERK7Point2i">Point2i::operator!= (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2ieqERK7Point2i">Point2i::operator== (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2i7Point2iEii">Point2i::Point2i (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2i7Point2iEv">[1]</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2i1xE">Point2i::x (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7Point2i1yE">Point2i::y (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.point_gimbal_module.PointGimbalModule.point_gimbal">point_gimbal() (as2_python_api.modules.point_gimbal_module.PointGimbalModule method)</a>
 </li>
@@ -5943,6 +6223,8 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.UNKNOWN_SPACE">UNKNOWN_SPACE (C macro)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.UNSET_MODE_MASK">UNSET_MODE_MASK (C macro)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#c.UNSET_MODE_MASK">[1]</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv420usb_camera_interface">usb_camera_interface (C++ type)</a>
@@ -5959,14 +6241,14 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface10framerate_E">usb_camera_interface::UsbCameraInterface::framerate_ (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface13image_height_E">usb_camera_interface::UsbCameraInterface::image_height_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface12image_width_E">usb_camera_interface::UsbCameraInterface::image_width_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface14loadParametersEv">usb_camera_interface::UsbCameraInterface::loadParameters (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface11setupCameraEv">usb_camera_interface::UsbCameraInterface::setupCamera (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N20usb_camera_interface18UsbCameraInterface18UsbCameraInterfaceERKN6rclcpp11NodeOptionsE">usb_camera_interface::UsbCameraInterface::UsbCameraInterface (C++ function)</a>
@@ -5975,21 +6257,11 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv45utils">utils (C++ type)</a>
 </li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11cellToPixelEiiN8nav_msgs3msg11MapMetaDataE">utils::cellToPixel (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11cellToPointEiiN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">utils::cellToPoint (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils9gridToImgEN8nav_msgs3msg13OccupancyGridEdb">utils::gridToImg (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils9imgToGridEKN2cv3MatERKN8std_msgs3msg6HeaderEd">utils::imgToGrid (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11pixelToCellEN2cv7Point2iEN8nav_msgs3msg11MapMetaDataE">utils::pixelToCell (C++ function)</a>
-</li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils12pixelToPointEN2cv7Point2iEN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">utils::pixelToPoint (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils12pixelToPointEiiN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">[1]</a>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11cellToPointE7Point2iN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">utils::cellToPoint (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11cellToPointEiiN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">[1]</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils11pointToCellEN13geometry_msgs3msg12PointStampedEN8nav_msgs3msg11MapMetaDataENSt6stringENSt10shared_ptrIN7tf2_ros6BufferEEE">utils::pointToCell (C++ function)</a>
 </li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils12pointToPixelEN13geometry_msgs3msg11PoseStampedEN8nav_msgs3msg11MapMetaDataENSt6stringENSt10shared_ptrIN7tf2_ros6BufferEEE">utils::pointToPixel (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils12pointToPixelEN13geometry_msgs3msg12PointStampedEN8nav_msgs3msg11MapMetaDataENSt6stringENSt10shared_ptrIN7tf2_ros6BufferEEE">[1]</a>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N5utils10poseToCellEN13geometry_msgs3msg11PoseStampedEN8nav_msgs3msg11MapMetaDataENSt6stringENSt10shared_ptrIN7tf2_ros6BufferEEE">utils::poseToCell (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -5998,6 +6270,80 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.verbose">verbose (as2_python_api.mission_interpreter.mission.Mission attribute)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv47voronoi">voronoi (C++ type)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6PluginE">voronoi::Plugin (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin16dynamic_voronoi_E">voronoi::Plugin::dynamic_voronoi_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin21enable_visualization_E">voronoi::Plugin::enable_visualization_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin15get_path_markerENSt6stringEN6rclcpp4TimeENSt6vectorI7Point2iEEN8nav_msgs3msg11MapMetaDataEN8std_msgs3msg6HeaderE">voronoi::Plugin::get_path_marker (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin15graph_searcher_E">voronoi::Plugin::graph_searcher_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin10initializeEPN3as24NodeENSt10shared_ptrIN7tf2_ros6BufferEEE">voronoi::Plugin::initialize (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin21last_dist_field_grid_E">voronoi::Plugin::last_dist_field_grid_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin14last_occ_grid_E">voronoi::Plugin::last_occ_grid_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin12last_size_x_E">voronoi::Plugin::last_size_x_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin12last_size_y_E">voronoi::Plugin::last_size_y_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin6mutex_E">voronoi::Plugin::mutex_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin12occ_grid_cbkEKN8nav_msgs3msg13OccupancyGrid9SharedPtrE">voronoi::Plugin::occ_grid_cbk (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin13occ_grid_sub_E">voronoi::Plugin::occ_grid_sub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin11on_activateEN13geometry_msgs3msg11PoseStampedEN8as2_msgs6action15NavigateToPoint4GoalE">voronoi::Plugin::on_activate (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin13on_deactivateEv">voronoi::Plugin::on_deactivate (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin16on_execution_endEv">voronoi::Plugin::on_execution_end (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin9on_modifyEv">voronoi::Plugin::on_modify (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin8on_pauseEv">voronoi::Plugin::on_pause (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin9on_resumeEv">voronoi::Plugin::on_resume (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin6on_runEv">voronoi::Plugin::on_run (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin11outline_mapERN8nav_msgs3msg13OccupancyGridE7uint8_t">voronoi::Plugin::outline_map (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin12update_costsERN8nav_msgs3msg13OccupancyGridE">voronoi::Plugin::update_costs (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin22update_dynamic_voronoiERN8nav_msgs3msg13OccupancyGridE">voronoi::Plugin::update_dynamic_voronoi (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin19viz_dist_field_gridEv">voronoi::Plugin::viz_dist_field_grid (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin24viz_dist_field_grid_pub_E">voronoi::Plugin::viz_dist_field_grid_pub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin8viz_pub_E">voronoi::Plugin::viz_pub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin16viz_voronoi_gridEv">voronoi::Plugin::viz_voronoi_grid (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N7voronoi6Plugin21viz_voronoi_grid_pub_E">voronoi::Plugin::viz_voronoi_grid_pub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv415VoronoiSearcher">VoronoiSearcher (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher11calc_g_costE7Point2i">VoronoiSearcher::calc_g_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher11calc_h_costE7Point2i7Point2i">VoronoiSearcher::calc_h_cost (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher14cell_in_limitsE7Point2i">VoronoiSearcher::cell_in_limits (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher14cell_occuppiedE7Point2i">VoronoiSearcher::cell_occuppied (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher8hash_keyE7Point2i">VoronoiSearcher::hash_key (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N15VoronoiSearcher14update_voronoiERK14DynamicVoronoi">VoronoiSearcher::update_voronoi (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
