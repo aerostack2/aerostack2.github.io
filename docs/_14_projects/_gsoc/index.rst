@@ -14,3 +14,52 @@ During Google Summer of Code, participating contributors are paired with mentors
 
 .. figure:: resources/GSoC_banner.png
    :scale: 50
+
+
+============================
+Ideas List for GSoC 2025
+============================
+
+.. use small title
+.. to create a new project, copy the below template and paste it below the last project
+.. The template is as follows: 
+.. - Title
+.. - Brief Description
+.. - Skills Required
+.. - Difficulty Level
+.. - Expected Outcome
+.. - Expected size of the project
+.. - Mentor
+
+
+Project #1 : Title
+============================
+
+Brief Description
+-----------------
+Provide a brief description of the project here.
+
+
+- **Skills Required**
+   1. List the required skills here.
+
+- **Difficulty Level**
+   Specify the difficulty level (e.g., Easy, Medium, Hard).
+
+- Expected Outcome
+   Describe the expected outcome of the project.
+
+- Expected Size of the Project
+   Specify the expected size of the project (e.g., Small, Medium, Large).
+
+- Mentor
+   Provide the name(s) of the mentor(s) for this project.
+
+
+
+
+
+
+
+
+
