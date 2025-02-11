@@ -84,28 +84,43 @@ Ideas List for GSoC 2025
 Below you will find the list of the different project ideas that we are proposing for Google Summer of Code 2025.
 
 
-Project #1 : Title
+Project #1 : New RViz2 RQT Plugins for Aerostack2
 ============================
 
 Brief Description
 -----------------
-Provide a brief description of the project here.
+This project aims to enhance the visualization and interaction capabilities of the **Aerostack2**
+framework by developing new **RViz2** and **RQT** plugins.
+These plugins will provide **real-time monitoring**, **debugging**, and **control functionalities**
+tailored to aerial robotics applications.
+
+The project will focus on improving current **custom visualization plugins**
+(`Aerostack2 Visualization <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_visualization>`_)
+to visualize drone states, trajectories, sensor data, and mission execution.
+Moreover, it will create new RQT RViz tools
+(`Aerostack2 RViz Plugins <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_rviz_plugins>`_)
+for intuitive interaction, such as sending commands, adjusting parameters, and monitoring system diagnostics.
+Both tools will support drone swarms, not just single drones.
 
 
-- **Skills Required**
-   1. List the required skills here.
+.. figure:: resources/project_rviz_plugins.png
+   :scale: 40
+
+
+- **Skills Required/Preferred**
+   RQT, ROS 2, Python (or C++)
 
 - **Difficulty Level**
-   Specify the difficulty level (e.g., Easy, Medium, Hard).
+   Medium
 
-- Expected Outcome
-   Describe the expected outcome of the project.
+- **Expected Outcome**
+   To improve the usability and debugging experience for developers using Aerostack2. 
 
-- Expected Size of the Project
-   Specify the expected size of the project (e.g., Small, Medium, Large).
+- **Expected Size of the Project**
+   Medium (175h)
 
-- Mentor
-   Provide the name(s) of the mentor(s) for this project.
+- **Mentors**
+   Pedro Arias-Perez (pedro.ariasp AT upm.es), Guillermo GP-Lenza (guillermolenza AT gmail.com), Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com).
 
 ========================================
 Application instructions for GSoC 2025
@@ -128,28 +143,16 @@ Warm-up Task
 ========================
 
 .. check if the project requires a programming test or PR
-.. note::
+.. warning::
    This Warm-up task is mandatory for all the projects.
 
 In order to apply for any of the projects, you must complete a simple Warm-up for familiarizing yourself with the Aerostack2 framework.
 The Warm-up task consists of the following steps:
 
-   1. Setup an environment with ROS 2 Humble and Aerostack2. You can follow the instructions in the `Aerostack2 Wiki <_00_getting_started>`__.
-   2. Follow the Simple Gazebo Simulation example in the `Aerostack2 Wiki <_01_simple_gazebo_simulation>`__.
+   1. Setup an environment with ROS 2 Humble and Aerostack2. You can follow the instructions in the :ref:`Aerostack2 Wiki <getting_started>`.
+   2. Follow the Simple Gazebo Simulation example in the :ref:`Aerostack2 Wiki <project_gazebo>`.
    3. Fork the project repository and modify the ``mission.py`` file to make the drone move in a hexagonal trajectory.
    4. Upload the modified code to your repo and submit the link to the repository in the application form.
 
-
-Send us your application
-
-
-
-
-
-
-
-
-
-
-
-
+.. note::
+   If you encounter any issues related to this task, please use `Aerostack2 issues <https://github.com/aerostack2/aerostack2/issues>`__.
