@@ -1,5 +1,8 @@
 .. _gsoc:
 
+
+.. _google_summer_of_code:
+
 ============================
 Google Summer of Code (GSoC)
 ============================
