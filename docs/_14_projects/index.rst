@@ -8,13 +8,6 @@ Projects
    :depth: 3
    :local:
 
-
-.. toctree:: 
-   :maxdepth: 1
-
-   _gsoc/index
-
-
 .. _projects_research:
 
 Research
@@ -89,7 +82,15 @@ Check out our latest videos on our `Vimeo <https://vimeo.com/cvarupm>`_ and `You
   </div><script src="https://player.vimeo.com/api/player.js"></script>
 
 
-.. .. _projects_gsoc:
+.. _projects_gsoc_intro:
 
-.. Google Summer of Code (GSoC)
-.. ============================
+Google Summer of Code (GSoC)
+============================
+
+See the `GSoC 2025 <_gsoc/index.rst>`_ page for more information:
+
+.. toctree::
+   :maxdepth: 1
+
+   _gsoc/index.rst
+
