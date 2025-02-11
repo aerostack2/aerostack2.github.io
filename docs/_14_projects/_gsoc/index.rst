@@ -55,6 +55,33 @@ Provide a brief description of the project here.
 - Mentor
    Provide the name(s) of the mentor(s) for this project.
 
+========================================
+Application instructions for GSoC 2025
+========================================
+
+We encourage you to apply for Google Summer of Code 2025 with any of the projects listed above. 
+If you have any questions, please reach out to the mentor(s) listed for the project you are interested in.
+We are looking for enthusiastic students who are passionated and willing to learn and contribute to open-source projects.
+
+To apply, follow the instructions below:
+
+Basic Requirements
+------------------
+1. Check that you meet the eligibility requirements for the program. Check the `GSoC website <https://summerofcode.withgoogle.com/get-started>`__ for more information.
+2. Basic Git experience.
+3. Basic experience working with C++ and/or Python.
+
+Programming Test and or PR
+----------------------------
+.. check if the project requires a programming test or PR
+.. note::
+   The programming test is mandatory for all applicants.
+
+Send us your application
+
+
+
+
 
 
 
