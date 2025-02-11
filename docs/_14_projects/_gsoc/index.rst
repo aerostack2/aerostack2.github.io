@@ -16,6 +16,47 @@ During Google Summer of Code, participating contributors are paired with mentors
    :scale: 50
 
 
+
+===============
+Why contribute?
+===============
+
+Aerostack2 is an open-source multipurpose framework designed to create autonomous multi-aerial-robot systems in an easy and powerful way.
+The project has been under development since 2016, starting with the first version, Aerostack, which can be found here: `Aerostack Wiki <https://github.com/cvar-upm/aerostack/wiki>`_.
+Since 2022, work has been focused on the development of Aerostack2.
+
+The Aerostack2 environment is open source and free of charge, which facilitates universal access to this technology by autonomous drone developers.
+It is offered with a BSD-3-Clause license that allows free distribution and modification of the software.
+
+Our organization is a young and dynamic group, dedicated to pushing the boundaries of aerial robotics through collaboration and innovation.
+We are focused on unifying the development of autonomous aerial robotics systems, aiming to establish Aerostack2 as a leading open-source framework that developers and researchers can rely on for their projects.
+
+Nowadays, Aerostack2 has accumulated over 1,500 commits and 400 pull requests, contributed by more than 10 international collaborators.
+
+We have also actively engaged with the community to promote and improve Aerostack2, participating in working groups such as:
+
+- `ROS-Aerial Robotics Working Group <https://github.com/ROS-Aerial/community>`_
+- `Gazebo Community Meeting <https://community.gazebosim.org/tag/meeting>`_
+
+Furthermore, Aerostack2 has been presented at international conferences:
+
+- `ICRA 2023, London <https://www.icra2023.org/>`_
+- `ROSCon 2023, New Orleans <https://roscon.ros.org/2023/>`_
+- `ROSCon Spain 2023, Madrid <https://roscon.org.es/2023/ROSConMadrid2023.html>`_
+- `RSS 2024, Deflt <https://roboticsconference.org/2024/>`_
+- `ROSCon Spain 2024, Sevilla <https://roscon.org.es/ROSConES2024.html>`_
+
+
+.. raw:: html
+
+  <div style="padding:56.25% 0 0 0;position:relative; width:80%; margin:auto;"><iframe src="https://player.vimeo.com/video/879000655?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Aerostack2: A framework for developing Multi-Robot Aerial Systems"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+.. raw:: html
+
+  <div style="width:80%; margin:auto;"><iframe width="100%" height="315" src="https://www.youtube.com/embed/LnTmqx08K3k?si=EmtJD34ET4KOUm78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  
+
+
 ============================
 Ideas List for GSoC 2025
 ============================
