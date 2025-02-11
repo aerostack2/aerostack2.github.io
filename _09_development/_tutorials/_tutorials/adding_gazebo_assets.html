@@ -367,6 +367,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -640,7 +664,7 @@ configuration. Such model would look like this example:</p>
 </div>
 <p>Since this new model uses the same sensor type as the rest of the supported cameras, and thus, publishes information in the same expected topics, you would only have to add this new sensor to the corresponding sensor enumerator type in the <code class="docutils literal notranslate"><span class="pre">payload.py</span></code> file
 at <code class="docutils literal notranslate"><span class="pre">as2_simulation_assets/as2_gazebo_assets/src/as2_gazebo_assets/models</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;Valid camera model types.&quot;&quot;&quot;</span>
 
   <span class="n">VGA_CAM</span> <span class="o">=</span> <span class="s1">&#39;vga_camera&#39;</span>
@@ -648,7 +672,7 @@ at <code class="docutils literal notranslate"><span class="pre">as2_simulation_a
   <span class="n">SEMANTIC_CAM</span> <span class="o">=</span> <span class="s1">&#39;semantic_camera&#39;</span>
 
   <span class="nd">@staticmethod</span>
-  <span class="k">def</span> <span class="nf">nodes</span><span class="p">(</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">nodes</span><span class="p">(</span>
       <span class="n">drone_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
       <span class="n">sensor_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
       <span class="n">sensor_model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -671,7 +695,7 @@ at <code class="docutils literal notranslate"><span class="pre">as2_simulation_a
       <span class="k">return</span> <span class="n">nodes</span>
 
   <span class="nd">@staticmethod</span>
-  <span class="k">def</span> <span class="nf">bridges</span><span class="p">(</span>
+  <span class="k">def</span><span class="w"> </span><span class="nf">bridges</span><span class="p">(</span>
       <span class="n">world_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
       <span class="n">drone_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
       <span class="n">sensor_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -699,7 +723,7 @@ at <code class="docutils literal notranslate"><span class="pre">as2_simulation_a
 </div>
 <p>In Aerostack2, sensors are added to drone models as a mounted payload. Sensors of the same type are grouped into a sensor type enumerator that  includes all the valid sensor types that have been implemented. The sensor type enumerator also lists the needed bridges for the sensor Gazebo data topics.</p>
 <p>For Aerostack2 to load your sensor model and create the corresponding bridges, the name of your model must be added as a ‘Valid camera model type’ at the beginning of the class definition.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;Valid camera model types.&quot;&quot;&quot;</span>
 
   <span class="n">VGA_CAM</span> <span class="o">=</span> <span class="s1">&#39;vga_camera&#39;</span>

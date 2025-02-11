@@ -116,6 +116,14 @@ as2\_python\_api.modules.takeoff\_module module
    :undoc-members:
    :show-inheritance:
 
+as2\_python\_api.modules.trajectory\_generation\_module module
+--------------------------------------------------------------
+
+.. automodule:: as2_python_api.modules.trajectory_generation_module
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

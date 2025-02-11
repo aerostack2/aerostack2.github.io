@@ -367,6 +367,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -638,7 +662,7 @@ they are named m1_joint, m2_joint, m3_joint and m4_joint. These names can be cha
 In addition to this, the base link of your quadrotor model must be ‘base_link’.</p>
 <p>With this and your model added to a directory that has been added to the Gazebo resources path variable (check <a class="reference internal" href="../../_tutorials/_tutorials/adding_gazebo_assets.html#development-tutorials-gazebo-assets-objects"><span class="std std-ref">this section</span></a> of the adding Gazebo assets tutorial), your new drone is ready to be loaded by Gazebo and fly using Aerostack2. Make sure you use the name of the model folder as the <code class="docutils literal notranslate"><span class="pre">model_type</span></code> field when configuring your new drone in your simulation configuration file.</p>
 <p>Although it is not necessary, if you are building Aerostack2 from source, your model can also be added as a valid drone type at <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets/src/as2_gazebo_assets/models/drone.py</span></code>. This script declares a class <code class="docutils literal notranslate"><span class="pre">DroneTypeEnum</span></code> to which your new drone model can be added.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DroneTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DroneTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Valid drone model types.&quot;&quot;&quot;</span>
 
     <span class="n">QUADROTOR</span> <span class="o">=</span> <span class="s1">&#39;quadrotor_base&#39;</span>
@@ -805,7 +829,7 @@ Here is an example of a sensor <code class="docutils literal notranslate"><span 
 <p>To use your sensor data in ROS 2 nodes, you need Gazebo-ROS 2 bridge. Aerostack2 includes a series of bridges for the already supported sensor types. If your sensor is of a different type, a new bridge is required.
 The available bridges can be found in <code class="docutils literal notranslate"><span class="pre">as2_simulation_assets/as2_gazebo_assets/src/as2_gazebo_assets_bridges</span></code>. There is a bridge for each of the Gazebo topics used by the implemented sensor types from the gz-sensor library.
 This is the structure of a bridge in Aerostack2</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">new_image</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">new_image</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span>
             <span class="n">sensor_model_type</span><span class="p">,</span> <span class="n">sensor_model_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;New Image bridge&quot;&quot;&quot;</span>
     <span class="n">sensor_prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">(</span><span class="n">world_name</span><span class="p">,</span> <span class="n">drone_model_name</span><span class="p">,</span> <span class="n">sensor_model_name</span><span class="p">,</span> <span class="n">sensor_model_type</span><span class="p">)</span>
@@ -825,13 +849,13 @@ the <a class="reference external" href="https://github.com/gazebosim/ros_gz/tree
 <section id="creating-a-payload-type-enumerator">
 <h3>3. Creating a payload type enumerator<a class="headerlink" href="#creating-a-payload-type-enumerator" title="Link to this heading"></a></h3>
 <p>With your new bridge created, you can finally create the Payload ‘TypeEnum’ for your new sensor type. Following the structure presented in step 3</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NewCameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NewCameraTypeEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Valid camera model types.&quot;&quot;&quot;</span>
 
     <span class="n">NEW_CAMERA</span> <span class="o">=</span> <span class="s1">&#39;new_camera&#39;</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">bridges</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bridges</span><span class="p">(</span>
         <span class="n">world_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">drone_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sensor_model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -862,7 +886,7 @@ the <a class="reference external" href="https://github.com/gazebosim/ros_gz/tree
 <section id="register-your-new-type-enumerator">
 <h3>4. Register your new type enumerator<a class="headerlink" href="#register-your-new-type-enumerator" title="Link to this heading"></a></h3>
 <p>Finally, add the name of your new type enumerator class to the <code class="docutils literal notranslate"><span class="pre">Union[]</span></code> memeber of the general Payload class so that Aerostack2 can recognize your sensor type as a valid Payload for the drones.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Payload</span><span class="p">(</span><span class="n">Entity</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Payload</span><span class="p">(</span><span class="n">Entity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gz Payload Entity.</span>
 

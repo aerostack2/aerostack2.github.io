@@ -364,6 +364,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -429,28 +453,28 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 
-<span class="kn">from</span> <span class="nn">as2_msgs.msg</span> <span class="kn">import</span> <span class="n">MissionUpdate</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission</span> <span class="kn">import</span> <span class="n">Mission</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission_interpreter</span> <span class="kn">import</span> <span class="n">MissionInterpreter</span>
-<span class="kn">import</span> <span class="nn">rclpy</span>
-<span class="kn">import</span> <span class="nn">rclpy.executors</span>
-<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
-<span class="kn">from</span> <span class="nn">rclpy.parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
-<span class="kn">from</span> <span class="nn">rclpy.qos</span> <span class="kn">import</span> <span class="n">qos_profile_system_default</span><span class="p">,</span> <span class="n">QoSHistoryPolicy</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> \
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionUpdate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.mission_interpreter.mission</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mission</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.mission_interpreter.mission_interpreter</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionInterpreter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rclpy.executors</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.parameter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">qos_profile_system_default</span><span class="p">,</span> <span class="n">QoSHistoryPolicy</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">,</span> \
     <span class="n">QoSReliabilityPolicy</span>
-<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">String</span>
 
 
 <div class="viewcode-block" id="Adapter">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter">[docs]</a>
-<span class="k">class</span> <span class="nc">Adapter</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Adapter</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;ROS 2 Adapter to mission interpreter.&quot;&quot;&quot;</span>
 
     <span class="n">STATUS_FREQ</span> <span class="o">=</span> <span class="mf">0.5</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">add_namespace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;adapter&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="n">drone_id</span><span class="p">)</span>
 
@@ -483,7 +507,7 @@
 
 <div class="viewcode-block" id="Adapter.status_timer_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.status_timer_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">status_timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status_timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish new mission status.&quot;&quot;&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
@@ -496,7 +520,7 @@
 
 <div class="viewcode-block" id="Adapter.mission_update_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.mission_update_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">mission_update_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">MissionUpdate</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mission_update_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">MissionUpdate</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mission update callback.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">drone_id</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
@@ -525,7 +549,7 @@
 
 <div class="viewcode-block" id="Adapter.execute_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.execute_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load and start mission.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">mission</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_callback</span><span class="p">()</span></div>
@@ -533,7 +557,7 @@
 
 <div class="viewcode-block" id="Adapter.start_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission on interpreter.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">drone</span><span class="o">.</span><span class="n">arm</span><span class="p">()</span>
@@ -546,7 +570,7 @@
     <span class="c1"># TODO: WARNING! This is temporary, move abort mission to MissionInterpreter</span>
 <div class="viewcode-block" id="Adapter.abort_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.abort_callback">[docs]</a>
-    <span class="k">def</span> <span class="nf">abort_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">abort_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Abort mission on interpreter.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort_mission</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">fatal</span><span class="p">(</span>
@@ -565,7 +589,7 @@
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run node.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--n&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;drone0&#39;</span><span class="p">,</span>

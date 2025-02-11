@@ -364,6 +364,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -428,20 +452,20 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">from</span> <span class="nn">as2_python_api.drone_interface_base</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.follow_path_gps_module</span> <span class="kn">import</span> <span class="n">FollowPathGpsModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.go_to_gps_module</span> <span class="kn">import</span> <span class="n">GoToGpsModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.gps_module</span> <span class="kn">import</span> <span class="n">GpsModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.land_module</span> <span class="kn">import</span> <span class="n">LandModule</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.takeoff_module</span> <span class="kn">import</span> <span class="n">TakeoffModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.drone_interface_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.follow_path_gps_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">FollowPathGpsModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.go_to_gps_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">GoToGpsModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.gps_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">GpsModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.land_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">LandModule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.takeoff_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">TakeoffModule</span>
 
 
 <div class="viewcode-block" id="DroneInterfaceGPS">
 <a class="viewcode-back" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_gps.DroneInterfaceGPS">[docs]</a>
-<span class="k">class</span> <span class="nc">DroneInterfaceGPS</span><span class="p">(</span><span class="n">DroneInterfaceBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DroneInterfaceGPS</span><span class="p">(</span><span class="n">DroneInterfaceBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Drone interface node.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;drone0&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;drone0&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">spin_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create DroneInterfaceGPS.</span>

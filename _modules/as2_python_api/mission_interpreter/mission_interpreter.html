@@ -364,6 +364,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -429,15 +453,15 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">as2_python_api.behavior_actions.behavior_handler</span> <span class="kn">import</span> <span class="n">BehaviorHandler</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission</span> <span class="kn">import</span> <span class="n">InterpreterStatus</span><span class="p">,</span> <span class="n">Mission</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.mission_interpreter.mission_stack</span> <span class="kn">import</span> <span class="n">MissionStack</span>
-<span class="kn">from</span> <span class="nn">rclpy.executors</span> <span class="kn">import</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">SingleThreadedExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.behavior_actions.behavior_handler</span><span class="w"> </span><span class="kn">import</span> <span class="n">BehaviorHandler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.drone_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">DroneInterfaceBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.mission_interpreter.mission</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterpreterStatus</span><span class="p">,</span> <span class="n">Mission</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.mission_interpreter.mission_stack</span><span class="w"> </span><span class="kn">import</span> <span class="n">MissionStack</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.executors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">SingleThreadedExecutor</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;[</span><span class="si">%(levelname)s</span><span class="s1">] [</span><span class="si">%(asctime)s</span><span class="s1">] [</span><span class="si">%(name)s</span><span class="s1">]: </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -446,11 +470,11 @@
 
 <div class="viewcode-block" id="MissionInterpreter">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter">[docs]</a>
-<span class="k">class</span> <span class="nc">MissionInterpreter</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MissionInterpreter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Mission Interpreter and Executer.&quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: mission default None -&gt; default values to drone and mission_stack properties</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">use_sim_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">executor</span><span class="p">:</span> <span class="n">Executor</span> <span class="o">=</span> <span class="n">SingleThreadedExecutor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;MissionInterpreter&#39;</span><span class="p">)</span>
 
@@ -469,12 +493,12 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Mission interpreter ready&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MissionInterpreter.shutdown">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.shutdown">[docs]</a>
-    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Shutdown properly.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">drone</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="kc">True</span>
@@ -484,7 +508,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">drone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DroneInterfaceBase</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">drone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DroneInterfaceBase</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a DroneInterface based on the mission requirements.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -505,7 +529,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drone</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mission_stack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MissionStack</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mission_stack</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MissionStack</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mission stack.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -514,7 +538,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission_stack</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterpreterStatus</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterpreterStatus</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mission status.&quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;IDLE&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mission</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -534,12 +558,12 @@
                                  <span class="n">feedback_current</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_dict</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get current behavior feedback.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span><span class="o">.</span><span class="n">feedback</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">feedback_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">feedback_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get current behavior feedback dictionary.&quot;&quot;&quot;</span>
         <span class="n">feedback</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span><span class="o">.</span><span class="n">feedback</span>
         <span class="k">if</span> <span class="n">feedback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -555,7 +579,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.start_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.start_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">start_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission in different thread.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Mission being performed, start not allowed&#39;</span><span class="p">)</span>
@@ -567,7 +591,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.stop_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.stop_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">stop_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop mission.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;No mission being executed, already stopped&#39;</span><span class="p">)</span>
@@ -578,7 +602,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.next_item">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.next_item">[docs]</a>
-    <span class="k">def</span> <span class="nf">next_item</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">next_item</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Advance to next item in mission.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No mission being executed, next item not allowed&#39;</span><span class="p">)</span>
@@ -588,7 +612,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.pause_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.pause_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">pause_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pause_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Pause mission.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No mission being executed, pause not allowed&#39;</span><span class="p">)</span>
@@ -599,7 +623,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.resume_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.resume_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">resume_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resume_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resume mission.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No mission being executed, resume not allowed&#39;</span><span class="p">)</span>
@@ -610,14 +634,14 @@
 
 <div class="viewcode-block" id="MissionInterpreter.modify_current">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current">[docs]</a>
-    <span class="k">def</span> <span class="nf">modify_current</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify_current</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Modify current item in mission.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
 <div class="viewcode-block" id="MissionInterpreter.append_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.append_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">append_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">append_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Insert mission at the end of the stack.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mission_stack</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">mission</span><span class="o">.</span><span class="n">stack</span><span class="p">)</span></div>
 
@@ -625,7 +649,7 @@
     <span class="c1"># TODO: refactor to current mission_stack</span>
 <div class="viewcode-block" id="MissionInterpreter.insert_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.insert_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">insert_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">insert_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Insert mission in front of the stack.&quot;&quot;&quot;</span>
         <span class="c1"># self._mission_stack.appendleft(self.last_mission_item)</span>
         <span class="n">stack</span> <span class="o">=</span> <span class="n">mission</span><span class="o">.</span><span class="n">stack</span>
@@ -636,7 +660,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.perform_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.perform_mission">[docs]</a>
-    <span class="k">def</span> <span class="nf">perform_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">perform_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a mission.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">performing</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Already performing a mission&#39;</span><span class="p">)</span>
@@ -673,7 +697,7 @@
 
 <div class="viewcode-block" id="MissionInterpreter.reset">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mission</span><span class="p">:</span> <span class="n">Mission</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset Mission Interpreter with other mission.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stop_mission</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
@@ -695,7 +719,7 @@
 
 <div class="viewcode-block" id="test">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.test">[docs]</a>
-<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A doctest in a docstring.</span>
 
@@ -728,7 +752,7 @@
 <span class="s2">    }&quot;&quot;&quot;</span>
     <span class="n">mission</span> <span class="o">=</span> <span class="n">Mission</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">dummy_mission</span><span class="p">)</span>
 
-    <span class="kn">import</span> <span class="nn">rclpy</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
     <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
     <span class="n">interpreter</span> <span class="o">=</span> <span class="n">MissionInterpreter</span><span class="p">(</span><span class="n">mission</span><span class="p">)</span>
     <span class="n">interpreter</span><span class="o">.</span><span class="n">start_mission</span><span class="p">()</span>

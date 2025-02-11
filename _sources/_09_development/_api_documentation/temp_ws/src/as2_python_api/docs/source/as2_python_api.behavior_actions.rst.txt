@@ -68,6 +68,14 @@ as2\_python\_api.behavior\_actions.takeoff\_behavior module
    :undoc-members:
    :show-inheritance:
 
+as2\_python\_api.behavior\_actions.trajectory\_generation\_behavior module
+--------------------------------------------------------------------------
+
+.. automodule:: as2_python_api.behavior_actions.trajectory_generation_behavior
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

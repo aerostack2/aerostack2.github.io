@@ -367,6 +367,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -1107,6 +1131,81 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.modules.takeoff_module.</span></span><span class="sig-name descname"><span class="pre">TakeoffModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface.DroneInterface" title="as2_python_api.drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/modules/takeoff_module.html#TakeoffModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.modules.takeoff_module.TakeoffModule" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#as2_python_api.modules.module_base.ModuleBase" title="as2_python_api.modules.module_base.ModuleBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleBase</span></code></a>, <a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior" title="as2_python_api.behavior_actions.takeoff_behavior.TakeoffBehavior"><code class="xref py py-class docutils literal notranslate"><span class="pre">TakeoffBehavior</span></code></a></p>
 <p>Takeoff module.</p>
+</dd></dl>
+
+</section>
+<section id="module-as2_python_api.modules.trajectory_generation_module">
+<span id="as2-python-api-modules-trajectory-generation-module-module"></span><h2>as2_python_api.modules.trajectory_generation_module module<a class="headerlink" href="#module-as2_python_api.modules.trajectory_generation_module" title="Link to this heading"></a></h2>
+<p>Trajectory Generation module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.modules.trajectory_generation_module.</span></span><span class="sig-name descname"><span class="pre">TrajectoryGenerationModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="as2_python_api.html#as2_python_api.drone_interface.DroneInterface" title="as2_python_api.drone_interface.DroneInterface"><span class="pre">DroneInterface</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/modules/trajectory_generation_module.html#TrajectoryGenerationModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#as2_python_api.modules.module_base.ModuleBase" title="as2_python_api.modules.module_base.ModuleBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleBase</span></code></a>, <a class="reference internal" href="as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.trajectory_generation_behavior.TrajectoryGenerationBehavior" title="as2_python_api.behavior_actions.trajectory_generation_behavior.TrajectoryGenerationBehavior"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrajectoryGenerationBehavior</span></code></a></p>
+<p>Trajectory Generation Module.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_keep_yaw">
+<span class="sig-name descname"><span class="pre">traj_generation_with_keep_yaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'earth'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/modules/trajectory_generation_module.html#TrajectoryGenerationModule.traj_generation_with_keep_yaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_keep_yaw" title="Link to this definition"></a></dt>
+<dd><p>Trajectory generation. With keep yaw mode. Blocking call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>Path</em>) – path to follow</p></li>
+<li><p><strong>speed</strong> (<em>float</em>) – speed (m/s) limit</p></li>
+<li><p><strong>frame_id</strong> (<em>str</em><em>, </em><em>optional</em>) – reference frame of the coordinates, defaults to “earth”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if was accepted, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_path_facing">
+<span class="sig-name descname"><span class="pre">traj_generation_with_path_facing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'earth'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/modules/trajectory_generation_module.html#TrajectoryGenerationModule.traj_generation_with_path_facing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_path_facing" title="Link to this definition"></a></dt>
+<dd><p>Trajectory generation. With path facing yaw mode. Blocking call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>Path</em>) – path to follow</p></li>
+<li><p><strong>speed</strong> (<em>float</em>) – speed (m/s) limit</p></li>
+<li><p><strong>frame_id</strong> (<em>str</em><em>, </em><em>optional</em>) – reference frame of the coordinates, defaults to “earth”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if was accepted, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_yaw">
+<span class="sig-name descname"><span class="pre">traj_generation_with_yaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'earth'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/modules/trajectory_generation_module.html#TrajectoryGenerationModule.traj_generation_with_yaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_yaw" title="Link to this definition"></a></dt>
+<dd><p>Trajectory generation. With desired yaw angle. Blocking call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>Path</em>) – path to follow</p></li>
+<li><p><strong>speed</strong> (<em>float</em>) – speed (m/s) limit</p></li>
+<li><p><strong>yaw_angle</strong> (<em>float</em>) – yaw angle (rad) when fixed yaw is set</p></li>
+<li><p><strong>frame_id</strong> (<em>str</em><em>, </em><em>optional</em>) – reference frame of the coordinates, defaults to “earth”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if was accepted, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>

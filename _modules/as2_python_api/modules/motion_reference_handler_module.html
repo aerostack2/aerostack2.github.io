@@ -364,6 +364,30 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1 : New RViz2 RQT Plugins for Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#brief-description">Brief Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
@@ -429,27 +453,27 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
-<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 
-<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.hover_motion</span> <span class="kn">import</span> <span class="n">HoverMotion</span>
-<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.position_motion</span> <span class="kn">import</span> <span class="n">PositionMotion</span>
-<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.speed_in_a_plane</span> <span class="kn">import</span> <span class="n">SpeedInAPlaneMotion</span>
-<span class="kn">from</span> <span class="nn">as2_motion_reference_handlers.speed_motion</span> <span class="kn">import</span> <span class="n">SpeedMotion</span>
-<span class="kn">from</span> <span class="nn">as2_python_api.modules.module_base</span> <span class="kn">import</span> <span class="n">ModuleBase</span>
-<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_motion_reference_handlers.hover_motion</span><span class="w"> </span><span class="kn">import</span> <span class="n">HoverMotion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_motion_reference_handlers.position_motion</span><span class="w"> </span><span class="kn">import</span> <span class="n">PositionMotion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_motion_reference_handlers.speed_in_a_plane</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpeedInAPlaneMotion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_motion_reference_handlers.speed_motion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpeedMotion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.module_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">std_srvs.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">SetBool</span>
 
 <span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..drone_interface</span> <span class="kn">import</span> <span class="n">DroneInterface</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">..drone_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">DroneInterface</span>
 
 
 <div class="viewcode-block" id="MotionReferenceHandlerModule">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule">[docs]</a>
-<span class="k">class</span> <span class="nc">MotionReferenceHandlerModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MotionReferenceHandlerModule</span><span class="p">(</span><span class="n">ModuleBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Motion Reference Handlers module.&quot;&quot;&quot;</span>
 
     <span class="n">__alias__</span> <span class="o">=</span> <span class="s1">&#39;motion_ref_handler&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span> <span class="o">=</span> <span class="n">drone</span>
 
@@ -467,7 +491,7 @@
 
 <div class="viewcode-block" id="MotionReferenceHandlerModule.hover">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.hover">[docs]</a>
-    <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop and hover current position.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calling trajectory generator&#39;</span><span class="p">)</span>
@@ -482,7 +506,7 @@
 
 <div class="viewcode-block" id="MotionReferenceHandlerModule.destroy">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.motion_reference_handler_module.MotionReferenceHandlerModule.destroy">[docs]</a>
-    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Destroy module, clean exit.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__drone</span><span class="o">.</span><span class="n">destroy_client</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trajectory_gen_cli</span><span class="p">)</span>
 
