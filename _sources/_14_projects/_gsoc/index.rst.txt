@@ -243,7 +243,7 @@ a clear visualization of the console outputs for the different ROS 2 nodes.
    Medium
 
 - **Expected Outcome**
-   To be defined
+   RQT based tool for visualizing ROS 2 nodes output logs from topics or rosbags.
 
 - **Expected Size of the Project**
    Medium (175h)
