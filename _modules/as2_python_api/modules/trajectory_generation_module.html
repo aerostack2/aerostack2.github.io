@@ -592,6 +592,26 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__traj_generation</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                                       <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TrajectoryGenerationModule.traj_generation_with_face_reference">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.trajectory_generation_module.TrajectoryGenerationModule.traj_generation_with_face_reference">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">traj_generation_with_face_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                                            <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trajectory generation. With path facing yaw mode. Blocking call.</span>
+
+<span class="sd">        :param path: path to follow</span>
+<span class="sd">        :type path: Path</span>
+<span class="sd">        :param speed: speed (m/s) limit</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :param frame_id: reference frame of the coordinates, defaults to &quot;earth&quot;</span>
+<span class="sd">        :type frame_id: str, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__traj_generation</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FACE_REFERENCE</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                      <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
