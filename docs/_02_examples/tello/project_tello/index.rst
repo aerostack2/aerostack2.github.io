@@ -8,7 +8,7 @@ To install this project, clone the repository:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/project_tello
+   git clone https://github.com/aerostack2/project_dji_tello
 
 To start using this project, please go to the root folder of the project.
 
