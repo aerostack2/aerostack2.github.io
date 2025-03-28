@@ -24,7 +24,7 @@ The objective of each channel is:
 
 All of them use `ROS 2 topics <https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html>`__ to communicate in a standard way.
 However, Aerostack2 use `ROS 2 Tf2 Library <https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Tf2-Main.html>`__ to set topics frame id.
-This feature allow to stablish messages reference frame and each agent of Aerostack2 can use it to convert the messages to the desired frame.
+This feature allows to establish messages reference frame and each agent of Aerostack2 can use it to convert the messages to the desired frame.
 
 
 
