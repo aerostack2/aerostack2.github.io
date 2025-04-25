@@ -17,6 +17,8 @@ Install the following required extensions from the 'Extensions' tab in VSCode:
 * ``mine.cpplint``
 * ``ms-python.autopep8``
 * ``ms-python.pylint``
+* ``charliermarsh.ruff``
+* ``ms-python.isort``
 
 
 .. _development_guide_code_settings:
