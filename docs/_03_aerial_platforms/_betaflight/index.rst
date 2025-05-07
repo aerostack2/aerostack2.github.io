@@ -22,7 +22,7 @@ All information about the Betaflight FCU and firmware can be found `here <https:
 
 
 
-.. _aerial_platform_px4_installation:
+.. _aerial_platform_betaflight_installation:
 
 ------------
 Installation
@@ -42,7 +42,7 @@ For more details about platform control modes and sensors, see :ref:`Aerostack2 
 
 
 
-.. _aerial_platform_px4_as2_common_interface_control_modes:
+.. _aerial_platform_betaflight_as2_common_interface_control_modes:
 
 Control Modes
 =============
@@ -56,9 +56,6 @@ These are supported control modes:
    * - Control Mode
      - Yaw Mode
      - Reference Frame
-   * - Hover
-     - None
-     - None
    * - Acro
      - None
      - None
@@ -79,9 +76,6 @@ These are supported sensors:
    * - Sensor
      - Topic
      - Type
-   * - Odometry
-     - sensor_measurements/odom
-     - nav_msgs/Odometry
    * - IMU
      - sensor_measurements/imu
      - sensor_msgs/Imu
