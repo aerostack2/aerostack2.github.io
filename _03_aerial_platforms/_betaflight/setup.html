@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Betaflight Setup &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/multirotor_simulator/project_multirotor_simulator/index.html">Simple Multirotor Simulator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/tello/index.html">Ryze DJI Tello</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/tello/project_tello/index.html">Simple Tello Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/dji/index.html">DJI OSDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_multirotor_simulator/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_multirotor_simulator/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_multirotor_simulator/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_multirotor_simulator/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_multirotor_simulator/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_multirotor_simulator/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_multirotor_simulator/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_multirotor_simulator/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_ryze_tello/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_pixhawk/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_mavlink/index.html">Mavlink</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_mavlink/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_mavlink/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_mavlink/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_mavlink/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_mavlink/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_mavlink/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_dji_osdk/index.html">DJI Matrice Series OSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_osdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_osdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_osdk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_osdk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_osdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_osdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_osdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_osdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_psdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_psdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_psdk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_psdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../_dji_psdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../_dji_psdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">Betaflight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_09_development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_09_development/_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_09_development/_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-worlds">Adding New Worlds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-models-and-objects">Adding New Models and Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#configuring-new-sensors">Configuring New Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html">Create New Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-aerial-platform">Create a New Gazebo Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-sensor">Create a New Gazebo Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_09_development/_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_14_projects/index.html#google-summer-of-code-gsoc">Google Summer of Code (GSoC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2025">Ideas List for GSoC 2025</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-1-new-rviz2-rqt-plugins-for-aerostack2">Project #1: New RViz2 RQT Plugins for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-2-rqt-keyboard-teleoperation-alphanumeric-view">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-4-tool-for-visualizing-ros-nodes-output-log">Project #4: Tool for visualizing ROS Nodes output log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-5-system-integration-tests-and-continuous-integration">Project #5: System Integration Tests and Continuous Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-6-development-of-a-project-creation-tool-for-aerostack2">Project #6: Development of a Project Creation Tool for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-7-migration-to-ros-2-jazzy-and-gazebo-harmonic">Project #7: Migration to ROS 2 Jazzy and Gazebo Harmonic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#project-8-behavior-client-implementation-for-c">Project #8: Behavior Client Implementation for C++</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2025">Application instructions for GSoC 2025</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#application-form">Application Form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#how-to-increase-your-chances-of-being-selected-in-gsoc-2025">How to increase your chances of being selected in GSoC-2025</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Betaflight Setup</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_03_aerial_platforms/_betaflight/setup.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="betaflight-setup">
+<span id="aerial-platform-betaflight-setup"></span><h1>Betaflight Setup<a class="headerlink" href="#betaflight-setup" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#connect-to-betaflight-controller" id="id1">0. Connect to Betaflight controller</a></p>
+<ul>
+<li><p><a class="reference internal" href="#flash-new-firmware" id="id2">0.1 Flash New Firmware</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#configure-ports" id="id3">1. Configure Ports</a></p></li>
+<li><p><a class="reference internal" href="#check-general-configuration" id="id4">2. Check General Configuration</a></p></li>
+<li><p><a class="reference internal" href="#set-failsafe" id="id5">3. Set Failsafe</a></p></li>
+<li><p><a class="reference internal" href="#set-controller-rates" id="id6">4. Set Controller Rates</a></p></li>
+<li><p><a class="reference internal" href="#check-receiver-configuration" id="id7">5. Check Receiver Configuration</a></p></li>
+<li><p><a class="reference internal" href="#set-controller-modes" id="id8">6. Set Controller Modes</a></p></li>
+<li><p><a class="reference internal" href="#check-motors-mixer-matrix" id="id9">7. Check Motors Mixer Matrix</a></p></li>
+<li><p><a class="reference internal" href="#additional-cli-commands" id="id10">8. Additional CLI commands</a></p></li>
+</ul>
+</nav>
+<section id="connect-to-betaflight-controller">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">0. Connect to Betaflight controller</a><a class="headerlink" href="#connect-to-betaflight-controller" title="Link to this heading"></a></h2>
+<p>The Aerostack2 Betaflight platform has only been tested using Betaflight 4.4.0 version of the firmware, so first make sure this is the version you are working with. To do so, connect to the controller via USB to your PC.
+Go to <a class="reference external" href="https://app.betaflight.com/">https://app.betaflight.com/</a> (requires a chromium based browser like Chrome or Edge) and click on the ‘Select your device’ dropdown menu.</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/1-btfl_home.png"><img alt="../../_images/1-btfl_home.png" class="with-shadow" src="../../_images/1-btfl_home.png" style="width: 624.5px; height: 168.0px;" /></a>
+</figure>
+<p>If it is the first time you are connecting to the controller, you will not see it on the menu so click on  ‘– I can’t find my USB device –’. A window will pop up with the different devices detected, presumably only the one you want to connect to. Select it and then click ‘Connect’ on the top right corner</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/2-btfl_device.png"><img alt="../../_images/2-btfl_device.png" class="with-shadow" src="../../_images/2-btfl_device.png" style="width: 804.5px; height: 299.5px;" /></a>
+</figure>
+<p>On the top left corner, you can check what Betaflight version your controller has. In this case, it’s 4.5.1 BTFL.</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/3-btfl_version.png"><img alt="../../_images/3-btfl_version.png" class="with-shadow" src="../../_images/3-btfl_version.png" style="width: 471.0px; height: 190.5px;" /></a>
+</figure>
+<section id="flash-new-firmware">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">0.1 Flash New Firmware</a><a class="headerlink" href="#flash-new-firmware" title="Link to this heading"></a></h3>
+<p>To flash a different version of the firmware, click on ‘Update Firmware’ at the top right corner. Focus on the top left part of the Firmware Flasher menu. Use the ‘Detect’ option next to the ‘Choose a board’ menu to automatically pick your board, and look for the specific version you want to install (in our case it’s 4.4.0).</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/4-1-btfl_firmware_version.png"><img alt="../../_images/4-1-btfl_firmware_version.png" class="with-shadow" src="../../_images/4-1-btfl_firmware_version.png" style="width: 408.5px; height: 312.5px;" /></a>
+</figure>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/4-2-btfl_firmware_version.png"><img alt="../../_images/4-2-btfl_firmware_version.png" class="with-shadow" src="../../_images/4-2-btfl_firmware_version.png" style="width: 408.5px; height: 312.5px;" /></a>
+</figure>
+<p>In the downside menu, select ‘GHOST’ as the ‘Radio Protocol’ and don’t change the default ‘Telemetry Protocol’. Select ‘Digital’ as the ‘OSD Protocol’ and check that the ‘Motor Protocol’ is set to ‘DSHOT’. Don’t forget to add the ‘ESC Serial (SK) inc. 4way’ option to the ‘Other Options’ menu. To add it, click on the menu bar next to the rest of options to open the dropdown. In the end, your Build Configuration should look like this</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/5-btfl_firmware_options.png"><img alt="../../_images/5-btfl_firmware_options.png" class="with-shadow" src="../../_images/5-btfl_firmware_options.png" style="width: 807.5px; height: 174.5px;" /></a>
+</figure>
+<p>You can now click on ‘Load Firmware [Online]’ to set up the firmware, and click on ‘Flash Firmware’ once it is ready</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/6-btfl_firmware_flash.png"><img alt="../../_images/6-btfl_firmware_flash.png" class="with-shadow" src="../../_images/6-btfl_firmware_flash.png" style="width: 814.5px; height: 173.5px;" /></a>
+</figure>
+<p>To check that the new version has been correctly flashed, reload the page and connect to the controller to see that the version is ‘4.4.0 BTFL’ now. The first time you reconnect, a pop up will appear. Select the option ‘Apply custom defaults’ to close the window.</p>
+</section>
+</section>
+<section id="configure-ports">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">1. Configure Ports</a><a class="headerlink" href="#configure-ports" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>FROM NOW ON AND UP UNTIL STEP 8, AFTER EACH STEP, REMEMBER TO CLICK ON SAVE AT THE BOTTOM RIGHT OF EACH SCREEN BEFORE MOVING TO A NEW SCREEN.</p>
+</div>
+<p>On the ‘Ports’ menu, the following ports must be enabled:</p>
+<ul class="simple">
+<li><p>UART 2: enable the ‘Serial Rx’ check</p></li>
+<li><p>UART 3: enable the ‘Configuration/MSP’ check so that NX can connect to the controller</p></li>
+<li><p>For competition purposes, UART 7 needs the ‘Configuration/MSP’ check enabled and the ‘Peripherals’ dropdown set to ‘VTX (MSP + Displayport)’. If the drone is not going to be using VTX, this port can be left disabled.</p></li>
+<li><p>UART 1: disable the ‘Configuration/MSP’ check</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may notice there is a big warning message telling you to NOT disable the first serial port unless you know what your are doing. Well, we DO know what we are doing so be not afraid and disable it.</p>
+</div>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/7-btfl_ports.png"><img alt="../../_images/7-btfl_ports.png" class="with-shadow" src="../../_images/7-btfl_ports.png" style="width: 777.0px; height: 216.0px;" /></a>
+</figure>
+</section>
+<section id="check-general-configuration">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">2. Check General Configuration</a><a class="headerlink" href="#check-general-configuration" title="Link to this heading"></a></h2>
+<p>On the ‘Configuration’ screen, check the following options:</p>
+<ul class="simple">
+<li><p>On the ‘System configuration’ menu, disable ‘Magnetometer’. This is not really important, but since the controller we are using does not have a magnetometer there is no point in leaving this enabled.</p></li>
+<li><p>On the ‘Board Alignment’ menu, set ‘Yaw Degrees’ to 180 as the IMU is turned around when mounted on the drone.</p></li>
+<li><p>On the ‘Other Features’ menu, disable ‘AIRMODE’ and enable ‘LED STRIP’, if you want to use the LED lights on the drone, and ‘OSD’.</p></li>
+</ul>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/8-1-btfl_general_configuration.png"><img alt="../../_images/8-1-btfl_general_configuration.png" class="with-shadow" src="../../_images/8-1-btfl_general_configuration.png" style="width: 813.0px; height: 204.0px;" /></a>
+</figure>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/8-2-btfl_general_configuration.png"><img alt="../../_images/8-2-btfl_general_configuration.png" class="with-shadow" src="../../_images/8-2-btfl_general_configuration.png" style="width: 412.0px; height: 220.0px;" /></a>
+</figure>
+</section>
+<section id="set-failsafe">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">3. Set Failsafe</a><a class="headerlink" href="#set-failsafe" title="Link to this heading"></a></h2>
+<p>On the Failsafe Switch menu, set the ‘Failsafe Switch Action’ to ‘Kill’ so that the drone fully stop when ‘Failsafe’ is activated from the controller.</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/9-btfl_failsafe.png"><img alt="../../_images/9-btfl_failsafe.png" class="with-shadow" src="../../_images/9-btfl_failsafe.png" style="width: 816.5px; height: 146.5px;" /></a>
+</figure>
+</section>
+<section id="set-controller-rates">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">4. Set Controller Rates</a><a class="headerlink" href="#set-controller-rates" title="Link to this heading"></a></h2>
+<p>On the ‘PID Tuning’ screen, select the ‘Rateprofile Settings’ menu and set the ‘RC Rate’ for each ROLL, PITCH and YAW to 1.80. Set every other fields to 0. The result should be three lineal curves ranging from –360 to 360 deg/s like the ones on the image</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/10-btfl_rates.png"><img alt="../../_images/10-btfl_rates.png" class="with-shadow" src="../../_images/10-btfl_rates.png" style="width: 374.5px; height: 399.5px;" /></a>
+</figure>
+</section>
+<section id="check-receiver-configuration">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">5. Check Receiver Configuration</a><a class="headerlink" href="#check-receiver-configuration" title="Link to this heading"></a></h2>
+<p>On the ‘Receiver’ screen, set the ‘Receiver Mode’ to ‘Serial (via UART)’ and the ‘Serial Receiver Provider to ‘IRC GHOST’.</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/11-btfl_receiver.png"><img alt="../../_images/11-btfl_receiver.png" class="with-shadow" src="../../_images/11-btfl_receiver.png" style="width: 488.5px; height: 122.5px;" /></a>
+</figure>
+</section>
+<section id="set-controller-modes">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">6. Set Controller Modes</a><a class="headerlink" href="#set-controller-modes" title="Link to this heading"></a></h2>
+<p>On the ‘Modes’ screen, search for the following modes and set them to the next channels and values:</p>
+<ul class="simple">
+<li><p>ARM: set the ‘ARM’ mode to channel ‘AUX 1’ and select a range that includes the 2000 value, for instance the 1700 – 2100 shown on the image.</p></li>
+<li><p>ANGLE: this is the mode for ACRO flights using the RC controller. Set it to channel ‘AUX 2’ and select a range that includes value 1000, like the range 900-1600 shown on the image. By setting it this way, the RC controller has control of the drone as long as the ‘Offboard’ switch is not activated.</p></li>
+<li><p>FAILSAFE: set this mode to channel ‘AUX 5’ and select a range that includes value 2000. This switch will kill the motors in case the drone loses control of itself.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>REMEMBER TO CLICK SAVE BEFORE LEAVING THIS SCREEN</p>
+</div>
+<p>There is one more mode to set but it is not visible yet. For this mode  to be set, click on the ‘CLI’ screen of the left side menu. On the command prompt of this screen, type the next command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">msp_override_channels_mask</span><span class="o">=</span><span class="mi">15</span>
+</pre></div>
+</div>
+<p>The value 15 is the decimal codification of the first for channels of the RC controller, this is, the ones used for Thrust, Roll, Pitch and Yaw. Once ‘Offboard’ switch is activated, MSP stops listening to the RC controller channels selected using this mask and listens to messages sent from the onboard computer. If this channels are not specified, all the channels would be overridden and it would be impossible for the pilot to recover control of the controller.</p>
+<p>Type the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">save</span>
+</pre></div>
+</div>
+<p>on the CLI command prompt and go back to the ‘Modes’ screen. You should be able to find a new mode:</p>
+<ul class="simple">
+<li><p>MSP OVERRIDE: set this new mode to channel ‘AUX 2’, same as the ‘ANGLE’ mode, and select a range complementary to the ‘ANGLE’ one that includes value 2000, like shown on the image.</p></li>
+</ul>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/12-btfl_modes.png"><img alt="../../_images/12-btfl_modes.png" class="with-shadow" src="../../_images/12-btfl_modes.png" style="width: 815.0px; height: 254.0px;" /></a>
+</figure>
+<p>The channels specified for each mode correspond to the sticks and buttons shown in the following image</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/botones.png"><img alt="../../_images/botones.png" class="with-shadow" src="../../_images/botones.png" style="width: 327.0px; height: 184.5px;" /></a>
+</figure>
+<p>This is the configuration used by us, but you can change it to the one you feel the more comfortable with. Just make sure each mode is attached to the channel of the stick you want to use.</p>
+</section>
+<section id="check-motors-mixer-matrix">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">7. Check Motors Mixer Matrix</a><a class="headerlink" href="#check-motors-mixer-matrix" title="Link to this heading"></a></h2>
+<p>On the ‘Motors’ screen, verify that the ‘Mixer’ matrix (rotors configuration) is the same as the image:</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/13-btfl_mixer.png"><img alt="../../_images/13-btfl_mixer.png" class="with-shadow" src="../../_images/13-btfl_mixer.png" style="width: 413.0px; height: 204.0px;" /></a>
+</figure>
+<p>Additionally, a rotor test can be performed to double check the rotors configuration.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do NOT perform the rotor test with propellers mounted</p>
+</div>
+<p>Connect a battery and ‘understand the serious risks of injury’. This will enable the first for slide bars that control each rotor. One by one, move them to a value of approximately 1150 (never more than 1200) and check that the rotor is turning in the right direction. Once you are done testing, click on ‘Stop motors’.</p>
+<figure class="align-default">
+<a class="with-shadow reference internal image-reference" href="../../_images/14-btfl_motors.png"><img alt="../../_images/14-btfl_motors.png" class="with-shadow" src="../../_images/14-btfl_motors.png" style="width: 409.5px; height: 267.5px;" /></a>
+</figure>
+</section>
+<section id="additional-cli-commands">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">8. Additional CLI commands</a><a class="headerlink" href="#additional-cli-commands" title="Link to this heading"></a></h2>
+<p>There is a couple final steps to be followed on the ‘CLI’ screen.</p>
+<ul class="simple">
+<li><p>To increase the IMU (and any other serial message publication) frequency, a parameter has to be set using the command</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">serial_update_rate_hz</span><span class="o">=</span><span class="mi">500</span>
+</pre></div>
+</div>
+<p>This parameter can be set to up to 2000, but 500 is enough for the IMU to publish at 200 Hz. The IMU publication rate can be set in the as2_platform_betaflight configuration file, but increasing the rate there without setting the serial_update_rate_hz will result in the IMU not being able to reach the desired publication rate.</p>
+<ul class="simple">
+<li><p>After everything is set, the ‘Save to File’ option can be used to save all configuration parameters to a .txt file that can later be loaded from this same CLI screen to automatically configure the controller after the correct version has been flashed (steps 1-8 of this guide). In fact, a .txt file with the 4.4.0 BTFL with all the A2RL configuration already exists that can be loaded, but it is a better idea to follow the complete guide and learn to set the Betaflight controller 😊</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>REMEMBER TO RUN THE COMMAND</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">save</span>
+</pre></div>
+</div>
+<p>SO YOUR CHANGES ARE NOT LOST.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
