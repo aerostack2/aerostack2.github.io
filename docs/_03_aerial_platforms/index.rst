@@ -19,3 +19,4 @@ Currently, the following aerial platforms are supported:
   _mavlink/index.rst
   _dji_osdk/index.rst
   _dji_psdk/index.rst
+  _betaflight/index.rst
