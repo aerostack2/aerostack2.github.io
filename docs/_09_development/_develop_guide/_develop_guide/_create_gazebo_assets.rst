@@ -422,6 +422,68 @@ If you want your new type of sensor to be mounted on a Gimbal, a ``model.sdf.jin
 
 Just like any other model, the sensor models can be either added to the ``as2_gazebo_assets/models`` folder or to the ``models`` folder in your project.
 
+If your new sensor needs a Jinja template to be loaded, you need to add it to the list of sensors with Jinja template of the drone model you are goint to use.
+This list is on the ``drone-model.sdf.jinja``, and consists on a series of ``if-else`` that checks the name of the sensor in case it has a Jinja template to be loaded.
+On the default ``quadrotor-base`` model, the list looks like this:
+
+.. code-block:: sdf
+
+    {% for sensor in sensors -%}
+        <!-- Payload {{ sensor.model }} -->
+          {% if sensor.model == 'gimbal_position' -%}
+
+              {# Gimbal position - include or basic render  #}
+              {% include 'models/gimbal/position_gimbal.sdf.jinja' with context %}
+
+          {% elif sensor.model == 'gimbal_speed' -%}
+
+              {# Gimbal speed - include or basic render  #}
+              {% include 'models/gimbal/speed_gimbal.sdf.jinja' with context %}
+
+          {% elif sensor.model == 'hd_camera' and not sensor.gimbaled -%}
+
+              {% include 'models/hd_camera/hd_camera.sdf.jinja' with context %}
+
+          {% elif sensor.model == 'vga_camera' and not sensor.gimbaled -%}
+
+              {% include 'models/vga_camera/vga_camera.sdf.jinja' with context %}
+
+          {% elif sensor.model == 'semantic_camera' and not sensor.gimbaled -%}
+
+              {% include 'models/semantic_camera/semantic_camera.sdf.jinja' with context %}
+
+          {% elif sensor.model == 'rgbd_camera' and not sensor.gimbaled -%}
+
+              {% include 'models/rgbd_camera/rgbd_camera.sdf.jinja' with context %}
+
+          {% elif sensor.gimbaled -%}
+
+          {% else -%}
+              <include>
+                  <name>{{ sensor.name }}</name>
+                  <uri>model://{{ sensor.model }}</uri>
+                  <pose
+                      relative_to="base_link">
+                      {{ sensor.pose }}
+                  </pose>
+              </include>
+              <joint
+                  name="{{ sensor.name }}_joint" type="fixed">
+                  <parent>base_link</parent>
+                  <child>{{ sensor.name }}</child>
+              </joint>
+          {% endif -%}
+      {% endfor -%}
+
+so before the line ``{% elif sensor.gimbaled -%}``, add the following lines:
+
+.. code-block:: sdf
+
+    {% elif sensor.model == 'your-sensor' and not sensor.gimbaled -%}
+        {% include 'models/your-sensor/your-sensor.sdf.jinja' with context %}
+
+If this lines are not added, the default ``your-sensor.sdf`` model will be loaded.
+
 2. Adding a bridge for your sensor
 ----------------------------------
 
