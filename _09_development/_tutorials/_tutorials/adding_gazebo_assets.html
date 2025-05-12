@@ -848,6 +848,63 @@ The template renders all the model components on Gazebo so that all topics are p
 </div>
 <p>Using this template, the name of the model for Gazebo as well as some other information is retrieved from the simulation configuration file, so that you only have to adjust the camera parameters. Parameters can be adjusted to the intrinsics of your own camera.</p>
 <p>Just like any other model, the sensor models can be either added to the <code class="docutils literal notranslate"><span class="pre">as2_gazebo_assets/models</span></code> folder or to the <code class="docutils literal notranslate"><span class="pre">models</span></code> folder in your project. The <code class="docutils literal notranslate"><span class="pre">model.sdf.jinja</span></code> file replaces the usual <code class="docutils literal notranslate"><span class="pre">model.sdf</span></code> file, although both files can coexist.</p>
+<p>To mount it on Gimbal, your new sensor needs a Jinja template to be loaded, you need to add it to the list of sensors with Jinja template of the drone model you are goint to use.
+This list is on the <code class="docutils literal notranslate"><span class="pre">drone-model.sdf.jinja</span></code> file, and consists on a series of <code class="docutils literal notranslate"><span class="pre">if-else</span></code> that checks the name of the sensor in case it has a Jinja template to be loaded.
+On the default <code class="docutils literal notranslate"><span class="pre">quadrotor-base</span></code> model, the list looks like this:</p>
+<div class="highlight-sdf notranslate"><div class="highlight"><pre><span></span>{% for sensor in sensors -%}
+    &lt;!-- Payload {{ sensor.model }} --&gt;
+      {% if sensor.model == &#39;gimbal_position&#39; -%}
+
+          {# Gimbal position - include or basic render  #}
+          {% include &#39;models/gimbal/position_gimbal.sdf.jinja&#39; with context %}
+
+      {% elif sensor.model == &#39;gimbal_speed&#39; -%}
+
+          {# Gimbal speed - include or basic render  #}
+          {% include &#39;models/gimbal/speed_gimbal.sdf.jinja&#39; with context %}
+
+      {% elif sensor.model == &#39;hd_camera&#39; and not sensor.gimbaled -%}
+
+          {% include &#39;models/hd_camera/hd_camera.sdf.jinja&#39; with context %}
+
+      {% elif sensor.model == &#39;vga_camera&#39; and not sensor.gimbaled -%}
+
+          {% include &#39;models/vga_camera/vga_camera.sdf.jinja&#39; with context %}
+
+      {% elif sensor.model == &#39;semantic_camera&#39; and not sensor.gimbaled -%}
+
+          {% include &#39;models/semantic_camera/semantic_camera.sdf.jinja&#39; with context %}
+
+      {% elif sensor.model == &#39;rgbd_camera&#39; and not sensor.gimbaled -%}
+
+          {% include &#39;models/rgbd_camera/rgbd_camera.sdf.jinja&#39; with context %}
+
+      {% elif sensor.gimbaled -%}
+
+      {% else -%}
+          &lt;include&gt;
+              &lt;name&gt;{{ sensor.name }}&lt;/name&gt;
+              &lt;uri&gt;model://{{ sensor.model }}&lt;/uri&gt;
+              &lt;pose
+                  relative_to=&quot;base_link&quot;&gt;
+                  {{ sensor.pose }}
+              &lt;/pose&gt;
+          &lt;/include&gt;
+          &lt;joint
+              name=&quot;{{ sensor.name }}_joint&quot; type=&quot;fixed&quot;&gt;
+              &lt;parent&gt;base_link&lt;/parent&gt;
+              &lt;child&gt;{{ sensor.name }}&lt;/child&gt;
+          &lt;/joint&gt;
+      {% endif -%}
+  {% endfor -%}
+</pre></div>
+</div>
+<p>so before the line <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">elif</span> <span class="pre">sensor.gimbaled</span> <span class="pre">-%}</span></code>, add the following lines:</p>
+<div class="highlight-sdf notranslate"><div class="highlight"><pre><span></span>{% elif sensor.model == &#39;your-sensor&#39; and not sensor.gimbaled -%}
+    {% include &#39;models/your-sensor/your-sensor.sdf.jinja&#39; with context %}
+</pre></div>
+</div>
+<p>If this lines are not added, the default <code class="docutils literal notranslate"><span class="pre">your-sensor.sdf</span></code> model will be loaded.</p>
 </section>
 </section>
 </section>
