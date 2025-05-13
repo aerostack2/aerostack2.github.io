@@ -86,10 +86,6 @@ Open your ``settings.json`` file from VSCode and add the following content to it
     },
     // isort to enforce propper import order
     "isort.args": ["--line-length", "99", "--force-alphabetical-sort-within-sections", "--profile", "black", "--force-sort-within-sections"],
-    "pylint.args": ["--disable=B902,C816,D100,D101,D102,D103,D104,D105,D106,D107,D203,D212,D404,I202",
-                "--max-line-length=99", "--import-order-style=google", "--show-source=true",
-                "--statistics=true"
-    ]
 
 Newer versions of ROS 2 include upgraded flake8 (in ament_flake8), so it is preferable to use
 flake8 from VSCode too instead of pylint. To do so, use, instead of the 'pylint.args' settings,
