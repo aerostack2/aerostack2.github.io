@@ -518,16 +518,14 @@
 <section id="customize-the-script-program">
 <h4><a class="toc-backref" href="#id9" role="doc-backlink">Customize the script program</a><a class="headerlink" href="#customize-the-script-program" title="Link to this heading"></a></h4>
 <p>You need to modify the script to use the correct USB-UDC port.</p>
-<p>For the AGX:
-.. code-block:: console</p>
-<blockquote>
-<div><p>sed -i ‘s/3550000.xudc/3550000.usb/g’ nv-l4t-usb-device-mode-start.sh</p>
-</div></blockquote>
-<p>For the NX:
-.. code-block:: console</p>
-<blockquote>
-<div><p>sed -i ‘s/3550000.usb/3550000.xudc/g’ nv-l4t-usb-device-mode-start.sh</p>
-</div></blockquote>
+<p>For the AGX:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sed -i &#39;s/3550000\.xudc/3550000.usb/g&#39; nv-l4t-usb-device-mode-start.sh</span>
+</pre></div>
+</div>
+<p>For the NX:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sed -i &#39;s/3550000\.usb/3550000.xudc/g&#39; nv-l4t-usb-device-mode-start.sh</span>
+</pre></div>
+</div>
 </section>
 <section id="grab-bulk-mode-program-folder">
 <h4><a class="toc-backref" href="#id10" role="doc-backlink">Grab bulk-mode program folder</a><a class="headerlink" href="#grab-bulk-mode-program-folder" title="Link to this heading"></a></h4>
