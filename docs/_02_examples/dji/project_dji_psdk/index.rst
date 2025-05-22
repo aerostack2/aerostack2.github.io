@@ -1,22 +1,22 @@
-.. _project_dji_osdk:
+.. _project_dji_psdk:
 
 ================
-DJI OSDK Example
+DJI PSDK Example
 ================
 
-These examples use the :ref:`OSDK DJI Platform <aerial_platform_dji_matrice_osdk_osdk>`. 
-You can install it following the instructions in :ref:`installation section <aerial_platform_dji_matrice_osdk_installation>`.
+These examples use the :ref:`PSDK DJI Platform <aerial_platform_dji_matrice_psdk_psdk>`. 
+You can install it following the instructions in :ref:`installation section <aerial_platform_dji_matrice_psdk_installation>`.
 
 To install this project, please clone the repository:
 
 .. code-block:: bash
 
-   git clone https://github.com/aerostack2/project_dji_osdk
+   git clone https://github.com/aerostack2/project_dji_psdk
 
 To start using this project, please go to the root folder of the project.
 
 
-.. _project_dji_osdk_execution:
+.. _project_dji_psdk_execution:
 
 ---------
 Execution

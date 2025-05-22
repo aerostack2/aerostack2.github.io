@@ -1,11 +1,12 @@
 .. _examples_dji:
 
-========
-DJI OSDK
-========
+=======
+DJI SDK
+=======
 
 These examples use the :ref:`DJI Platform <aerial_platform_dji_matrice>`. 
-You can install it following the instructions in :ref:`installation section <aerial_platform_dji_matrice_installation>`.
+You can install it following the instructions in :ref:`psdk platform installation section <aerial_platform_dji_matrice_psdk_installation>` for the PSDK or 
+:ref:`osdk platform installation section <aerial_platform_dji_matrice_osdk_installation>` for the OSDK (deprecated).
 
 .. figure:: resources/DJI_M300.jpg
    :scale: 15
@@ -13,7 +14,7 @@ You can install it following the instructions in :ref:`installation section <aer
 
 .. raw:: html
 
-   <h2>List of examples based on DJI OSDK</h2>
+   <h2>List of examples based on DJI SDK</h2>
 
 ---------------------
 
@@ -21,4 +22,5 @@ You can install it following the instructions in :ref:`installation section <aer
    :maxdepth: 1
 
    project_dji_osdk/index.rst
+   project_dji_psdk/index.rst
 

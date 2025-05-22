@@ -229,6 +229,27 @@ Then verify with:
 
 You should see an entry for `l4tbr0`. If not, repeat the above steps.
 
+.. note::
+
+This leaves both bulk and network mode enabled. You can switch between them by running the appropriate command. In
+order to connect to the drone, either in bulk or network mode, you need to run the platform with the following JSON parameter values:
+
+.. code-block:: json
+
+   .
+   .
+   .
+    "uart_config": {
+      "uart1_device_name": "/dev/ttyUSB0",
+      "uart2_device_enable": "true",
+      "uart2_device_name": "/dev/ttyACM0"
+    },
+    "network_config": {
+      "network_device_name": "l4tbr0",
+      "network_usb_adapter_vid": "0x0B95",
+      "network_usb_adapter_pid": "0x1790"
+    }
+   
 
 .. _aerial_platform_dji_matrice_psdk_installation_package:
 
