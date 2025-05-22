@@ -66,11 +66,13 @@ Customize the script program
 You need to modify the script to use the correct USB-UDC port.
 
 For the AGX:
+
 .. code-block:: console
 
    sed -i 's/3550000\.xudc/3550000.usb/g' nv-l4t-usb-device-mode-start.sh
 
 For the NX:
+
 .. code-block:: console
 
    sed -i 's/3550000\.usb/3550000.xudc/g' nv-l4t-usb-device-mode-start.sh
