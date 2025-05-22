@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simple Multirotor Simulator Example &mdash; Aerostack2 1.0 documentation</title>
+  <title>DJI PSDK Example &mdash; Aerostack2 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Gazebo Simulator" href="../../gazebo/index.html" />
-    <link rel="prev" title="Multirotor Simulator" href="../index.html" /> 
+    <link rel="next" title="Pixhawk 4" href="../../pixhawk/index.html" />
+    <link rel="prev" title="DJI OSDK Example" href="../project_dji_osdk/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -96,8 +96,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#basics-examples">Basics Examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Multirotor Simulator</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Simple Multirotor Simulator Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multirotor_simulator/project_multirotor_simulator/index.html">Simple Multirotor Simulator Example</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../gazebo/index.html">Gazebo Simulator</a><ul>
@@ -113,9 +113,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../tello/project_tello/index.html">Simple Tello Example</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../dji/index.html">DJI SDK</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../dji/project_dji_psdk/index.html">DJI PSDK Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">DJI SDK</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../project_dji_osdk/index.html">DJI OSDK Example</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">DJI PSDK Example</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../pixhawk/index.html">Pixhawk 4</a><ul>
@@ -433,10 +433,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Examples</a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Multirotor Simulator</a></li>
-      <li class="breadcrumb-item active">Simple Multirotor Simulator Example</li>
+          <li class="breadcrumb-item"><a href="../index.html">DJI SDK</a></li>
+      <li class="breadcrumb-item active">DJI PSDK Example</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_02_examples/multirotor_simulator/project_multirotor_simulator/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_02_examples/dji/project_dji_psdk/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -444,126 +444,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="simple-multirotor-simulator-example">
-<span id="project-ms"></span><h1>Simple Multirotor Simulator Example<a class="headerlink" href="#simple-multirotor-simulator-example" title="Link to this heading"></a></h1>
-<p>To install this project, clone the repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_as2_multirotor_simulator.git
+  <section id="dji-psdk-example">
+<span id="project-dji-psdk"></span><h1>DJI PSDK Example<a class="headerlink" href="#dji-psdk-example" title="Link to this heading"></a></h1>
+<p>These examples use the <a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerial-platform-dji-matrice-psdk-psdk"><span class="std std-ref">PSDK DJI Platform</span></a>.
+You can install it following the instructions in <a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerial-platform-dji-matrice-psdk-installation"><span class="std std-ref">installation section</span></a>.</p>
+<p>To install this project, please clone the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/aerostack2/project_dji_psdk
 </pre></div>
 </div>
 <p>To start using this project, please go to the root folder of the project.</p>
-<section id="launching">
-<span id="project-ms-launching"></span><h2>Launching<a class="headerlink" href="#launching" title="Link to this heading"></a></h2>
-<p>The execution on the project is split into two parts: Aerostack2 components and ground station.</p>
-<section id="launching-aerostack2">
-<h3>Launching Aerostack2<a class="headerlink" href="#launching-aerostack2" title="Link to this heading"></a></h3>
-<p>To launch the Aerostack2 components, execute the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash
+<section id="execution">
+<span id="project-dji-psdk-execution"></span><h2>Execution<a class="headerlink" href="#execution" title="Link to this heading"></a></h2>
+<p>Available launch arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>: estimator type. Allowed values [<code class="docutils literal notranslate"><span class="pre">gps_odometry</span></code>, <code class="docutils literal notranslate"><span class="pre">raw_odometry</span></code>, <code class="docutils literal notranslate"><span class="pre">mocap</span></code>]. Default: <code class="docutils literal notranslate"><span class="pre">gps_odometry</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: use custom dron namespace.</p></li>
+</ul>
+<p>In order to launch the components, do:</p>
+<ul class="simple">
+<li><p>For the <strong>mocap</strong> version, do:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>mocap<span class="w"> </span>-t
 </pre></div>
 </div>
-<p>Launcher offers a few options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: motion controller plugin (pid_speed_controller, differential_flatness_controller), choices: [pid, df]. Default: pid</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: multi agent. Default not set</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: select drones namespace to launch, values are comma separated. By default, it will get all drones from world description file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal instead of tmux. Default not set</p></li>
+<li><p>For the <strong>odometry</strong> indoor version, do:</p></li>
 </ul>
-</section>
-<section id="launching-ground-station">
-<h3>Launching Ground Station<a class="headerlink" href="#launching-ground-station" title="Link to this heading"></a></h3>
-<p>To launch the ground station, execute the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_ground_station.bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>raw_odometry<span class="w"> </span>-t
 </pre></div>
 </div>
-<p>Launcher offers a different pool of options to customize the execution. <code class="docutils literal notranslate"><span class="pre">./launch_ground_station.bash</span> <span class="pre">-h</span></code> will show option list. Options can be set with the following flags:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: multi agent. Default not set</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: launch keyboard teleoperation. Default not launch</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>: open rviz. Default launch</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: record rosbag. Default not launch</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>: drone namespaces, comma separated. Default get from world description config file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code>: launch using gnome-terminal instead of tmux. Default not set</p></li>
+<li><p>For the <strong>odometry</strong> outdoor version, do:</p></li>
 </ul>
-</section>
-<section id="closing">
-<h3>Closing<a class="headerlink" href="#closing" title="Link to this heading"></a></h3>
-<p>Close all nodes (aerostack2 and ground_station) with the following command executing outside the tmux session:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./launch_as2.bash<span class="w"> </span>-e<span class="w"> </span>gps_odometry<span class="w"> </span>-t
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-server</span></code> will have a similar effect but closing all tmux sessions, so be careful if you have other tmux sessions running.</p>
-<p>If launcher was executed with the flag <code class="docutils literal notranslate"><span class="pre">-g</span></code>, closing should be done manually exiting all gnome-terminal tabs.</p>
+<p>Before launching the components with <strong>mocap</strong>, it is also necessary to set the file <code class="docutils literal notranslate"><span class="pre">real_config/mocap.yaml</span></code>. This file will be used by the state estimator mocap plugin to
+get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization <a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#ros2-common-interfaces-state-estimator-topics"><span class="std std-ref">topics</span></a>.</p>
 </div>
-</section>
-</section>
-<section id="mission-execution">
-<span id="project-ms-mission"></span><h2>Mission execution<a class="headerlink" href="#mission-execution" title="Link to this heading"></a></h2>
-<p>The project offers a few examples of mission execution.</p>
-<ul class="simple">
-<li><p><strong>Keyboard Teleoperation control</strong>: Using reactive teleoperation control. For both single and multiagent swarms.</p></li>
-<li><p><strong>Python API missions</strong>: Using Aerostack2 python API for mission definition. For single drone, using GPS and multiple drones.</p></li>
-<li><p><strong>Behavior Tree missions</strong>: Using Behavior Tree as the mission planner. For single drone only.</p></li>
-<li><p><strong>Mission Interpreter</strong>: Using Aerostack2 mission interpreter. For single drone only.</p></li>
-</ul>
-<section id="keyboard-teleoperation-control">
-<span id="project-ms-keyboard-teleoperation"></span><h3>Keyboard Teleoperation control<a class="headerlink" href="#keyboard-teleoperation-control" title="Link to this heading"></a></h3>
-<p>In order to launch the components for a <strong>single drone</strong>, Aerostack2 launcher does not need any additional flags. Just execute <code class="docutils literal notranslate"><span class="pre">./launch_as2.bash</span></code>.
-This will launch the Aerostack2 components necessary for the mission execution.</p>
-<figure class="align-default" id="id1">
-<a class="with-shadow reference internal image-reference" href="../../../_images/multirotor_simulator.png"><img alt="../../../_images/multirotor_simulator.png" class="with-shadow" src="../../../_images/multirotor_simulator.png" style="width: 478.5px; height: 535.5px;" /></a>
-<figcaption>
-<p><span class="caption-text">Multirotor Simulator simulator</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p>Ground station should be launched with <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag to enable keyboard teleoperation. Take a look at the <a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#user-interfaces-keyboard-teleoperation"><span class="std std-ref">keyboard teleoperation user guide</span></a> for more information.
-A window containing the teleoperation widget should pop up:</p>
-<figure class="align-default" id="id2">
-<a class="with-shadow reference internal image-reference" href="../../../_images/keyboard_teleop_view3.png"><img alt="../../../_images/keyboard_teleop_view3.png" class="with-shadow" src="../../../_images/keyboard_teleop_view3.png" style="width: 563.0px; height: 259.5px;" /></a>
-<figcaption>
-<p><span class="caption-text">Keyboard teleoperation</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The teleoperation widget is also available for multi drone missions. To launch a multi drone simulation, use the flag <code class="docutils literal notranslate"><span class="pre">-m</span></code> in both launch commands.</p>
+<p>To start the mission, execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>mission.py
+</pre></div>
 </div>
-</section>
-<section id="python-api-missions">
-<span id="project-ms-python-api"></span><h3>Python API missions<a class="headerlink" href="#python-api-missions" title="Link to this heading"></a></h3>
-<p>In order to launch the components for <strong>multiple drones</strong>, both launchers require the flag <code class="docutils literal notranslate"><span class="pre">-m</span></code>.
-This will launch the Aerostack2 components necessary for the mission execution.</p>
-<figure class="align-default" id="id3">
-<a class="with-shadow reference internal image-reference" href="../../../_images/multirotor_simulator_swarm.png"><img alt="../../../_images/multirotor_simulator_swarm.png" class="with-shadow" src="../../../_images/multirotor_simulator_swarm.png" style="width: 478.5px; height: 535.5px;" /></a>
-<figcaption>
-<p><span class="caption-text">Multirotor Simulator simulator</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
-</figcaption>
-</figure>
-<p>There are three python scripts available for mission execution in the project. For single drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission.py</span></code> for flying a square.
-When flying using GPS, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_gps.py</span></code> which will fly a square using GPS waypoints.</p>
-<p>For multi drone missions, use <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_swarm.py</span></code> where a group of drones will fly a swarm coreography.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To understand how missions are built using the Aerostack2 python API, take a look at the <a class="reference internal" href="../../../_09_development/_api_documentation/index.html#development-guide-api-python-api"><span class="std std-ref">Python API</span></a> reference guide.</p>
+<p>To do a clean exit of tmux, execute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stop.bash<span class="w"> </span>drone0
+</pre></div>
 </div>
-</section>
-<section id="mission-interpreter">
-<span id="project-ms-mission-interpreter"></span><h3>Mission Interpreter<a class="headerlink" href="#mission-interpreter" title="Link to this heading"></a></h3>
-<p>Previous missions were defined using python syntaxis. Aerostask2 offers a mission interpreter that allows mission definition using a JSON format.
-Currently, the mission interpreter script at the project is only available for single drone missions.
-To launch the mission interpreter, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_interpreter.py</span></code>.
-The execution is similar to the python API mission where the drone will fly a square.</p>
-</section>
-<section id="behavior-tree">
-<span id="project-ms-behavior-tree"></span><h3>Behavior Tree<a class="headerlink" href="#behavior-tree" title="Link to this heading"></a></h3>
-<p>Missions can also be defined using a behavior tree. The project offers a mission example using a behavior tree for a single drone.
-To launch the behavior tree mission, execute <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">mission_behavior_tree.py</span></code>.
-The execution is similar to the python API mission where the drone will fly a square.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Trees can be defined using GUIs like <a class="reference external" href="https://www.behaviortree.dev/groot/">Groot</a>.</p>
-</div>
-</section>
 </section>
 </section>
 

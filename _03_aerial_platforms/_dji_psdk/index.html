@@ -113,8 +113,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_02_examples/tello/project_tello/index.html">Simple Tello Example</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/dji/index.html">DJI OSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_02_examples/dji/index.html">DJI SDK</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_02_examples/dji/project_dji_psdk/index.html">DJI PSDK Example</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
@@ -639,6 +640,23 @@ Use the Type-C port supporting both bulk and usbnet mode</p>
 </pre></div>
 </div>
 <p>You should see an entry for <cite>l4tbr0</cite>. If not, repeat the above steps.</p>
+<p>This leaves both bulk and network mode enabled. You can switch between them by running the appropriate command. In
+order to connect to the drone, either in bulk or network mode, you need to run the platform with the following JSON parameter values:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">.</span>
+<span class="err">.</span>
+<span class="err">.</span>
+<span class="w"> </span><span class="nt">&quot;uart_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;uart1_device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/ttyUSB0&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;uart2_device_enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;uart2_device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/ttyACM0&quot;</span>
+<span class="w"> </span><span class="p">},</span>
+<span class="w"> </span><span class="nt">&quot;network_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;network_device_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;l4tbr0&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;network_usb_adapter_vid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x0B95&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;network_usb_adapter_pid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0x1790&quot;</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="install-platform-package">
