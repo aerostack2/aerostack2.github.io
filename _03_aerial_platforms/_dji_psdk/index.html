@@ -223,7 +223,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#install-platform-package">Install platform package</a></li>
 </ul>
 </li>
@@ -449,34 +450,201 @@
 <li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
 <li><p><a class="reference internal" href="#installation" id="id4">Installation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#prerequisites" id="id5">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#install-platform-package" id="id6">Install platform package</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#aerostack2-common-interface" id="id7">Aerostack2 Common Interface</a></p>
+<li><p><a class="reference internal" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once" id="id5">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></p>
 <ul>
-<li><p><a class="reference internal" href="#control-modes" id="id8">Control Modes</a></p></li>
-<li><p><a class="reference internal" href="#sensors" id="id9">Sensors</a></p></li>
+<li><p><a class="reference internal" href="#clone-configuration-repository-to-grab-the-necessary-files" id="id6">Clone configuration repository to grab the necessary files</a></p></li>
+<li><p><a class="reference internal" href="#disable-l4t-device-mode-auto-start" id="id7">Disable l4t-device-mode auto start</a></p></li>
+<li><p><a class="reference internal" href="#replace-system-device-mode-script" id="id8">Replace system device-mode script</a></p></li>
+<li><p><a class="reference internal" href="#customize-the-script-program" id="id9">Customize the script program</a></p></li>
+<li><p><a class="reference internal" href="#grab-bulk-mode-program-folder" id="id10">Grab bulk-mode program folder</a></p></li>
+<li><p><a class="reference internal" href="#reboot" id="id11">Reboot</a></p></li>
+<li><p><a class="reference internal" href="#load-necessary-kernel-modules-on-boot" id="id12">Load necessary kernel modules on boot</a></p></li>
+<li><p><a class="reference internal" href="#test-the-setup" id="id13">Test the setup</a></p></li>
+<li><p><a class="reference internal" href="#if-it-works-re-enable-the-service" id="id14">If it works, re-enable the service</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#platform-launch" id="id10">Platform Launch</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up" id="id15">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></p>
+<ul>
+<li><p><a class="reference internal" href="#m300" id="id16">M300</a></p></li>
+<li><p><a class="reference internal" href="#m350" id="id17">M350</a></p></li>
+<li><p><a class="reference internal" href="#m30t" id="id18">M30T</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#install-platform-package" id="id19">Install platform package</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#aerostack2-common-interface" id="id20">Aerostack2 Common Interface</a></p>
+<ul>
+<li><p><a class="reference internal" href="#control-modes" id="id21">Control Modes</a></p></li>
+<li><p><a class="reference internal" href="#sensors" id="id22">Sensors</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#platform-launch" id="id23">Platform Launch</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
 <span id="aerial-platform-dji-matrice-psdk-introduction"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
-<p>DJI Matrice Series using <a class="reference external" href="https://github.com/dji-sdk/Onboard-SDK">DJI Onboard PSDK</a> has compatibility with DJI M300, DJI M350 and DJI M30.</p>
+<p>DJI Matrice Series using <a class="reference external" href="https://github.com/dji-sdk/Onboard-SDK">DJI Onboard PSDK</a> has compatibility with DJI M300, DJI M350 and DJI M30T.</p>
 <figure class="align-default">
 <a class="with-shadow reference internal image-reference" href="../../_images/DJI_M3002.jpg"><img alt="../../_images/DJI_M3002.jpg" class="with-shadow" src="../../_images/DJI_M3002.jpg" style="width: 597.0px; height: 397.95px;" /></a>
 </figure>
 </section>
 <section id="installation">
 <span id="aerial-platform-dji-matrice-psdk-installation"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<section id="prerequisites">
-<span id="aerial-platform-matrice-psdk-installation-prerequisites"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
-<p>Refer to the <a class="reference external" href="https://github.com/umdlife/psdk_ros2">DJI PSDK ROS2</a> for the harware and software requirements.</p>
+<section id="prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">
+<span id="aerial-platform-matrice-psdk-installation-prerequisites"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a><a class="headerlink" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once" title="Link to this heading"></a></h3>
+<section id="clone-configuration-repository-to-grab-the-necessary-files">
+<span id="aerial-platform-dji-matrice-psdk-installation-prerequisites-software-once"></span><h4><a class="toc-backref" href="#id6" role="doc-backlink">Clone configuration repository to grab the necessary files</a><a class="headerlink" href="#clone-configuration-repository-to-grab-the-necessary-files" title="Link to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~</span>
+<span class="go">git clone git@github.com:aerostack2/psdk_config_files.git</span>
+<span class="go">cd psdk_config_files</span>
+</pre></div>
+</div>
+</section>
+<section id="disable-l4t-device-mode-auto-start">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">Disable l4t-device-mode auto start</a><a class="headerlink" href="#disable-l4t-device-mode-auto-start" title="Link to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl disable nv-l4t-usb-device-mode.service</span>
+</pre></div>
+</div>
+</section>
+<section id="replace-system-device-mode-script">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Replace system device-mode script</a><a class="headerlink" href="#replace-system-device-mode-script" title="Link to this heading"></a></h4>
+<p>Copy your custom startup script into place and make it executable:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo cp ./nv-l4t-usb-device-mode-start.sh /opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode-start.sh</span>
+<span class="go">chmod +x ./nv-l4t-usb-device-mode-start.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="customize-the-script-program">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">Customize the script program</a><a class="headerlink" href="#customize-the-script-program" title="Link to this heading"></a></h4>
+<p>You need to modify the script to use the correct USB-UDC port.</p>
+<p>For the AGX:
+.. code-block:: console</p>
+<blockquote>
+<div><p>sed -i ‘s/3550000.xudc/3550000.usb/g’ nv-l4t-usb-device-mode-start.sh</p>
+</div></blockquote>
+<p>For the NX:
+.. code-block:: console</p>
+<blockquote>
+<div><p>sed -i ‘s/3550000.usb/3550000.xudc/g’ nv-l4t-usb-device-mode-start.sh</p>
+</div></blockquote>
+</section>
+<section id="grab-bulk-mode-program-folder">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Grab bulk-mode program folder</a><a class="headerlink" href="#grab-bulk-mode-program-folder" title="Link to this heading"></a></h4>
+<p>Download and unzip the reference package into <cite>~/Desktop/startup_bulk</cite>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://terra-1-g.djicdn.com/71a7d383e71a4fb8887a310eb746b47f/psdk/e-port/usb-bulk-configuration-reference.zip \</span>
+<span class="go">  &amp;&amp; unzip usb-bulk-configuration-reference.zip -d startup_bulk \</span>
+<span class="go">  &amp;&amp; mv startup_bulk/ ~/Desktop/ \</span>
+<span class="go">  &amp;&amp; chmod +x ~/Desktop/startup_bulk/*</span>
+</pre></div>
+</div>
+</section>
+<section id="reboot">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Reboot</a><a class="headerlink" href="#reboot" title="Link to this heading"></a></h4>
+</section>
+<section id="load-necessary-kernel-modules-on-boot">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Load necessary kernel modules on boot</a><a class="headerlink" href="#load-necessary-kernel-modules-on-boot" title="Link to this heading"></a></h4>
+<p>Append to <cite>/etc/modules</cite> (ensure the file remains correctly formatted):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo -e &quot;configfs\nlibcomposite\nusb_f_fs\ntegra-xudc&quot; | sudo tee -a /etc/modules</span>
+</pre></div>
+</div>
+</section>
+<section id="test-the-setup">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Test the setup</a><a class="headerlink" href="#test-the-setup" title="Link to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd /opt/nvidia/l4t-usb-device-mode/</span>
+<span class="go">./nv-l4t-usb-device-mode-start.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="if-it-works-re-enable-the-service">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">If it works, re-enable the service</a><a class="headerlink" href="#if-it-works-re-enable-the-service" title="Link to this heading"></a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo systemctl enable /opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode.service</span>
+</pre></div>
+</div>
+<p>Now both bulk mode and network mode are configured.</p>
+</section>
+</section>
+<section id="prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a><a class="headerlink" href="#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up" title="Link to this heading"></a></h3>
+<section id="m300">
+<span id="aerial-platform-dji-matrice-psdk-installation-prerequisites-software-every-time"></span><h4><a class="toc-backref" href="#id16" role="doc-backlink">M300</a><a class="headerlink" href="#m300" title="Link to this heading"></a></h4>
+<p><strong>Hardware</strong>
+Use the Type-C port supporting both bulk and usbnet mode</p>
+<ul class="simple">
+<li><p>Onboard computer = host</p></li>
+<li><p>E-Port = device.</p></li>
+</ul>
+<img alt="E-Port in device mode" src="../../_images/device_mode.jpg" />
+<ul class="simple">
+<li><p>On the AGX, connections as shown:</p></li>
+</ul>
+<img alt="AGX USB connections" src="../../_images/agx_connections.jpg" />
+<p><strong>Software</strong></p>
+<p>Enable host mode on the onboard computer:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo host | sudo tee /sys/class/usb_role/usb2-0-role-switch/role</span>
+</pre></div>
+</div>
+<p>You should now see <cite>/dev/ttyACM0</cite> when powering on the drone.</p>
+</section>
+<section id="m350">
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">M350</a><a class="headerlink" href="#m350" title="Link to this heading"></a></h4>
+<p><strong>Hardware</strong>
+Use the Type-C port supporting both bulk and usbnet mode</p>
+<ul class="simple">
+<li><p>Onboard computer = device</p></li>
+<li><p>E-Port = host.</p></li>
+</ul>
+<img alt="E-Port in host mode" src="../../_images/host_mode.jpg" />
+<ul class="simple">
+<li><p>On the AGX, connections as shown:</p></li>
+</ul>
+<img alt="AGX USB connections (host)" src="../../_images/agx_connections.jpg" />
+<p><strong>Software</strong></p>
+<p>Enable device mode on the onboard computer:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo device | sudo tee /sys/class/usb_role/usb2-0-role-switch/role</span>
+</pre></div>
+</div>
+<p>Bring up the <cite>l4tbr0</cite> interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ifconfig usb0 192.168.1.1 netmask 255.255.255.0 up</span>
+</pre></div>
+</div>
+<p>Then verify with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ifconfig</span>
+</pre></div>
+</div>
+<p>You should see an entry for <cite>l4tbr0</cite>. If not, repeat the above steps.</p>
+</section>
+<section id="m30t">
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">M30T</a><a class="headerlink" href="#m30t" title="Link to this heading"></a></h4>
+<p><strong>Hardware</strong>
+Use the Type-C port supporting both bulk and usbnet mode</p>
+<ul class="simple">
+<li><p>Onboard computer = device</p></li>
+<li><p>E-Port = host.</p></li>
+</ul>
+<img alt="E-Port in host mode" src="../../_images/host_mode.jpg" />
+<ul class="simple">
+<li><p>On the NX, connections as shown:</p></li>
+</ul>
+<img alt="NX USB connections" src="../../_images/nx_connections.jpg" />
+<p><strong>Software</strong></p>
+<p>Enable device mode on the onboard computer:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo device | sudo tee /sys/class/usb_role/usb2-0-role-switch/role</span>
+</pre></div>
+</div>
+<p>Bring up the <cite>l4tbr0</cite> interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo ifconfig usb0 192.168.1.1 netmask 255.255.255.0 up</span>
+</pre></div>
+</div>
+<p>Then verify with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ifconfig</span>
+</pre></div>
+</div>
+<p>You should see an entry for <cite>l4tbr0</cite>. If not, repeat the above steps.</p>
+</section>
 </section>
 <section id="install-platform-package">
-<span id="aerial-platform-dji-matrice-psdk-installation-package"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">Install platform package</a><a class="headerlink" href="#install-platform-package" title="Link to this heading"></a></h3>
+<span id="aerial-platform-dji-matrice-psdk-installation-package"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">Install platform package</a><a class="headerlink" href="#install-platform-package" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>For binary installation, install by running:</p></li>
 </ul>
@@ -497,10 +665,10 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span
 </section>
 </section>
 <section id="aerostack2-common-interface">
-<span id="aerial-platform-dji-matrice-psdk-as2-common-interface"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">Aerostack2 Common Interface</a><a class="headerlink" href="#aerostack2-common-interface" title="Link to this heading"></a></h2>
+<span id="aerial-platform-dji-matrice-psdk-as2-common-interface"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">Aerostack2 Common Interface</a><a class="headerlink" href="#aerostack2-common-interface" title="Link to this heading"></a></h2>
 <p>For more details about platform control modes and sensors, see <a class="reference internal" href="../../_01_aerostack2_concepts/aerial_platforms/index.html#as2-concepts-aerial-platform"><span class="std std-ref">Aerostack2 Aerial Platform Concepts</span></a>.</p>
 <section id="control-modes">
-<span id="aerial-platform-dji-matrice-psdk-as2-common-interface-control-modes"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">Control Modes</a><a class="headerlink" href="#control-modes" title="Link to this heading"></a></h3>
+<span id="aerial-platform-dji-matrice-psdk-as2-common-interface-control-modes"></span><h3><a class="toc-backref" href="#id21" role="doc-backlink">Control Modes</a><a class="headerlink" href="#control-modes" title="Link to this heading"></a></h3>
 <p>These are supported control modes:</p>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Control Modes DJI PSDK Platform</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
@@ -524,7 +692,7 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span
 </table>
 </section>
 <section id="sensors">
-<span id="aerial-platform-dji-matrice-psdk-as2-common-interface-sensors"></span><h3><a class="toc-backref" href="#id9" role="doc-backlink">Sensors</a><a class="headerlink" href="#sensors" title="Link to this heading"></a></h3>
+<span id="aerial-platform-dji-matrice-psdk-as2-common-interface-sensors"></span><h3><a class="toc-backref" href="#id22" role="doc-backlink">Sensors</a><a class="headerlink" href="#sensors" title="Link to this heading"></a></h3>
 <p>These are supported sensors:</p>
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-text">Sensors DJI PSDK Platform</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
@@ -565,7 +733,7 @@ colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span
 </section>
 </section>
 <section id="platform-launch">
-<span id="aerial-platform-dji-matrice-psdk-platform-launch"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">Platform Launch</a><a class="headerlink" href="#platform-launch" title="Link to this heading"></a></h2>
+<span id="aerial-platform-dji-matrice-psdk-platform-launch"></span><h2><a class="toc-backref" href="#id23" role="doc-backlink">Platform Launch</a><a class="headerlink" href="#platform-launch" title="Link to this heading"></a></h2>
 <p>Aerostack2 provides a launch file for this platform:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_platform_dji_psdk<span class="w"> </span>as2_platform_dji_psdk.launch.py
 </pre></div>
