@@ -32,6 +32,13 @@ There is a :ref:`Betaflight Installation and Setup Guide <aerial_platform_betafl
 `Betaflight official Setup guides <https://betaflight.com/docs/wiki/getting-started/setup-guide>`_.
 
 
+-----
+Setup
+-----
+
+Check :ref:`Aerostack2 platform Betaflight setup guide <aerial_platform_betaflight_setup>`.
+
+
 .. _aerial_platform_betaflight_as2_common_interface:
 
 ---------------------------
