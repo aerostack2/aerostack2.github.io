@@ -221,9 +221,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -490,6 +490,17 @@
     <span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.modules.module_base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleBase</span>
 
 
+<div class="viewcode-block" id="get_sendgoal_action_msg">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.get_sendgoal_action_msg">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_sendgoal_action_msg</span><span class="p">(</span><span class="n">action_msg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find and return the action_SendGoal message for an action.&quot;&quot;&quot;</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmodule</span><span class="p">(</span><span class="n">action_msg</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">action_msg</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="n">action_sendgoal_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_SendGoal&#39;</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">action_sendgoal_name</span><span class="p">)</span></div>
+
+
+
 <div class="viewcode-block" id="euler_from_quaternion">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.euler_from_quaternion">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">euler_from_quaternion</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">w</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
@@ -521,8 +532,7 @@
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.path_to_list">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">path_to_list</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert path into list.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">],</span>
-                    <span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">poses</span><span class="p">]</span></div>
 
 
 
@@ -541,8 +551,7 @@
     <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">spec</span> <span class="o">=</span> <span class="n">find_spec_in_envvar</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">spec</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;Module </span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1"> not found in AS2_MODULES_PATH&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Module </span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1"> not found in AS2_MODULES_PATH&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;spec: </span><span class="si">{</span><span class="n">spec</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>  <span class="c1"># get module from spec</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span>  <span class="c1"># adding manually to loaded modules</span>
@@ -572,7 +581,8 @@
     <span class="n">as2_modules_path_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;AS2_MODULES_PATH&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">module_path</span> <span class="ow">in</span> <span class="n">as2_modules_path_list</span><span class="p">:</span>
         <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span>
-            <span class="n">module_name</span><span class="p">,</span> <span class="n">module_path</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1">.py&#39;</span><span class="p">)</span>
+            <span class="n">module_name</span><span class="p">,</span> <span class="n">module_path</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/</span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1">.py&#39;</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">origin</span><span class="p">):</span>
             <span class="k">continue</span>
         <span class="k">return</span> <span class="n">spec</span>

@@ -221,9 +221,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -479,8 +479,8 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
-
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.v1</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
@@ -533,7 +533,46 @@
                     <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">exc</span>
-        <span class="k">return</span> <span class="n">args</span></div>
+        <span class="k">return</span> <span class="n">args</span>
+
+<div class="viewcode-block" id="MissionItem.modify">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.modify">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">MissionItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify current item with another MissionItem.</span>
+
+<span class="sd">        :param other: MissionItem to modify from</span>
+<span class="sd">        :type other: MissionItem</span>
+<span class="sd">        :return: True if modified, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check behavior is the same</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">behavior</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">behavior</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">behavior</span><span class="si">}</span><span class="s2"> , </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> doesn&#39;t match </span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="n">behavior</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">other</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Compare arguments and types</span>
+        <span class="n">seen</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Key </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> not found in args or duplicated in replacement item.&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">k</span><span class="p">])):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Key </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> type mismatch: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="si">}</span><span class="s1"> != </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seen</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of keys mismatch: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">seen</span><span class="p">)</span><span class="si">}</span><span class="s1"> != </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># Update args with the new ones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+</div>
 
 
 
@@ -554,6 +593,25 @@
 <span class="sd">        :rtype: MissionStack</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">MissionStack</span><span class="p">(</span><span class="n">mission_stack</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">plan</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Mission.modify">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.modify">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MissionItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify mission item at index with another MissionItem.</span>
+
+<span class="sd">        :param idx: index of the item to modify</span>
+<span class="sd">        :type idx: int</span>
+<span class="sd">        :param item: MissionItem to modify from</span>
+<span class="sd">        :type item: MissionItem</span>
+<span class="sd">        :return: True if modified, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plan</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">modify</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
@@ -583,15 +641,21 @@
         <span class="n">count_current</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">count_current</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s1">] [</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">done_items</span><span class="o">+</span><span class="n">count_current</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">total_items</span><span class="si">}</span><span class="s1">] &#39;</span> <span class="o">+</span> \
-            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_item</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s1">] [</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">done_items</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">count_current</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">total_items</span><span class="si">}</span><span class="s1">] &#39;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_item</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">s</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Override the default implementation, check all attributes except feedback.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">InterpreterStatus</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">state</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pending_items</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">pending_items</span> \
-                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">done_items</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">done_items</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_item</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">current_item</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">state</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pending_items</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">pending_items</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">done_items</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">done_items</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_item</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">current_item</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
 
@@ -626,10 +690,10 @@
 <span class="s2">                    }</span>
 <span class="s2">                ]</span>
 <span class="s2">            }&quot;&quot;&quot;</span>
-            <span class="n">item0</span> <span class="o">=</span> <span class="n">MissionItem</span><span class="p">(</span><span class="n">behavior</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span>
-                                <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;arg2&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
-            <span class="n">item1</span> <span class="o">=</span> <span class="n">MissionItem</span><span class="p">(</span><span class="n">behavior</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span>
-                                <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="mf">99.0</span><span class="p">,</span> <span class="s1">&#39;arg2&#39;</span><span class="p">:</span> <span class="mf">98.0</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
+            <span class="n">item0</span> <span class="o">=</span> <span class="n">MissionItem</span><span class="p">(</span><span class="n">behavior</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;arg2&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">})</span>
+            <span class="n">item1</span> <span class="o">=</span> <span class="n">MissionItem</span><span class="p">(</span>
+                <span class="n">behavior</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arg1&#39;</span><span class="p">:</span> <span class="mf">99.0</span><span class="p">,</span> <span class="s1">&#39;arg2&#39;</span><span class="p">:</span> <span class="mf">98.0</span><span class="p">,</span> <span class="s1">&#39;wait&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">}</span>
+            <span class="p">)</span>
             <span class="n">other_mission</span> <span class="o">=</span> <span class="n">Mission</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;drone_0&#39;</span><span class="p">,</span> <span class="n">plan</span><span class="o">=</span><span class="p">[</span><span class="n">item0</span><span class="p">,</span> <span class="n">item1</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Mission</span><span class="o">.</span><span class="n">parse_raw</span><span class="p">(</span><span class="n">dummy_mission</span><span class="p">),</span> <span class="n">other_mission</span><span class="p">)</span>
 
@@ -639,11 +703,13 @@
         <span class="c1"># TODO: WIP test</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">_test_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Test dummy status.&quot;&quot;&quot;</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="n">InterpreterStatus</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">,</span> <span class="n">current_item</span><span class="o">=</span><span class="s1">&#39;go_to&#39;</span><span class="p">,</span>
-                                       <span class="n">feedback_current</span><span class="o">=</span><span class="p">{</span>
-                                           <span class="s1">&#39;actual_speed&#39;</span><span class="p">:</span> <span class="mf">2.983</span><span class="p">,</span>
-                                           <span class="s1">&#39;actual_distance_to_goal&#39;</span><span class="p">:</span> <span class="mf">4.563</span><span class="p">},</span>
-                                       <span class="n">done_items</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pending_items</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">InterpreterStatus</span><span class="p">(</span>
+                <span class="n">state</span><span class="o">=</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">,</span>
+                <span class="n">current_item</span><span class="o">=</span><span class="s1">&#39;go_to&#39;</span><span class="p">,</span>
+                <span class="n">feedback_current</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;actual_speed&#39;</span><span class="p">:</span> <span class="mf">2.983</span><span class="p">,</span> <span class="s1">&#39;actual_distance_to_goal&#39;</span><span class="p">:</span> <span class="mf">4.563</span><span class="p">},</span>
+                <span class="n">done_items</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">pending_items</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 

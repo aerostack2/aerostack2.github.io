@@ -224,9 +224,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -500,6 +500,26 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">as2_python_api.mission_interpreter.mission.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#Mission"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>Mission data model.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#Mission.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.modify" title="Link to this definition"></a></dt>
+<dd><p>Modify mission item at index with another MissionItem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<em>int</em>) – index of the item to modify</p></li>
+<li><p><strong>item</strong> (<a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><em>MissionItem</em></a>) – MissionItem to modify from</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if modified, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.Mission.plan">
 <span class="sig-name descname"><span class="pre">plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.Mission.plan" title="Link to this definition"></a></dt>
@@ -551,6 +571,23 @@
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.method">
 <span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__call__'</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.method" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission.MissionItem.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission.html#MissionItem.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission.MissionItem.modify" title="Link to this definition"></a></dt>
+<dd><p>Modify current item with another MissionItem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><em>MissionItem</em></a>) – MissionItem to modify from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if modified, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -617,9 +654,24 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current">
-<span class="sig-name descname"><span class="pre">modify_current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.modify_current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current" title="Link to this definition"></a></dt>
-<dd><p>Modify current item in mission.</p>
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_interpreter.html#MissionInterpreter.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify" title="Link to this definition"></a></dt>
+<dd><p>Modify mission item at index with another MissionItem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<em>int</em>) – index of the item to modify</p></li>
+<li><p><strong>mid</strong> (<em>int</em>) – mission ID</p></li>
+<li><p><strong>item</strong> (<a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><em>MissionItem</em></a>) – MissionItem to modify from</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if modified, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -705,6 +757,11 @@
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.current_idx">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.current_idx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.done">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.done" title="Link to this definition"></a></dt>
 <dd><p>Get done items.</p>
@@ -720,6 +777,12 @@
 <dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.last_done">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_done</span></span><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.last_done" title="Link to this definition"></a></dt>
 <dd><p>Get last done item.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="as2_python_api.mission_interpreter.mission_stack.MissionStack.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#as2_python_api.mission_interpreter.mission.MissionItem" title="as2_python_api.mission_interpreter.mission.MissionItem"><span class="pre">MissionItem</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/mission_interpreter/mission_stack.html#MissionStack.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.mission_interpreter.mission_stack.MissionStack.modify" title="Link to this definition"></a></dt>
+<dd><p>Modify item at index.</p>
 </dd></dl>
 
 <dl class="py method">

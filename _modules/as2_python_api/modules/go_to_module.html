@@ -221,9 +221,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -498,9 +498,36 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">drone</span><span class="p">:</span> <span class="s1">&#39;DroneInterface&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">drone</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__alias__</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                 <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_goal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a goal pose.</span>
+
+<span class="sd">        :param x: x coordinate (m)</span>
+<span class="sd">        :type x: int</span>
+<span class="sd">        :param y: y coordinate (m)</span>
+<span class="sd">        :type y: int</span>
+<span class="sd">        :param z: z coordinate (m)</span>
+<span class="sd">        :type z: int</span>
+<span class="sd">        :return: Pose with the goal position</span>
+<span class="sd">        :rtype: Pose</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span>
+        <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span>
+        <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point.</span>
 
@@ -525,9 +552,17 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__go_to</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span>
+        <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point.</span>
 
@@ -550,17 +585,45 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">()</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)(</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_goal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">,</span> <span class="n">wait</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GoToModule.modify">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.modify">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">yaw_mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span>
+        <span class="n">yaw_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify the go to point.</span>
+
+<span class="sd">        :param x: x coordinate (m) to go to</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y coordinate (m) to go to</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :param z: z coordinate (m) to go to</span>
+<span class="sd">        :type z: float</span>
+<span class="sd">        :param speed: speed (m/s) to go to the point</span>
+<span class="sd">        :type speed: float</span>
+<span class="sd">        :param yaw_mode: yaw mode, defaults to YawMode.KEEP_YAW</span>
+<span class="sd">        :type yaw_mode: int, optional</span>
+<span class="sd">        :return: True if was accepted, False otherwise</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="n">Pose</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_goal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">modify</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">)</span></div>
+
 
     <span class="c1"># Method simplifications</span>
 <div class="viewcode-block" id="GoToModule.go_to">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-              <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point, blocking call.</span>
 
@@ -577,14 +640,16 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToModule.go_to_with_yaw">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_with_yaw">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                       <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_with_yaw</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point. With desired yaw angle (degrees). Blocking call.</span>
 
@@ -603,14 +668,16 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToModule.go_to_path_facing">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_path_facing">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                          <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_path_facing</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point. With path facing yaw mode. Blocking call.</span>
 
@@ -627,8 +694,9 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span>
-                            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToModule.go_to_point">
@@ -646,14 +714,22 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">speed</span><span class="p">,</span>
+            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">KEEP_YAW</span><span class="p">,</span>
+            <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToModule.go_to_point_with_yaw">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_point_with_yaw">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_point_with_yaw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                             <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_point_with_yaw</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point. With desired yaw angle (degrees). Blocking call.</span>
 
@@ -668,14 +744,22 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">speed</span><span class="p">,</span>
+            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">FIXED_YAW</span><span class="p">,</span>
+            <span class="n">yaw_angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+            <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GoToModule.go_to_point_path_facing">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.go_to_point_path_facing">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_point_path_facing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-                                <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">go_to_point_path_facing</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Go to point. With path facing yaw mode. Blocking call.</span>
 
@@ -688,8 +772,15 @@
 <span class="sd">        :return: True if was accepted, False otherwise</span>
 <span class="sd">        :rtype: bool</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                            <span class="n">speed</span><span class="p">,</span> <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span> <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">,</span> <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_to</span><span class="p">(</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">point</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">speed</span><span class="p">,</span>
+            <span class="n">yaw_mode</span><span class="o">=</span><span class="n">YawMode</span><span class="o">.</span><span class="n">PATH_FACING</span><span class="p">,</span>
+            <span class="n">frame_id</span><span class="o">=</span><span class="n">frame_id</span><span class="p">,</span>
+            <span class="n">yaw_angle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span></div>
 </div>
 
 </pre></div>

@@ -224,9 +224,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -516,8 +516,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify">
-<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_msg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/behavior_actions/behavior_handler.html#BehaviorHandler.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify" title="Link to this definition"></a></dt>
+<dd><p>Modify current behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>goal_msg</strong> – behavior goal</p>
+</dd>
+</dl>
+<p>:type goal_msg</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.pause">
@@ -749,7 +756,14 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior.modify">
 <span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PoseStamped</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw_angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'earth'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/as2_python_api/behavior_actions/navigate_to_behavior.html#NavigateToBehavior.modify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior.modify" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Modify current behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>goal_msg</strong> – behavior goal</p>
+</dd>
+</dl>
+<p>:type goal_msg</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="as2_python_api.behavior_actions.navigate_to_behavior.NavigateToBehavior.start">

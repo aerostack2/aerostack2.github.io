@@ -221,9 +221,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -442,7 +442,7 @@
   <h1>Source code for as2_python_api.behavior_actions.behavior_handler</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Behavior handler. Abstract class to handle behaviors.&quot;&quot;&quot;</span>
 
-<span class="c1"># Copyright 2022 Universidad Politécnica de Madrid</span>
+<span class="c1"># Copyright 2025 Universidad Politécnica de Madrid</span>
 <span class="c1">#</span>
 <span class="c1"># Redistribution and use in source and binary forms, with or without</span>
 <span class="c1"># modification, are permitted provided that the following conditions are met:</span>
@@ -470,8 +470,10 @@
 <span class="c1"># ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE</span>
 <span class="c1"># POSSIBILITY OF SUCH DAMAGE.</span>
 
-
-<span class="n">__authors__</span> <span class="o">=</span> <span class="s1">&#39;Miguel Fernández Cortizas, Pedro Arias Pérez, David Pérez Saura, Rafael Pérez Seguí&#39;</span>
+<span class="n">__authors__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;Miguel Fernández Cortizas, Pedro Arias Pérez, David Pérez Saura, Rafael Pérez Seguí,&#39;</span>
+    <span class="s1">&#39; Guillermo GP-Lenza&#39;</span>
+<span class="p">)</span>
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright (c) 2022 Universidad Politécnica de Madrid&#39;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;BSD-3-Clause&#39;</span>
 
@@ -480,6 +482,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">action_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">GoalStatus</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">as2_msgs.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">BehaviorStatus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">as2_python_api.tools.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_sendgoal_action_msg</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.action</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.qos</span><span class="w"> </span><span class="kn">import</span> <span class="n">QoSProfile</span>
@@ -519,22 +522,32 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">action_msg</span><span class="p">,</span> <span class="n">behavior_name</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-            <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/pause&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/pause&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-            <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/resume&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-            <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/stop&#39;</span><span class="p">)</span>
+            <span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/resume&#39;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span><span class="n">Trigger</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/stop&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__send_goal_msg_t</span> <span class="o">=</span> <span class="n">get_sendgoal_action_msg</span><span class="p">(</span><span class="n">action_msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modify_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__send_goal_msg_t</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/modify&#39;</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__status_sub</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span>
-            <span class="n">BehaviorStatus</span><span class="p">,</span> <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/behavior_status&#39;</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__status_callback</span><span class="p">,</span> <span class="n">QoSProfile</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">BehaviorStatus</span><span class="p">,</span>
+            <span class="n">behavior_name</span> <span class="o">+</span> <span class="s1">&#39;/_behavior/behavior_status&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__status_callback</span><span class="p">,</span>
+            <span class="n">QoSProfile</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
 
         <span class="c1"># Wait for Action and Servers availability</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span> <span class="ow">or</span> \
-                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pause_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resume_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__stop_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__modify_client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">TIMEOUT</span><span class="p">)</span>
+        <span class="p">):</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">BehaviorNotAvailable</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">behavior_name</span><span class="si">}</span><span class="s1"> Not Available&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BehaviorHandler.destroy">
@@ -614,7 +627,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Sending goal</span>
         <span class="n">send_goal_future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__action_client</span><span class="o">.</span><span class="n">send_goal_async</span><span class="p">(</span>
-            <span class="n">goal_msg</span><span class="p">,</span> <span class="n">feedback_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__feedback_callback</span><span class="p">)</span>
+            <span class="n">goal_msg</span><span class="p">,</span> <span class="n">feedback_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__feedback_callback</span>
+        <span class="p">)</span>
 
         <span class="c1"># Waiting to sending goal result</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">send_goal_future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
@@ -633,11 +647,20 @@
         <span class="k">return</span> <span class="kc">True</span></div>
 
 
-    <span class="c1"># TODO</span>
 <div class="viewcode-block" id="BehaviorHandler.modify">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_msg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify current behavior.</span>
+
+<span class="sd">        :param goal_msg: behavior goal</span>
+<span class="sd">        :type goal_msg</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">goal_req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__send_goal_msg_t</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
+        <span class="n">goal_req</span><span class="o">.</span><span class="n">goal</span> <span class="o">=</span> <span class="n">goal_msg</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__modify_client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">goal_req</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">accepted</span></div>
 
 
 <div class="viewcode-block" id="BehaviorHandler.pause">
@@ -716,8 +739,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__result</span> <span class="o">=</span> <span class="n">result_future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_status</span> <span class="o">!=</span> <span class="n">GoalStatus</span><span class="o">.</span><span class="n">STATUS_SUCCEEDED</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s1">&#39;Goal failed with status code: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">result_status</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Goal failed with status code: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">result_status</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span></div>
@@ -726,8 +748,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">__feedback_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback_msg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Feedback callback.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__feedback</span> <span class="o">=</span> <span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;Received feedback: </span><span class="si">{</span><span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Received feedback: </span><span class="si">{</span><span class="n">feedback_msg</span><span class="o">.</span><span class="n">feedback</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__status_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status_msg</span><span class="p">:</span> <span class="n">BehaviorStatus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Behavior status callback.&quot;&quot;&quot;</span>

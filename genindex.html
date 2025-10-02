@@ -221,9 +221,9 @@
 <li class="toctree-l2"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-once">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>once</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#prerequisites-to-configure-any-xavier-orin-nx-agx-board-to-connect-to-psdk-these-steps-are-only-done-every-time-the-board-boots-up">Prerequisites to configure any Xavier/Orin NX/AGX board to connect to PSDK, These steps are only done <strong>every time the board boots up</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
@@ -3040,10 +3040,10 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler9pose_pub_E">controller_handler::ControllerHandler::pose_pub_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler21prefered_output_mode_E">controller_handler::ControllerHandler::prefered_output_mode_ (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler14publishCommandEv">controller_handler::ControllerHandler::publishCommand (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N18controller_handler17ControllerHandler9ref_pose_E">controller_handler::ControllerHandler::ref_pose_ (C++ member)</a>
@@ -3149,6 +3149,8 @@
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv417convertPointToIntRKN2cv7Point2iE">convertPointToInt (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.current">current (as2_python_api.mission_interpreter.mission_stack.MissionStack property)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.current_idx">current_idx (as2_python_api.mission_interpreter.mission_stack.MissionStack property)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.InterpreterStatus.current_item">current_item (as2_python_api.mission_interpreter.mission.InterpreterStatus attribute)</a>
 </li>
@@ -3374,6 +3376,52 @@
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.html#as2_python_api.drone_interface_teleop.DroneInterfaceTeleop">DroneInterfaceTeleop (class in as2_python_api.drone_interface_teleop)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv410DroneSwarm">DroneSwarm (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm19base_link_frame_id_E">DroneSwarm::base_link_frame_id_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm10cbk_group_E">DroneSwarm::cbk_group_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm13checkPositionEv">DroneSwarm::checkPosition (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm9drone_id_E">DroneSwarm::drone_id_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm11drone_pose_E">DroneSwarm::drone_pose_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm15drone_pose_sub_E">DroneSwarm::drone_pose_sub_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm17dronePoseCallbackEKN13geometry_msgs3msg11PoseStamped9SharedPtrE">DroneSwarm::dronePoseCallback (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm10DroneSwarmEPN3as24NodeENSt6stringEN13geometry_msgs3msg4PoseEN6rclcpp13CallbackGroup9SharedPtrE">DroneSwarm::DroneSwarm (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm24follow_reference_client_E">DroneSwarm::follow_reference_client_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm26follow_reference_feedback_E">DroneSwarm::follow_reference_feedback_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm29follow_reference_feedback_cbkEN13rclcpp_action16ClientGoalHandleIN8as2_msgs6action15FollowReferenceEE9SharedPtrEKNSt10shared_ptrIKN8as2_msgs6action15FollowReference8FeedbackEEE">DroneSwarm::follow_reference_feedback_cbk (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm29follow_reference_stop_client_E">DroneSwarm::follow_reference_stop_client_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm10init_pose_E">DroneSwarm::init_pose_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm19initFollowReferenceEv">DroneSwarm::initFollowReference (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm10max_speed_E">DroneSwarm::max_speed_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm9node_ptr_E">DroneSwarm::node_ptr_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm15parent_frame_idE">DroneSwarm::parent_frame_id (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm19stopFollowReferenceEv">DroneSwarm::stopFollowReference (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm21tfstatic_broadcaster_E">DroneSwarm::tfstatic_broadcaster_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm10transform_E">DroneSwarm::transform_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarm14updateStaticTfEN13geometry_msgs3msg4PoseE">DroneSwarm::updateStaticTf (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10DroneSwarmD0Ev">DroneSwarm::~DroneSwarm (C++ function)</a>
+</li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.dummy_module.DummyModule">DummyModule (class in as2_python_api.modules.dummy_module)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv436DynamicPolynomialTrajectoryGenerator">DynamicPolynomialTrajectoryGenerator (C++ class)</a>
@@ -3386,6 +3434,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator23computeYawFaceReferenceEv">DynamicPolynomialTrajectoryGenerator::computeYawFaceReference (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator30current_map_to_odom_transform_E">DynamicPolynomialTrajectoryGenerator::current_map_to_odom_transform_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator17current_position_E">DynamicPolynomialTrajectoryGenerator::current_position_ (C++ member)</a>
@@ -3408,8 +3458,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator10eval_time_E">DynamicPolynomialTrajectoryGenerator::eval_time_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator14eval_time_yaw_E">DynamicPolynomialTrajectoryGenerator::eval_time_yaw_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N36DynamicPolynomialTrajectoryGenerator16evaluateSetpointEdRN8as2_msgs3msg15TrajectoryPointEb">DynamicPolynomialTrajectoryGenerator::evaluateSetpoint (C++ function)</a>
@@ -4188,6 +4236,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.module_base.ModuleBase.get_plan_item">get_plan_item() (as2_python_api.modules.module_base.ModuleBase class method)</a>
 </li>
+      <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.tools.html#as2_python_api.tools.utils.get_sendgoal_action_msg">get_sendgoal_action_msg() (in module as2_python_api.tools.utils)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv412GimbalBridge">GimbalBridge (C++ class)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N12GimbalBridge6clock_E">GimbalBridge::clock_ (C++ member)</a>
@@ -4366,10 +4416,10 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23go_to_plugin_trajectory6Plugin7own_runEv">go_to_plugin_trajectory::Plugin::own_run (C++ function)</a>
 </li>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23go_to_plugin_trajectory6Plugin7ownInitEv">go_to_plugin_trajectory::Plugin::ownInit (C++ function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23go_to_plugin_trajectory6Plugin7ownInitEv">go_to_plugin_trajectory::Plugin::ownInit (C++ function)</a>
+</li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23go_to_plugin_trajectory6Plugin15result_callbackERKN29GoalHandleTrajectoryGenerator13WrappedResultE">go_to_plugin_trajectory::Plugin::result_callback (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23go_to_plugin_trajectory6Plugin16traj_gen_client_E">go_to_plugin_trajectory::Plugin::traj_gen_client_ (C++ member)</a>
@@ -5140,7 +5190,7 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">main (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[1]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[2]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[3]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[4]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[5]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[6]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[7]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[8]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[9]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[10]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[11]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[12]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[13]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[14]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[15]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[16]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[17]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[18]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[19]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[20]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[21]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[22]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[23]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[24]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[25]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[26]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[27]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[28]</a>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">main (C++ function)</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[1]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[2]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[3]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[4]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[5]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[6]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[7]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[8]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[9]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[10]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[11]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[12]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[13]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[14]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[15]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[16]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[17]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[18]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[19]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[20]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[21]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[22]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[23]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[24]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[25]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiA_Pc">[26]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[27]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[28]</a>, <a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv44mainiPPc">[29]</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.main">main() (in module as2_python_api.mission_interpreter.ros2_adapter)</a>
 </li>
@@ -5266,8 +5316,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N10mocap_pose6Plugin10twist_msg_E">mocap_pose::Plugin::twist_msg_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.behavior_handler.BehaviorHandler.modify">modify() (as2_python_api.behavior_actions.behavior_handler.BehaviorHandler method)</a>
 
       <ul>
@@ -5287,9 +5335,19 @@
 </li>
         <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_actions.html#as2_python_api.behavior_actions.trajectory_generation_behavior.TrajectoryGenerationBehavior.modify">(as2_python_api.behavior_actions.trajectory_generation_behavior.TrajectoryGenerationBehavior method)</a>
 </li>
-      </ul></li>
-      <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify_current">modify_current() (as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter method)</a>
+        <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.Mission.modify">(as2_python_api.mission_interpreter.mission.Mission method)</a>
 </li>
+        <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission.MissionItem.modify">(as2_python_api.mission_interpreter.mission.MissionItem method)</a>
+</li>
+        <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.modify">(as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter method)</a>
+</li>
+        <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.modify">(as2_python_api.mission_interpreter.mission_stack.MissionStack method)</a>
+</li>
+        <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.modules.html#as2_python_api.modules.go_to_module.GoToModule.modify">(as2_python_api.modules.go_to_module.GoToModule method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -6413,8 +6471,6 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19SetEntityPoseBridge12gz_node_ptr_E">SetEntityPoseBridge::gz_node_ptr_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19SetEntityPoseBridge11ps_srv_sub_E">SetEntityPoseBridge::ps_srv_sub_ (C++ member)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N19SetEntityPoseBridge7ps_sub_E">SetEntityPoseBridge::ps_sub_ (C++ member)</a>
@@ -6445,6 +6501,8 @@
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23SetOffboardModeBehavior9on_resumeERKNSt10shared_ptrINSt6stringEEE">SetOffboardModeBehavior::on_resume (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23SetOffboardModeBehavior6on_runERKNSt10shared_ptrIKN8as2_msgs6action15SetOffboardMode4GoalEEERNSt10shared_ptrIN8as2_msgs6action15SetOffboardMode8FeedbackEEERNSt10shared_ptrIN8as2_msgs6action15SetOffboardMode6ResultEEE">SetOffboardModeBehavior::on_run (C++ function)</a>
 </li>
       <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N23SetOffboardModeBehavior23SetOffboardModeBehaviorEv">SetOffboardModeBehavior::SetOffboardModeBehavior (C++ function)</a>
@@ -6520,6 +6578,64 @@
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager.swarm_behavior_func">swarm_behavior_func() (as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager static method)</a>
 </li>
       <li><a href="_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.behavior_manager.html#as2_python_api.behavior_manager.behavior_manager.SwarmBehaviorManager">SwarmBehaviorManager (class in as2_python_api.behavior_manager.behavior_manager)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv421SwarmFlockingBehavior">SwarmFlockingBehavior (C++ class)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior10cbk_group_E">SwarmFlockingBehavior::cbk_group_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior7drones_E">SwarmFlockingBehavior::drones_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior24dynamic_swarm_formation_E">SwarmFlockingBehavior::dynamic_swarm_formation_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior29dynamicSwarmFormationCallbackEN8as2_msgs3msg15PoseWithIDArrayE">SwarmFlockingBehavior::dynamicSwarmFormationCallback (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior9feedback_E">SwarmFlockingBehavior::feedback_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior5goal_E">SwarmFlockingBehavior::goal_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior20goal_future_handles_E">SwarmFlockingBehavior::goal_future_handles_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior19initDroneReferencesEv">SwarmFlockingBehavior::initDroneReferences (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior11modify_srv_E">SwarmFlockingBehavior::modify_srv_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior14modifySwarmSrvEKNSt10shared_ptrIN8as2_msgs6action13SwarmFlocking4Impl15SendGoalService7RequestEEEKNSt10shared_ptrIN8as2_msgs6action13SwarmFlocking4Impl15SendGoalService8ResponseEEE">SwarmFlockingBehavior::modifySwarmSrv (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior10monitoringEKNSt6vectorINSt10shared_ptrIN13rclcpp_action16ClientGoalHandleIN8as2_msgs6action15FollowReferenceEEEEEEE">SwarmFlockingBehavior::monitoring (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior11on_activateENSt10shared_ptrIKN8as2_msgs6action13SwarmFlocking4GoalEEE">SwarmFlockingBehavior::on_activate (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior13on_deactivateERKNSt10shared_ptrINSt6stringEEE">SwarmFlockingBehavior::on_deactivate (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior16on_execution_endERKN12as2_behavior15ExecutionStatusE">SwarmFlockingBehavior::on_execution_end (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior9on_modifyENSt10shared_ptrIKN8as2_msgs6action13SwarmFlocking4GoalEEE">SwarmFlockingBehavior::on_modify (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior8on_pauseERKNSt10shared_ptrINSt6stringEEE">SwarmFlockingBehavior::on_pause (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior9on_resumeERKNSt10shared_ptrINSt6stringEEE">SwarmFlockingBehavior::on_resume (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior6on_runERKNSt10shared_ptrIKN8as2_msgs6action13SwarmFlocking4GoalEEERNSt10shared_ptrIN8as2_msgs6action13SwarmFlocking8FeedbackEEERNSt10shared_ptrIN8as2_msgs6action13SwarmFlocking6ResultEEE">SwarmFlockingBehavior::on_run (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior7result_E">SwarmFlockingBehavior::result_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior20setUpDronesFormationEN13geometry_msgs3msg11PoseStampedENSt6vectorINSt6stringEEENSt6vectorIN8as2_msgs3msg10PoseWithIDEEE">SwarmFlockingBehavior::setUpDronesFormation (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior20setUpVirtualCentroidERKN13geometry_msgs3msg11PoseStampedE">SwarmFlockingBehavior::setUpVirtualCentroid (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior25swarm_base_link_frame_id_E">SwarmFlockingBehavior::swarm_base_link_frame_id_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior21SwarmFlockingBehaviorEv">SwarmFlockingBehavior::SwarmFlockingBehavior (C++ function)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior10tf_buffer_E">SwarmFlockingBehavior::tf_buffer_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior12tf_listener_E">SwarmFlockingBehavior::tf_listener_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior27tfstatic_swarm_broadcaster_E">SwarmFlockingBehavior::tfstatic_swarm_broadcaster_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehavior10transform_E">SwarmFlockingBehavior::transform_ (C++ member)</a>
+</li>
+      <li><a href="_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html#_CPPv4N21SwarmFlockingBehaviorD0Ev">SwarmFlockingBehavior::~SwarmFlockingBehavior (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
