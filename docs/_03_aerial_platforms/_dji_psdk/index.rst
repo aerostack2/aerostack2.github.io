@@ -15,7 +15,7 @@ DJI Matrice Series PSDK
 Introduction
 ------------
 
-The DJI Matrice Series using `DJI Onboard PSDK <https://github.com/dji-sdk/Onboard-SDK>`_
+The DJI Matrice Series using `DJI Payload PSDK <https://github.com/dji-sdk/Payload-SDK>`_
 is compatible with **DJI M300, DJI M350, and DJI M30T**.
 
 .. figure:: resources/DJI_M300.jpg
