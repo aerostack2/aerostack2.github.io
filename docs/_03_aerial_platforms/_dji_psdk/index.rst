@@ -247,21 +247,43 @@ If not, repeat the above steps.
 
 .. note::
 
-   Both bulk and network mode remain enabled.  
+   Both bulk and network mode remain enabled.
+   The ``link_select`` parameter in the platform configuration should be
+   ``use_uart_and_usb_bulk_device`` for M300 and
+   ``use_uart_and_network_device`` for M350 and M30T.
    To connect to the drone, run the platform with the following JSON parameters:
 
    .. code-block:: json
 
-      "uart_config": {
-        "uart1_device_name": "/dev/ttyUSB0",
-        "uart2_device_enable": "true",
-        "uart2_device_name": "/dev/ttyACM0"
-      },
-      "network_config": {
-        "network_device_name": "l4tbr0",
-        "network_usb_adapter_vid": "0x0B95",
-        "network_usb_adapter_pid": "0x1790"
+      {
+         "dji_sdk_link_config": {
+            "link_available": "use_only_uart/use_uart_and_usb_bulk_device/use_uart_and_network_device",
+            "link_select": "use_uart_and_network_device",
+            "uart_config": {
+               "uart1_device_name": "/dev/ttyUSB0",
+               "uart2_device_enable": "true",
+               "uart2_device_name": "/dev/ttyACM0"
+            },
+            "network_config": {
+               "network_device_name": "l4tbr0",
+               "network_usb_adapter_vid": "0x0B95",
+               "network_usb_adapter_pid": "0x1790"
+            },
+            "usb_bulk_config": {
+               "usb_device_vid": "0x0B95",
+               "usb_device_pid": "0x1790",
+               "usb_bulk1_device_name": "/dev/usb-ffs/bulk1",
+               "usb_bulk1_interface_num": "2",
+               "usb_bulk1_endpoint_in": "0x83",
+               "usb_bulk1_endpoint_out": "0x02",
+               "usb_bulk2_device_name": "/dev/usb-ffs/bulk2",
+               "usb_bulk2_interface_num": "3",
+               "usb_bulk2_endpoint_in": "0x84",
+               "usb_bulk2_endpoint_out": "0x03"
+            }
+         }
       }
+
 
 
 .. _aerial_platform_dji_matrice_psdk_installation_package:
