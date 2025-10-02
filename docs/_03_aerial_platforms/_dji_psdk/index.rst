@@ -5,7 +5,7 @@ DJI Matrice Series PSDK
 =======================
 
 .. contents:: Table of Contents
-   :depth: 3
+   :depth: 2
    :local:
 
 
@@ -32,14 +32,14 @@ Installation
 
 .. _aerial_platform_matrice_psdk_installation_prerequisites:
 
-=============================================================
+
 Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)
 =============================================================
 
 .. _aerial_platform_dji_matrice_psdk_installation_prerequisites_software_once:
 
 1. Clone configuration repository
-------------------------------
+---------------------------------
 
 .. code-block:: console
 
@@ -48,14 +48,14 @@ Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)
    cd psdk_config_files
 
 2. Disable ``l4t-device-mode`` auto start
---------------------------------------
+-----------------------------------------
 
 .. code-block:: console
 
    sudo systemctl disable nv-l4t-usb-device-mode.service
 
 3. Replace system device-mode script
----------------------------------
+------------------------------------
 
 Copy your custom startup script into place and make it executable:
 
@@ -66,7 +66,7 @@ Copy your custom startup script into place and make it executable:
    chmod +x ./nv-l4t-usb-device-mode-start.sh
 
 4. Customize the script
---------------------
+-----------------------
 
 Update the script to use the correct **USB-UDC port**:
 
@@ -83,7 +83,7 @@ Update the script to use the correct **USB-UDC port**:
      sed -i 's/3550000\.usb/3550000.xudc/g' nv-l4t-usb-device-mode-start.sh
 
 5. Grab bulk-mode program folder
------------------------------
+--------------------------------
 
 Download and unzip the reference package into ``~/Desktop/startup_bulk``:
 
@@ -95,10 +95,10 @@ Download and unzip the reference package into ``~/Desktop/startup_bulk``:
      && chmod +x ~/Desktop/startup_bulk/*
 
 6. Reboot
-------
+---------
 
 7. Load necessary kernel modules on boot
--------------------------------------
+----------------------------------------
 
 Append to ``/etc/modules`` (ensure correct formatting):
 
@@ -107,7 +107,7 @@ Append to ``/etc/modules`` (ensure correct formatting):
    echo -e "configfs\nlibcomposite\nusb_f_fs\ntegra-xudc" | sudo tee -a /etc/modules
 
 8. Test the setup
---------------
+-----------------
 
 .. code-block:: console
 
@@ -115,7 +115,7 @@ Append to ``/etc/modules`` (ensure correct formatting):
    ./nv-l4t-usb-device-mode-start.sh
 
 9. Re-enable the service (if successful)
--------------------------------------
+----------------------------------------
 
 .. code-block:: console
 
@@ -124,7 +124,6 @@ Append to ``/etc/modules`` (ensure correct formatting):
 Now both **bulk mode** and **network mode** are configured.
 
 
-=================================================================
 Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)
 =================================================================
 
@@ -288,9 +287,9 @@ If not, repeat the above steps.
 
 .. _aerial_platform_dji_matrice_psdk_installation_package:
 
-=======================
+
 Install Platform Package
-=======================
+========================
 
 Binary installation
 -------------------
@@ -304,8 +303,7 @@ Source installation
 
 .. code-block:: bash
 
-   # If Aerostack2 was installed from sources,
-   # clone into the src folder of your workspace.
+   # If Aerostack2 was installed from sources, clone into the src folder of your workspace.
    cd ~/aerostack2_ws/src/aerostack2/as2_aerial_platforms
    git clone git@github.com:aerostack2/as2_platform_dji_psdk.git
    cd ~/aerostack2_ws
@@ -326,9 +324,7 @@ For more details about platform control modes and sensors, see
 Control Modes
 =============
 
-Supported control modes:
-
-.. list-table:: Control Modes DJI PSDK Platform
+.. list-table:: Supported Control Modes for DJI PSDK Platform
    :widths: 50 50 50
    :header-rows: 1
 
@@ -343,9 +339,7 @@ Supported control modes:
 Sensors
 =======
 
-Supported sensors:
-
-.. list-table:: Sensors DJI PSDK Platform
+.. list-table:: Supported Sensors for DJI PSDK Platform
    :widths: 50 50 50
    :header-rows: 1
 
