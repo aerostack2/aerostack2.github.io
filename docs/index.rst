@@ -71,6 +71,7 @@ If you use the code in the academic context, please cite\:
    _08_ros2_common_interfaces/index.rst
    _09_development/index.rst
    _14_projects/index.rst
+   _15_user_reviews/index.rst
    _11_license/index.rst
    _12_citations/index.rst
    _13_about_and_contact/index.rst
