@@ -28,7 +28,7 @@ Our main collaborators, currently active in the Aerostack2 development are:
      - martin.molina@upm.es
    * - Pedro Arias Pérez
      - `pariaspe <https://github.com/pariaspe>`__
-     - pedro.ariasp@upm.es
+     - pedro.arias.perez@uvigo.gal
    * - Rafael Pérez Seguí
      - `RPS98 <https://github.com/RPS98>`__
      - r.psegui@upm.es
@@ -38,6 +38,9 @@ Our main collaborators, currently active in the Aerostack2 development are:
    * - Javier Melero Deza
      - `javilinos <https://github.com/javilinos>`__
      - javier.mdeza@upm.es
+   * - Guillermo García Patiño Lenza
+     - `GPatiA2 <https://github.com/GPatiA2>`__
+     - g.glenza@upm.es
    * - Pascual Campoy
      - `pascualcampoy <https://github.com/pascualcampoy>`__
      - pascual.campoy@upm.es

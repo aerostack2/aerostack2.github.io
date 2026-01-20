@@ -9,6 +9,7 @@ Pages:
 06. User Interfaces
 07. ROS 2 Common interfaces
 08. Development
+15. User Reviews
 09. License Agreement: 3-Clause BSD License
 10. Citations
 11. About and Contact 
@@ -172,7 +173,7 @@ Extended Table of Contents:
         - AS2 Motion Controller
         - AS2 State Estimator
         - AS2 Behavior
-
+15. User Reviews
 09. License Agreement: 3-Clause BSD License
 10. Citations
 11. About and Contact
