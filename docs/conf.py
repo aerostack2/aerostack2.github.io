@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.abspath(
 # -- Project information -----------------------------------------------------
 
 project = 'Aerostack2'
-copyright = '2022-2023, Universidad Politécnica de Madrid'
+copyright = '2022-2026, Universidad Politécnica de Madrid'
 author = 'CVAR'
 slug = re.sub(r'\W+', '-', project.lower())
 
