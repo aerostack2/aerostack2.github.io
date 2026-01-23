@@ -135,7 +135,6 @@ Both tools will support drone swarms, not just single drones.
    Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Guillermo GP-Lenza (guillermolenza AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
-   Carmen DR.Pita-Romero (carmendrpr AT gmail.com)
 
 .. _gsoc_project_2:
 
@@ -217,7 +216,6 @@ Additionally, performance evaluations will be conducted to validate the benefits
 
 - **Mentors**
    Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-   Carmen DR.Pita-Romero (carmendrpr AT gmail.com),
    Francisco Anguita (fjac014 AT gmail.com),
    Guillermo GP-Lenza (guillermolenza AT gmail.com),
 
@@ -252,7 +250,6 @@ a clear visualization of the console outputs for the different ROS 2 nodes.
 - **Mentors**
    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
    Guillermo GP-Lenza (guillermolenza AT gmail.com),
-   Carmen DR.Pita-Romero (carmendrpr AT gmail.com)
 
 
 .. _gsoc_project_5:
@@ -322,7 +319,6 @@ productivity and make the framework more accessible to a broader range of users.
 - **Mentors**
    Javier Melero Deza (javier.mdeza AT gmail.com),
    Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-   Carmen DR.Pita-Romero (carmendrpr AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)
 
 
