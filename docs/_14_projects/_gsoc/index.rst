@@ -37,7 +37,7 @@ It is offered with a BSD-3-Clause license that allows free distribution and modi
 Our organization is a young and dynamic group, dedicated to pushing the boundaries of aerial robotics through collaboration and innovation.
 We are focused on unifying the development of autonomous aerial robotics systems, aiming to establish Aerostack2 as a leading open-source framework that developers and researchers can rely on for their projects.
 
-Nowadays, Aerostack2 has accumulated over 1,500 commits and 400 pull requests, contributed by more than 10 international collaborators.
+Nowadays, Aerostack2 has accumulated more than 2,000 commits and 500 pull requests, contributed by more than 20 international collaborators.
 
 We have also actively engaged with the community to promote and improve Aerostack2, participating in working groups such as:
 
@@ -51,6 +51,7 @@ Furthermore, Aerostack2 has been presented at international conferences:
 - `ROSCon Spain 2023, Madrid <https://roscon.org.es/2023/ROSConMadrid2023.html>`_
 - `RSS 2024, Deflt <https://roboticsconference.org/2024/>`_
 - `ROSCon Spain 2024, Sevilla <https://roscon.org.es/ROSConES2024.html>`_
+- `ROSCon Spain 2025, Barcelona <https://roscon.org.es/roscon-website-template/ROSConES2025.html>`_
 
 
 .. raw:: html
@@ -73,7 +74,7 @@ Furthermore, Aerostack2 has been presented at international conferences:
 If you are interested in ROS 2, aerial robotics, and open-source software development, we invite you to join us in this exciting journey!
 
 ============================
-Ideas List for GSoC 2025
+Ideas List for GSoC 2026
 ============================
 
 .. use small title
@@ -87,10 +88,10 @@ Ideas List for GSoC 2025
 .. - Expected size of the project
 .. - Mentor
 
-Below you will find the list of the different project ideas that we are proposing for Google Summer of Code 2025.
+Below you will find the list of the different project ideas that we are proposing for Google Summer of Code 2026.
 
 
-.. contents:: GSoC 2025
+.. contents:: GSoC 2026
    :depth: 2
    :local:
 
@@ -131,7 +132,7 @@ Both tools will support drone swarms, not just single drones.
    Medium (175h)
 
 - **Mentors**
-   Pedro Arias-Perez (pedro.ariasp AT upm.es),
+   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Guillermo GP-Lenza (guillermolenza AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
    Carmen DR.Pita-Romero (carmendrpr AT gmail.com)
@@ -215,7 +216,7 @@ Additionally, performance evaluations will be conducted to validate the benefits
    Medium (175h)
 
 - **Mentors**
-   Pedro Arias-Perez (pedro.ariasp AT upm.es),
+   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Carmen DR.Pita-Romero (carmendrpr AT gmail.com),
    Francisco Anguita (fjac014 AT gmail.com),
    Guillermo GP-Lenza (guillermolenza AT gmail.com),
@@ -320,87 +321,87 @@ productivity and make the framework more accessible to a broader range of users.
 
 - **Mentors**
    Javier Melero Deza (javier.mdeza AT gmail.com),
-   Pedro Arias-Perez (pedro.ariasp AT upm.es),
+   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Carmen DR.Pita-Romero (carmendrpr AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)
 
 
-.. _gsoc_project_7:
+.. .. _gsoc_project_7:
 
-Project #7: Migration to ROS 2 Jazzy and Gazebo Harmonic
-========================================================
+.. Project #7: Migration to ROS 2 Jazzy and Gazebo Harmonic
+.. ========================================================
 
-This project aims to release an ROS 2 Jazzy compatible version of Aerostack2 framework. 
+.. This project aims to release an ROS 2 Jazzy compatible version of Aerostack2 framework. 
 
-Jazzy is the latest Long-Term Support (LTS) distribution of the ROS 2 framework.
-In this distribution, some fundamental issues have been resolved, making it convenient to migrate the
-framework and make it available to the community. Furthermore, the primary simulator used in Aerostack2
-is Gazebo, with the Harmonic version being the recommended choice for ROS 2 Jazzy.
-Therefore, migrating the Gazebo-related components is also required. 
+.. Jazzy is the latest Long-Term Support (LTS) distribution of the ROS 2 framework.
+.. In this distribution, some fundamental issues have been resolved, making it convenient to migrate the
+.. framework and make it available to the community. Furthermore, the primary simulator used in Aerostack2
+.. is Gazebo, with the Harmonic version being the recommended choice for ROS 2 Jazzy.
+.. Therefore, migrating the Gazebo-related components is also required. 
 
-The work will involve resolving incompatibilities that arise from the version switch, validating the
-correct functioning of the framework’s core functions, and adapting the Continuous Integration pipelines
-and Docker containers. 
+.. The work will involve resolving incompatibilities that arise from the version switch, validating the
+.. correct functioning of the framework’s core functions, and adapting the Continuous Integration pipelines
+.. and Docker containers. 
 
-- **Skills Required/Preferred**
-   ROS 2, C++, Python, Gazebo, Github Workflows
+.. - **Skills Required/Preferred**
+..    ROS 2, C++, Python, Gazebo, Github Workflows
 
-- **Difficulty Level**
-   Easy
+.. - **Difficulty Level**
+..    Easy
 
-- **Expected Outcome**
-   ROS 2 Jazzy compatible Aerostack2 package released in ROS distro repositories
+.. - **Expected Outcome**
+..    ROS 2 Jazzy compatible Aerostack2 package released in ROS distro repositories
 
-- **Expected Size of the Project**
-   Small (90h)
+.. - **Expected Size of the Project**
+..    Small (90h)
 
-- **Mentors**
-   Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
-   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com)
+.. - **Mentors**
+..    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
+..    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+..    Francisco Anguita (fjac014 AT gmail.com)
 
 
-.. _gsoc_project_8:
+.. .. _gsoc_project_8:
 
-Project #8: Behavior Client Implementation for C++
-==================================================
+.. Project #8: Behavior Client Implementation for C++
+.. ==================================================
 
-This project seeks to implement a Behavior Client that allows users to design missions using C++. 
+.. This project seeks to implement a Behavior Client that allows users to design missions using C++. 
 
-Aerostack2 uses `behavior-based logic <https://aerostack2.github.io/_01_aerostack2_concepts/behaviors/index.html>`__
-for mission definition and control. Currently, Aerostack2 has a 
-`Python API <https://github.com/aerostack2/aerostack2/tree/main/as2_python_api>`__ with modules that
-wrap around the different behaviors and implements functions that can be used in a Python script to make
-calls to behaviors like a simple *go_to* or a *path_follower*.
-A similar Behavior Client allows easier and faster mission definition using C++. 
+.. Aerostack2 uses `behavior-based logic <https://aerostack2.github.io/_01_aerostack2_concepts/behaviors/index.html>`__
+.. for mission definition and control. Currently, Aerostack2 has a 
+.. `Python API <https://github.com/aerostack2/aerostack2/tree/main/as2_python_api>`__ with modules that
+.. wrap around the different behaviors and implements functions that can be used in a Python script to make
+.. calls to behaviors like a simple *go_to* or a *path_follower*.
+.. A similar Behavior Client allows easier and faster mission definition using C++. 
 
-.. figure:: resources/project_behaviors.png
-   :scale: 40
+.. .. figure:: resources/project_behaviors.png
+..    :scale: 40
    
-- **Skills Required/Preferred**
-   ROS 2, C++
+.. - **Skills Required/Preferred**
+..    ROS 2, C++
 
-- **Difficulty Level**
-   Medium
+.. - **Difficulty Level**
+..    Medium
 
-- **Expected Outcome**
-   C++ implementation of a Behavior Client for mission definition 
+.. - **Expected Outcome**
+..    C++ implementation of a Behavior Client for mission definition 
 
-- **Expected Size of the Project**
-   Medium (175h)
+.. - **Expected Size of the Project**
+..    Medium (175h)
 
-- **Mentors**
-   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com),
-   Guillermo GP-Lenza (guillermolenza AT gmail.com)
+.. - **Mentors**
+..    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+..    Francisco Anguita (fjac014 AT gmail.com),
+..    Guillermo GP-Lenza (guillermolenza AT gmail.com)
 
 
 
 ========================================
-Application instructions for GSoC 2025
+Application instructions for GSoC 2026
 ========================================
 
-We encourage you to apply for Google Summer of Code 2025 with any of the projects listed above. 
+We encourage you to apply for Google Summer of Code 2026 with any of the projects listed above. 
 If you have any questions, please reach out to the mentor(s) listed for the project you are interested in or contact us at aerostack2 AT gmail.com.
 We are looking for enthusiastic students who are passionated and willing to learn and contribute to open-source projects.
 
@@ -418,10 +419,10 @@ Warm-up Task
 
 .. check if the project requires a programming test or PR
 .. warning::
-   This Warm-up task is mandatory for all the projects.
+   This warm-up task is mandatory for all the projects.
 
-In order to apply for any of the projects, you must complete a simple Warm-up for familiarizing yourself with the Aerostack2 framework.
-The Warm-up task consists of the following steps:
+In order to apply for any of the projects, you must complete a simple warm-up for familiarizing yourself with the Aerostack2 framework.
+The warm-up task consists of the following steps:
 
    1. Setup an environment with ROS 2 Humble and Aerostack2. You can follow the instructions in the :ref:`Aerostack2 Wiki <getting_started>`.
    2. Follow the Simple Gazebo Simulation example in the :ref:`Aerostack2 Wiki <project_gazebo>`.
@@ -435,15 +436,15 @@ The Warm-up task consists of the following steps:
 Application Form
 ================
 
-After doing the warm-up tasks, fill this `web form <https://docs.google.com/forms/d/e/1FAIpQLScepvbkKiCzlMLEXarT7Y_y8GngKz2zhveydIFEqqf376p02w/viewform?usp=header>`__ with your information and challenge results.
+After doing the warm-up tasks, fill this `web form <https://forms.gle/hxCSiU5caDHqLuVx6>`__ with your information and challenge results.
 Then you are invited to ask the project mentors about the project details.
 
 .. note::
-  Application form: `GSoC 2025 Application Form <https://docs.google.com/forms/d/e/1FAIpQLScepvbkKiCzlMLEXarT7Y_y8GngKz2zhveydIFEqqf376p02w/viewform?usp=header>`__
+  Application form: `GSoC 2026 Application Form <https://forms.gle/hxCSiU5caDHqLuVx6>`__
 
 Consider answering the following questions in the resume submitted to the application form.
 
-1. Contact Details
+1. **Contact Details**
 
 - Name and surname:
 - Country:
@@ -452,7 +453,7 @@ Consider answering the following questions in the resume submitted to the applic
 - Personal blog (optional):
 - Twitter/Identica/LinkedIn/others:
 
-2. Timeline
+2. **Timeline**
 
 - Split your project idea into smaller tasks.  
 - Quantify the time you think each task needs.  
@@ -461,38 +462,38 @@ Consider answering the following questions in the resume submitted to the applic
 - Do you understand this is a serious commitment, equivalent to a full-time paid summer internship or summer job?
 - Do you have any known time conflicts during the official coding period?
 
-3. Studies
+3. **Studies**
 
 - What is your school and degree?
 - Would your application contribute to your ongoing studies/degree? If so, how?  
 
-4. Programming Background
+4. **Programming Background**
 
 - Computing experience: operating systems you use on a daily basis, known programming languages, hardware, etc.
 - Robot or Computer Vision programming experience:
 - Other software programming experience:
 
-5. GSoC Participation
+5. **GSoC Participation**
 
 - Have you participated to GSoC before?
 - How many times, which year, which project?
 - Have you applied but were not selected? When?
-- Have you submitted/will you submit another proposal for GSoC 2025 to a different org?
+- Have you submitted/will you submit another proposal for GSoC 2026 to a different org?
 
 
 
-How to increase your chances of being selected in GSoC-2025
+How to increase your chances of being selected in GSoC-2026
 ===========================================================
 
-If you put yourself in the shoes of the mentor that should select the student, you’ll immediately realize that there are some behaviors that are usually rewarded. Here’s some examples.
+If you put yourself in the shoes of the mentor that should select the student, you'll immediately realize that there are some behaviors that are usually rewarded. Here's some examples.
 
-1. **Be proactive**: Mentors are more likely to select students that openly discuss the existing ideas and / or propose their own. It is a bad idea to just submit your idea only in the Google web site without discussing it, because it won’t be noticed.
+1. **Be proactive**: Mentors are more likely to select students that openly discuss the existing ideas and / or propose their own. It is a bad idea to just submit your idea only in the Google web site without discussing it, because it won't be noticed.
 2. **Demonstrate your skills**: Consider that mentors are being contacted by several students that apply for the same project. A way to show that you are the best candidate, is to demonstrate that you are familiar with the software and you can code. How? Browse the bug tracker (issues in github of Aerostack2), fix some bugs and propose your patch submitting your PullRequest, and/or ask mentors to challenge you! Moreover, bug fixes are a great way to get familiar with the code.
-3. **Demonstrate your intention to stay**: Students that are likely to disappear after GSoC are less likely to be selected. This is because there is no point in developing something that won’t be maintained. And moreover, one scope of GSoC is to bring new developers to the community.
+3. **Demonstrate your intention to stay**: Students that are likely to disappear after GSoC are less likely to be selected. This is because there is no point in developing something that won't be maintained. And moreover, one scope of GSoC is to bring new developers to the community.
 
 
 ================
 Acknowledgements
 ================
 
-We would like to thank `JdeRobot <https://jderobot.github.io/>`__ for the support and the inspiration to participate in GSoC 2025.
+We would like to thank `JdeRobot <https://jderobot.github.io/>`__ for the support and the inspiration to participate in GSoC 2026.
