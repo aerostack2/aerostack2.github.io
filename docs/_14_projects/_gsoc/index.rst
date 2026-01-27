@@ -95,24 +95,21 @@ Below you will find the list of the different project ideas that we are proposin
    :depth: 2
    :local:
 
-
 .. _gsoc_project_1:
 
-Project #1: New RViz2 RQT Plugins for Aerostack2
+Project #1: New Rerun Visualization for Aerostack2
 ================================================
 
 This project aims to enhance the visualization and interaction capabilities of the **Aerostack2**
-framework by developing new **RViz2** and **RQT** plugins.
-These plugins will provide **real-time monitoring**, **debugging**, and **control functionalities**
+framework by developing new **Rerun** visualization tools.
+These visualization tools will provide **real-time monitoring**, **debugging**, and **control functionalities**
 tailored to aerial robotics applications.
 
-The project will focus on improving current **custom visualization plugins**
-(`Aerostack2 Visualization <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_visualization>`_)
-to visualize drone states, trajectories, sensor data, and mission execution.
-Moreover, it will create new RQT RViz tools
-(`Aerostack2 RViz Plugins <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_rviz_plugins>`_)
-for intuitive interaction, such as sending commands, adjusting parameters, and monitoring system diagnostics.
-Both tools will support drone swarms, not just single drones.
+The project will focus on improving the current visualization with **custom visualization plugins for Rviz2**
+(`Aerostack2 Visualization <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_visualization>`_) and (`Aerostack2 RViz Plugins <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_rviz_plugins>`_)
+to visualize drone states, trajectories, sensor data, and mission execution, doing similar but improved tools with **Rerun** (`Rerun.io <https://rerun.io>`_).
+
+Tools will support drone swarms, not just single drones.
 
 
 .. figure:: resources/project_rviz_plugins.png
@@ -120,7 +117,7 @@ Both tools will support drone swarms, not just single drones.
 
 
 - **Skills Required/Preferred**
-   RQT, ROS 2, Python (or C++)
+   ROS 2, Python (or C++)
 
 - **Difficulty Level**
    Medium
@@ -132,8 +129,7 @@ Both tools will support drone swarms, not just single drones.
    Medium (175h)
 
 - **Mentors**
-   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-   Guillermo GP-Lenza (guillermolenza AT gmail.com),
+   Álvaro Gaona (TODO: CORREO AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
 
 .. _gsoc_project_2:
