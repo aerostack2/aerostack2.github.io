@@ -134,7 +134,7 @@ coordinated aerial systems.
 - **Mentors**
    Álvaro Gaona (alvgaona AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com),
+   Francisco Anguita (fjanguita014 AT gmail.com),
    David Perez-Saura (perezsaura.david AT gmail.com)
 
 
@@ -219,7 +219,7 @@ Additionally, performance evaluations will be conducted to validate the benefits
    Medium (175h)
 
 - **Mentors**
-   Francisco Anguita (fjac014 AT gmail.com),
+   Francisco Anguita (fjanguita014 AT gmail.com),
    Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
 
@@ -254,7 +254,7 @@ whole.
 
 - **Mentors**
    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com),
+   Francisco Anguita (fjanguita014 AT gmail.com),
    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com)
 
 
@@ -328,7 +328,7 @@ A similar Behavior Client allows easier and faster mission definition using C++.
 - **Mentors**
    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com)
+   Francisco Anguita (fjanguita014 AT gmail.com)
 
 .. .. _gsoc_project_7:
 
@@ -362,7 +362,7 @@ A similar Behavior Client allows easier and faster mission definition using C++.
 .. - **Mentors**
 ..    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
 ..    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-..    Francisco Anguita (fjac014 AT gmail.com)
+..    Francisco Anguita (fjanguita014 AT gmail.com)
 
 
 
@@ -405,11 +405,11 @@ The warm-up task consists of the following steps:
 Application Form
 ================
 
-After doing the warm-up tasks, fill this `web form <https://forms.gle/hxCSiU5caDHqLuVx6>`__ with your information and challenge results.
+After doing the warm-up tasks, fill this `web form <https://forms.gle/fsi1Lg1T55bXU8eq8>`__ with your information and challenge results.
 Then you are invited to ask the project mentors about the project details.
 
 .. note::
-  Application form: `GSoC 2026 Application Form <https://forms.gle/hxCSiU5caDHqLuVx6>`__
+  Application form: `GSoC 2026 Application Form <https://forms.gle/fsi1Lg1T55bXU8eq8>`__
 
 Consider answering the following questions in the resume submitted to the application form.
 
