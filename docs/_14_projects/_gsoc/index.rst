@@ -405,11 +405,11 @@ The warm-up task consists of the following steps:
 Application Form
 ================
 
-After doing the warm-up tasks, fill this `web form <https://forms.gle/hxCSiU5caDHqLuVx6>`__ with your information and challenge results.
+After doing the warm-up tasks, fill this `web form <https://forms.gle/fsi1Lg1T55bXU8eq8>`__ with your information and challenge results.
 Then you are invited to ask the project mentors about the project details.
 
 .. note::
-  Application form: `GSoC 2026 Application Form <https://forms.gle/hxCSiU5caDHqLuVx6>`__
+  Application form: `GSoC 2026 Application Form <https://forms.gle/fsi1Lg1T55bXU8eq8>`__
 
 Consider answering the following questions in the resume submitted to the application form.
 
