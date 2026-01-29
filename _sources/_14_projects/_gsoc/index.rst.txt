@@ -115,12 +115,12 @@ ensuring scalability beyond single-vehicle use cases and enabling comprehensive 
 coordinated aerial systems.
 
 
-.. figure:: resources/project_rviz_plugins.png
+.. figure:: resources/project_rerun.png
    :scale: 40
 
 
 - **Skills Required/Preferred**
-   ROS 2, Python (or C++)
+   ROS 2, Python and C++
 
 - **Difficulty Level**
    Medium
