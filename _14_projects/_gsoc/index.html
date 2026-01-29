@@ -395,9 +395,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#project-1-rerun-based-visualization-integration-for-aerostack2">Project #1: Rerun-Based Visualization Integration for Aerostack2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#project-2-rqt-keyboard-teleoperation-alphanumeric-view">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#project-4-tool-for-visualizing-ros-nodes-output-log">Project #4: Tool for visualizing ROS Nodes output log</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#project-5-system-integration-tests-and-continuous-integration">Project #5: System Integration Tests and Continuous Integration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#project-6-development-of-a-project-creation-tool-for-aerostack2">Project #6: Development of a Project Creation Tool for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-4-system-integration-tests-and-continuous-integration">Project #4: System Integration Tests and Continuous Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-5-development-of-a-project-creation-tool-for-aerostack2">Project #5: Development of a Project Creation Tool for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-6-behavior-client-implementation-for-c">Project #6: Behavior Client Implementation for C++</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#application-instructions-for-gsoc-2026">Application instructions for GSoC 2026</a><ul>
@@ -460,9 +460,9 @@
 <li><p><a class="reference internal" href="#project-1-rerun-based-visualization-integration-for-aerostack2" id="id4">Project #1: Rerun-Based Visualization Integration for Aerostack2</a></p></li>
 <li><p><a class="reference internal" href="#project-2-rqt-keyboard-teleoperation-alphanumeric-view" id="id5">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></p></li>
 <li><p><a class="reference internal" href="#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2" id="id6">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></p></li>
-<li><p><a class="reference internal" href="#project-4-tool-for-visualizing-ros-nodes-output-log" id="id7">Project #4: Tool for visualizing ROS Nodes output log</a></p></li>
-<li><p><a class="reference internal" href="#project-5-system-integration-tests-and-continuous-integration" id="id8">Project #5: System Integration Tests and Continuous Integration</a></p></li>
-<li><p><a class="reference internal" href="#project-6-development-of-a-project-creation-tool-for-aerostack2" id="id9">Project #6: Development of a Project Creation Tool for Aerostack2</a></p></li>
+<li><p><a class="reference internal" href="#project-4-system-integration-tests-and-continuous-integration" id="id7">Project #4: System Integration Tests and Continuous Integration</a></p></li>
+<li><p><a class="reference internal" href="#project-5-development-of-a-project-creation-tool-for-aerostack2" id="id8">Project #5: Development of a Project Creation Tool for Aerostack2</a></p></li>
+<li><p><a class="reference internal" href="#project-6-behavior-client-implementation-for-c" id="id9">Project #6: Behavior Client Implementation for C++</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#application-instructions-for-gsoc-2026" id="id10">Application instructions for GSoC 2026</a></p>
@@ -512,9 +512,9 @@ We are focused on unifying the development of autonomous aerial robotics systems
 <li><p><a class="reference internal" href="#project-1-rerun-based-visualization-integration-for-aerostack2" id="id16">Project #1: Rerun-Based Visualization Integration for Aerostack2</a></p></li>
 <li><p><a class="reference internal" href="#project-2-rqt-keyboard-teleoperation-alphanumeric-view" id="id17">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></p></li>
 <li><p><a class="reference internal" href="#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2" id="id18">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></p></li>
-<li><p><a class="reference internal" href="#project-4-tool-for-visualizing-ros-nodes-output-log" id="id19">Project #4: Tool for visualizing ROS Nodes output log</a></p></li>
-<li><p><a class="reference internal" href="#project-5-system-integration-tests-and-continuous-integration" id="id20">Project #5: System Integration Tests and Continuous Integration</a></p></li>
-<li><p><a class="reference internal" href="#project-6-development-of-a-project-creation-tool-for-aerostack2" id="id21">Project #6: Development of a Project Creation Tool for Aerostack2</a></p></li>
+<li><p><a class="reference internal" href="#project-4-system-integration-tests-and-continuous-integration" id="id19">Project #4: System Integration Tests and Continuous Integration</a></p></li>
+<li><p><a class="reference internal" href="#project-5-development-of-a-project-creation-tool-for-aerostack2" id="id20">Project #5: Development of a Project Creation Tool for Aerostack2</a></p></li>
+<li><p><a class="reference internal" href="#project-6-behavior-client-implementation-for-c" id="id21">Project #6: Behavior Client Implementation for C++</a></p></li>
 </ul>
 </nav>
 <section id="project-1-rerun-based-visualization-integration-for-aerostack2">
@@ -556,7 +556,9 @@ coordinated aerial systems.</p>
 </li>
 <li><dl class="simple">
 <dt><strong>Mentors</strong></dt><dd><p>Álvaro Gaona (alvgaona AT gmail.com),
-Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),</p>
+Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
+Francisco Anguita (fjac014 AT gmail.com),
+David Perez-Saura (perezsaura.david AT gmail.com)</p>
 </dd>
 </dl>
 </li>
@@ -608,8 +610,10 @@ new RQT alphanumeric viewer.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>Mentors</strong></dt><dd><p>Javier Melero Deza (javier.mdeza AT gmail.com),
-Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)</p>
+<dt><strong>Mentors</strong></dt><dd><p>Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
+Guillermo GP-Lenza (guillermolenza AT gmail.com),
+Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
+Javier Melero Deza (javier.mdeza AT gmail.com)</p>
 </dd>
 </dl>
 </li>
@@ -621,7 +625,7 @@ Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)</p>
 <a class="reference external" href="https://github.com/ros2/demos/blob/humble/lifecycle/README.rst">Lifecycle nodes</a>
 provide a structured way to manage the state of a node, allowing better control over
 initialization, execution, and shutdown processes.</p>
-<p>The work will involve refac`oring the current nodes to adopt the managed lifecycle model, implementing
+<p>The work will involve refactoring the current nodes to adopt the managed lifecycle model, implementing
 state transitions to optimize resource usage, and ensuring seamless integration with existing aerostack2
 components.
 Additionally, performance evaluations will be conducted to validate the benefits of this migration.</p>
@@ -647,55 +651,16 @@ Additionally, performance evaluations will be conducted to validate the benefits
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>Mentors</strong></dt><dd><p>Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-Francisco Anguita (fjac014 AT gmail.com),
-Guillermo GP-Lenza (guillermolenza AT gmail.com),</p>
+<dt><strong>Mentors</strong></dt><dd><p>Francisco Anguita (fjac014 AT gmail.com),
+Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
+Miguel Fernandez-Cortizas (miferco97 AT gmail.com),</p>
 </dd>
 </dl>
 </li>
 </ul>
 </section>
-<section id="project-4-tool-for-visualizing-ros-nodes-output-log">
-<span id="gsoc-project-4"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">Project #4: Tool for visualizing ROS Nodes output log</a><a class="headerlink" href="#project-4-tool-for-visualizing-ros-nodes-output-log" title="Link to this heading"></a></h2>
-<p>The main objective of this project is to develop a tool to improve the debugging of stdout and stderr
-outputs on ROS 2 systems with multiple nodes that produce console outputs, especially though the
-recording and postprocessing of the rosbag files.</p>
-<p>Console outputs are produced using the <a class="reference external" href="https://docs.ros.org/en/jazzy/Tutorials/Demos/Logging-and-logger-configuration.html">ROS 2 logging utilities</a>,
-and are ultimately published through the /rosout topic. When rosbags are reproduced, console logs for
-all the nodes in the system are displayed in the same topic, which makes debugging hard in systems with
-multiple ROS 2 nodes. The work will involve the development of a tool that eases this task by providing
-a clear visualization of the console outputs for the different ROS 2 nodes.</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt><strong>Skills Required/Preferred</strong></dt><dd><p>ROS 2, C++, Python, QT</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Difficulty Level</strong></dt><dd><p>Medium</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Expected Outcome</strong></dt><dd><p>RQT based tool for visualizing ROS 2 nodes output logs from topics or rosbags.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Expected Size of the Project</strong></dt><dd><p>Medium (175h)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Mentors</strong></dt><dd><p>Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
-Guillermo GP-Lenza (guillermolenza AT gmail.com),</p>
-</dd>
-</dl>
-</li>
-</ul>
-</section>
-<section id="project-5-system-integration-tests-and-continuous-integration">
-<span id="gsoc-project-5"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">Project #5: System Integration Tests and Continuous Integration</a><a class="headerlink" href="#project-5-system-integration-tests-and-continuous-integration" title="Link to this heading"></a></h2>
+<section id="project-4-system-integration-tests-and-continuous-integration">
+<span id="gsoc-project-4"></span><h2><a class="toc-backref" href="#id19" role="doc-backlink">Project #4: System Integration Tests and Continuous Integration</a><a class="headerlink" href="#project-4-system-integration-tests-and-continuous-integration" title="Link to this heading"></a></h2>
 <p>This project focuses on the implementation of Integration Test to the CI pipeline.
 An Aerostack2-based system is expected to run drone missions that produce expected outputs.
 Integration tests allow to check the different Aerostack2 modules keep working together before
@@ -727,15 +692,16 @@ whole.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>Mentors</strong></dt><dd><p>Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-Francisco Anguita (fjac014 AT gmail.com)</p>
+<dt><strong>Mentors</strong></dt><dd><p>Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
+Francisco Anguita (fjac014 AT gmail.com),
+Rafael Perez-Segui (rafa.perez.s98 AT gmail.com)</p>
 </dd>
 </dl>
 </li>
 </ul>
 </section>
-<section id="project-6-development-of-a-project-creation-tool-for-aerostack2">
-<span id="gsoc-project-6"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">Project #6: Development of a Project Creation Tool for Aerostack2</a><a class="headerlink" href="#project-6-development-of-a-project-creation-tool-for-aerostack2" title="Link to this heading"></a></h2>
+<section id="project-5-development-of-a-project-creation-tool-for-aerostack2">
+<span id="gsoc-project-5"></span><h2><a class="toc-backref" href="#id20" role="doc-backlink">Project #5: Development of a Project Creation Tool for Aerostack2</a><a class="headerlink" href="#project-5-development-of-a-project-creation-tool-for-aerostack2" title="Link to this heading"></a></h2>
 <p>This project aims to develop a tool that simplifies the creation and management of projects in Aerostack2.
 In Aerostack2, a “project” consists of a structured set of configurations, launch files, and assets
 designed to address a specific problem or application.
@@ -767,9 +733,52 @@ productivity and make the framework more accessible to a broader range of users.
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>Mentors</strong></dt><dd><p>Javier Melero Deza (javier.mdeza AT gmail.com),
-Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)</p>
+<dt><strong>Mentors</strong></dt><dd><p>Guillermo GP-Lenza (guillermolenza AT gmail.com),
+Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+Álvaro Gaona (alvgaona AT gmail.com),
+Javier Melero Deza (javier.mdeza AT gmail.com)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="project-6-behavior-client-implementation-for-c">
+<span id="gsoc-project-6"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">Project #6: Behavior Client Implementation for C++</a><a class="headerlink" href="#project-6-behavior-client-implementation-for-c" title="Link to this heading"></a></h2>
+<p>This project seeks to implement a Behavior Client that allows users to design missions using C++.</p>
+<p>Aerostack2 uses <a class="reference external" href="https://aerostack2.github.io/_01_aerostack2_concepts/behaviors/index.html">behavior-based logic</a>
+for mission definition and control. Currently, Aerostack2 has a
+<a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_python_api">Python API</a> with modules that
+wrap around the different behaviors and implements functions that can be used in a Python script to make
+calls to behaviors like a simple <em>go_to</em> or a <em>path_follower</em>.
+A similar Behavior Client allows easier and faster mission definition using C++.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/project_behaviors.png"><img alt="../../_images/project_behaviors.png" src="../../_images/project_behaviors.png" style="width: 208.0px; height: 200.8px;" /></a>
+</figure>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Skills Required/Preferred</strong></dt><dd><p>ROS 2, C++</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Difficulty Level</strong></dt><dd><p>Medium</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Expected Outcome</strong></dt><dd><p>C++ implementation of a Behavior Client for mission definition</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Expected Size of the Project</strong></dt><dd><p>Medium (175h)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Mentors</strong></dt><dd><p>Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
+Francisco Anguita (fjac014 AT gmail.com)</p>
 </dd>
 </dl>
 </li>

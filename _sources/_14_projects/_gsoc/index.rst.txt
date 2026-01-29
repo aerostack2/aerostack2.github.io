@@ -134,6 +134,9 @@ coordinated aerial systems.
 - **Mentors**
    Álvaro Gaona (alvgaona AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
+   Francisco Anguita (fjac014 AT gmail.com),
+   David Perez-Saura (perezsaura.david AT gmail.com)
+
 
 .. _gsoc_project_2:
 
@@ -178,8 +181,10 @@ addition to monitor the drone's state.
    Medium (175h)
 
 - **Mentors**
-   Javier Melero Deza (javier.mdeza AT gmail.com),
-   Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)
+   Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
+   Guillermo GP-Lenza (guillermolenza AT gmail.com),
+   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
+   Javier Melero Deza (javier.mdeza AT gmail.com)
 
 
 .. _gsoc_project_3:
@@ -192,7 +197,7 @@ This project aims to migrate **Aerostack2** existing **ROS 2 nodes** to **lifecy
 provide a structured way to manage the state of a node, allowing better control over
 initialization, execution, and shutdown processes. 
 
-The work will involve refac`oring the current nodes to adopt the managed lifecycle model, implementing
+The work will involve refactoring the current nodes to adopt the managed lifecycle model, implementing
 state transitions to optimize resource usage, and ensuring seamless integration with existing aerostack2
 components.
 Additionally, performance evaluations will be conducted to validate the benefits of this migration. 
@@ -214,46 +219,14 @@ Additionally, performance evaluations will be conducted to validate the benefits
    Medium (175h)
 
 - **Mentors**
-   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
    Francisco Anguita (fjac014 AT gmail.com),
-   Guillermo GP-Lenza (guillermolenza AT gmail.com),
+   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
+   Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
 
 
 .. _gsoc_project_4:
 
-Project #4: Tool for visualizing ROS Nodes output log
-=====================================================
-
-The main objective of this project is to develop a tool to improve the debugging of stdout and stderr
-outputs on ROS 2 systems with multiple nodes that produce console outputs, especially though the
-recording and postprocessing of the rosbag files. 
-
-Console outputs are produced using the `ROS 2 logging utilities <https://docs.ros.org/en/jazzy/Tutorials/Demos/Logging-and-logger-configuration.html>`__,
-and are ultimately published through the /rosout topic. When rosbags are reproduced, console logs for 
-all the nodes in the system are displayed in the same topic, which makes debugging hard in systems with 
-multiple ROS 2 nodes. The work will involve the development of a tool that eases this task by providing 
-a clear visualization of the console outputs for the different ROS 2 nodes. 
-
-- **Skills Required/Preferred**
-   ROS 2, C++, Python, QT
-
-- **Difficulty Level**
-   Medium
-
-- **Expected Outcome**
-   RQT based tool for visualizing ROS 2 nodes output logs from topics or rosbags.
-
-- **Expected Size of the Project**
-   Medium (175h)
-
-- **Mentors**
-   Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
-   Guillermo GP-Lenza (guillermolenza AT gmail.com),
-
-
-.. _gsoc_project_5:
-
-Project #5: System Integration Tests and Continuous Integration
+Project #4: System Integration Tests and Continuous Integration
 ===============================================================
 
 This project focuses on the implementation of Integration Test to the CI pipeline.
@@ -280,13 +253,14 @@ whole.
    Medium (175h)
 
 - **Mentors**
-   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-   Francisco Anguita (fjac014 AT gmail.com)
+   Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
+   Francisco Anguita (fjac014 AT gmail.com),
+   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com)
 
 
-.. _gsoc_project_6:
+.. _gsoc_project_5:
 
-Project #6: Development of a Project Creation Tool for Aerostack2
+Project #5: Development of a Project Creation Tool for Aerostack2
 =================================================================
 
 This project aims to develop a tool that simplifies the creation and management of projects in Aerostack2.
@@ -316,10 +290,45 @@ productivity and make the framework more accessible to a broader range of users.
    Medium (175h)
 
 - **Mentors**
-   Javier Melero Deza (javier.mdeza AT gmail.com),
-   Pedro Arias-Perez (pedro.arias.perez AT uvigo.gal),
-   Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com)
+   Guillermo GP-Lenza (guillermolenza AT gmail.com),
+   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+   Álvaro Gaona (alvgaona AT gmail.com),
+   Javier Melero Deza (javier.mdeza AT gmail.com)
 
+
+.. _gsoc_project_6:
+
+Project #6: Behavior Client Implementation for C++
+==================================================
+
+This project seeks to implement a Behavior Client that allows users to design missions using C++. 
+
+Aerostack2 uses `behavior-based logic <https://aerostack2.github.io/_01_aerostack2_concepts/behaviors/index.html>`__
+for mission definition and control. Currently, Aerostack2 has a 
+`Python API <https://github.com/aerostack2/aerostack2/tree/main/as2_python_api>`__ with modules that
+wrap around the different behaviors and implements functions that can be used in a Python script to make
+calls to behaviors like a simple *go_to* or a *path_follower*.
+A similar Behavior Client allows easier and faster mission definition using C++. 
+
+.. figure:: resources/project_behaviors.png
+   :scale: 40
+   
+- **Skills Required/Preferred**
+   ROS 2, C++
+
+- **Difficulty Level**
+   Medium
+
+- **Expected Outcome**
+   C++ implementation of a Behavior Client for mission definition 
+
+- **Expected Size of the Project**
+   Medium (175h)
+
+- **Mentors**
+   Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
+   Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
+   Francisco Anguita (fjac014 AT gmail.com)
 
 .. .. _gsoc_project_7:
 
@@ -354,41 +363,6 @@ productivity and make the framework more accessible to a broader range of users.
 ..    Miguel Fernandez-Cortizas (miferco97 AT gmail.com),
 ..    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
 ..    Francisco Anguita (fjac014 AT gmail.com)
-
-
-.. .. _gsoc_project_8:
-
-.. Project #8: Behavior Client Implementation for C++
-.. ==================================================
-
-.. This project seeks to implement a Behavior Client that allows users to design missions using C++. 
-
-.. Aerostack2 uses `behavior-based logic <https://aerostack2.github.io/_01_aerostack2_concepts/behaviors/index.html>`__
-.. for mission definition and control. Currently, Aerostack2 has a 
-.. `Python API <https://github.com/aerostack2/aerostack2/tree/main/as2_python_api>`__ with modules that
-.. wrap around the different behaviors and implements functions that can be used in a Python script to make
-.. calls to behaviors like a simple *go_to* or a *path_follower*.
-.. A similar Behavior Client allows easier and faster mission definition using C++. 
-
-.. .. figure:: resources/project_behaviors.png
-..    :scale: 40
-   
-.. - **Skills Required/Preferred**
-..    ROS 2, C++
-
-.. - **Difficulty Level**
-..    Medium
-
-.. - **Expected Outcome**
-..    C++ implementation of a Behavior Client for mission definition 
-
-.. - **Expected Size of the Project**
-..    Medium (175h)
-
-.. - **Mentors**
-..    Rafael Perez-Segui (rafa.perez.s98 AT gmail.com),
-..    Francisco Anguita (fjac014 AT gmail.com),
-..    Guillermo GP-Lenza (guillermolenza AT gmail.com)
 
 
 
