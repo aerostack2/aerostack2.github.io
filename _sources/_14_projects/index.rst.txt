@@ -87,7 +87,7 @@ Check out our latest videos on our `Vimeo <https://vimeo.com/cvarupm>`_ and `You
 Google Summer of Code (GSoC)
 ============================
 
-See the :ref:`GSoC 2025 <gsoc>` page for more information:
+See the :ref:`GSoC 2026 <gsoc>` page for more information:
 
 .. toctree::
    :maxdepth: 1
