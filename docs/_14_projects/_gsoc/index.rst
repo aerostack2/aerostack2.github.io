@@ -97,19 +97,22 @@ Below you will find the list of the different project ideas that we are proposin
 
 .. _gsoc_project_1:
 
-Project #1: New Rerun Visualization for Aerostack2
-================================================
+Project #1: Rerun-Based Visualization Integration for Aerostack2
+================================================================
 
-This project aims to enhance the visualization and interaction capabilities of the **Aerostack2**
-framework by developing new **Rerun** visualization tools.
-These visualization tools will provide **real-time monitoring**, **debugging**, and **control functionalities**
-tailored to aerial robotics applications.
+This project aims to extend the visualization capabilities of the Aerostack2 framework by integrating
+**Rerun** (`Rerun.io <https://rerun.io>`_) as a new visualization backend for monitoring, debugging,
+and analysis.
 
-The project will focus on improving the current visualization with **custom visualization plugins for Rviz2**
-(`Aerostack2 Visualization <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_visualization>`_) and (`Aerostack2 RViz Plugins <https://github.com/aerostack2/aerostack2/tree/main/as2_user_interfaces/as2_visualization/as2_rviz_plugins>`_)
-to visualize drone states, trajectories, sensor data, and mission execution, doing similar but improved tools with **Rerun** (`Rerun.io <https://rerun.io>`_).
+The project will build upon the existing visualization infrastructure of Aerostack2, including the
+current custom RViz2 visualization tools and plugins, which are used to display drone states,
+trajectories, sensor data, and mission execution. Based on these existing concepts,
+similar visualization tools will be developed using Rerun, while taking advantage of its improved
+support for temporal data visualization, data replay, and multi-modal analysis.
 
-Tools will support drone swarms, not just single drones.
+All visualization tools developed in this project will support multi-drone and swarm scenarios,
+ensuring scalability beyond single-vehicle use cases and enabling comprehensive visualization of
+coordinated aerial systems.
 
 
 .. figure:: resources/project_rviz_plugins.png
@@ -129,7 +132,7 @@ Tools will support drone swarms, not just single drones.
    Medium (175h)
 
 - **Mentors**
-   Álvaro Gaona (TODO: CORREO AT gmail.com),
+   Álvaro Gaona (alvgaona AT gmail.com),
    Rodrigo Da Silva Gómez (rodrigods2001 AT gmail.com),
 
 .. _gsoc_project_2:
