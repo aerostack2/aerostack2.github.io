@@ -94,3 +94,15 @@ See the :ref:`GSoC 2026 <gsoc>` page for more information:
 
    _gsoc/index.rst
 
+.. _projects_ratec_intro:
+
+RATEC
+=====
+
+See the :ref:`RATEC <ratec>` page for more information:
+
+.. toctree::
+   :maxdepth: 1
+
+   _ratec/index.rst
+

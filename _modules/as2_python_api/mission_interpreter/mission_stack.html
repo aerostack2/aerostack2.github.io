@@ -407,6 +407,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#ratec">RATEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_ratec/index.html">RATEC</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_15_user_reviews/index.html">User Reviews</a></li>
@@ -524,6 +528,20 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_done</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__done</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__current</span></div>
+
+
+<div class="viewcode-block" id="MissionStack.point_to_item">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_stack.MissionStack.point_to_item">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">point_to_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;MissionItem&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Point to item at index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__done</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__pending</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Index out of range.&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_idx</span> <span class="o">&lt;</span> <span class="n">idx</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">next_item</span><span class="p">()</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_idx</span> <span class="o">&gt;</span> <span class="n">idx</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_item</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__current</span></div>
 
 

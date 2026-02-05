@@ -407,6 +407,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#ratec">RATEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_ratec/index.html">RATEC</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_15_user_reviews/index.html">User Reviews</a></li>
@@ -640,12 +644,13 @@
 
 <div class="viewcode-block" id="MissionInterpreter.start_mission">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.start_mission">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">start_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_mission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission in different thread.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Mission being performed, start not allowed&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mission</span> <span class="o">=</span> <span class="n">mid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mission_stack</span><span class="o">.</span><span class="n">point_to_item</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__perform_mission</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">True</span></div>
@@ -675,6 +680,24 @@
         <span class="k">if</span> <span class="n">mid</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_mid</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Next item requested for another mission, not the one executing&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MissionInterpreter.jump_to_item">
+<a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.mission_interpreter.MissionInterpreter.jump_to_item">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jump_to_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Jump to item in mission.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_thread</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No mission being executed, jump to item not allowed&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">mid</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_mid</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Jump to item requested for another mission, not the one executing&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mission_stack</span><span class="o">.</span><span class="n">pending</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mission_stack</span><span class="o">.</span><span class="n">done</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Index </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1"> out of range for mission </span><span class="si">{</span><span class="n">mid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mission_stack</span><span class="o">.</span><span class="n">point_to_item</span><span class="p">(</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_behavior</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
 
 

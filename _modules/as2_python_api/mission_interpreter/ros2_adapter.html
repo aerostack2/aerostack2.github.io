@@ -407,6 +407,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#ratec">RATEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_ratec/index.html">RATEC</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../_15_user_reviews/index.html">User Reviews</a></li>
@@ -557,7 +561,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mission: </span><span class="si">{</span><span class="n">mission</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">last_mid</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span>
         <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="n">MissionUpdate</span><span class="o">.</span><span class="n">START</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">start_callback</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_callback</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">item_id</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="n">MissionUpdate</span><span class="o">.</span><span class="n">PAUSE</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">pause_mission</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">mission_id</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">msg</span><span class="o">.</span><span class="n">action</span> <span class="o">==</span> <span class="n">MissionUpdate</span><span class="o">.</span><span class="n">RESUME</span><span class="p">:</span>
@@ -581,7 +585,7 @@
 
 <div class="viewcode-block" id="Adapter.start_callback">
 <a class="viewcode-back" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/as2_python_api.mission_interpreter.html#as2_python_api.mission_interpreter.ros2_adapter.Adapter.start_callback">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">start_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mid</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Start mission on interpreter.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># TODO: where to arm and offboard? Avoid calling interpreter.drone property directly</span>
@@ -590,7 +594,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">_drone</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;offboard&#39;</span><span class="p">]:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">_drone</span><span class="o">.</span><span class="n">offboard</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Starting mission: </span><span class="si">{</span><span class="n">mid</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">start_mission</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interpreter</span><span class="o">.</span><span class="n">start_mission</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">item_id</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Trying to start mission but no mission is loaded.&#39;</span><span class="p">)</span></div>
 </div>
