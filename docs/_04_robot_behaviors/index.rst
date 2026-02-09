@@ -91,3 +91,24 @@ Trajectory Generation Behaviors
        | Yaw: desired mode
        | Path: desired path with a list of poses with id.
        | Max speed: desired speed movement, in meters per second (m/s)
+
+.. _behaviors_param_estimation:
+
+-------------------------------
+Parameter Estimation Behaviors
+-------------------------------
+
+.. list-table:: Parameter Estimation Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`behaviors_mass_estimation`
+     - Estimate the mass of the platform using the aceleracion in the z axis and the thrust command to the motors.
+     - 
+   * - :ref:`behaviors_force_estimation`
+     - Estimate the difference between the commanded thrust and the thrust being executed by the platform.
+     -
+

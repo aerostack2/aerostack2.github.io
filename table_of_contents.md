@@ -84,6 +84,7 @@ Extended Table of Contents:
     - Motion Behaviors
     - Perception Behaviors
     - Trajectory Generation Behaviors
+    - Parameters Estimation Behaviors
 05. AS2 Plugins
     - Motion Controller Plugins
         - State Estimator Plugins
