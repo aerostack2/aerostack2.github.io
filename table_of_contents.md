@@ -85,6 +85,7 @@ Extended Table of Contents:
     - Perception Behaviors
     - Trajectory Generation Behaviors
     - Parameters Estimation Behaviors
+    - Swarm Flocking Behaviors
 05. AS2 Plugins
     - Motion Controller Plugins
         - State Estimator Plugins

@@ -112,3 +112,22 @@ Parameter Estimation Behaviors
      - Estimate the difference between the commanded thrust and the thrust being executed by the platform.
      -
 
+.. _behaviors_swarm_flocking:
+
+-------------------------------
+Swarm Flocking Behaviors
+-------------------------------
+
+.. list-table:: Swarm Flocking Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`swarm_flocking`
+     - Generates a dynamic Swarm structure around a centroid in order to move the drones in formation.
+     - | Virtual Centroid: Desired pose offset of the virtual centroid with respect to the frame it must follow.
+       | Swarm Formation: List of desired poses, including the ID of each drone in the swarm, with respect to the virtual centroid.
+       | Drone Namespace: List of the drone namespaces in the swarm. It must be in the same order as the swarm formation list.
+
