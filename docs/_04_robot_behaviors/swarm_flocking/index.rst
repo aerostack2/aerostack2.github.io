@@ -41,6 +41,37 @@ Behavior Actions
   - The number of drones in the formation.
   - The relative poses of the drones around the centroid.
 
+Configuration Parameters
+------------------------
+
+The behavior can be configured via the ``config/config_default.yaml`` file.
+
+Launching the Behavior
+----------------------
+You can launch the behavior using the provided launch file:
+
+**Manual Mode**
+
+.. code-block:: bash
+
+   ros2 launch as2_behaviors_swarm_flocking swarm_flocking_behavior.launch.py 
+
+**Sending the Goal manually:**
+
+You can send a goal to the behavior with a specific formation configuration using the following command:
+
+.. code-block:: bash
+
+   ros2 action send_goal /<namespace>/SwarmFlockingBehavior as2_msgs/action/SwarmFlocking "{ 
+     virtual_centroid: {header: {frame_id: '<frame_id>'},
+      pose: {position: {x: <x>, y: <y>, z: <z>}, orientation: {x: <x>, y: <y>, z: <z>, w: <w>}}}, 
+     swarm_formation: [ 
+       {id: '<drone_id>', 
+       pose: {position: {x: <rel_x>, y: <rel_y>, z: <rel_z>}, orientation: {x: <x>, y: <y>, z: <z>, w: <w>}}} 
+     ], 
+     drones_namespace: ['<drone_id>'] 
+   }"
+
 Related Projects
 ----------------
 
@@ -51,3 +82,4 @@ modifying their formation structure.
 
 For more details about the theoretical background, refer to the related paper:
 `"Flocking Behavior for Dynamic and Complex Swarm Structures" <https://ieeexplore.ieee.org/search/searchresult.jsp?searchWithin=%22Publication%20Number%22:11007756&searchWithin=%22Document%20Title%22:Flocking%20Behavior%20for%20Dynamic%20and%20Complex%20Swarm%20Structures>`_.
+Motion Behaviors
