@@ -86,6 +86,7 @@ Extended Table of Contents:
     - Trajectory Generation Behaviors
     - Parameters Estimation Behaviors
     - Swarm Flocking Behaviors
+    - Payload Behaviors
 05. AS2 Plugins
     - Motion Controller Plugins
         - State Estimator Plugins

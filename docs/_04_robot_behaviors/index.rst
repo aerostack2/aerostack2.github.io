@@ -131,3 +131,19 @@ Swarm Flocking Behaviors
        | Swarm Formation: List of desired poses, including the ID of each drone in the swarm, with respect to the virtual centroid.
        | Drone Namespace: List of the drone namespaces in the swarm. It must be in the same order as the swarm formation list.
 
+.. _behaviors_payload:
+
+-------------------------------
+Payload Behaviors
+-------------------------------
+
+.. list-table:: Payload Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`gripper`
+     - Control a gripper to pick up and release objects.
+     - Gripper request: It is a bool msg where true means to start the closing action and false means to start the opening action.
