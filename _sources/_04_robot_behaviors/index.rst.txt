@@ -91,3 +91,59 @@ Trajectory Generation Behaviors
        | Yaw: desired mode
        | Path: desired path with a list of poses with id.
        | Max speed: desired speed movement, in meters per second (m/s)
+
+.. _behaviors_param_estimation:
+
+-------------------------------
+Parameter Estimation Behaviors
+-------------------------------
+
+.. list-table:: Parameter Estimation Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`behaviors_mass_estimation`
+     - Estimate the mass of the platform using the aceleracion in the z axis and the thrust command to the motors.
+     - 
+   * - :ref:`behaviors_force_estimation`
+     - Estimate the difference between the commanded thrust and the thrust being executed by the platform.
+     -
+
+.. _behaviors_swarm_flocking:
+
+-------------------------------
+Swarm Flocking Behaviors
+-------------------------------
+
+.. list-table:: Swarm Flocking Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`swarm_flocking`
+     - Generates a dynamic Swarm structure around a centroid in order to move the drones in formation.
+     - | Virtual Centroid: Desired pose offset of the virtual centroid with respect to the frame it must follow.
+       | Swarm Formation: List of desired poses, including the ID of each drone in the swarm, with respect to the virtual centroid.
+       | Drone Namespace: List of the drone namespaces in the swarm. It must be in the same order as the swarm formation list.
+
+.. _behaviors_payload:
+
+-------------------------------
+Payload Behaviors
+-------------------------------
+
+.. list-table:: Payload Behaviors
+   :widths: 50 50 50
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Parameters
+   * - :ref:`gripper`
+     - Control a gripper to pick up and release objects.
+     - Gripper request: It is a bool msg where true means to start the closing action and false means to start the opening action.
