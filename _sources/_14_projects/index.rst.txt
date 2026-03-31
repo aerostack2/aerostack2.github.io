@@ -94,6 +94,18 @@ See the :ref:`GSoC 2026 <gsoc>` page for more information:
 
    _gsoc/index.rst
 
+.. _projects_insertion_intro:
+
+INSERTION
+=========
+
+See the :ref:`INSERTION <insertion>` page for more information:
+
+.. toctree::
+   :maxdepth: 1
+
+   _insertion/index.rst
+
 .. _projects_ratec_intro:
 
 RATEC
