@@ -85,12 +85,12 @@ Trajectory Generation Behaviors
    * - Name
      - Description
      - Parameters
-   * - Generate Polynomial Trajectory
-     - Convert a list of waypoints to a trajectory
-     - | Header: desired frame of the path
-       | Yaw: desired mode
-       | Path: desired path with a list of poses with id.
-       | Max speed: desired speed movement, in meters per second (m/s)
+   * - :ref:`behaviors_trajectory_generation_page`
+     - Convert a list of waypoints into a smooth trajectory through a runtime-selectable plugin (dynamic_mav, mav, jerk_limited or gcopter).
+     - | Yaw: desired yaw mode.
+       | Path: list of waypoints with id.
+       | Max speed: desired speed along the path (m/s).
+       | Start on paused: if true, generate the trajectory and stay paused until the client resumes.
 
 .. _behaviors_param_estimation:
 
