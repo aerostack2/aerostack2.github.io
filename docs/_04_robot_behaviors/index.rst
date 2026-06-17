@@ -44,12 +44,18 @@ Motion Behaviors
        | Yaw: desired mode
        | Path: desired path with a list of poses with id.
        | Max speed: desired speed movement, in meters per second (m/s)
-   * - Follow Reference
-     - Keep the aircraft at given pose reference in the desired frame
-     - | Frame id: desired frame of the reference
-       | Yaw: desired mode
-       | Target reference: desired pose reference in the given frame.
-       | Max speed: desired speed movement in each of the axis, in meters per second (m/s)
+   * - :ref:`behaviors_follow_reference_page`
+     - Keep the aircraft at given pose reference in the desired frame through a runtime-selectable plugin (position or trajectory).
+     - | Yaw: desired yaw mode.
+       | Target pose: desired reference point in the given frame (m).
+       | Max speed: desired speed per axis (m/s).
+
+.. toctree::
+   :hidden:
+   :caption: Motion Behaviors
+   :maxdepth: 1
+
+   follow_reference/index
 
 
 
