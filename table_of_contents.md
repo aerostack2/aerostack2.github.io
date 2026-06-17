@@ -7,12 +7,14 @@ Pages:
 04. Robot Behaviors
 05. AS2 Plugins
 06. User Interfaces
-07. ROS 2 Common interfaces
-08. Development
+08. ROS 2 Common interfaces
+09. Development
+10. Roadmaps
+11. License Agreement: 3-Clause BSD License
+12. Citations
+13. About and Contact
+14. Projects
 15. User Reviews
-09. License Agreement: 3-Clause BSD License
-10. Citations
-11. About and Contact 
 
 
 Extended Table of Contents:
@@ -82,22 +84,26 @@ Extended Table of Contents:
     - DJI Matrice Series
 04. Robot Behaviors
     - Motion Behaviors
+        - Follow Reference Behavior
     - Perception Behaviors
     - Trajectory Generation Behaviors
+        - Generate Polynomial Trajectory Behavior
     - Parameters Estimation Behaviors
     - Swarm Flocking Behaviors
     - Payload Behaviors
 05. AS2 Plugins
     - Motion Controller Plugins
-        - State Estimator Plugins
-        - Behaviors Plugins
+    - State Estimator Plugins
+    - Behaviors Plugins
         - Motion Behaviors Plugins
+        - Trajectory Generation Behavior Plugins
+        - Follow Reference Behavior Plugins
 06. User Interfaces
     - Behavior Tree
     - Keyboard Teleoperation
     - Alphanumeric Viewer
     - Web Gui
-07. ROS 2 Common interfaces
+08. ROS 2 Common interfaces
     - Aerial Platform
         - Topics
         - Services
@@ -110,7 +116,7 @@ Extended Table of Contents:
         - Actions
     - AS2 Msgs
     - Using AS2 Interfaces
-08. Development
+09. Development
     - Command Line Interface (CLI)
     - Tutorials
         - Writing a New Aerial Platform
@@ -133,18 +139,18 @@ Extended Table of Contents:
         - Writing a New Motion Controller Plugin
             - Overview
             - Requirements
+            - Architecture
+                - Plugin Contract
             - Tutorial Steps
-                - Controller Plugin Base
-                - Overriden methods
-                    - Initialization
-                    - Update State
-                    - Update Reference
-                    - Compute Output
-                    - Set Mode
-                    - Parameters Update
-                    - Reset
+                - Plugin skeleton
+                - Initialization
+                - Essential parameters and parameter callbacks
+                - State and reference hooks
+                - Mode handling
+                - Compute output
+                - Reset and hover
                 - Exporting the plugin
-                - Controller manager and configuration files
+                - Configuration files
                 - Launching
         - Writing a New State Estimator Plugin
             - Overview
@@ -160,6 +166,23 @@ Extended Table of Contents:
             - Requirements
             - Behavior Server
             - Behavior Client
+        - Writing a New Trajectory Generation Plugin
+        - Writing a New Follow Reference Plugin
+            - Overview
+            - Requirements
+            - Architecture
+                - Plugin Contract
+            - Tutorial Steps
+                - Plugin skeleton
+                - Initialization
+                - Goal activation
+                - Goal modification (optional)
+                - Deactivation, pause and resume
+                - Execution end
+                - Per-tick run
+                - Exporting the plugin
+                - Configuration files
+                - Launching
     - Develop Guide
         - Developing a New Package
             - Architecture of a New Package
@@ -176,7 +199,9 @@ Extended Table of Contents:
         - AS2 Motion Controller
         - AS2 State Estimator
         - AS2 Behavior
+10. Roadmaps
+11. License Agreement: 3-Clause BSD License
+12. Citations
+13. About and Contact
+14. Projects
 15. User Reviews
-09. License Agreement: 3-Clause BSD License
-10. Citations
-11. About and Contact
