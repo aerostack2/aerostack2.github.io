@@ -98,6 +98,18 @@ transform at that rate and triggers a regeneration when the translation
 drift exceeds ``transform_threshold`` (m). This keeps the trajectory
 consistent with the active state-estimation frame after re-localisations.
 
+Degenerate-Hold
+^^^^^^^^^^^^^^^
+
+When the active waypoint list collapses to a single waypoint and that
+waypoint sits closer than ``kDegenerateDistanceM`` (hard-coded to
+``0.05`` m) to the current vehicle pose, the wrapper short-circuits the
+plugin: no trajectory is generated, no setpoints are emitted, and the
+action reports ``SUCCESS`` immediately. This avoids degenerate generations
+(zero-length trajectories) when a client re-sends the current pose as a
+goal, while still letting the controller hold the drone via its own
+station-keeping.
+
 Available Plugins
 -----------------
 
@@ -255,19 +267,24 @@ Defaults in
      - Translation drift (m) on the watched transform that triggers a
        regeneration. ``0.0`` disables the drift check.
    * - **debug.path_topic**
-     - ``debug/traj_generated``
+     - ``debug/behaviors/trajectory_generation/trajectory/generated``
      - Topic where the sampled generated trajectory is republished as
        ``nav_msgs/Path``. Empty disables the publisher.
    * - **debug.reference_setpoint**
-     - ``debug/ref_traj_point``
+     - ``debug/behaviors/trajectory_generation/reference/waypoint``
      - Topic for the current reference point as ``visualization_msgs/Marker``.
    * - **debug.reference_end_waypoint**
-     - ``debug/ref_traj_end_point``
+     - ``debug/behaviors/trajectory_generation/reference/end_waypoint``
      - Topic for the end-of-horizon point as ``visualization_msgs/Marker``.
    * - **debug.reference_waypoints**
-     - ``debug/waypoints``
+     - ``debug/behaviors/trajectory_generation/trajectory/waypoints``
      - Topic for the full waypoint queue as
        ``visualization_msgs/MarkerArray``.
+   * - **debug.generation_time_topic**
+     - ``debug/behaviors/trajectory_generation/generation_time``
+     - Topic where the wall-clock time (s) spent in the last plugin call to
+       ``generateTrajectory`` / ``updateWaypoints`` is published as
+       ``std_msgs/Float64``. Empty disables the publisher.
 
 mav_trajectory_generator Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -462,6 +479,17 @@ for a single call.
      - ``0.1``
      - AABB half-margin (m) used between anchors and on segments without
        intermediate waypoints.
+   * - **optimization.vertical_perturbation**
+     - ``0.05``
+     - Initial-state in-plane offset (m) along +x applied as a workaround
+       for the L-BFGS rank-deficiency on world-Z aligned segments (every
+       waypoint of the active segment sits inside the vertical-alignment
+       band defined below). ``0.0`` disables the workaround.
+   * - **optimization.vertical_alignment_threshold**
+     - ``0.10``
+     - Planar distance band (m) under which all waypoints in the active
+       segment are considered vertically aligned with the vehicle, which
+       triggers the perturbation above.
    * - **waypoints.waypoint_margin**
      - ``0.1``
      - AABB half-margin (m) on the two pinch segments around each
@@ -542,16 +570,20 @@ Debugging Topics
 When the corresponding ``debug.*`` parameter is non-empty the wrapper
 publishes:
 
-* ``<namespace>/debug/traj_generated`` (``nav_msgs/Path``) — sampled
-  trajectory currently held by the plugin. Refreshed on every regeneration
-  and, for asynchronous plugins, on the cycle where the new backend
-  trajectory is swapped in.
-* ``<namespace>/debug/ref_traj_point`` (``visualization_msgs/Marker``) —
-  current reference point being commanded.
-* ``<namespace>/debug/ref_traj_end_point`` (``visualization_msgs/Marker``) —
-  end-of-horizon point of the active sampling window.
-* ``<namespace>/debug/waypoints`` (``visualization_msgs/MarkerArray``) —
-  pending mission waypoints.
+* ``<namespace>/debug/behaviors/trajectory_generation/trajectory/generated``
+  (``nav_msgs/Path``) — sampled trajectory currently held by the plugin.
+  Refreshed on every regeneration and, for asynchronous plugins, on the
+  cycle where the new backend trajectory is swapped in.
+* ``<namespace>/debug/behaviors/trajectory_generation/reference/waypoint``
+  (``visualization_msgs/Marker``) — current reference point being commanded.
+* ``<namespace>/debug/behaviors/trajectory_generation/reference/end_waypoint``
+  (``visualization_msgs/Marker``) — end-of-horizon point of the active
+  sampling window.
+* ``<namespace>/debug/behaviors/trajectory_generation/trajectory/waypoints``
+  (``visualization_msgs/MarkerArray``) — pending mission waypoints.
+* ``<namespace>/debug/behaviors/trajectory_generation/generation_time``
+  (``std_msgs/Float64``) — wall-clock time (s) spent in the last plugin call
+  to ``generateTrajectory`` / ``updateWaypoints``.
 
 See also
 --------
