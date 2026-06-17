@@ -5,655 +5,523 @@ Writing a New Motion Controller Plugin
 ======================================
 
 .. contents:: Table of Contents
-   :depth: 1
+   :depth: 2
    :local:
 
-
-
-.. _development_tutorials_motion_controller_overview:
-
---------
 Overview
 --------
 
-This tutorial shows how to create your own Controller within the AeroStack2 framework.
-You may want to remember AeroStack2 :ref:`Architecture <as2_concepts_architecture>` and its :ref:`Controller <as2_concepts_motion_controller>`
-operation.
+Aerostack2 loads motion controllers as ``pluginlib`` plugins under the
+``as2_motion_controller`` package. The controller node (``ControllerManager``
+and ``ControllerHandler``) owns the ROS lifecycle, the TF lookups and the
+publishers; the plugin only has to implement the **control law** —
+state caching, reference handling, mode validation and the per-tick
+``computeOutput``.
 
-This tutorial will be a walktrough of one existing controller to easily understand its creation.
-The one explained will be a simplified version of the PID controller (:ref:`speed_controller`).
-The code used in this tutorial can be found in `Github 
-<https://github.com/aerostack2/aerostack2/tree/main/as2_controller/as2_controller_plugin_speed_controller>`_.
+This tutorial walks through the contract exposed by
+``as2_motion_controller_plugin_base::ControllerBase`` and how to build a
+plugin against it. The reference implementations live in
+`as2_motion_controller/plugins <https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins>`_:
 
+* `pid_speed_controller <https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins/pid_speed_controller>`_
+  — PID-based velocity controller used as the running example below.
+* `differential_flatness_controller <https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins/differential_flatness_controller>`_
+  — flatness-based controller for ACRO / ATTITUDE outputs.
 
+Before reading this tutorial it is worth remembering the
+:ref:`Aerostack2 architecture <as2_concepts_architecture>` and the
+:ref:`motion controller <as2_concepts_motion_controller>` role.
 
-.. _development_tutorials_motion_controller_requirements:
-
-------------
 Requirements
 ------------
 
-- ROS 2 Humble
-- AeroStack2
+* ROS 2 Humble
+* Aerostack2 (with ``as2_motion_controller`` built and sourced)
 
+Architecture
+------------
 
+``ControllerBase`` owns the heavy lifting and exposes a small set of hooks
+the plugin must implement:
 
-.. _development_tutorials_motion_controller_steps:
+* **Lifecycle** — ``ControllerManager`` calls ``setTfHandler()``,
+  ``setBaseLinkFrameId()``, ``setPluginParamNamespace()`` and finally
+  ``initialize(node)``. Inside ``initialize()`` the base declares the
+  ``desired_pose_frame`` and ``desired_twist_frame`` parameters, invokes the
+  plugin's ``ownInitialize()`` and seeds the pending-essential-parameter
+  set from ``getEssentialParameters()``.
+* **State and references** — incoming messages are converted by
+  ``ControllerHandler`` to the frames returned by ``getDesiredPoseFrameId()``
+  / ``getDesiredTwistFrameId()`` before reaching the base. ``updateState``
+  validates the frame, caches the state, consumes any pending hover latch
+  and forwards to ``onUpdateState``. The four ``updateReference`` overloads
+  forward to the matching ``onUpdateReference`` overload.
+* **Parameters** — every parameter under ``<plugin_namespace>.`` is routed
+  to ``updateParameter()``. The base tracks the names returned by
+  ``getEssentialParameters()`` and fires ``onAllParametersRead()`` exactly
+  once when every essential has been applied; ``setMode`` can gate on
+  ``essentialParamsReady()``.
+* **Hover** — ``ControllerHandler`` calls ``requestHoverLatch()`` after a
+  successful ``setMode(HOVER)`` and the base materialises a hover reference
+  inside the next ``updateState`` tick via ``latchHoverReference()``. The
+  default latch synthesises a one-point trajectory at the cached pose; the
+  plugin can override it.
 
---------------
+The full header is in
+`controller_base.hpp <https://github.com/aerostack2/aerostack2/blob/main/as2_motion_controller/include/as2_motion_controller/controller_base.hpp>`_.
+
+Plugin Contract
+^^^^^^^^^^^^^^^
+
+.. list-table:: Methods the plugin overrides
+   :widths: 30 50 20
+   :header-rows: 1
+
+   * - Method
+     - Purpose
+     - Required
+   * - ``ownInitialize()``
+     - Allocate handlers, create plugin-specific publishers, finish setup
+       after the base has injected node / TF / param namespace.
+     - No
+   * - ``onUpdateState(pose, twist)``
+     - Cache or transform the validated state used by the control law.
+     - **Yes**
+   * - ``onUpdateReference(PoseStamped)``,
+       ``onUpdateReference(TwistStamped)``,
+       ``onUpdateReference(TrajectorySetpoints)``,
+       ``onUpdateReference(Thrust)``
+     - Per-reference-type hooks. Implement only the ones the plugin
+       consumes.
+     - No (defaults are no-ops)
+   * - ``setMode(in, out)``
+     - Validate the in/out control-mode pair, configure the output frame,
+       reset integrators when the mode actually changes.
+     - **Yes**
+   * - ``getEssentialParameters()``
+     - Fully-qualified names of the parameters that must be present before
+       the plugin accepts ``setMode``.
+     - **Yes**
+   * - ``updateParameter(parameter)``
+     - Apply one parameter under the plugin namespace. Called both for the
+       initial batch and for runtime changes.
+     - **Yes**
+   * - ``onAllParametersRead()``
+     - One-shot hook fired the first time every essential parameter has
+       been delivered. Good place for first-time solver configuration.
+     - No
+   * - ``computeOutput(dt, pose, twist, thrust)``
+     - Per-tick controller evaluation.
+     - **Yes**
+   * - ``reset()``
+     - Clear cached state / commands / integrators. Must call
+       ``ControllerBase::reset()`` to clear base-owned flags.
+     - No
+   * - ``latchHoverReference(pose, twist)``
+     - Produce the hover reference when ``HOVER`` is requested. Override if
+       the default trajectory latch is not compatible with the plugin.
+     - No
+
+.. list-table:: Base helpers available to the plugin
+   :widths: 35 65
+   :header-rows: 1
+
+   * - Helper
+     - Description
+   * - ``getNodePtr()``
+     - Non-owning ``as2::Node *`` for logging, parameters, publishers.
+   * - ``getTfHandler()``
+     - Shared ``as2::tf::TfHandler`` for additional frame conversions.
+   * - ``getBaseLinkFrameId()``
+     - Namespaced ``base_link`` frame.
+   * - ``getDesiredPoseFrameId()`` / ``getDesiredTwistFrameId()``
+     - Frames the plugin currently expects for state and references. Update
+       them from ``setMode()`` with ``setDesiredPoseFrameId`` /
+       ``setDesiredTwistFrameId`` when the mode demands it.
+   * - ``getPluginParamNamespace()`` / ``param(tail)``
+     - Plugin namespace (e.g. ``"pid_speed_controller"``) and helper that
+       returns ``"<namespace>.<tail>"`` ready for ``declare_parameter`` /
+       ``get_parameter``.
+   * - ``getStatePose()`` / ``getStateTwist()``
+     - Last validated state cached by the base.
+   * - ``isStateReceived()`` / ``isReferenceReceived()`` /
+       ``isHoverPending()`` / ``essentialParamsReady()``
+     - Status flags maintained by the base.
+
 Tutorial Steps
 --------------
 
+The snippets below are simplified excerpts from
+``pid_speed_controller``. Refer to the full source for the complete
+implementation.
+
+1. Plugin skeleton
+^^^^^^^^^^^^^^^^^^
 
-
-.. _development_tutorials_motion_controller_steps_class:
-
-1. Controller Plugin Base
-=========================
-
-Following the plugin structure, all the controllers should inherit from a base class
-``controller_plugin_base::ControllerBase``. The base class provides a set of virtual methods
-to override with expected controller functionality. The list of methods is presented in the
-table below:
-
-.. list-table:: List of Virtual Methods
-   :header-rows: 1
-
-   * - Virtual method
-     - Method description
-     - Requires override?
-   * - ownInitialize()
-     - Controller plugin own initialize method.
-     - No
-   * - updateState()
-     - State update with the information received from the current pose and twist.
-     - Yes
-   * - updateReference()
-     - Update the pose, twist, trajectory and thrust references. Use only the ones you need.
-     - No
-   * - computeOutput()
-     - Compute the controller output signal.
-     - Yes
-   * - setMode()
-     - Update the controller input and output control modes.
-     - Yes
-   * - updateParams()
-     - Update the controller parameters.
-     - Yes
-   * - reset()
-     - Reset the controller inner state.
-     - Yes
-   * - getDesiredPoseFrameId()
-     - Return the desired pose state and reference frame_id. ``odom`` by default.
-     - No
-   * - getDesiredTwistFrameId()
-     - Return the desired twist state and reference frame_id. ``base_link`` by default.
-     - No
-
-
-
-.. _development_tutorials_motion_controller_steps_methods:
-
-2. Overriden methods
-====================
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_init:
-
-Initialization
---------------
-
-**TDB**
-
-.. code-block:: c++
-
-    void Plugin::ownInitialize() {
-        speed_limits_ = Eigen::Vector3d::Zero();
-
-        pid_yaw_handler_                 = std::make_shared<pid_controller::PIDController>();
-        pid_3D_position_handler_         = std::make_shared<pid_controller::PIDController3D>();
-        pid_3D_velocity_handler_         = std::make_shared<pid_controller::PIDController3D>();
-        pid_1D_speed_in_a_plane_handler_ = std::make_shared<pid_controller::PIDController>();
-        pid_3D_speed_in_a_plane_handler_ = std::make_shared<pid_controller::PIDController3D>();
-        pid_3D_trajectory_handler_       = std::make_shared<pid_controller::PIDController3D>();
-
-        tf_handler_ = std::make_shared<as2::tf::TfHandler>(node_ptr_);
-
-        enu_frame_id_ = as2::tf::generateTfName(node_ptr_, enu_frame_id_);
-        flu_frame_id_ = as2::tf::generateTfName(node_ptr_, flu_frame_id_);
-
-        input_pose_frame_id_  = as2::tf::generateTfName(node_ptr_, input_pose_frame_id_);
-        input_twist_frame_id_ = as2::tf::generateTfName(node_ptr_, input_twist_frame_id_);
-
-        output_twist_frame_id_ = as2::tf::generateTfName(node_ptr_, output_twist_frame_id_);
-
-        reset();
-        return;
-    }
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_state:
-
-Update State
-------------
-
-**TBD**
-
-.. code-block:: c++
-
-    void Plugin::updateState(const geometry_msgs::msg::PoseStamped &pose_msg,
-                            const geometry_msgs::msg::TwistStamped &twist_msg) {
-        uav_state_.position = Eigen::Vector3d(pose_msg.pose.position.x, pose_msg.pose.position.y, pose_msg.pose.position.z);
-        uav_state_.velocity = Eigen::Vector3d(twist_msg.twist.linear.x, twist_msg.twist.linear.y, twist_msg.twist.linear.z);
-        uav_state_.yaw.x() = as2::frame::getYawFromQuaternion(pose_msg.pose.orientation);
-
-        if (hover_flag_) {
-            resetReferences();
-            flags_.ref_received = true;
-            hover_flag_         = false;
-        }
-
-        flags_.state_received = true;
-        return;
-    }
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_reference:
-
-Update Reference
-----------------
-
-**TBD**
-
-.. code-block:: c++
-
-    void Plugin::updateReference(const geometry_msgs::msg::PoseStamped &pose_msg) {
-        if (control_mode_in_.control_mode == as2_msgs::msg::ControlMode::POSITION ||
-            control_mode_in_.control_mode == as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE) {
-            control_ref_.position = Eigen::Vector3d(pose_msg.pose.position.x, pose_msg.pose.position.y,
-                                                    pose_msg.pose.position.z);
-            flags_.ref_received   = true;
-        }
-
-        if ((control_mode_in_.control_mode == as2_msgs::msg::ControlMode::SPEED ||
-            control_mode_in_.control_mode == as2_msgs::msg::ControlMode::POSITION ||
-            control_mode_in_.control_mode == as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE) &&
-            control_mode_in_.yaw_mode == as2_msgs::msg::ControlMode::YAW_ANGLE) {
-            control_ref_.yaw.x() = as2::frame::getYawFromQuaternion(pose_msg.pose.orientation);
-        }
-
-        return;
-    }
-
-    void Plugin::updateReference(const geometry_msgs::msg::TwistStamped &twist_msg) {
-        if (control_mode_in_.control_mode == as2_msgs::msg::ControlMode::POSITION) {
-            speed_limits_ = Eigen::Vector3d(twist_msg.twist.linear.x, twist_msg.twist.linear.y,
-                                            twist_msg.twist.linear.z);
-            pid_3D_position_handler_->setOutputSaturation(speed_limits_);
-            pid_3D_velocity_handler_->setOutputSaturation(speed_limits_);
-            pid_3D_trajectory_handler_->setOutputSaturation(speed_limits_);
-            return;
-        }
-
-        if (control_mode_in_.control_mode != as2_msgs::msg::ControlMode::SPEED &&
-            control_mode_in_.control_mode != as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE) {
-            return;
-        }
-
-        control_ref_.velocity =
-            Eigen::Vector3d(twist_msg.twist.linear.x, twist_msg.twist.linear.y, twist_msg.twist.linear.z);
-
-        if (control_mode_in_.yaw_mode == as2_msgs::msg::ControlMode::YAW_SPEED) {
-            control_ref_.yaw.y() = twist_msg.twist.angular.z;
-        }
-
-        flags_.ref_received = true;
-        return;
-    }
-
-    void Plugin::updateReference(const as2_msgs::msg::TrajectoryPoint &traj_msg) {
-        if (control_mode_in_.control_mode != as2_msgs::msg::ControlMode::TRAJECTORY) {
-            return;
-        }
-
-        control_ref_.position =
-            Eigen::Vector3d(traj_msg.position.x, traj_msg.position.y, traj_msg.position.z);
-
-        control_ref_.velocity = Eigen::Vector3d(traj_msg.twist.x, traj_msg.twist.y, traj_msg.twist.z);
-
-        control_ref_.yaw.x() = traj_msg.yaw_angle;
-
-        flags_.ref_received = true;
-        return;
-    }
-
-Thrust is not overriden since is not needed.
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_output:
-
-Compute Output
---------------
-
-**TBD**
-
-.. code-block:: c++
-
-    bool Plugin::computeOutput(double dt,
-                            geometry_msgs::msg::PoseStamped &pose,
-                            geometry_msgs::msg::TwistStamped &twist,
-                            as2_msgs::msg::Thrust &thrust) {
-        if (!flags_.state_received) {
-            auto &clk = *node_ptr_->get_clock();
-            RCLCPP_WARN_THROTTLE(node_ptr_->get_logger(), clk, 5000, "State not received yet");
-            return false;
-        }
-
-        if (!flags_.ref_received) {
-            auto &clk = *node_ptr_->get_clock();
-            RCLCPP_WARN_THROTTLE(node_ptr_->get_logger(), clk, 5000,
-                                "State changed, but ref not recived yet");
-            return false;
-        }
-
-        resetCommands();
-
-        switch (control_mode_in_.control_mode) {
-            case as2_msgs::msg::ControlMode::HOVER:
-            case as2_msgs::msg::ControlMode::POSITION:
-            control_command_.velocity =
-                pid_3D_position_handler_->computeControl(dt, uav_state_.position, control_ref_.position);
-
-            control_command_.velocity = pid_3D_position_handler_->saturateOutput(
-                control_command_.velocity, speed_limits_, proportional_limitation_);
-            break;
-            case as2_msgs::msg::ControlMode::SPEED: {
-            if (use_bypass_) {
-                control_command_.velocity = control_ref_.velocity;
-            } else {
-                control_command_.velocity = pid_3D_velocity_handler_->computeControl(
-                    dt, uav_state_.velocity, control_ref_.velocity);
-            }
-            break;
-            }
-            case as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE: {
-            if (use_bypass_) {
-                control_command_.velocity = control_ref_.velocity;
-            } else {
-                control_command_.velocity = pid_3D_speed_in_a_plane_handler_->computeControl(
-                    dt, uav_state_.velocity, control_ref_.velocity);
-            }
-
-            control_command_.velocity.z() = pid_1D_speed_in_a_plane_handler_->computeControl(
-                dt, uav_state_.position.z(), control_ref_.position.z());
-
-            break;
-            }
-            case as2_msgs::msg::ControlMode::TRAJECTORY: {
-            control_command_.velocity =
-                pid_3D_trajectory_handler_->computeControl(dt, uav_state_.position, control_ref_.position,
-                                                            uav_state_.velocity, control_ref_.velocity);
-
-            control_command_.velocity = pid_3D_trajectory_handler_->saturateOutput(
-                control_command_.velocity, speed_limits_, proportional_limitation_);
-            break;
-            }
-            default:
-            auto &clk = *node_ptr_->get_clock();
-            RCLCPP_ERROR_THROTTLE(node_ptr_->get_logger(), clk, 5000, "Unknown control mode");
-            return false;
-            break;
-        }
-
-        switch (control_mode_in_.yaw_mode) {
-            case as2_msgs::msg::ControlMode::YAW_ANGLE: {
-            double yaw_error = as2::frame::angleMinError(control_ref_.yaw.x(), uav_state_.yaw.x());
-            control_command_.yaw_speed = pid_yaw_handler_->computeControl(dt, yaw_error);
-            break;
-            }
-            case as2_msgs::msg::ControlMode::YAW_SPEED: {
-            control_command_.yaw_speed = control_ref_.yaw.y();
-            break;
-            }
-            default:
-            auto &clk = *node_ptr_->get_clock();
-            RCLCPP_ERROR_THROTTLE(node_ptr_->get_logger(), clk, 5000, "Unknown yaw mode");
-            return false;
-            break;
-        }
-
-        return getOutput(twist);
-    }
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_mode:
-
-Set Mode
---------
-
-**TBD**
-
-.. code-block:: c++
-
-
-    bool Plugin::setMode(const as2_msgs::msg::ControlMode &in_mode,
-                        const as2_msgs::msg::ControlMode &out_mode) {
-        if (!flags_.plugin_parameters_read) {
-            RCLCPP_WARN(node_ptr_->get_logger(), "Plugin parameters not read yet, can not set mode");
-            return false;
-        }
-
-        if (!flags_.position_controller_parameters_read) {
-            RCLCPP_WARN(node_ptr_->get_logger(),
-                        "Position controller parameters not read, can not set mode");
-            for (auto &param : position_control_parameters_to_read_) {
-            RCLCPP_WARN(node_ptr_->get_logger(), "Parameter %s not read", param.c_str());
-            }
-            return false;
-        }
-
-        if (in_mode.control_mode == as2_msgs::msg::ControlMode::TRAJECTORY &&
-            !flags_.trajectory_controller_parameters_read) {
-            RCLCPP_WARN(node_ptr_->get_logger(),
-                        "Trajectory controller parameters not read yet, can not set mode to TRAJECTORY");
-            for (auto &param : trajectory_control_parameters_to_read_) {
-            RCLCPP_WARN(node_ptr_->get_logger(), "Parameter %s not read", param.c_str());
-            }
-            return false;
-        } else if ((in_mode.control_mode == as2_msgs::msg::ControlMode::SPEED ||
-                    in_mode.control_mode == as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE) &&
-                    (!flags_.velocity_controller_parameters_read && !use_bypass_)) {
-            RCLCPP_WARN(node_ptr_->get_logger(),
-                        "Velocity controller parameters not read yet and bypass is not used, can not set "
-                        "mode to SPEED or SPEED_IN_A_PLANE");
-            if (in_mode.control_mode == as2_msgs::msg::ControlMode::SPEED) {
-            for (auto &param : velocity_control_parameters_to_read_) {
-                RCLCPP_WARN(node_ptr_->get_logger(), "Parameter %s not read", param.c_str());
-            }
-            } else {
-            for (auto &param : speed_in_a_plane_control_parameters_to_read_) {
-                RCLCPP_WARN(node_ptr_->get_logger(), "Parameter %s not read", param.c_str());
-            }
-            }
-            return false;
-        }
-
-        if (in_mode.yaw_mode == as2_msgs::msg::ControlMode::YAW_ANGLE &&
-            !flags_.yaw_controller_parameters_read) {
-            RCLCPP_WARN(node_ptr_->get_logger(),
-                        "Yaw controller parameters not read yet, can not set mode to YAW_ANGLE");
-            return false;
-        }
-
-        if (in_mode.control_mode == as2_msgs::msg::ControlMode::HOVER) {
-            control_mode_in_.control_mode    = in_mode.control_mode;
-            control_mode_in_.yaw_mode        = as2_msgs::msg::ControlMode::YAW_ANGLE;
-            control_mode_in_.reference_frame = as2_msgs::msg::ControlMode::LOCAL_ENU_FRAME;
-            hover_flag_                      = true;
-        } else {
-            control_mode_in_ = in_mode;
-        }
-
-        flags_.state_received = false;
-        flags_.ref_received   = false;
-        control_mode_out_     = out_mode;
-
-        if (control_mode_in_.control_mode == as2_msgs::msg::ControlMode::HOVER ||
-            control_mode_in_.control_mode == as2_msgs::msg::ControlMode::POSITION ||
-            control_mode_in_.control_mode == as2_msgs::msg::ControlMode::TRAJECTORY) {
-            input_pose_frame_id_   = enu_frame_id_;
-            output_twist_frame_id_ = enu_frame_id_;
-        } else if (control_mode_in_.control_mode == as2_msgs::msg::ControlMode::SPEED ||
-                    control_mode_in_.control_mode == as2_msgs::msg::ControlMode::SPEED_IN_A_PLANE) {
-            input_pose_frame_id_ = enu_frame_id_;
-            switch (control_mode_out_.reference_frame) {
-            case as2_msgs::msg::ControlMode::BODY_FLU_FRAME:
-                input_twist_frame_id_  = flu_frame_id_;
-                output_twist_frame_id_ = flu_frame_id_;
-                break;
-            case as2_msgs::msg::ControlMode::LOCAL_ENU_FRAME:
-            default:
-                input_twist_frame_id_  = enu_frame_id_;
-                output_twist_frame_id_ = enu_frame_id_;
-                break;
-            }
-        }
-
-        return true;
-    }
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_params:
-
-Parameters Update
------------------
-
-**TBD**
-
-.. code-block:: c++
-
-    bool Plugin::updateParams(const std::vector<std::string> &_params_list) {
-        auto result = parametersCallback(node_ptr_->get_parameters(_params_list));
-        return result.successful;
-    };
-
-
-
-.. _development_tutorials_motion_controller_steps_methods_reset:
-
-Reset
------
-
-**TBD**
-
-.. code-block:: c++
-
-    void Plugin::reset() {
-        resetReferences();
-        resetState();
-        resetCommands();
-        pid_yaw_handler_->resetController();
-        pid_3D_position_handler_->resetController();
-        pid_3D_velocity_handler_->resetController();
-        pid_3D_trajectory_handler_->resetController();
-    }
-
-
-
-.. _development_tutorials_motion_controller_steps_export:
-
-3. Exporting the plugin
-=======================
-
-Now that we have created our new controller, we need to export it so that it would be visible
-to the Controller Manager. Plugins are loaded at runtime and if they are not visible, then our
-controller manager won't be able to load it. In ROS 2, exporting and loading plugins is handled
-by ``pluginlib``.
-
-To achieve that, class ``controller_plugin_speed_controller::Plugin`` is loaded dynamically from
-``controller_plugin_base::ControllerBase`` which is the base class.
-
-1. To export the controller, we need to provide two lines
-
-.. code-block:: c++
-
-    #include <pluginlib/class_list_macros.hpp>
-    PLUGINLIB_EXPORT_CLASS(controller_plugin_speed_controller::Plugin, controller_plugin_base::ControllerBase)
-
-It is good practice to place these lines at the end of the file but technically, you can also
-write at the top.
-
-2. Next step would be to create plugin's description file in the root directory of the package.
-For example, ``plugins.xml`` file in our tutorial package. This file contains following 
-information:
-
-- `library path`: Plugin's library name and it's location.
-- `class name`: Name of the class.
-- `class type`: Type of class.
-- `base class`: Name of the base class.
-- `description`: Description of the plugin.
+Create a class that inherits from
+``as2_motion_controller_plugin_base::ControllerBase`` and declares the
+required overrides.
+
+.. code-block:: cpp
+
+   #include "as2_motion_controller/controller_base.hpp"
+
+   namespace pid_speed_controller
+   {
+
+   class Plugin : public as2_motion_controller_plugin_base::ControllerBase
+   {
+   public:
+     Plugin() = default;
+     ~Plugin() override = default;
+
+     void ownInitialize() override;
+
+     std::vector<std::string> getEssentialParameters() const override;
+     void updateParameter(const rclcpp::Parameter & parameter) override;
+     void onAllParametersRead() override;  // optional
+
+     void onUpdateState(
+       const geometry_msgs::msg::PoseStamped & pose_msg,
+       const geometry_msgs::msg::TwistStamped & twist_msg) override;
+     void onUpdateReference(const geometry_msgs::msg::PoseStamped & ref) override;
+     void onUpdateReference(const geometry_msgs::msg::TwistStamped & ref) override;
+     void onUpdateReference(const as2_msgs::msg::TrajectorySetpoints & ref) override;
+
+     bool setMode(
+       const as2_msgs::msg::ControlMode & mode_in,
+       const as2_msgs::msg::ControlMode & mode_out) override;
+
+     bool computeOutput(
+       double dt,
+       geometry_msgs::msg::PoseStamped & pose,
+       geometry_msgs::msg::TwistStamped & twist,
+       as2_msgs::msg::Thrust & thrust) override;
+
+     void reset() override;
+   };
+
+   }  // namespace pid_speed_controller
+
+2. Initialization
+^^^^^^^^^^^^^^^^^
+
+``ownInitialize`` runs after the base has injected the node, TF handler and
+plugin namespace and after ``desired_pose_frame`` / ``desired_twist_frame``
+have been read. Allocate handlers, create optional debug publishers and pull
+the initial frame ids from the helpers.
+
+.. code-block:: cpp
+
+   void Plugin::ownInitialize()
+   {
+     speed_limits_ = Eigen::Vector3d::Zero();
+
+     // Default the output twist frame to the configured pose frame until
+     // setMode() picks a body-frame mode.
+     output_twist_frame_id_ = getDesiredPoseFrameId();
+
+     // Optional plugin-specific debug publisher under the plugin namespace.
+     const std::string desired_velocity_topic =
+       declareOptionalTopic(getNodePtr(), param("debug.desired_velocity_topic"));
+     if (!desired_velocity_topic.empty()) {
+       debug_desired_velocity_pub_ =
+         getNodePtr()->create_publisher<geometry_msgs::msg::TwistStamped>(
+         desired_velocity_topic, rclcpp::SensorDataQoS());
+     }
+
+     reset();
+   }
+
+3. Essential parameters and parameter callbacks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``getEssentialParameters`` returns the fully-qualified names that **must
+arrive** before the plugin accepts ``setMode``. Use ``param("…")`` to keep
+the names anchored to the plugin namespace.
+
+.. code-block:: cpp
+
+   std::vector<std::string> Plugin::getEssentialParameters() const
+   {
+     std::vector<std::string> out;
+     for (const auto & tail : plugin_parameters_tail_)        {out.push_back(param(tail));}
+     for (const auto & tail : position_control_parameters_tail_) {out.push_back(param(tail));}
+     for (const auto & tail : yaw_control_parameters_tail_)   {out.push_back(param(tail));}
+     return out;
+   }
+
+``updateParameter`` is called for every parameter under ``<plugin_ns>.``
+both at startup and at runtime. Dispatch the value to the matching gain
+group or flag:
+
+.. code-block:: cpp
+
+   void Plugin::updateParameter(const rclcpp::Parameter & parameter)
+   {
+     const std::string & full_name = parameter.get_name();
+     // … strip the plugin namespace and route to the right handler.
+     // Update the params_read_ flags for optional groups (e.g. trajectory_control)
+     // so setMode can refuse modes whose gains have not arrived yet.
+   }
+
+If first-time configuration depends on the full parameter set, override
+``onAllParametersRead`` — it fires exactly once, when the last essential
+parameter is delivered, with ``essentialParamsReady() == true``.
+
+4. State and reference hooks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``onUpdateState`` only sees messages whose frames match the desired ones
+(the base already filtered them and consumed pending hover latches).
+Implement only the ``onUpdateReference`` overloads the plugin actually
+consumes — the rest default to no-op.
+
+.. code-block:: cpp
+
+   void Plugin::onUpdateState(
+     const geometry_msgs::msg::PoseStamped & pose_msg,
+     const geometry_msgs::msg::TwistStamped & twist_msg)
+   {
+     uav_state_.position = {
+       pose_msg.pose.position.x, pose_msg.pose.position.y, pose_msg.pose.position.z};
+     uav_state_.velocity = {
+       twist_msg.twist.linear.x, twist_msg.twist.linear.y, twist_msg.twist.linear.z};
+     uav_state_.yaw.x() = as2::frame::getYawFromQuaternion(pose_msg.pose.orientation);
+   }
+
+5. Mode handling
+^^^^^^^^^^^^^^^^
+
+``setMode`` validates the requested in/out pair and, when the mode demands
+it, calls ``setDesiredPoseFrameId`` / ``setDesiredTwistFrameId`` so the
+``ControllerHandler`` converts subsequent state and reference messages to
+the right frames. Gate on ``essentialParamsReady()`` before validating
+mode-specific parameter groups.
+
+.. code-block:: cpp
+
+   bool Plugin::setMode(
+     const as2_msgs::msg::ControlMode & in_mode,
+     const as2_msgs::msg::ControlMode & out_mode)
+   {
+     if (!essentialParamsReady()) {
+       RCLCPP_WARN(
+         getNodePtr()->get_logger(),
+         "Essential parameters not read yet, can not set mode");
+       return false;
+     }
+     // … check mode-specific gain groups, configure output_twist_frame_id_,
+     // reset integrators if the mode changed.
+     control_mode_in_  = in_mode;
+     control_mode_out_ = out_mode;
+     return true;
+   }
+
+6. Compute output
+^^^^^^^^^^^^^^^^^
+
+The wrapper calls ``computeOutput`` at ``cmd_freq``. Pack the command in
+the frame announced through the previous ``setDesiredPoseFrameId`` /
+``setDesiredTwistFrameId`` calls.
+
+.. code-block:: cpp
+
+   bool Plugin::computeOutput(
+     double dt,
+     geometry_msgs::msg::PoseStamped & pose,
+     geometry_msgs::msg::TwistStamped & twist,
+     as2_msgs::msg::Thrust & thrust)
+   {
+     if (!isStateReceived() || !isReferenceReceived()) {return false;}
+     // run the active PID handler on (uav_state_, control_ref_) …
+     twist.header.frame_id = output_twist_frame_id_;
+     twist.header.stamp    = getNodePtr()->now();
+     // fill twist.twist from the PID output
+     return true;
+   }
+
+7. Reset and hover
+^^^^^^^^^^^^^^^^^^
+
+When overriding ``reset``, call the base implementation so the
+``state_received_`` / ``reference_received_`` / ``hover_pending_`` flags are
+cleared too. The ``essentialParamsReady()`` latch is intentionally
+monotonic and is **not** cleared by ``reset()``.
+
+.. code-block:: cpp
+
+   void Plugin::reset()
+   {
+     ControllerBase::reset();
+     resetReferences();
+     resetState();
+     resetCommands();
+     pid_yaw_handler_.reset_controller();
+     pid_3D_position_handler_.reset_controller();
+     // … other handlers
+   }
+
+If the default hover latch (single-point trajectory at the cached pose) does
+not fit the plugin (e.g. the plugin only consumes pose / twist references
+gated by mode), override ``latchHoverReference``:
+
+.. code-block:: cpp
+
+   void Plugin::latchHoverReference(
+     const geometry_msgs::msg::PoseStamped & pose,
+     const geometry_msgs::msg::TwistStamped & /*twist*/)
+   {
+     control_ref_.position = {pose.pose.position.x, pose.pose.position.y, pose.pose.position.z};
+     control_ref_.velocity.setZero();
+     control_ref_.yaw.x() = as2::frame::getYawFromQuaternion(pose.pose.orientation);
+   }
+
+8. Exporting the plugin
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Register the class with ``pluginlib`` at the bottom of the source file:
+
+.. code-block:: cpp
+
+   #include <pluginlib/class_list_macros.hpp>
+   PLUGINLIB_EXPORT_CLASS(
+     pid_speed_controller::Plugin,
+     as2_motion_controller_plugin_base::ControllerBase)
+
+The plugin manifest lives at the **root of the ``as2_motion_controller``
+package** (``plugins.xml``). Append a ``<library>`` block for the new plugin:
 
 .. code-block:: xml
 
-    <library path="as2_controller_plugin_speed_controller">
-        <class type="controller_plugin_speed_controller::Plugin" base_class_type="controller_plugin_base::ControllerBase">
-            <description>Controller plugin for speed controller.</description>
-        </class>
-    </library>
+   <library path="pid_speed_controller">
+     <class type="pid_speed_controller::Plugin"
+            base_class_type="as2_motion_controller_plugin_base::ControllerBase">
+       <description>Controller plugin for PID speed control.</description>
+     </class>
+   </library>
 
-3. Next step would be to export plugin using ``CMakeLists.txt`` by using cmake function 
-``pluginlib_export_plugin_description_file()``. This function installs plugin description 
-file to share directory and sets ament indexes to make it discoverable.
+Then declare the manifest in the package ``CMakeLists.txt`` so it is
+installed and discoverable:
 
 .. code-block:: cmake
 
-    pluginlib_export_plugin_description_file(as2_controller_plugin_base plugins.xml)
+   pluginlib_export_plugin_description_file(as2_motion_controller plugins.xml)
 
-4. Compile and it should be registered. Next, we'll use this plugin.
+9. Configuration files
+^^^^^^^^^^^^^^^^^^^^^^
 
+Two YAML files cooperate at launch time.
 
-
-.. _development_tutorials_motion_controller_steps_config:
-
-4. Controller manager and configuration files
-=============================================
-
-To use the plugin, we should create two configuration files.
-
-**TBD**
+**Wrapper config** — defaults in
+``as2_motion_controller/config/motion_controller_default.yaml``. The
+relevant keys for plugin authors are:
 
 .. code-block:: yaml
 
-    input_control_modes:
-     - 0b00000000 # UNSET
-     - 0b00010000 # HOVER
-     # - 0b00100100 # ACRO (p,q,r, Thrust)
-     # - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust) 
-     # - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust) 
-     - 0b01000000 # SPEED with yaw ANGLE in the LOCAL_FLU_FRAME
-     - 0b01000001 # SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME
-     - 0b01000100 # SPEED with yaw SPEED in the LOCAL_FLU_FRAME
-     - 0b01000101 # SPEED with yaw SPEED in the GLOBAL_ENU_FRAME
-     - 0b01010000 # SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME
-     - 0b01010001 # SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME
-     - 0b01010100 # SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME
-     - 0b01010101 # SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME
-     - 0b01100001 # POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME
-     - 0b01100101 # POSITION with yaw SPEED in the GLOBAL_ENU_FRAME
-     - 0b01110001 # TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME
-     - 0b01110101 # TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME
+   /**:
+     ros__parameters:
+       cmd_freq: 100.0
+       info_freq: 10.0
+       use_bypass: true
+       tf_timeout_threshold: 0.05
 
-   output_control_modes:
-     - 0b00000000 # UNSET
-     # - 0b00010000 # HOVER
-     # - 0b00100100 # ACRO (p,q,r, Thrust)
-     # - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust) 
-     # - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust) 
-     # - 0b01000000 # SPEED with yaw ANGLE in the LOCAL_FLU_FRAME
-     # - 0b01000001 # SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME
-     - 0b01000100 # SPEED with yaw SPEED in the LOCAL_FLU_FRAME
-     - 0b01000101 # SPEED with yaw SPEED in the GLOBAL_ENU_FRAME
-     # - 0b01010000 # SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME
-     # - 0b01010001 # SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME
-     # - 0b01010100 # SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME
-     # - 0b01010101 # SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME
-     # - 0b01100001 # POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME
-     # - 0b01100101 # POSITION with yaw SPEED in the GLOBAL_ENU_FRAME
-     # - 0b01110001 # TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME
-     # - 0b01110101 # TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME
+       # Frames the active plugin expects for state and references. The
+       # ControllerHandler converts incoming pose/twist/trajectory messages
+       # to these frames before delivering them to the plugin.
+       desired_pose_frame: "odom"
+       desired_twist_frame: "base_link"
 
-**TBD**
+       # Debug topics published by ControllerHandler. Empty = disabled.
+       # Plugin-specific debug topics live under <plugin_name>.debug.*
+       # in each plugin's controller_default.yaml.
+       debug:
+         state_pose_topic: "debug/controller/state/pose"
+         state_twist_topic: "debug/controller/state/twist"
+         reference_pose_topic: "debug/controller/reference/pose"
+         reference_twist_topic: "debug/controller/reference/twist"
+         reference_trajectory_topic: "debug/controller/reference/trajectory"
+         reference_thrust_topic: "debug/controller/reference/thrust"
+         compute_output_time_topic: "debug/controller/compute_output_time"
+
+**Plugin config** — defaults in
+``plugins/<plugin_name>/config/controller_default.yaml``, namespaced under
+the plugin name. Every key the plugin reads via
+``param("<sub>.<key>")`` must live under ``<plugin_name>.``. Example:
 
 .. code-block:: yaml
 
-    /**:
-        ros__parameters:
-            proportional_limitation: true
-            position_control:
-                reset_integral: false
-                antiwindup_cte: 0.0
-                alpha: 0.0
-                kp:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                kd:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                ki:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-            speed_control:
-                reset_integral: false
-                antiwindup_cte: 0.0
-                alpha: 0.0
-                kp:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                kd:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                ki:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-            speed_in_a_plane_control:
-                reset_integral: false
-                antiwindup_cte: 0.0
-                alpha: 0.0
-                height:
-                    kp: 0.0
-                    kd: 0.0
-                    ki: 0.0
-                speed:
-                    kp:
-                    x: 0.0
-                    y: 0.0
-                    kd:
-                    x: 0.0
-                    y: 0.0
-                    ki:
-                    x: 0.0
-                    y: 0.0
-            trajectory_control:
-                reset_integral: false
-                antiwindup_cte: 0.0
-                alpha: 0.0
-                kp:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                kd:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-                ki:
-                    x: 0.0
-                    y: 0.0
-                    z: 0.0
-            yaw_control:
-                reset_integral: false
-                antiwindup_cte: 0.0
-                alpha: 0.0
-                kp: 0.0
-                kd: 0.0
-                ki: 0.0
+   /**:
+     ros__parameters:
+       pid_speed_controller:
+         proportional_limitation: true
+         use_bypass: true
+         position_control:
+           reset_integral: false
+           antiwindup_cte: 0.0
+           alpha: 0.0
+           kp: {x: 0.0, y: 0.0, z: 0.0}
+           kd: {x: 0.0, y: 0.0, z: 0.0}
+           ki: {x: 0.0, y: 0.0, z: 0.0}
+         yaw_control:
+           reset_integral: false
+           antiwindup_cte: 0.0
+           alpha: 0.0
+           kp: 0.0
+           kd: 0.0
+           ki: 0.0
+         # optional groups gated by setMode (trajectory_control, …) …
 
+**Control modes** — declare the input/output control modes the plugin
+supports in a separate YAML loaded by the controller launch. The plugin
+itself does not parse this file; ``ControllerManager`` uses it to negotiate
+the active mode with the platform.
 
+.. code-block:: yaml
 
-.. _development_tutorials_motion_controller_steps_launch:
+   /**:
+     ros__parameters:
+       input_control_modes:
+         - 0b00010000  # HOVER
+         - 0b01000000  # SPEED with yaw ANGLE in LOCAL_FLU
+         - 0b01000001  # SPEED with yaw ANGLE in GLOBAL_ENU
+         - 0b01110001  # TRAJECTORY with yaw ANGLE in GLOBAL_ENU
+       output_control_modes:
+         - 0b01000100  # SPEED with yaw SPEED in LOCAL_FLU
+         - 0b01000101  # SPEED with yaw SPEED in GLOBAL_ENU
 
-5. Launching
-============
+10. Launching
+^^^^^^^^^^^^^
 
-¿**TBD**?
+The controller manager exposes a standard launch file with a ``plugin_name``
+argument validated against the registered plugins. If ``plugin_name`` is
+empty the launch reads it from the config file.
+
+.. code-block:: bash
+
+   ros2 launch as2_motion_controller controller_launch.py \
+       namespace:=<drone_namespace> \
+       plugin_name:=pid_speed_controller
+
+Useful arguments:
+
+* ``namespace`` — drone namespace (defaults to
+  ``AEROSTACK2_SIMULATION_DRONE_ID``).
+* ``plugin_name`` — ``pid_speed_controller`` |
+  ``differential_flatness_controller`` | … any registered plugin.
+* ``config_file`` — wrapper YAML (defaults to
+  ``motion_controller_default.yaml``).
+* ``plugin_config_file`` — plugin YAML (defaults to the plugin's
+  ``controller_default.yaml``).
+* ``log_level`` / ``use_sim_time`` — node log level and clock source.
+
+Where to look next
+------------------
+
+* `as2_motion_controller plugins/ <https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins>`_
+  — full source of ``pid_speed_controller`` and
+  ``differential_flatness_controller``.
+* `controller_base.hpp <https://github.com/aerostack2/aerostack2/blob/main/as2_motion_controller/include/as2_motion_controller/controller_base.hpp>`_
+  — authoritative documentation of every base method and helper.
+* :ref:`as2_concepts_motion_controller` — high-level role of the controller
+  inside Aerostack2.

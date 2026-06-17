@@ -385,7 +385,9 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Writing a New Motion Controller Plugin</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-to-look-next">Where to look next</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
@@ -399,6 +401,14 @@
 <li class="toctree-l4"><a class="reference internal" href="behavior.html#requirements">Requirements</a></li>
 <li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-server">Behavior Server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="follow_reference_plugin.html">Writing a New Follow Reference Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="follow_reference_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="follow_reference_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="follow_reference_plugin.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="follow_reference_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="follow_reference_plugin.html#where-to-look-next">Where to look next</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="trajectory_generation_plugin.html">Writing a New Trajectory Generation Plugin</a><ul>
@@ -527,580 +537,543 @@
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
-<li><p><a class="reference internal" href="#requirements" id="id3">Requirements</a></p></li>
-<li><p><a class="reference internal" href="#tutorial-steps" id="id4">Tutorial Steps</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id5">Overview</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id6">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#architecture" id="id7">Architecture</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugin-contract" id="id8">Plugin Contract</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tutorial-steps" id="id9">Tutorial Steps</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugin-skeleton" id="id10">1. Plugin skeleton</a></p></li>
+<li><p><a class="reference internal" href="#initialization" id="id11">2. Initialization</a></p></li>
+<li><p><a class="reference internal" href="#essential-parameters-and-parameter-callbacks" id="id12">3. Essential parameters and parameter callbacks</a></p></li>
+<li><p><a class="reference internal" href="#state-and-reference-hooks" id="id13">4. State and reference hooks</a></p></li>
+<li><p><a class="reference internal" href="#mode-handling" id="id14">5. Mode handling</a></p></li>
+<li><p><a class="reference internal" href="#compute-output" id="id15">6. Compute output</a></p></li>
+<li><p><a class="reference internal" href="#reset-and-hover" id="id16">7. Reset and hover</a></p></li>
+<li><p><a class="reference internal" href="#exporting-the-plugin" id="id17">8. Exporting the plugin</a></p></li>
+<li><p><a class="reference internal" href="#configuration-files" id="id18">9. Configuration files</a></p></li>
+<li><p><a class="reference internal" href="#launching" id="id19">10. Launching</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#where-to-look-next" id="id20">Where to look next</a></p></li>
 </ul>
 </nav>
 <section id="overview">
-<span id="development-tutorials-motion-controller-overview"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>This tutorial shows how to create your own Controller within the AeroStack2 framework.
-You may want to remember AeroStack2 <a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#as2-concepts-architecture"><span class="std std-ref">Architecture</span></a> and its <a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#as2-concepts-motion-controller"><span class="std std-ref">Controller</span></a>
-operation.</p>
-<p>This tutorial will be a walktrough of one existing controller to easily understand its creation.
-The one explained will be a simplified version of the PID controller (<span class="xref std std-ref">speed_controller</span>).
-The code used in this tutorial can be found in <a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_controller/as2_controller_plugin_speed_controller">Github</a>.</p>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Aerostack2 loads motion controllers as <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> plugins under the
+<code class="docutils literal notranslate"><span class="pre">as2_motion_controller</span></code> package. The controller node (<code class="docutils literal notranslate"><span class="pre">ControllerManager</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ControllerHandler</span></code>) owns the ROS lifecycle, the TF lookups and the
+publishers; the plugin only has to implement the <strong>control law</strong> —
+state caching, reference handling, mode validation and the per-tick
+<code class="docutils literal notranslate"><span class="pre">computeOutput</span></code>.</p>
+<p>This tutorial walks through the contract exposed by
+<code class="docutils literal notranslate"><span class="pre">as2_motion_controller_plugin_base::ControllerBase</span></code> and how to build a
+plugin against it. The reference implementations live in
+<a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins">as2_motion_controller/plugins</a>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins/pid_speed_controller">pid_speed_controller</a>
+— PID-based velocity controller used as the running example below.</p></li>
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins/differential_flatness_controller">differential_flatness_controller</a>
+— flatness-based controller for ACRO / ATTITUDE outputs.</p></li>
+</ul>
+<p>Before reading this tutorial it is worth remembering the
+<a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#as2-concepts-architecture"><span class="std std-ref">Aerostack2 architecture</span></a> and the
+<a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#as2-concepts-motion-controller"><span class="std std-ref">motion controller</span></a> role.</p>
 </section>
 <section id="requirements">
-<span id="development-tutorials-motion-controller-requirements"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>ROS 2 Humble</p></li>
-<li><p>AeroStack2</p></li>
+<li><p>Aerostack2 (with <code class="docutils literal notranslate"><span class="pre">as2_motion_controller</span></code> built and sourced)</p></li>
 </ul>
 </section>
-<section id="tutorial-steps">
-<span id="development-tutorials-motion-controller-steps"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Link to this heading"></a></h2>
-<section id="controller-plugin-base">
-<span id="development-tutorials-motion-controller-steps-class"></span><h3>1. Controller Plugin Base<a class="headerlink" href="#controller-plugin-base" title="Link to this heading"></a></h3>
-<p>Following the plugin structure, all the controllers should inherit from a base class
-<code class="docutils literal notranslate"><span class="pre">controller_plugin_base::ControllerBase</span></code>. The base class provides a set of virtual methods
-to override with expected controller functionality. The list of methods is presented in the
-table below:</p>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">List of Virtual Methods</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<section id="architecture">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Architecture</a><a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ControllerBase</span></code> owns the heavy lifting and exposes a small set of hooks
+the plugin must implement:</p>
+<ul class="simple">
+<li><p><strong>Lifecycle</strong> — <code class="docutils literal notranslate"><span class="pre">ControllerManager</span></code> calls <code class="docutils literal notranslate"><span class="pre">setTfHandler()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">setBaseLinkFrameId()</span></code>, <code class="docutils literal notranslate"><span class="pre">setPluginParamNamespace()</span></code> and finally
+<code class="docutils literal notranslate"><span class="pre">initialize(node)</span></code>. Inside <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> the base declares the
+<code class="docutils literal notranslate"><span class="pre">desired_pose_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">desired_twist_frame</span></code> parameters, invokes the
+plugin’s <code class="docutils literal notranslate"><span class="pre">ownInitialize()</span></code> and seeds the pending-essential-parameter
+set from <code class="docutils literal notranslate"><span class="pre">getEssentialParameters()</span></code>.</p></li>
+<li><p><strong>State and references</strong> — incoming messages are converted by
+<code class="docutils literal notranslate"><span class="pre">ControllerHandler</span></code> to the frames returned by <code class="docutils literal notranslate"><span class="pre">getDesiredPoseFrameId()</span></code>
+/ <code class="docutils literal notranslate"><span class="pre">getDesiredTwistFrameId()</span></code> before reaching the base. <code class="docutils literal notranslate"><span class="pre">updateState</span></code>
+validates the frame, caches the state, consumes any pending hover latch
+and forwards to <code class="docutils literal notranslate"><span class="pre">onUpdateState</span></code>. The four <code class="docutils literal notranslate"><span class="pre">updateReference</span></code> overloads
+forward to the matching <code class="docutils literal notranslate"><span class="pre">onUpdateReference</span></code> overload.</p></li>
+<li><p><strong>Parameters</strong> — every parameter under <code class="docutils literal notranslate"><span class="pre">&lt;plugin_namespace&gt;.</span></code> is routed
+to <code class="docutils literal notranslate"><span class="pre">updateParameter()</span></code>. The base tracks the names returned by
+<code class="docutils literal notranslate"><span class="pre">getEssentialParameters()</span></code> and fires <code class="docutils literal notranslate"><span class="pre">onAllParametersRead()</span></code> exactly
+once when every essential has been applied; <code class="docutils literal notranslate"><span class="pre">setMode</span></code> can gate on
+<code class="docutils literal notranslate"><span class="pre">essentialParamsReady()</span></code>.</p></li>
+<li><p><strong>Hover</strong> — <code class="docutils literal notranslate"><span class="pre">ControllerHandler</span></code> calls <code class="docutils literal notranslate"><span class="pre">requestHoverLatch()</span></code> after a
+successful <code class="docutils literal notranslate"><span class="pre">setMode(HOVER)</span></code> and the base materialises a hover reference
+inside the next <code class="docutils literal notranslate"><span class="pre">updateState</span></code> tick via <code class="docutils literal notranslate"><span class="pre">latchHoverReference()</span></code>. The
+default latch synthesises a one-point trajectory at the cached pose; the
+plugin can override it.</p></li>
+</ul>
+<p>The full header is in
+<a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_motion_controller/include/as2_motion_controller/controller_base.hpp">controller_base.hpp</a>.</p>
+<section id="plugin-contract">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Plugin Contract</a><a class="headerlink" href="#plugin-contract" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Methods the plugin overrides</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+<col style="width: 20.0%" />
+</colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Virtual method</p></th>
-<th class="head"><p>Method description</p></th>
-<th class="head"><p>Requires override?</p></th>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Required</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>ownInitialize()</p></td>
-<td><p>Controller plugin own initialize method.</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ownInitialize()</span></code></p></td>
+<td><p>Allocate handlers, create plugin-specific publishers, finish setup
+after the base has injected node / TF / param namespace.</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><p>updateState()</p></td>
-<td><p>State update with the information received from the current pose and twist.</p></td>
-<td><p>Yes</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onUpdateState(pose,</span> <span class="pre">twist)</span></code></p></td>
+<td><p>Cache or transform the validated state used by the control law.</p></td>
+<td><p><strong>Yes</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>updateReference()</p></td>
-<td><p>Update the pose, twist, trajectory and thrust references. Use only the ones you need.</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onUpdateReference(PoseStamped)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onUpdateReference(TwistStamped)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onUpdateReference(TrajectorySetpoints)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onUpdateReference(Thrust)</span></code></p></td>
+<td><p>Per-reference-type hooks. Implement only the ones the plugin
+consumes.</p></td>
+<td><p>No (defaults are no-ops)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">setMode(in,</span> <span class="pre">out)</span></code></p></td>
+<td><p>Validate the in/out control-mode pair, configure the output frame,
+reset integrators when the mode actually changes.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">getEssentialParameters()</span></code></p></td>
+<td><p>Fully-qualified names of the parameters that must be present before
+the plugin accepts <code class="docutils literal notranslate"><span class="pre">setMode</span></code>.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">updateParameter(parameter)</span></code></p></td>
+<td><p>Apply one parameter under the plugin namespace. Called both for the
+initial batch and for runtime changes.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onAllParametersRead()</span></code></p></td>
+<td><p>One-shot hook fired the first time every essential parameter has
+been delivered. Good place for first-time solver configuration.</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><p>computeOutput()</p></td>
-<td><p>Compute the controller output signal.</p></td>
-<td><p>Yes</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">computeOutput(dt,</span> <span class="pre">pose,</span> <span class="pre">twist,</span> <span class="pre">thrust)</span></code></p></td>
+<td><p>Per-tick controller evaluation.</p></td>
+<td><p><strong>Yes</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>setMode()</p></td>
-<td><p>Update the controller input and output control modes.</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>updateParams()</p></td>
-<td><p>Update the controller parameters.</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-even"><td><p>reset()</p></td>
-<td><p>Reset the controller inner state.</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p>getDesiredPoseFrameId()</p></td>
-<td><p>Return the desired pose state and reference frame_id. <code class="docutils literal notranslate"><span class="pre">odom</span></code> by default.</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">reset()</span></code></p></td>
+<td><p>Clear cached state / commands / integrators. Must call
+<code class="docutils literal notranslate"><span class="pre">ControllerBase::reset()</span></code> to clear base-owned flags.</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-even"><td><p>getDesiredTwistFrameId()</p></td>
-<td><p>Return the desired twist state and reference frame_id. <code class="docutils literal notranslate"><span class="pre">base_link</span></code> by default.</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">latchHoverReference(pose,</span> <span class="pre">twist)</span></code></p></td>
+<td><p>Produce the hover reference when <code class="docutils literal notranslate"><span class="pre">HOVER</span></code> is requested. Override if
+the default trajectory latch is not compatible with the plugin.</p></td>
 <td><p>No</p></td>
 </tr>
 </tbody>
 </table>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Base helpers available to the plugin</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Helper</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">getNodePtr()</span></code></p></td>
+<td><p>Non-owning <code class="docutils literal notranslate"><span class="pre">as2::Node</span> <span class="pre">*</span></code> for logging, parameters, publishers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">getTfHandler()</span></code></p></td>
+<td><p>Shared <code class="docutils literal notranslate"><span class="pre">as2::tf::TfHandler</span></code> for additional frame conversions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">getBaseLinkFrameId()</span></code></p></td>
+<td><p>Namespaced <code class="docutils literal notranslate"><span class="pre">base_link</span></code> frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">getDesiredPoseFrameId()</span></code> / <code class="docutils literal notranslate"><span class="pre">getDesiredTwistFrameId()</span></code></p></td>
+<td><p>Frames the plugin currently expects for state and references. Update
+them from <code class="docutils literal notranslate"><span class="pre">setMode()</span></code> with <code class="docutils literal notranslate"><span class="pre">setDesiredPoseFrameId</span></code> /
+<code class="docutils literal notranslate"><span class="pre">setDesiredTwistFrameId</span></code> when the mode demands it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">getPluginParamNamespace()</span></code> / <code class="docutils literal notranslate"><span class="pre">param(tail)</span></code></p></td>
+<td><p>Plugin namespace (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;pid_speed_controller&quot;</span></code>) and helper that
+returns <code class="docutils literal notranslate"><span class="pre">&quot;&lt;namespace&gt;.&lt;tail&gt;&quot;</span></code> ready for <code class="docutils literal notranslate"><span class="pre">declare_parameter</span></code> /
+<code class="docutils literal notranslate"><span class="pre">get_parameter</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">getStatePose()</span></code> / <code class="docutils literal notranslate"><span class="pre">getStateTwist()</span></code></p></td>
+<td><p>Last validated state cached by the base.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">isStateReceived()</span></code> / <code class="docutils literal notranslate"><span class="pre">isReferenceReceived()</span></code> /
+<code class="docutils literal notranslate"><span class="pre">isHoverPending()</span></code> / <code class="docutils literal notranslate"><span class="pre">essentialParamsReady()</span></code></p></td>
+<td><p>Status flags maintained by the base.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="overriden-methods">
-<span id="development-tutorials-motion-controller-steps-methods"></span><h3>2. Overriden methods<a class="headerlink" href="#overriden-methods" title="Link to this heading"></a></h3>
+</section>
+<section id="tutorial-steps">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Link to this heading"></a></h2>
+<p>The snippets below are simplified excerpts from
+<code class="docutils literal notranslate"><span class="pre">pid_speed_controller</span></code>. Refer to the full source for the complete
+implementation.</p>
+<section id="plugin-skeleton">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">1. Plugin skeleton</a><a class="headerlink" href="#plugin-skeleton" title="Link to this heading"></a></h3>
+<p>Create a class that inherits from
+<code class="docutils literal notranslate"><span class="pre">as2_motion_controller_plugin_base::ControllerBase</span></code> and declares the
+required overrides.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_motion_controller/controller_base.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">pid_speed_controller</span>
+<span class="p">{</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plugin</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">as2_motion_controller_plugin_base</span><span class="o">::</span><span class="n">ControllerBase</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">Plugin</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+<span class="w">  </span><span class="o">~</span><span class="n">Plugin</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">ownInitialize</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getEssentialParameters</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateParameter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Parameter</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameter</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">onAllParametersRead</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w">  </span><span class="c1">// optional</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">onUpdateState</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">onUpdateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ref</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">onUpdateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ref</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">onUpdateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TrajectorySetpoints</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ref</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">setMode</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mode_in</span><span class="p">,</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mode_out</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">computeOutput</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span>
+<span class="w">    </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose</span><span class="p">,</span>
+<span class="w">    </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">twist</span><span class="p">,</span>
+<span class="w">    </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Thrust</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thrust</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace pid_speed_controller</span>
+</pre></div>
+</div>
+</section>
 <section id="initialization">
-<span id="development-tutorials-motion-controller-steps-methods-init"></span><h4>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h4>
-<p><strong>TDB</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::ownInitialize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">speed_limits_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">2. Initialization</a><a class="headerlink" href="#initialization" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ownInitialize</span></code> runs after the base has injected the node, TF handler and
+plugin namespace and after <code class="docutils literal notranslate"><span class="pre">desired_pose_frame</span></code> / <code class="docutils literal notranslate"><span class="pre">desired_twist_frame</span></code>
+have been read. Allocate handlers, create optional debug publishers and pull
+the initial frame ids from the helpers.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::ownInitialize</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">speed_limits_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">pid_yaw_handler_</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_position_handler_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_velocity_handler_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_1D_speed_in_a_plane_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_speed_in_a_plane_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_trajectory_handler_</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">pid_controller</span><span class="o">::</span><span class="n">PIDController3D</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Default the output twist frame to the configured pose frame until</span>
+<span class="w">  </span><span class="c1">// setMode() picks a body-frame mode.</span>
+<span class="w">  </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getDesiredPoseFrameId</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">tf_handler_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">TfHandler</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Optional plugin-specific debug publisher under the plugin namespace.</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">desired_velocity_topic</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">declareOptionalTopic</span><span class="p">(</span><span class="n">getNodePtr</span><span class="p">(),</span><span class="w"> </span><span class="n">param</span><span class="p">(</span><span class="s">&quot;debug.desired_velocity_topic&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">desired_velocity_topic</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">debug_desired_velocity_pub_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">getNodePtr</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">create_publisher</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="n">desired_velocity_topic</span><span class="p">,</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SensorDataQoS</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">enu_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">);</span>
-<span class="w">    </span><span class="n">flu_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">input_pose_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">input_pose_frame_id_</span><span class="p">);</span>
-<span class="w">    </span><span class="n">input_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">input_twist_frame_id_</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">tf</span><span class="o">::</span><span class="n">generateTfName</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">,</span><span class="w"> </span><span class="n">output_twist_frame_id_</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">reset</span><span class="p">();</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="n">reset</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="update-state">
-<span id="development-tutorials-motion-controller-steps-methods-state"></span><h4>Update State<a class="headerlink" href="#update-state" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateState</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose_msg</span><span class="p">,</span>
-<span class="w">                        </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-<span class="w">    </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hover_flag_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">resetReferences</span><span class="p">();</span>
-<span class="w">        </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">        </span><span class="n">hover_flag_</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<section id="essential-parameters-and-parameter-callbacks">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">3. Essential parameters and parameter callbacks</a><a class="headerlink" href="#essential-parameters-and-parameter-callbacks" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">getEssentialParameters</span></code> returns the fully-qualified names that <strong>must
+arrive</strong> before the plugin accepts <code class="docutils literal notranslate"><span class="pre">setMode</span></code>. Use <code class="docutils literal notranslate"><span class="pre">param(&quot;…&quot;)</span></code> to keep
+the names anchored to the plugin namespace.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Plugin</span><span class="o">::</span><span class="n">getEssentialParameters</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">plugin_parameters_tail_</span><span class="p">)</span><span class="w">        </span><span class="p">{</span><span class="n">out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">param</span><span class="p">(</span><span class="n">tail</span><span class="p">));}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">position_control_parameters_tail_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">param</span><span class="p">(</span><span class="n">tail</span><span class="p">));}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">tail</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">yaw_control_parameters_tail_</span><span class="p">)</span><span class="w">   </span><span class="p">{</span><span class="n">out</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">param</span><span class="p">(</span><span class="n">tail</span><span class="p">));}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">updateParameter</span></code> is called for every parameter under <code class="docutils literal notranslate"><span class="pre">&lt;plugin_ns&gt;.</span></code>
+both at startup and at runtime. Dispatch the value to the matching gain
+group or flag:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateParameter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Parameter</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameter</span><span class="p">.</span><span class="n">get_name</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// … strip the plugin namespace and route to the right handler.</span>
+<span class="w">  </span><span class="c1">// Update the params_read_ flags for optional groups (e.g. trajectory_control)</span>
+<span class="w">  </span><span class="c1">// so setMode can refuse modes whose gains have not arrived yet.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If first-time configuration depends on the full parameter set, override
+<code class="docutils literal notranslate"><span class="pre">onAllParametersRead</span></code> — it fires exactly once, when the last essential
+parameter is delivered, with <code class="docutils literal notranslate"><span class="pre">essentialParamsReady()</span> <span class="pre">==</span> <span class="pre">true</span></code>.</p>
+</section>
+<section id="state-and-reference-hooks">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">4. State and reference hooks</a><a class="headerlink" href="#state-and-reference-hooks" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">onUpdateState</span></code> only sees messages whose frames match the desired ones
+(the base already filtered them and consumed pending hover latches).
+Implement only the <code class="docutils literal notranslate"><span class="pre">onUpdateReference</span></code> overloads the plugin actually
+consumes — the rest default to no-op.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::onUpdateState</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">};</span>
+<span class="w">  </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">};</span>
+<span class="w">  </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="update-reference">
-<span id="development-tutorials-motion-controller-steps-methods-reference"></span><h4>Update Reference<a class="headerlink" href="#update-reference" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
-<span class="w">                                                </span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-<span class="w">        </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">speed_limits_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
-<span class="w">                                        </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-<span class="w">        </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
-<span class="w">        </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
-<span class="w">        </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">setOutputSaturation</span><span class="p">(</span><span class="n">speed_limits_</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_SPEED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">twist_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::updateReference</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TrajectoryPoint</span><span class="w"> </span><span class="o">&amp;</span><span class="n">traj_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span>
-<span class="w">        </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">twist</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">traj_msg</span><span class="p">.</span><span class="n">yaw_angle</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<section id="mode-handling">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">5. Mode handling</a><a class="headerlink" href="#mode-handling" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">setMode</span></code> validates the requested in/out pair and, when the mode demands
+it, calls <code class="docutils literal notranslate"><span class="pre">setDesiredPoseFrameId</span></code> / <code class="docutils literal notranslate"><span class="pre">setDesiredTwistFrameId</span></code> so the
+<code class="docutils literal notranslate"><span class="pre">ControllerHandler</span></code> converts subsequent state and reference messages to
+the right frames. Gate on <code class="docutils literal notranslate"><span class="pre">essentialParamsReady()</span></code> before validating
+mode-specific parameter groups.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::setMode</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">in_mode</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">out_mode</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">essentialParamsReady</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span>
+<span class="w">      </span><span class="n">getNodePtr</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">      </span><span class="s">&quot;Essential parameters not read yet, can not set mode&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// … check mode-specific gain groups, configure output_twist_frame_id_,</span>
+<span class="w">  </span><span class="c1">// reset integrators if the mode changed.</span>
+<span class="w">  </span><span class="n">control_mode_in_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">in_mode</span><span class="p">;</span>
+<span class="w">  </span><span class="n">control_mode_out_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out_mode</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Thrust is not overriden since is not needed.</p>
 </section>
 <section id="compute-output">
-<span id="development-tutorials-motion-controller-steps-methods-output"></span><h4>Compute Output<a class="headerlink" href="#compute-output" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::computeOutput</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pose</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="n">twist</span><span class="p">,</span>
-<span class="w">                        </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Thrust</span><span class="w"> </span><span class="o">&amp;</span><span class="n">thrust</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;State not received yet&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-<span class="w">                            </span><span class="s">&quot;State changed, but ref not recived yet&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">resetCommands</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">HOVER</span><span class="p">:</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">POSITION</span><span class="p">:</span>
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
-<span class="w">            </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">saturateOutput</span><span class="p">(</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">speed_limits_</span><span class="p">,</span><span class="w"> </span><span class="n">proportional_limitation_</span><span class="p">);</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">SPEED</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">use_bypass_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
-<span class="w">                </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">SPEED_IN_A_PLANE</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">use_bypass_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_speed_in_a_plane_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
-<span class="w">                </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">z</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_1D_speed_in_a_plane_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span>
-<span class="w">            </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">(),</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">());</span>
-
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">TRAJECTORY</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span>
-<span class="w">            </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="w">                                                        </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">);</span>
-
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">saturateOutput</span><span class="p">(</span>
-<span class="w">            </span><span class="n">control_command_</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span><span class="w"> </span><span class="n">speed_limits_</span><span class="p">,</span><span class="w"> </span><span class="n">proportional_limitation_</span><span class="p">);</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">default</span><span class="o">:</span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
-<span class="w">        </span><span class="n">RCLCPP_ERROR_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown control mode&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">YAW_ANGLE</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">yaw_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">angleMinError</span><span class="p">(</span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">(),</span><span class="w"> </span><span class="n">uav_state_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">());</span>
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">yaw_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pid_yaw_handler_</span><span class="o">-&gt;</span><span class="n">computeControl</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="n">yaw_error</span><span class="p">);</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">YAW_SPEED</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_command_</span><span class="p">.</span><span class="n">yaw_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">y</span><span class="p">();</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">default</span><span class="o">:</span>
-<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">();</span>
-<span class="w">        </span><span class="n">RCLCPP_ERROR_THROTTLE</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unknown yaw mode&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">getOutput</span><span class="p">(</span><span class="n">twist</span><span class="p">);</span>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">6. Compute output</a><a class="headerlink" href="#compute-output" title="Link to this heading"></a></h3>
+<p>The wrapper calls <code class="docutils literal notranslate"><span class="pre">computeOutput</span></code> at <code class="docutils literal notranslate"><span class="pre">cmd_freq</span></code>. Pack the command in
+the frame announced through the previous <code class="docutils literal notranslate"><span class="pre">setDesiredPoseFrameId</span></code> /
+<code class="docutils literal notranslate"><span class="pre">setDesiredTwistFrameId</span></code> calls.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::computeOutput</span><span class="p">(</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span>
+<span class="w">  </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose</span><span class="p">,</span>
+<span class="w">  </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">twist</span><span class="p">,</span>
+<span class="w">  </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Thrust</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">thrust</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isStateReceived</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">isReferenceReceived</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;}</span>
+<span class="w">  </span><span class="c1">// run the active PID handler on (uav_state_, control_ref_) …</span>
+<span class="w">  </span><span class="n">twist</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output_twist_frame_id_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">twist</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">getNodePtr</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">now</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// fill twist.twist from the PID output</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="set-mode">
-<span id="development-tutorials-motion-controller-steps-methods-mode"></span><h4>Set Mode<a class="headerlink" href="#set-mode" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::setMode</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">in_mode</span><span class="p">,</span>
-<span class="w">                    </span><span class="k">const</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out_mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">plugin_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Plugin parameters not read yet, can not set mode&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">position_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
-<span class="w">                    </span><span class="s">&quot;Position controller parameters not read, can not set mode&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">position_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">        </span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">trajectory_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
-<span class="w">                    </span><span class="s">&quot;Trajectory controller parameters not read yet, can not set mode to TRAJECTORY&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">trajectory_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
-<span class="w">                </span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">                </span><span class="p">(</span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">velocity_controller_parameters_read</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">use_bypass_</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
-<span class="w">                    </span><span class="s">&quot;Velocity controller parameters not read yet and bypass is not used, can not set &quot;</span>
-<span class="w">                    </span><span class="s">&quot;mode to SPEED or SPEED_IN_A_PLANE&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">velocity_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">param</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">speed_in_a_plane_control_parameters_to_read_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Parameter %s not read&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">        </span><span class="o">!</span><span class="n">flags_</span><span class="p">.</span><span class="n">yaw_controller_parameters_read</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">RCLCPP_WARN</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
-<span class="w">                    </span><span class="s">&quot;Yaw controller parameters not read yet, can not set mode to YAW_ANGLE&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">HOVER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">in_mode</span><span class="p">.</span><span class="n">control_mode</span><span class="p">;</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">yaw_mode</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">YAW_ANGLE</span><span class="p">;</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">reference_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">LOCAL_ENU_FRAME</span><span class="p">;</span>
-<span class="w">        </span><span class="n">hover_flag_</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_mode</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">state_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="n">flags_</span><span class="p">.</span><span class="n">ref_received</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="n">control_mode_out_</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">out_mode</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">HOVER</span><span class="w"> </span><span class="o">||</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">POSITION</span><span class="w"> </span><span class="o">||</span>
-<span class="w">        </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">TRAJECTORY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">input_pose_frame_id_</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
-<span class="w">        </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED</span><span class="w"> </span><span class="o">||</span>
-<span class="w">                </span><span class="n">control_mode_in_</span><span class="p">.</span><span class="n">control_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">ControlMode</span><span class="o">::</span><span class="n">SPEED_IN_A_PLANE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">input_pose_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
-<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control_mode_out_</span><span class="p">.</span><span class="n">reference_frame</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">BODY_FLU_FRAME</span><span class="p">:</span>
-<span class="w">            </span><span class="n">input_twist_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">;</span>
-<span class="w">            </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flu_frame_id_</span><span class="p">;</span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">as2_msgs</span><span class="o">::</span><span class="no">msg</span><span class="o">::</span><span class="no">ControlMode</span><span class="o">::</span><span class="no">LOCAL_ENU_FRAME</span><span class="p">:</span>
-<span class="w">        </span><span class="k">default</span><span class="o">:</span>
-<span class="w">            </span><span class="n">input_twist_frame_id_</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
-<span class="w">            </span><span class="n">output_twist_frame_id_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enu_frame_id_</span><span class="p">;</span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<section id="reset-and-hover">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">7. Reset and hover</a><a class="headerlink" href="#reset-and-hover" title="Link to this heading"></a></h3>
+<p>When overriding <code class="docutils literal notranslate"><span class="pre">reset</span></code>, call the base implementation so the
+<code class="docutils literal notranslate"><span class="pre">state_received_</span></code> / <code class="docutils literal notranslate"><span class="pre">reference_received_</span></code> / <code class="docutils literal notranslate"><span class="pre">hover_pending_</span></code> flags are
+cleared too. The <code class="docutils literal notranslate"><span class="pre">essentialParamsReady()</span></code> latch is intentionally
+monotonic and is <strong>not</strong> cleared by <code class="docutils literal notranslate"><span class="pre">reset()</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::reset</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ControllerBase</span><span class="o">::</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">  </span><span class="n">resetReferences</span><span class="p">();</span>
+<span class="w">  </span><span class="n">resetState</span><span class="p">();</span>
+<span class="w">  </span><span class="n">resetCommands</span><span class="p">();</span>
+<span class="w">  </span><span class="n">pid_yaw_handler_</span><span class="p">.</span><span class="n">reset_controller</span><span class="p">();</span>
+<span class="w">  </span><span class="n">pid_3D_position_handler_</span><span class="p">.</span><span class="n">reset_controller</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// … other handlers</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="parameters-update">
-<span id="development-tutorials-motion-controller-steps-methods-params"></span><h4>Parameters Update<a class="headerlink" href="#parameters-update" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::updateParams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_params_list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parametersCallback</span><span class="p">(</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_parameters</span><span class="p">(</span><span class="n">_params_list</span><span class="p">));</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">successful</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</section>
-<section id="reset">
-<span id="development-tutorials-motion-controller-steps-methods-reset"></span><h4>Reset<a class="headerlink" href="#reset" title="Link to this heading"></a></h4>
-<p><strong>TBD</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">resetReferences</span><span class="p">();</span>
-<span class="w">    </span><span class="n">resetState</span><span class="p">();</span>
-<span class="w">    </span><span class="n">resetCommands</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_yaw_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_position_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_velocity_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
-<span class="w">    </span><span class="n">pid_3D_trajectory_handler_</span><span class="o">-&gt;</span><span class="n">resetController</span><span class="p">();</span>
+<p>If the default hover latch (single-point trajectory at the cached pose) does
+not fit the plugin (e.g. the plugin only consumes pose / twist references
+gated by mode), override <code class="docutils literal notranslate"><span class="pre">latchHoverReference</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::latchHoverReference</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">pose</span><span class="p">,</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">TwistStamped</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="cm">/*twist*/</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">};</span>
+<span class="w">  </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<span class="w">  </span><span class="n">control_ref_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as2</span><span class="o">::</span><span class="n">frame</span><span class="o">::</span><span class="n">getYawFromQuaternion</span><span class="p">(</span><span class="n">pose</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="exporting-the-plugin">
-<span id="development-tutorials-motion-controller-steps-export"></span><h3>3. Exporting the plugin<a class="headerlink" href="#exporting-the-plugin" title="Link to this heading"></a></h3>
-<p>Now that we have created our new controller, we need to export it so that it would be visible
-to the Controller Manager. Plugins are loaded at runtime and if they are not visible, then our
-controller manager won’t be able to load it. In ROS 2, exporting and loading plugins is handled
-by <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>.</p>
-<p>To achieve that, class <code class="docutils literal notranslate"><span class="pre">controller_plugin_speed_controller::Plugin</span></code> is loaded dynamically from
-<code class="docutils literal notranslate"><span class="pre">controller_plugin_base::ControllerBase</span></code> which is the base class.</p>
-<ol class="arabic simple">
-<li><p>To export the controller, we need to provide two lines</p></li>
-</ol>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span>
-<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span><span class="n">controller_plugin_speed_controller</span><span class="o">::</span><span class="n">Plugin</span><span class="p">,</span><span class="w"> </span><span class="n">controller_plugin_base</span><span class="o">::</span><span class="n">ControllerBase</span><span class="p">)</span>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">8. Exporting the plugin</a><a class="headerlink" href="#exporting-the-plugin" title="Link to this heading"></a></h3>
+<p>Register the class with <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> at the bottom of the source file:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span>
+<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span>
+<span class="w">  </span><span class="n">pid_speed_controller</span><span class="o">::</span><span class="n">Plugin</span><span class="p">,</span>
+<span class="w">  </span><span class="n">as2_motion_controller_plugin_base</span><span class="o">::</span><span class="n">ControllerBase</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It is good practice to place these lines at the end of the file but technically, you can also
-write at the top.</p>
-<p>2. Next step would be to create plugin’s description file in the root directory of the package.
-For example, <code class="docutils literal notranslate"><span class="pre">plugins.xml</span></code> file in our tutorial package. This file contains following
-information:</p>
-<ul class="simple">
-<li><p><cite>library path</cite>: Plugin’s library name and it’s location.</p></li>
-<li><p><cite>class name</cite>: Name of the class.</p></li>
-<li><p><cite>class type</cite>: Type of class.</p></li>
-<li><p><cite>base class</cite>: Name of the base class.</p></li>
-<li><p><cite>description</cite>: Description of the plugin.</p></li>
-</ul>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;library</span><span class="w"> </span><span class="na">path=</span><span class="s">&quot;as2_controller_plugin_speed_controller&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;controller_plugin_speed_controller::Plugin&quot;</span><span class="w"> </span><span class="na">base_class_type=</span><span class="s">&quot;controller_plugin_base::ControllerBase&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;description&gt;</span>Controller<span class="w"> </span>plugin<span class="w"> </span>for<span class="w"> </span>speed<span class="w"> </span>controller.<span class="nt">&lt;/description&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/class&gt;</span>
+<p>The plugin manifest lives at the <strong>root of the ``as2_motion_controller``
+package</strong> (<code class="docutils literal notranslate"><span class="pre">plugins.xml</span></code>). Append a <code class="docutils literal notranslate"><span class="pre">&lt;library&gt;</span></code> block for the new plugin:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;library</span><span class="w"> </span><span class="na">path=</span><span class="s">&quot;pid_speed_controller&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;pid_speed_controller::Plugin&quot;</span>
+<span class="w">         </span><span class="na">base_class_type=</span><span class="s">&quot;as2_motion_controller_plugin_base::ControllerBase&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Controller<span class="w"> </span>plugin<span class="w"> </span>for<span class="w"> </span>PID<span class="w"> </span>speed<span class="w"> </span>control.<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/class&gt;</span>
 <span class="nt">&lt;/library&gt;</span>
 </pre></div>
 </div>
-<p>3. Next step would be to export plugin using <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> by using cmake function
-<code class="docutils literal notranslate"><span class="pre">pluginlib_export_plugin_description_file()</span></code>. This function installs plugin description
-file to share directory and sets ament indexes to make it discoverable.</p>
-<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">as2_controller_plugin_base</span><span class="w"> </span><span class="s">plugins.xml</span><span class="p">)</span>
+<p>Then declare the manifest in the package <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> so it is
+installed and discoverable:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">pluginlib_export_plugin_description_file</span><span class="p">(</span><span class="s">as2_motion_controller</span><span class="w"> </span><span class="s">plugins.xml</span><span class="p">)</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Compile and it should be registered. Next, we’ll use this plugin.</p></li>
-</ol>
 </section>
-<section id="controller-manager-and-configuration-files">
-<span id="development-tutorials-motion-controller-steps-config"></span><h3>4. Controller manager and configuration files<a class="headerlink" href="#controller-manager-and-configuration-files" title="Link to this heading"></a></h3>
-<p>To use the plugin, we should create two configuration files.</p>
-<p><strong>TBD</strong></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">input_control_modes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00000000</span><span class="w"> </span><span class="c1"># UNSET</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00010000</span><span class="w"> </span><span class="c1"># HOVER</span>
-<span class="w">  </span><span class="c1"># - 0b00100100 # ACRO (p,q,r, Thrust)</span>
-<span class="w">  </span><span class="c1"># - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust)</span>
-<span class="w">  </span><span class="c1"># - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust)</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000000</span><span class="w"> </span><span class="c1"># SPEED with yaw ANGLE in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000001</span><span class="w"> </span><span class="c1"># SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000100</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000101</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010000</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010001</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010100</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01010101</span><span class="w"> </span><span class="c1"># SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01100001</span><span class="w"> </span><span class="c1"># POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01100101</span><span class="w"> </span><span class="c1"># POSITION with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01110001</span><span class="w"> </span><span class="c1"># TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01110101</span><span class="w"> </span><span class="c1"># TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<section id="configuration-files">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">9. Configuration files</a><a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h3>
+<p>Two YAML files cooperate at launch time.</p>
+<p><strong>Wrapper config</strong> — defaults in
+<code class="docutils literal notranslate"><span class="pre">as2_motion_controller/config/motion_controller_default.yaml</span></code>. The
+relevant keys for plugin authors are:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cmd_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
+<span class="w">    </span><span class="nt">info_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+<span class="w">    </span><span class="nt">use_bypass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">tf_timeout_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
 
-<span class="nt">output_control_modes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00000000</span><span class="w"> </span><span class="c1"># UNSET</span>
-<span class="w">  </span><span class="c1"># - 0b00010000 # HOVER</span>
-<span class="w">  </span><span class="c1"># - 0b00100100 # ACRO (p,q,r, Thrust)</span>
-<span class="w">  </span><span class="c1"># - 0b00110001 # ATTITUDE with yaw ANGLE ( r,p,y , Thrust)</span>
-<span class="w">  </span><span class="c1"># - 0b00110101 # ATTITUDE with yaw SPEED ( r,p, dy , Thrust)</span>
-<span class="w">  </span><span class="c1"># - 0b01000000 # SPEED with yaw ANGLE in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01000001 # SPEED with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000100</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000101</span><span class="w"> </span><span class="c1"># SPEED with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01010000 # SPEED_IN_A_PLANE with yaw ANGLE in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01010001 # SPEED_IN_A_PLANE with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01010100 # SPEED_IN_A_PLANE with yaw SPEED in the LOCAL_FLU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01010101 # SPEED_IN_A_PLANE with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01100001 # POSITION with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01100101 # POSITION with yaw SPEED in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01110001 # TRAJECTORY with yaw ANGLE in the GLOBAL_ENU_FRAME</span>
-<span class="w">  </span><span class="c1"># - 0b01110101 # TRAJECTORY with yaw SPEED in the GLOBAL_ENU_FRAME</span>
+<span class="w">    </span><span class="c1"># Frames the active plugin expects for state and references. The</span>
+<span class="w">    </span><span class="c1"># ControllerHandler converts incoming pose/twist/trajectory messages</span>
+<span class="w">    </span><span class="c1"># to these frames before delivering them to the plugin.</span>
+<span class="w">    </span><span class="nt">desired_pose_frame</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;odom&quot;</span>
+<span class="w">    </span><span class="nt">desired_twist_frame</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;base_link&quot;</span>
+
+<span class="w">    </span><span class="c1"># Debug topics published by ControllerHandler. Empty = disabled.</span>
+<span class="w">    </span><span class="c1"># Plugin-specific debug topics live under &lt;plugin_name&gt;.debug.*</span>
+<span class="w">    </span><span class="c1"># in each plugin&#39;s controller_default.yaml.</span>
+<span class="w">    </span><span class="nt">debug</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">state_pose_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/state/pose&quot;</span>
+<span class="w">      </span><span class="nt">state_twist_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/state/twist&quot;</span>
+<span class="w">      </span><span class="nt">reference_pose_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/reference/pose&quot;</span>
+<span class="w">      </span><span class="nt">reference_twist_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/reference/twist&quot;</span>
+<span class="w">      </span><span class="nt">reference_trajectory_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/reference/trajectory&quot;</span>
+<span class="w">      </span><span class="nt">reference_thrust_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/reference/thrust&quot;</span>
+<span class="w">      </span><span class="nt">compute_output_time_topic</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;debug/controller/compute_output_time&quot;</span>
 </pre></div>
 </div>
-<p><strong>TBD</strong></p>
+<p><strong>Plugin config</strong> — defaults in
+<code class="docutils literal notranslate"><span class="pre">plugins/&lt;plugin_name&gt;/config/controller_default.yaml</span></code>, namespaced under
+the plugin name. Every key the plugin reads via
+<code class="docutils literal notranslate"><span class="pre">param(&quot;&lt;sub&gt;.&lt;key&gt;&quot;)</span></code> must live under <code class="docutils literal notranslate"><span class="pre">&lt;plugin_name&gt;.</span></code>. Example:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">ros__parameters</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">proportional_limitation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">        </span><span class="nt">position_control</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">        </span><span class="nt">speed_control</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">        </span><span class="nt">speed_in_a_plane_control</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">height</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">speed</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">kp</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">kd</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">ki</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">        </span><span class="nt">trajectory_control</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kp</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kd</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">ki</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">                </span><span class="nt">z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">        </span><span class="nt">yaw_control</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">            </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-<span class="w">            </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">pid_speed_controller</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">proportional_limitation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">use_bypass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">position_control</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">x</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="nt">yaw_control</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">reset_integral</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">antiwindup_cte</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">kp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">kd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">        </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="c1"># optional groups gated by setMode (trajectory_control, …) …</span>
+</pre></div>
+</div>
+<p><strong>Control modes</strong> — declare the input/output control modes the plugin
+supports in a separate YAML loaded by the controller launch. The plugin
+itself does not parse this file; <code class="docutils literal notranslate"><span class="pre">ControllerManager</span></code> uses it to negotiate
+the active mode with the platform.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">input_control_modes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b00010000</span><span class="w">  </span><span class="c1"># HOVER</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000000</span><span class="w">  </span><span class="c1"># SPEED with yaw ANGLE in LOCAL_FLU</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000001</span><span class="w">  </span><span class="c1"># SPEED with yaw ANGLE in GLOBAL_ENU</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01110001</span><span class="w">  </span><span class="c1"># TRAJECTORY with yaw ANGLE in GLOBAL_ENU</span>
+<span class="w">    </span><span class="nt">output_control_modes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000100</span><span class="w">  </span><span class="c1"># SPEED with yaw SPEED in LOCAL_FLU</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0b01000101</span><span class="w">  </span><span class="c1"># SPEED with yaw SPEED in GLOBAL_ENU</span>
 </pre></div>
 </div>
 </section>
 <section id="launching">
-<span id="development-tutorials-motion-controller-steps-launch"></span><h3>5. Launching<a class="headerlink" href="#launching" title="Link to this heading"></a></h3>
-<p>¿<strong>TBD</strong>?</p>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">10. Launching</a><a class="headerlink" href="#launching" title="Link to this heading"></a></h3>
+<p>The controller manager exposes a standard launch file with a <code class="docutils literal notranslate"><span class="pre">plugin_name</span></code>
+argument validated against the registered plugins. If <code class="docutils literal notranslate"><span class="pre">plugin_name</span></code> is
+empty the launch reads it from the config file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_motion_controller<span class="w"> </span>controller_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>namespace:<span class="o">=</span>&lt;drone_namespace&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>plugin_name:<span class="o">=</span>pid_speed_controller
+</pre></div>
+</div>
+<p>Useful arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">namespace</span></code> — drone namespace (defaults to
+<code class="docutils literal notranslate"><span class="pre">AEROSTACK2_SIMULATION_DRONE_ID</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plugin_name</span></code> — <code class="docutils literal notranslate"><span class="pre">pid_speed_controller</span></code> |
+<code class="docutils literal notranslate"><span class="pre">differential_flatness_controller</span></code> | … any registered plugin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config_file</span></code> — wrapper YAML (defaults to
+<code class="docutils literal notranslate"><span class="pre">motion_controller_default.yaml</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plugin_config_file</span></code> — plugin YAML (defaults to the plugin’s
+<code class="docutils literal notranslate"><span class="pre">controller_default.yaml</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_level</span></code> / <code class="docutils literal notranslate"><span class="pre">use_sim_time</span></code> — node log level and clock source.</p></li>
+</ul>
 </section>
+</section>
+<section id="where-to-look-next">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Where to look next</a><a class="headerlink" href="#where-to-look-next" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_motion_controller/plugins">as2_motion_controller plugins/</a>
+— full source of <code class="docutils literal notranslate"><span class="pre">pid_speed_controller</span></code> and
+<code class="docutils literal notranslate"><span class="pre">differential_flatness_controller</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_motion_controller/include/as2_motion_controller/controller_base.hpp">controller_base.hpp</a>
+— authoritative documentation of every base method and helper.</p></li>
+<li><p><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#as2-concepts-motion-controller"><span class="std std-ref">Motion Controller</span></a> — high-level role of the controller
+inside Aerostack2.</p></li>
+</ul>
 </section>
 </section>
 

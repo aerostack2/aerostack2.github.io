@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing a New Follow Reference Plugin &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Writing a New Trajectory Generation Plugin" href="trajectory_generation_plugin.html" />
+    <link rel="prev" title="Writing a New Behavior" href="behavior.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/project_multirotor_simulator/index.html">Simple Multirotor Simulator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/tello/index.html">Ryze DJI Tello</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/tello/project_tello/index.html">Simple Tello Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/dji/index.html">DJI SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_psdk/index.html">DJI PSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html">Mavlink</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html">DJI Matrice Series OSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html">Betaflight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_04_robot_behaviors/index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#motion-behaviors">Motion Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html">Follow Reference Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#yaw-policy">Yaw Policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html">Generate Polynomial Trajectory Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#debugging-topics">Debugging Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/trajectory_generation/index.html#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#parameter-estimation-behaviors">Parameter Estimation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/mass_estimation/index.html">Mass Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/mass_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/mass_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/mass_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/mass_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/force_estimation/index.html">Force Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/force_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/force_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/force_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/param_estimation/force_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#swarm-flocking-behaviors">Swarm Flocking Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html">Swarm Flocking Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/swarm_flocking/index.html#related-projects">Related Projects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_04_robot_behaviors/index.html#payload-behaviors">Payload Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_04_robot_behaviors/payload/gripper/index.html">Gripper Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/payload/gripper/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/payload/gripper/index.html#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/payload/gripper/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_04_robot_behaviors/payload/gripper/index.html#launching-the-behavior">Launching the Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#trajectory-generation-behavior-plugins">Trajectory Generation Behavior Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#follow-reference-behavior-plugins">Follow Reference Behavior Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller_plugin.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Writing a New Follow Reference Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="trajectory_generation_plugin.html">Writing a New Trajectory Generation Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="trajectory_generation_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="trajectory_generation_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="trajectory_generation_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="adding_gazebo_assets.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adding_gazebo_assets.html#adding-new-worlds">Adding New Worlds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adding_gazebo_assets.html#adding-new-models-and-objects">Adding New Models and Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adding_gazebo_assets.html#configuring-new-sensors">Configuring New Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_develop_guide/_develop_guide/_create_gazebo_assets.html">Create New Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-aerial-platform">Create a New Gazebo Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-sensor">Create a New Gazebo Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#google-summer-of-code-gsoc">Google Summer of Code (GSoC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2026">Ideas List for GSoC 2026</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-rerun-based-visualization-integration-for-aerostack2">Project #1: Rerun-Based Visualization Integration for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-2-rqt-keyboard-teleoperation-alphanumeric-view">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-4-system-integration-tests-and-continuous-integration">Project #4: System Integration Tests and Continuous Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-5-development-of-a-project-creation-tool-for-aerostack2">Project #5: Development of a Project Creation Tool for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-6-behavior-client-implementation-for-c">Project #6: Behavior Client Implementation for C++</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2026">Application instructions for GSoC 2026</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-form">Application Form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#how-to-increase-your-chances-of-being-selected-in-gsoc-2026">How to increase your chances of being selected in GSoC-2026</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#insertion">INSERTION</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_insertion/index.html">INSERTION</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#ratec">RATEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_ratec/index.html">RATEC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_15_user_reviews/index.html">User Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Development</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Writing a New Follow Reference Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_09_development/_tutorials/_tutorials/follow_reference_plugin.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="writing-a-new-follow-reference-plugin">
+<span id="development-tutorials-follow-reference-plugin"></span><h1>Writing a New Follow Reference Plugin<a class="headerlink" href="#writing-a-new-follow-reference-plugin" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id4">Overview</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id5">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#architecture" id="id6">Architecture</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugin-contract" id="id7">Plugin Contract</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tutorial-steps" id="id8">Tutorial Steps</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugin-skeleton" id="id9">1. Plugin skeleton</a></p></li>
+<li><p><a class="reference internal" href="#initialization" id="id10">2. Initialization</a></p></li>
+<li><p><a class="reference internal" href="#goal-activation" id="id11">3. Goal activation</a></p></li>
+<li><p><a class="reference internal" href="#goal-modification-optional" id="id12">4. Goal modification (optional)</a></p></li>
+<li><p><a class="reference internal" href="#deactivation-pause-and-resume" id="id13">5. Deactivation, pause and resume</a></p></li>
+<li><p><a class="reference internal" href="#execution-end" id="id14">6. Execution end</a></p></li>
+<li><p><a class="reference internal" href="#per-tick-run" id="id15">7. Per-tick run</a></p></li>
+<li><p><a class="reference internal" href="#exporting-the-plugin" id="id16">8. Exporting the plugin</a></p></li>
+<li><p><a class="reference internal" href="#configuration-files" id="id17">9. Configuration files</a></p></li>
+<li><p><a class="reference internal" href="#launching" id="id18">10. Launching</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#where-to-look-next" id="id19">Where to look next</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The <a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#behaviors-follow-reference-page"><span class="std std-ref">Follow Reference Behavior</span></a> ships as a plugin-based behavior
+under the <code class="docutils literal notranslate"><span class="pre">as2_behaviors_motion</span></code> package. The wrapper
+<code class="docutils literal notranslate"><span class="pre">FollowReferenceBehavior</span></code> owns the action lifecycle, validates the goal,
+resolves the target frame via TF and feeds the active plugin with the
+validated state and platform info; the plugin only has to implement the
+<strong>tracking strategy</strong> (position setpoints, trajectory delegation, …).</p>
+<p>This tutorial walks through the contract exposed by
+<code class="docutils literal notranslate"><span class="pre">follow_reference_base::FollowReferenceBase</span></code> and how to build a plugin
+against it. The reference plugins live in
+<a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/plugins">as2_behaviors_motion/follow_reference_behavior/plugins</a>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/plugins/follow_reference_plugin_position.cpp">follow_reference_plugin_position</a>
+— direct position-setpoint plugin used as the running example below.</p></li>
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/plugins/follow_reference_plugin_trajectory.cpp">follow_reference_plugin_trajectory</a>
+— delegates tracking to <code class="docutils literal notranslate"><span class="pre">TrajectoryGeneratorBehavior</span></code> in
+<code class="docutils literal notranslate"><span class="pre">follow_reference_mode</span></code>.</p></li>
+</ul>
+<p>It is worth reading <a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#behaviors-follow-reference-page"><span class="std std-ref">Follow Reference Behavior</span></a> first for the
+external semantics (action interface, yaw modes, configuration) before
+diving into the plugin side.</p>
+</section>
+<section id="requirements">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Requirements</a><a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ROS 2 Humble</p></li>
+<li><p>Aerostack2 (with <code class="docutils literal notranslate"><span class="pre">as2_behaviors_motion</span></code> built and sourced)</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Architecture</a><a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">FollowReferenceBase</span></code> owns the wiring with the wrapper and exposes a small
+set of hooks the plugin implements:</p>
+<ul class="simple">
+<li><p><strong>Lifecycle</strong> — <code class="docutils literal notranslate"><span class="pre">FollowReferenceBehavior</span></code> resolves
+<code class="docutils literal notranslate"><span class="pre">plugin_name</span> <span class="pre">+</span> <span class="pre">&quot;::Plugin&quot;</span></code> via <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code>, then calls
+<code class="docutils literal notranslate"><span class="pre">initialize(node,</span> <span class="pre">tf_handler)</span></code> on the loaded plugin. Inside <code class="docutils literal notranslate"><span class="pre">initialize</span></code>
+the base reads the per-axis defaults <code class="docutils literal notranslate"><span class="pre">follow_reference_max_speed_x/y/z</span></code>
+from the node, creates the shared <code class="docutils literal notranslate"><span class="pre">HoverMotion</span></code> handler and invokes the
+plugin’s <code class="docutils literal notranslate"><span class="pre">ownInit()</span></code>.</p></li>
+<li><p><strong>State and platform info</strong> — the wrapper subscribes to
+<code class="docutils literal notranslate"><span class="pre">self_localization/twist</span></code> and <code class="docutils literal notranslate"><span class="pre">platform/info</span></code> and forwards each message
+to <code class="docutils literal notranslate"><span class="pre">state_callback</span></code> and <code class="docutils literal notranslate"><span class="pre">platform_info_callback</span></code> on the base. The base
+caches the pose in <code class="docutils literal notranslate"><span class="pre">actual_pose_</span></code> (already in <code class="docutils literal notranslate"><span class="pre">earth</span></code>), updates the
+feedback <code class="docutils literal notranslate"><span class="pre">actual_distance_to_goal</span></code> from the target converted to earth,
+and flips <code class="docutils literal notranslate"><span class="pre">localization_flag_</span></code> once the first message arrives.</p></li>
+<li><p><strong>Goal handling</strong> — the wrapper calls <code class="docutils literal notranslate"><span class="pre">on_activate(goal)</span></code> /
+<code class="docutils literal notranslate"><span class="pre">on_modify(goal)</span></code>. The base validates that the platform is <code class="docutils literal notranslate"><span class="pre">FLYING</span></code>
+and that localization has been received (<code class="docutils literal notranslate"><span class="pre">processGoal</span></code>), and only then
+hands the goal to the plugin via <code class="docutils literal notranslate"><span class="pre">own_activate</span></code> / <code class="docutils literal notranslate"><span class="pre">own_modify</span></code>. The
+base also routes <code class="docutils literal notranslate"><span class="pre">on_deactivate</span></code>, <code class="docutils literal notranslate"><span class="pre">on_pause</span></code>, <code class="docutils literal notranslate"><span class="pre">on_resume</span></code>,
+<code class="docutils literal notranslate"><span class="pre">on_execution_end</span></code> and <code class="docutils literal notranslate"><span class="pre">on_run</span></code> to their <code class="docutils literal notranslate"><span class="pre">own_*</span></code> counterparts.</p></li>
+</ul>
+<p>The full header is in
+<a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/include/follow_reference_behavior/follow_reference_base.hpp">follow_reference_base.hpp</a>.</p>
+<section id="plugin-contract">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Plugin Contract</a><a class="headerlink" href="#plugin-contract" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Methods the plugin overrides</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ownInit()</span></code></p></td>
+<td><p>Allocate motion reference handlers, action / topic clients, plugin
+publishers. Read any plugin-specific parameters from the node.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">own_activate(goal)</span></code></p></td>
+<td><p>Accept the validated goal and prepare to track the reference. Return
+<code class="docutils literal notranslate"><span class="pre">true</span></code> if the plugin can proceed.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">own_modify(goal)</span></code></p></td>
+<td><p>Apply a goal modification while running. Default returns <code class="docutils literal notranslate"><span class="pre">false</span></code>
+(unsupported).</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">own_deactivate(message)</span></code></p></td>
+<td><p>Stop tracking, leave the drone in a safe state. The default base
+behavior is unsupported; the position plugin sends a hover.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">own_pause(message)</span></code> / <code class="docutils literal notranslate"><span class="pre">own_resume(message)</span></code></p></td>
+<td><p>Pause and resume hooks. Defaults return <code class="docutils literal notranslate"><span class="pre">false</span></code>; implement only
+when the plugin can be paused safely.</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">own_execution_end(state)</span></code></p></td>
+<td><p>Finalize when the action ends (success / failure / cancel). Release
+resources, send hover if needed.</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">own_run()</span></code></p></td>
+<td><p>Per-tick work: emit the next reference and report a status. Returns
+an <code class="docutils literal notranslate"><span class="pre">as2_behavior::ExecutionStatus</span></code> (typically <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code> until
+cancelled).</p></td>
+<td><p><strong>Yes</strong></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Base members available to the plugin</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Member</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">node_ptr_</span></code></p></td>
+<td><p>Non-owning <code class="docutils literal notranslate"><span class="pre">as2::Node</span> <span class="pre">*</span></code> for logging, parameters, publishers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tf_handler_</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;as2::tf::TfHandler&gt;</span></code> for frame conversions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">goal_</span></code></p></td>
+<td><p>Last goal accepted by <code class="docutils literal notranslate"><span class="pre">own_activate</span></code> / <code class="docutils literal notranslate"><span class="pre">own_modify</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">feedback_</span></code> / <code class="docutils literal notranslate"><span class="pre">result_</span></code></p></td>
+<td><p>Action feedback / result instances the wrapper forwards to the
+client at the end of each tick.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">actual_pose_</span></code></p></td>
+<td><p>Last validated pose state in <code class="docutils literal notranslate"><span class="pre">earth</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">platform_state_</span></code></p></td>
+<td><p>Last <code class="docutils literal notranslate"><span class="pre">as2_msgs::msg::PlatformStatus</span></code> value seen on
+<code class="docutils literal notranslate"><span class="pre">platform/info</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">localization_flag_</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> once at least one state message has been received.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">params_</span></code></p></td>
+<td><p>Struct with the per-axis defaults
+(<code class="docutils literal notranslate"><span class="pre">follow_reference_max_speed_x/y/z</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sendHover()</span></code></p></td>
+<td><p>Helper that publishes a hover through the shared <code class="docutils literal notranslate"><span class="pre">HoverMotion</span></code>
+handler.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="tutorial-steps">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Tutorial Steps</a><a class="headerlink" href="#tutorial-steps" title="Link to this heading"></a></h2>
+<p>The snippets below are simplified excerpts from
+<code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_position</span></code>. Refer to the full source for the
+complete implementation.</p>
+<section id="plugin-skeleton">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">1. Plugin skeleton</a><a class="headerlink" href="#plugin-skeleton" title="Link to this heading"></a></h3>
+<p>Create a class that inherits from
+<code class="docutils literal notranslate"><span class="pre">follow_reference_base::FollowReferenceBase</span></code> and declares the overrides.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;follow_reference_behavior/follow_reference_base.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;as2_motion_reference_handlers/position_motion.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">follow_reference_plugin_position</span>
+<span class="p">{</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plugin</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">follow_reference_base</span><span class="o">::</span><span class="n">FollowReferenceBase</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">ownInit</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">own_activate</span><span class="p">(</span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">FollowReference</span><span class="o">::</span><span class="n">Goal</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">own_modify</span><span class="p">(</span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">FollowReference</span><span class="o">::</span><span class="n">Goal</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">own_deactivate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">own_pause</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">own_resume</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">own_execution_end</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+<span class="w">  </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="w"> </span><span class="nf">own_run</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">as2</span><span class="o">::</span><span class="n">motionReferenceHandlers</span><span class="o">::</span><span class="n">PositionMotion</span><span class="o">&gt;</span><span class="w"> </span><span class="n">position_motion_handler_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace follow_reference_plugin_position</span>
+</pre></div>
+</div>
+</section>
+<section id="initialization">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">2. Initialization</a><a class="headerlink" href="#initialization" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ownInit</span></code> runs after the base has injected the node, the TF handler and
+the shared <code class="docutils literal notranslate"><span class="pre">HoverMotion</span></code> handler. Allocate plugin-specific motion
+handlers and read plugin parameters here. Use
+<code class="docutils literal notranslate"><span class="pre">follow_reference_base::FollowReferenceBase::params_</span></code> to access the
+per-axis defaults that the base has already loaded.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::ownInit</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">position_motion_handler_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">as2</span><span class="o">::</span><span class="n">motionReferenceHandlers</span><span class="o">::</span><span class="n">PositionMotion</span><span class="o">&gt;</span><span class="p">(</span><span class="n">node_ptr_</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For plugins that need extra parameters, declare and read them on the node
+inside <code class="docutils literal notranslate"><span class="pre">ownInit</span></code> (use a <code class="docutils literal notranslate"><span class="pre">&lt;plugin_name&gt;.&lt;key&gt;</span></code> namespace to avoid
+collisions with the wrapper). See <code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_trajectory</span></code> for
+an example reading <code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_trajectory.modify_threshold</span></code>
+and <code class="docutils literal notranslate"><span class="pre">modify_frequency</span></code>.</p>
+</section>
+<section id="goal-activation">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">3. Goal activation</a><a class="headerlink" href="#goal-activation" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">own_activate</span></code> only sees goals that the base has already validated
+(platform <code class="docutils literal notranslate"><span class="pre">FLYING</span></code> and localization received). The wrapper has also
+replaced any zero <code class="docutils literal notranslate"><span class="pre">max_speed_*</span></code> field with the matching
+<code class="docutils literal notranslate"><span class="pre">follow_reference_max_speed_*</span></code> default. Validate any plugin-specific
+constraint (e.g. yaw mode supported), prepare internal state and return
+<code class="docutils literal notranslate"><span class="pre">true</span></code> to accept.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::own_activate</span><span class="p">(</span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">FollowReference</span><span class="o">::</span><span class="n">Goal</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">computeYaw</span><span class="p">(</span><span class="n">goal</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">point</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">actual_pose_</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">goal</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">angle</span><span class="p">))</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">RCLCPP_INFO</span><span class="p">(</span>
+<span class="w">    </span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">    </span><span class="s">&quot;FollowReference target: %f, %f, %f&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<span class="w">    </span><span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+<span class="w">    </span><span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The goal stays accessible to the rest of the lifecycle through <code class="docutils literal notranslate"><span class="pre">goal_</span></code>
+(filled by the base only after <code class="docutils literal notranslate"><span class="pre">own_activate</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>).</p>
+</section>
+<section id="goal-modification-optional">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">4. Goal modification (optional)</a><a class="headerlink" href="#goal-modification-optional" title="Link to this heading"></a></h3>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">own_modify</span></code> only when the plugin can update the active goal
+without re-activating. The default returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, so the wrapper
+rejects modifications. <code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_trajectory</span></code> publishes to
+<code class="docutils literal notranslate"><span class="pre">motion_reference/modify_waypoint</span></code> and accepts.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::own_modify</span><span class="p">(</span><span class="n">as2_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">FollowReference</span><span class="o">::</span><span class="n">Goal</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">computeYaw</span><span class="p">(</span><span class="n">goal</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">goal</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">point</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">actual_pose_</span><span class="p">.</span><span class="n">pose</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">goal</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">angle</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="deactivation-pause-and-resume">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">5. Deactivation, pause and resume</a><a class="headerlink" href="#deactivation-pause-and-resume" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">own_deactivate</span></code> runs on a clean cancel. Leave the drone in a safe state
+— the position plugin sends a hover and clears the cached target frame so
+the next <code class="docutils literal notranslate"><span class="pre">own_run</span></code> ticks become no-ops.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::own_deactivate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="cm">/*message*/</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">goal_</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sendHover</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">own_pause</span></code> / <code class="docutils literal notranslate"><span class="pre">own_resume</span></code> only when the plugin can be safely
+suspended:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::own_pause</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="cm">/*message*/</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">sendHover</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">Plugin::own_resume</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="cm">/*message*/</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="execution-end">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">6. Execution end</a><a class="headerlink" href="#execution-end" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">own_execution_end</span></code> is invoked whenever the action terminates (success,
+failure or cancel). The base has already cleared <code class="docutils literal notranslate"><span class="pre">localization_flag_</span></code>;
+release any plugin-specific resource and leave the drone safe.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">Plugin::own_execution_end</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="cm">/*state*/</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">sendHover</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="per-tick-run">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">7. Per-tick run</a><a class="headerlink" href="#per-tick-run" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">own_run</span></code> is the per-tick entry point. Read the live target through
+<code class="docutils literal notranslate"><span class="pre">goal_</span></code>, convert it to whatever frame the underlying handler expects
+(<code class="docutils literal notranslate"><span class="pre">earth</span></code> is the canonical one), and publish the reference. Return
+<code class="docutils literal notranslate"><span class="pre">RUNNING</span></code> while tracking — Follow Reference is open-ended, the wrapper
+expects the action to be cancelled by the client.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="w"> </span><span class="nf">Plugin::own_run</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="c1">// Re-resolve the live target to &quot;earth&quot; so moving target frames work</span>
+<span class="w">  </span><span class="c1">// transparently (the position handler publishes in a static frame).</span>
+<span class="w">  </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointStamped</span><span class="w"> </span><span class="n">target_stamped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">goal_</span><span class="p">.</span><span class="n">target_pose</span><span class="p">;</span>
+<span class="w">  </span><span class="n">target_stamped</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">now</span><span class="p">();</span>
+<span class="w">  </span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PointStamped</span><span class="w"> </span><span class="n">target_in_earth</span><span class="p">;</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">target_in_earth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf_handler_</span><span class="o">-&gt;</span><span class="n">convert</span><span class="p">(</span><span class="n">target_stamped</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;earth&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">tf2</span><span class="o">::</span><span class="n">TransformException</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RCLCPP_WARN_THROTTLE</span><span class="p">(</span>
+<span class="w">      </span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="o">*</span><span class="n">node_ptr_</span><span class="o">-&gt;</span><span class="n">get_clock</span><span class="p">(),</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;TF lookup &#39;%s&#39; -&gt; &#39;earth&#39; failed: %s&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">goal_</span><span class="p">.</span><span class="n">target_pose</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="o">::</span><span class="n">RUNNING</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">position_motion_handler_</span><span class="o">-&gt;</span><span class="n">sendPositionCommandWithYawAngle</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;earth&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">target_in_earth</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">),</span>
+<span class="w">      </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">target_in_earth</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
+<span class="w">      </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">target_in_earth</span><span class="p">.</span><span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">),</span>
+<span class="w">      </span><span class="n">goal_</span><span class="p">.</span><span class="n">yaw</span><span class="p">.</span><span class="n">angle</span><span class="p">,</span>
+<span class="w">      </span><span class="s">&quot;earth&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">goal_</span><span class="p">.</span><span class="n">max_speed_x</span><span class="p">,</span><span class="w"> </span><span class="n">goal_</span><span class="p">.</span><span class="n">max_speed_y</span><span class="p">,</span><span class="w"> </span><span class="n">goal_</span><span class="p">.</span><span class="n">max_speed_z</span><span class="p">))</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">result_</span><span class="p">.</span><span class="n">follow_reference_success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="o">::</span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">result_</span><span class="p">.</span><span class="n">follow_reference_success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">as2_behavior</span><span class="o">::</span><span class="n">ExecutionStatus</span><span class="o">::</span><span class="n">RUNNING</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="exporting-the-plugin">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">8. Exporting the plugin</a><a class="headerlink" href="#exporting-the-plugin" title="Link to this heading"></a></h3>
+<p>Register the class with <code class="docutils literal notranslate"><span class="pre">pluginlib</span></code> at the bottom of the source file:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pluginlib/class_list_macros.hpp&gt;</span>
+<span class="n">PLUGINLIB_EXPORT_CLASS</span><span class="p">(</span>
+<span class="w">  </span><span class="n">follow_reference_plugin_position</span><span class="o">::</span><span class="n">Plugin</span><span class="p">,</span>
+<span class="w">  </span><span class="n">follow_reference_base</span><span class="o">::</span><span class="n">FollowReferenceBase</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The plugin manifest lives at the <strong>root of the ``as2_behaviors_motion``
+package</strong> (<code class="docutils literal notranslate"><span class="pre">plugins.xml</span></code>) and is shared by every motion behavior plugin.
+Append a <code class="docutils literal notranslate"><span class="pre">&lt;class&gt;</span></code> block for the new plugin to the existing
+<code class="docutils literal notranslate"><span class="pre">&lt;library</span> <span class="pre">path=&quot;as2_behaviors_motion&quot;&gt;</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;class</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;follow_reference_plugin_position::Plugin&quot;</span>
+<span class="w">       </span><span class="na">base_class_type=</span><span class="s">&quot;follow_reference_base::FollowReferenceBase&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;description&gt;</span>Follow<span class="w"> </span>Reference<span class="w"> </span>done<span class="w"> </span>with<span class="w"> </span>position<span class="w"> </span>commands.<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/class&gt;</span>
+</pre></div>
+</div>
+<p>The package <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> already exports the manifest with
+<code class="docutils literal notranslate"><span class="pre">pluginlib_export_plugin_description_file(as2_behaviors_motion</span> <span class="pre">plugins.xml)</span></code>;
+nothing extra is needed there for a new plugin under the same library.</p>
+</section>
+<section id="configuration-files">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">9. Configuration files</a><a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h3>
+<p>The wrapper YAML lives in
+<code class="docutils literal notranslate"><span class="pre">as2_behaviors_motion/follow_reference_behavior/config/config_default.yaml</span></code>.
+Plugin-specific parameters use the <code class="docutils literal notranslate"><span class="pre">&lt;plugin_name&gt;.*</span></code> namespace inside the
+same file. Plugin authors only add the keys their plugin needs; the wrapper
+keys (max speed defaults, <code class="docutils literal notranslate"><span class="pre">tf_timeout_threshold</span></code>) stay shared.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">follow_reference_max_speed_x</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+<span class="w">    </span><span class="nt">follow_reference_max_speed_y</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+<span class="w">    </span><span class="nt">follow_reference_max_speed_z</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+<span class="w">    </span><span class="nt">tf_timeout_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+
+<span class="w">    </span><span class="c1"># Plugin-specific defaults. Only loaded when the matching plugin is</span>
+<span class="w">    </span><span class="c1"># selected via plugin_name.</span>
+<span class="w">    </span><span class="nt">follow_reference_plugin_trajectory</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">modify_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">      </span><span class="nt">modify_frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</pre></div>
+</div>
+</section>
+<section id="launching">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">10. Launching</a><a class="headerlink" href="#launching" title="Link to this heading"></a></h3>
+<p>The behavior exposes a standard launch with a <code class="docutils literal notranslate"><span class="pre">plugin_name</span></code> argument
+validated against the registered plugins. If <code class="docutils literal notranslate"><span class="pre">plugin_name</span></code> is empty the
+launch reads it from the config file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_behaviors_motion<span class="w"> </span>follow_reference_behavior_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>namespace:<span class="o">=</span>&lt;drone_namespace&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>plugin_name:<span class="o">=</span>follow_reference_plugin_position
+</pre></div>
+</div>
+<p>Useful arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">namespace</span></code> — drone namespace (defaults to
+<code class="docutils literal notranslate"><span class="pre">AEROSTACK2_SIMULATION_DRONE_ID</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plugin_name</span></code> — one of
+<code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_position</span></code>,
+<code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_trajectory</span></code>. The list is enforced by
+<code class="docutils literal notranslate"><span class="pre">get_available_plugins('as2_behaviors_motion',</span> <span class="pre">'follow_reference')</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">behavior_config_file</span></code> — path to the behavior YAML (defaults to
+<code class="docutils literal notranslate"><span class="pre">config_default.yaml</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_level</span></code> / <code class="docutils literal notranslate"><span class="pre">use_sim_time</span></code> — node log level and clock source.</p></li>
+</ul>
+</section>
+</section>
+<section id="where-to-look-next">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Where to look next</a><a class="headerlink" href="#where-to-look-next" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/tree/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/plugins">follow_reference_behavior plugins/</a>
+— full source of <code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_position</span></code> and
+<code class="docutils literal notranslate"><span class="pre">follow_reference_plugin_trajectory</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/aerostack2/aerostack2/blob/main/as2_behaviors/as2_behaviors_motion/follow_reference_behavior/include/follow_reference_behavior/follow_reference_base.hpp">follow_reference_base.hpp</a>
+— authoritative documentation of every base method and helper.</p></li>
+<li><p><a class="reference internal" href="../../../_04_robot_behaviors/follow_reference/index.html#behaviors-follow-reference-page"><span class="std std-ref">Follow Reference Behavior</span></a> — external view of the behavior
+(action interface, yaw policy, configuration).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2026, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
