@@ -93,6 +93,7 @@ The behavior can be configured via the ``plugins/<plugin_name>/config/plugin_def
      - The ROS topic to send to Gazebo for the left finger.
    * - **topic_r_finger**
      - The ROS topic to send to Gazebo for the right finger.
+
 Launching the Behavior
 ----------------------
 

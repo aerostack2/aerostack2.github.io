@@ -42,9 +42,9 @@ Aerostack2 is versatile for building different system configurations with variou
 
    Aerostack2 architecture overview
 
---------
+------------
 User Reviews
---------
+------------
 
 Aerostack2 has been adopted by research groups and developers worldwide for applications ranging from academic research to commercial drone systems—here's what users have to say about their experience with the framework. See more comments in the User Reviews page:
 
