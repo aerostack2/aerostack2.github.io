@@ -12,4 +12,5 @@ Tutorials
    _tutorials/estimator_plugin.rst
    _tutorials/behavior.rst
    _tutorials/follow_reference_plugin.rst
+   _tutorials/trajectory_generation_plugin.rst
    _tutorials/adding_gazebo_assets.rst
