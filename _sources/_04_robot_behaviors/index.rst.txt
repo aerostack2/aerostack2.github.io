@@ -44,12 +44,18 @@ Motion Behaviors
        | Yaw: desired mode
        | Path: desired path with a list of poses with id.
        | Max speed: desired speed movement, in meters per second (m/s)
-   * - Follow Reference
-     - Keep the aircraft at given pose reference in the desired frame
-     - | Frame id: desired frame of the reference
-       | Yaw: desired mode
-       | Target reference: desired pose reference in the given frame.
-       | Max speed: desired speed movement in each of the axis, in meters per second (m/s)
+   * - :ref:`behaviors_follow_reference_page`
+     - Keep the aircraft at given pose reference in the desired frame through a runtime-selectable plugin (position or trajectory).
+     - | Yaw: desired yaw mode.
+       | Target pose: desired reference point in the given frame (m).
+       | Max speed: desired speed per axis (m/s).
+
+.. toctree::
+   :hidden:
+   :caption: Motion Behaviors
+   :maxdepth: 1
+
+   follow_reference/index
 
 
 
@@ -85,12 +91,19 @@ Trajectory Generation Behaviors
    * - Name
      - Description
      - Parameters
-   * - Generate Polynomial Trajectory
-     - Convert a list of waypoints to a trajectory
-     - | Header: desired frame of the path
-       | Yaw: desired mode
-       | Path: desired path with a list of poses with id.
-       | Max speed: desired speed movement, in meters per second (m/s)
+   * - :ref:`behaviors_trajectory_generation_page`
+     - Convert a list of waypoints into a smooth trajectory through a runtime-selectable plugin (dynamic_mav, mav, jerk_limited or gcopter).
+     - | Yaw: desired yaw mode.
+       | Path: list of waypoints with id.
+       | Max speed: desired speed along the path (m/s).
+       | Start on paused: if true, generate the trajectory and stay paused until the client resumes.
+
+.. toctree::
+   :hidden:
+   :caption: Trajectory Generation Behaviors
+   :maxdepth: 1
+
+   trajectory_generation/index
 
 .. _behaviors_param_estimation:
 
@@ -112,6 +125,14 @@ Parameter Estimation Behaviors
      - Estimate the difference between the commanded thrust and the thrust being executed by the platform.
      -
 
+.. toctree::
+   :hidden:
+   :caption: Parameter Estimation Behaviors
+   :maxdepth: 1
+
+   param_estimation/mass_estimation/index
+   param_estimation/force_estimation/index
+
 .. _behaviors_swarm_flocking:
 
 -------------------------------
@@ -131,6 +152,13 @@ Swarm Flocking Behaviors
        | Swarm Formation: List of desired poses, including the ID of each drone in the swarm, with respect to the virtual centroid.
        | Drone Namespace: List of the drone namespaces in the swarm. It must be in the same order as the swarm formation list.
 
+.. toctree::
+   :hidden:
+   :caption: Swarm Flocking Behaviors
+   :maxdepth: 1
+
+   swarm_flocking/index
+
 .. _behaviors_payload:
 
 -------------------------------
@@ -147,3 +175,10 @@ Payload Behaviors
    * - :ref:`gripper`
      - Control a gripper to pick up and release objects.
      - Gripper request: It is a bool msg where true means to start the closing action and false means to start the opening action.
+
+.. toctree::
+   :hidden:
+   :caption: Payload Behaviors
+   :maxdepth: 1
+
+   payload/gripper/index

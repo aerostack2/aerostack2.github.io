@@ -22,7 +22,9 @@
         <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gripper Behavior" href="../payload/gripper/index.html" />
+    <link rel="prev" title="Force Estimation Behavior" href="../param_estimation/force_estimation/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../_00_getting_started/index.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
@@ -248,13 +250,72 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Robot Behaviors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#motion-behaviors">Motion Behaviors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Robot Behaviors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#motion-behaviors">Motion Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../follow_reference/index.html">Follow Reference Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#yaw-policy">Yaw Policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../follow_reference/index.html#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#perception-behaviors">Perception Behaviors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#parameter-estimation-behaviors">Parameter Estimation Behaviors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#swarm-flocking-behaviors">Swarm Flocking Behaviors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#payload-behaviors">Payload Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../trajectory_generation/index.html">Generate Polynomial Trajectory Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#debugging-topics">Debugging Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../trajectory_generation/index.html#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#parameter-estimation-behaviors">Parameter Estimation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../param_estimation/mass_estimation/index.html">Mass Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/mass_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/mass_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/mass_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/mass_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../param_estimation/force_estimation/index.html">Force Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/force_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/force_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/force_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../param_estimation/force_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#swarm-flocking-behaviors">Swarm Flocking Behaviors</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Swarm Flocking Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-projects">Related Projects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#payload-behaviors">Payload Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../payload/gripper/index.html">Gripper Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../payload/gripper/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../payload/gripper/index.html#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../payload/gripper/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../payload/gripper/index.html#launching-the-behavior">Launching the Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
@@ -262,6 +323,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_05_as2_plugins/index.html#trajectory-generation-behavior-plugins">Trajectory Generation Behavior Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_05_as2_plugins/index.html#follow-reference-behavior-plugins">Follow Reference Behavior Plugins</a></li>
 </ul>
 </li>
 </ul>
@@ -336,6 +399,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html">Writing a New Trajectory Generation Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#tutorial-steps">Tutorial Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
@@ -441,6 +510,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Robot Behaviors</a></li>
       <li class="breadcrumb-item active">Swarm Flocking Behavior</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_04_robot_behaviors/swarm_flocking/index.rst" class="fa fa-github"> Edit on GitHub</a>
