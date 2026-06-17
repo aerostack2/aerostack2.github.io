@@ -66,9 +66,10 @@ Perception Behaviors
    * - Name
      - Description
      - Parameters
-   * - Detect ArUco Markers
-     - Detect ArUco Markers in a image and publish the result.
-     - Target ids: list of id of the markers to detect
+   * - :ref:`behaviors_object_perception`
+     - Plugin-based perception pipeline that processes camera images and publishes the detected objects (e.g. ArUco markers), including their image location and optional 3D pose.
+     - | Threshold: minimum confidence score in the range [0.0, 1.0] for a detection to be accepted.
+       | Target classes: list of class ids to detect (e.g. ArUco marker ids). If empty, every detected object is reported.
 
 
 
