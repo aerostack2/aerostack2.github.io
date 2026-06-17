@@ -98,6 +98,13 @@ Trajectory Generation Behaviors
        | Max speed: desired speed along the path (m/s).
        | Start on paused: if true, generate the trajectory and stay paused until the client resumes.
 
+.. toctree::
+   :hidden:
+   :caption: Trajectory Generation Behaviors
+   :maxdepth: 1
+
+   trajectory_generation/index
+
 .. _behaviors_param_estimation:
 
 -------------------------------
@@ -118,6 +125,14 @@ Parameter Estimation Behaviors
      - Estimate the difference between the commanded thrust and the thrust being executed by the platform.
      -
 
+.. toctree::
+   :hidden:
+   :caption: Parameter Estimation Behaviors
+   :maxdepth: 1
+
+   param_estimation/mass_estimation/index
+   param_estimation/force_estimation/index
+
 .. _behaviors_swarm_flocking:
 
 -------------------------------
@@ -137,6 +152,13 @@ Swarm Flocking Behaviors
        | Swarm Formation: List of desired poses, including the ID of each drone in the swarm, with respect to the virtual centroid.
        | Drone Namespace: List of the drone namespaces in the swarm. It must be in the same order as the swarm formation list.
 
+.. toctree::
+   :hidden:
+   :caption: Swarm Flocking Behaviors
+   :maxdepth: 1
+
+   swarm_flocking/index
+
 .. _behaviors_payload:
 
 -------------------------------
@@ -153,3 +175,10 @@ Payload Behaviors
    * - :ref:`gripper`
      - Control a gripper to pick up and release objects.
      - Gripper request: It is a bool msg where true means to start the closing action and false means to start the opening action.
+
+.. toctree::
+   :hidden:
+   :caption: Payload Behaviors
+   :maxdepth: 1
+
+   payload/gripper/index
