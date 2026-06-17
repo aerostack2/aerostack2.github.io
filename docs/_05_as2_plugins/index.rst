@@ -116,19 +116,43 @@ Motion Behaviors Plugins
 
 
 
+.. _as2_plugins_behaviors_trajectory_generation:
+
+Trajectory Generation Behavior Plugins
+======================================
+
+.. list-table:: Trajectory Generation Behavior Plugins
+   :widths: 35 65
+   :header-rows: 1
+
+   * - Name
+     - Description
+   * - mav_trajectory_generator
+     - Wrapper around the ``mav_trajectory_generation_library`` (static polynomial generator with linear or NLopt-based nonlinear solver). Uses regenerate semantics on every modify.
+   * - dynamic_mav_trajectory_generator
+     - Wrapper around ``dynamic_trajectory_generator``. Supports smooth online stitching (``updateWaypoints`` replans without breaking the time axis). Recommended for long missions with frequent ``on_modify`` requests.
+   * - jerk_limited_trajectory_generator
+     - S-curve simulator (PX4-style jerk-limited profile) enforcing per-axis jerk plus 3D-norm acceleration and speed bounds. Optional L1 corner-cut smoothing through ``acceptance_radius``.
+   * - gcopter_trajectory_generator
+     - L-BFGS-based optimiser (Aerostack2 fork of ZJU-FAST-Lab GCOPTER) with safe-flight-corridor support. Optimises a polynomial trajectory under hard dynamic limits and AABB corridors anchored on each user waypoint.
 
 
 
+.. _as2_plugins_behaviors_follow_reference:
 
+Follow Reference Behavior Plugins
+=================================
 
+.. list-table:: Follow Reference Behavior Plugins
+   :widths: 35 65
+   :header-rows: 1
 
-
-
-
-
-
-
-
+   * - Name
+     - Description
+   * - follow_reference_plugin_position
+     - Tracks the reference by sending position setpoints to the controller through the ``as2_motion_reference_handlers`` ``PositionMotion`` handler. Setpoints emitted in ``earth`` so moving target frames work transparently.
+   * - follow_reference_plugin_trajectory
+     - Delegates tracking to ``TrajectoryGeneratorBehavior`` in ``follow_reference_mode``. Supports reactive modify under target drift via ``modify_threshold`` and ``modify_frequency``.
 
 
 
