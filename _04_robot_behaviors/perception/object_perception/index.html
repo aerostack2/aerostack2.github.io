@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Object Perception Behavior &mdash; Aerostack2 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/config.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: blue" >
+            <a href="../../../index.html" class="icon icon-home"> Aerostack2
+             
+            <img src="https://raw.githubusercontent.com/aerostack2/aerostack2.github.io/main/docs/_images/logo.png" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_00_getting_started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#license-agreement">License agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_00_getting_started/index.html#ubuntu-debian">Ubuntu (Debian)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/binary_install.html">Binary Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_00_getting_started/source_install.html">Source Install</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#previous-dependencies">Previous dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#source-installation">Source Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#standard-build">Standard Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_00_getting_started/source_install.html#build-with-as2-cli">Build with AS2 CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_01_aerostack2_concepts/index.html">Aerostack2 Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#inter-process-communication">Inter-process Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#platform-and-sensors">Platform and Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#robotics-functions">Robotics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#behaviors">Behaviors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#mission-control">Mission Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/architecture/index.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html">Aerostack2 Inter-process Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#motion-references">Motion References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#actuator-commands">Actuator Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#sensor-measurements">Sensor Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#self-localization">Self Localization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/as2_communications/index.html#emergency">Emergency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/aerial_platforms/index.html">Aerial Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#motion-reference-handler">Motion Reference Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#control-modes">Control Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#input-control-modes">Input Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_01_aerostack2_concepts/motion_controller/index.html#output-control-modes">Output Control Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/state_estimator/index.html">State Estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_01_aerostack2_concepts/behaviors/index.html">Behaviors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_02_examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_02_examples/index.html#basics-examples">Basics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/multirotor_simulator/project_multirotor_simulator/index.html">Simple Multirotor Simulator Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/gazebo/index.html">Gazebo Simulator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/gazebo/project_gazebo/index.html">Simple Gazebo Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie/index.html">Simple Crazyflie Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/crazyflie/project_crazyflie_gates/index.html">Crazyflie Gates Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/tello/index.html">Ryze DJI Tello</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/tello/project_tello/index.html">Simple Tello Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/dji/index.html">DJI SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_osdk/index.html">DJI OSDK Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/dji/project_dji_psdk/index.html">DJI PSDK Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_02_examples/pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_02_examples/pixhawk/project_px4_vision/index.html">PX4 Vision Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_03_aerial_platforms/index.html">Aerial Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html">Gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-platform-package">Install platform package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#install-simulation-assets">Install simulation assets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_gazebo_simulation/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html">Multirotor Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#sensors">Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#gimbal">Gimbal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#config-simulation">Config Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_multirotor_simulator/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html">Bitcraze Crazyflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_crazyflie/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html">DJI Tello</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_ryze_tello/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html">Pixhawk 4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_pixhawk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html">Mavlink</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_mavlink/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html">DJI Matrice Series OSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#install-platform-package">Install platform package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_osdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html">DJI Matrice Series PSDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#installation">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-one-time-setup-on-xavier-orin-nx-agx-boards">Prerequisites (One-Time Setup on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#prerequisites-every-boot-on-xavier-orin-nx-agx-boards">Prerequisites (Every Boot on Xavier/Orin NX/AGX Boards)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#install-platform-package">Install Platform Package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_dji_psdk/index.html#platform-launch">Platform Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html">Betaflight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#aerostack2-common-interface">Aerostack2 Common Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#control-modes">Control Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_03_aerial_platforms/_betaflight/index.html#sensors">Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Robot Behaviors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#motion-behaviors">Motion Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../follow_reference/index.html">Follow Reference Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#yaw-policy">Yaw Policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../follow_reference/index.html#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#perception-behaviors">Perception Behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#trajectory-generation-behaviors">Trajectory Generation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../trajectory_generation/index.html">Generate Polynomial Trajectory Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#available-plugins">Available Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#action-interface">Action Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#debugging-topics">Debugging Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../trajectory_generation/index.html#see-also">See also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#parameter-estimation-behaviors">Parameter Estimation Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../param_estimation/mass_estimation/index.html">Mass Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/mass_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/mass_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/mass_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/mass_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../param_estimation/force_estimation/index.html">Force Estimation Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/force_estimation/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/force_estimation/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/force_estimation/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../param_estimation/force_estimation/index.html#debugging-interfaces">Debugging &amp; Interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#swarm-flocking-behaviors">Swarm Flocking Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../swarm_flocking/index.html">Swarm Flocking Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../swarm_flocking/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../swarm_flocking/index.html#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../swarm_flocking/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../swarm_flocking/index.html#launching-the-behavior">Launching the Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../swarm_flocking/index.html#related-projects">Related Projects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#payload-behaviors">Payload Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../payload/gripper/index.html">Gripper Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../payload/gripper/index.html#working-principle">Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../payload/gripper/index.html#behavior-actions">Behavior Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../payload/gripper/index.html#configuration-parameters">Configuration Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../payload/gripper/index.html#launching-the-behavior">Launching the Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_05_as2_plugins/index.html">AS2 Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-controller-plugins">Motion Controller Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#state-estimator-plugins">State Estimator Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_05_as2_plugins/index.html#behaviors-plugins">Behaviors Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#motion-behaviors-plugins">Motion Behaviors Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#trajectory-generation-behavior-plugins">Trajectory Generation Behavior Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_05_as2_plugins/index.html#follow-reference-behavior-plugins">Follow Reference Behavior Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_06_user_interfaces/index.html">User Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html">Keyboard Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#install-dependencies">Install dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#instructions">Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#interface-components">Interface Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#settings-window">Settings window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#localization-window">Localization window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_06_user_interfaces/_keyboard_teleoperation/index.html#behavior-control">Behavior control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html">Alphanumeric Viewer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#interface-launch">Interface launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_06_user_interfaces/_alphanumeric_viewer/index.html#instructions">Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html">ROS 2 Common Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html">Aerial Platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/aerial_platform/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html">Motion Controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#topics">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/motion_controller/index.html#services">Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html">State Estimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/state_estimator/index.html#topics">Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html">Behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_08_ros2_common_interfaces/behaviors/index.html#actions">Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_08_ros2_common_interfaces/index.html#using-as2-interfaces">Using AS2 Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_09_development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_cli/index.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html">Writing a New Aerial Platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/aerial_platform.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html">Writing a New Motion Controller Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/controller_plugin.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html">Writing a New State Estimator Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/estimator_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html">Writing a New Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-server">Behavior Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/behavior.html#behavior-client">Behavior Client</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html">Writing a New Follow Reference Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/follow_reference_plugin.html#where-to-look-next">Where to look next</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html">Writing a New Trajectory Generation Plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/trajectory_generation_plugin.html#tutorial-steps">Tutorial Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html">Adding new Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-worlds">Adding New Worlds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#adding-new-models-and-objects">Adding New Models and Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_tutorials/_tutorials/adding_gazebo_assets.html#configuring-new-sensors">Configuring New Sensors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_develop_guide/index.html">Develop Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html">Developing a New Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#architecture-of-a-new-package">Architecture of a New Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#code-style">Code Style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_develop_new_pkg.html#node-template-for-new-packages">Node Template for New Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html">Setting Up Visual Studio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#install-required-extensions">Install required Extensions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#modify-settings-json">Modify ‘settings.json’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_setting_code.html#set-configuration-variables">Set Configuration Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html">Create New Gazebo Assets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-aerial-platform">Create a New Gazebo Aerial Platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_develop_guide/_develop_guide/_create_gazebo_assets.html#create-a-new-gazebo-sensor">Create a New Gazebo Sensor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html">API Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#aerostack2">Aerostack2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/aerostack2/aerostack2/docs/index.html">aerostack2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_09_development/_api_documentation/index.html#python-api">Python API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_09_development/_api_documentation/temp_ws/src/as2_python_api/docs/source/index.html">as2_python_api</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_14_projects/index.html">Projects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#research">Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#videos">Videos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id3">Local Gaussian Modifiers (LGMs): UAV dynamic trajectory generation for onboard computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id5">Framework for autonomous inspection of PV plants using IoT electronics on each PV panel and UAV collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/index.html#id7">Exploring Unstructured Environments using Minimal Sensing on Cooperative Nano-Drones</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#google-summer-of-code-gsoc">Google Summer of Code (GSoC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html">Google Summer of Code (GSoC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#why-contribute">Why contribute?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#ideas-list-for-gsoc-2026">Ideas List for GSoC 2026</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-1-rerun-based-visualization-integration-for-aerostack2">Project #1: Rerun-Based Visualization Integration for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-2-rqt-keyboard-teleoperation-alphanumeric-view">Project #2: RQT Keyboard Teleoperation &amp; Alphanumeric View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-3-migration-of-current-ros-2-nodes-to-lifecycle-nodes-in-aerostack2">Project #3: Migration of current ROS 2 Nodes to Lifecycle Nodes in Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-4-system-integration-tests-and-continuous-integration">Project #4: System Integration Tests and Continuous Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-5-development-of-a-project-creation-tool-for-aerostack2">Project #5: Development of a Project Creation Tool for Aerostack2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#project-6-behavior-client-implementation-for-c">Project #6: Behavior Client Implementation for C++</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-instructions-for-gsoc-2026">Application instructions for GSoC 2026</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#basic-requirements">Basic Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#warm-up-task">Warm-up Task</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#application-form">Application Form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#how-to-increase-your-chances-of-being-selected-in-gsoc-2026">How to increase your chances of being selected in GSoC-2026</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_gsoc/index.html#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#insertion">INSERTION</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_insertion/index.html">INSERTION</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_14_projects/index.html#ratec">RATEC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../_14_projects/_ratec/index.html">RATEC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_15_user_reviews/index.html">User Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_11_license/index.html">License Agreement: 3-Clause BSD License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_12_citations/index.html">Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_13_about_and_contact/index.html">About and Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: blue" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Aerostack2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Object Perception Behavior</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/aerostack2/aerostack2.github.io/blob/main/docs/_04_robot_behaviors/perception/object_perception/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="object-perception-behavior">
+<span id="behaviors-object-perception"></span><h1>Object Perception Behavior<a class="headerlink" href="#object-perception-behavior" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">object_perception_behavior</span></code> is a core component of the
+<code class="docutils literal notranslate"><span class="pre">as2_behaviors_object_perception</span></code> package in Aerostack2.</p>
+<p>This behavior provides a <strong>plugin-based perception pipeline</strong> that processes
+camera images and publishes the detected objects (class, image location and,
+when possible, their 3D pose). It is designed so that different detection
+algorithms can be plugged in without changing the behavior itself, and so that
+several detection stages can be chained together to build more complex
+perception pipelines.</p>
+<section id="working-principle">
+<h2>Working Principle<a class="headerlink" href="#working-principle" title="Link to this heading"></a></h2>
+<p>The behavior centralizes the image acquisition and preprocessing, and delegates
+the actual detection to one or more plugins:</p>
+<ul class="simple">
+<li><p><strong>Behavior Node</strong> (<code class="docutils literal notranslate"><span class="pre">PerceptionBehavior</span></code>): Manages the ROS 2 action server,
+acquires the camera images, preprocesses them and runs the detection pipeline.</p></li>
+<li><p><strong>Plugin Base Interface</strong> (<code class="docutils literal notranslate"><span class="pre">detection_plugin_base::DetectionBase</span></code>): Defines
+the common interface that every detection plugin must implement. Plugins
+receive an already decompressed (and optionally rectified) <code class="docutils literal notranslate"><span class="pre">cv::Mat</span></code> frame
+and output a list of detections.</p></li>
+<li><p><strong>Detection Plugins</strong>: Specific detection implementations (e.g. ArUco marker
+detection).</p></li>
+</ul>
+<section id="image-acquisition">
+<h3>Image Acquisition<a class="headerlink" href="#image-acquisition" title="Link to this heading"></a></h3>
+<p>The behavior can obtain images from two different sources, selected with the
+<code class="docutils literal notranslate"><span class="pre">use_embedded_camera</span></code> parameter:</p>
+<ul class="simple">
+<li><p><strong>Embedded camera driver</strong> (<code class="docutils literal notranslate"><span class="pre">use_embedded_camera:</span> <span class="pre">true</span></code>): The behavior loads
+the <code class="docutils literal notranslate"><span class="pre">as2_usb_camera_interface</span></code> driver internally and reads frames directly
+from a USB/CSI camera device. A camera calibration file is used to provide the
+camera intrinsics.</p></li>
+<li><p><strong>Topic mode</strong> (<code class="docutils literal notranslate"><span class="pre">use_embedded_camera:</span> <span class="pre">false</span></code>): The behavior subscribes to an
+external image topic (<code class="docutils literal notranslate"><span class="pre">camera_image_topic</span></code>) and, optionally, to a camera
+info topic (<code class="docutils literal notranslate"><span class="pre">camera_info_topic</span></code>). When no camera info is provided, detection
+still runs but 3D pose estimation is not available.</p></li>
+</ul>
+<p>In both cases the behavior decompresses the image and, if
+<code class="docutils literal notranslate"><span class="pre">enable_rectification</span></code> is set, rectifies it using the camera intrinsics before
+handing it to the plugins.</p>
+</section>
+<section id="detection-pipeline">
+<h3>Detection Pipeline<a class="headerlink" href="#detection-pipeline" title="Link to this heading"></a></h3>
+<p>The detection is organized as a <strong>pipeline of stages</strong>, configured in the
+<code class="docutils literal notranslate"><span class="pre">pipeline</span></code> section of the configuration file. Each stage loads one detection
+plugin and defines where its input comes from and where its output is published.
+A stage can take its input from:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">image</span></code>: the live preprocessed camera frame.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">internal</span></code>: the output of a previous stage in the same pipeline (either the
+immediately previous stage, or an explicitly named <code class="docutils literal notranslate"><span class="pre">input_stage</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">external</span></code>: an <code class="docutils literal notranslate"><span class="pre">ObjectPerceptionArray</span></code> received on an external topic
+(<code class="docutils literal notranslate"><span class="pre">input_topic</span></code>).</p></li>
+</ul>
+<p>This allows building pipelines where, for example, one stage detects objects and
+a later stage tracks or filters those detections. The output of the last stage
+is returned through the action feedback and result.</p>
+</section>
+<section id="available-plugins">
+<h3>Available Plugins<a class="headerlink" href="#available-plugins" title="Link to this heading"></a></h3>
+<p>The package currently includes one detection plugin:</p>
+<ol class="arabic">
+<li><p><strong>ArUco Marker Detector</strong> (<code class="docutils literal notranslate"><span class="pre">aruco::Plugin</span></code>)</p>
+<p>Detects ArUco markers in the image and, when the camera intrinsics are known,
+estimates each marker’s 6-DoF pose in the camera frame. For every detected
+marker it reports the four corners as keypoints, an axis-aligned bounding box
+and (optionally) the marker pose.</p>
+<ul class="simple">
+<li><p>Configuration: <code class="docutils literal notranslate"><span class="pre">plugins/aruco/config/plugin_default_config.yaml</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="action-interface">
+<h2>Action Interface<a class="headerlink" href="#action-interface" title="Link to this heading"></a></h2>
+<p>The behavior exposes a ROS 2 action server using the
+<code class="docutils literal notranslate"><span class="pre">as2_msgs/action/DetectObjects</span></code> action:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">DetectObjects action</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 25.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Part</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>threshold</strong></p></td>
+<td><p>Goal</p></td>
+<td><p>Minimum confidence score in the range [0.0, 1.0] required for a detection
+to be accepted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>target_classes</strong></p></td>
+<td><p>Goal</p></td>
+<td><p>List of class ids to detect (e.g. ArUco marker ids). If empty, every
+detected object is reported.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>perceptions</strong></p></td>
+<td><p>Feedback</p></td>
+<td><p>Current detections produced by the pipeline
+(<code class="docutils literal notranslate"><span class="pre">as2_msgs/ObjectPerceptionArray</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>perceptions</strong></p></td>
+<td><p>Result</p></td>
+<td><p>Final detections produced by the pipeline
+(<code class="docutils literal notranslate"><span class="pre">as2_msgs/ObjectPerceptionArray</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>When the behavior is configured as <code class="docutils literal notranslate"><span class="pre">persistent</span></code>, it keeps running and
+reporting detections through the feedback until it is explicitly cancelled.</p>
+<section id="output-message">
+<h3>Output Message<a class="headerlink" href="#output-message" title="Link to this heading"></a></h3>
+<p>Each detection is described by an <code class="docutils literal notranslate"><span class="pre">as2_msgs/ObjectPerception</span></code> message:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">ObjectPerception</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>header</strong></p></td>
+<td><p>Frame of the detection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>hypothesis</strong></p></td>
+<td><p>Detected class/id, confidence score and, if available, the 3D pose.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>bbox</strong></p></td>
+<td><p>Bounding box around the detected object in the image (pixels).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>keypoints</strong></p></td>
+<td><p>Detected keypoints of the object (e.g. the marker corners).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>keypoint_names</strong></p></td>
+<td><p>Name of each detected keypoint (e.g. <code class="docutils literal notranslate"><span class="pre">top_left</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>keypoint_scores</strong></p></td>
+<td><p>Confidence of each detected keypoint.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>pose_valid</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> when <code class="docutils literal notranslate"><span class="pre">hypothesis.pose</span></code> holds a valid 3D pose, <code class="docutils literal notranslate"><span class="pre">false</span></code> for 2D
+only detections.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="configuration-parameters">
+<h2>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Link to this heading"></a></h2>
+<p>The behavior can be configured via the <code class="docutils literal notranslate"><span class="pre">config/config.yaml</span></code> file.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Behavior Parameters</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>persistent</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the behavior keeps running and publishing detections until it
+is cancelled.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>run_frequency</strong></p></td>
+<td><p>Frequency at which the detection pipeline is executed. (Hz)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>use_embedded_camera</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, use the internal USB camera driver. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, read images
+from a topic.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>camera_image_topic</strong></p></td>
+<td><p>Image topic to subscribe to when <code class="docutils literal notranslate"><span class="pre">use_embedded_camera</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>camera_info_topic</strong></p></td>
+<td><p>Camera info topic with the intrinsics. Optional; required for 3D pose
+estimation in topic mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>enable_rectification</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the image is rectified using the camera intrinsics before
+detection.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The pipeline is defined under the <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> key:</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Pipeline Stage Parameters</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>stages</strong></p></td>
+<td><p>Ordered list of stage names that make up the pipeline.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>plugin</strong></p></td>
+<td><p>Name of the detection plugin loaded by the stage.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>input_source</strong></p></td>
+<td><p>Source of the stage input: <code class="docutils literal notranslate"><span class="pre">image</span></code>, <code class="docutils literal notranslate"><span class="pre">internal</span></code> or <code class="docutils literal notranslate"><span class="pre">external</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>input_stage</strong></p></td>
+<td><p>Name of the stage to take the input from, when <code class="docutils literal notranslate"><span class="pre">input_source</span></code> is
+<code class="docutils literal notranslate"><span class="pre">internal</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>input_topic</strong></p></td>
+<td><p>Topic to read the input detections from, when <code class="docutils literal notranslate"><span class="pre">input_source</span></code> is
+<code class="docutils literal notranslate"><span class="pre">external</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>publish_output</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the stage detections are published.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>output_topic</strong></p></td>
+<td><p>Topic where the stage detections (<code class="docutils literal notranslate"><span class="pre">ObjectPerceptionArray</span></code>) are
+published.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>enable_debug</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the stage publishes debug information.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>debug_poses_topic</strong></p></td>
+<td><p>Topic where the valid 3D poses are published as a <code class="docutils literal notranslate"><span class="pre">PoseArray</span></code> for
+visualization (e.g. RViz).</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>ArUco Plugin Parameters</strong></p>
+<p>Configured via <code class="docutils literal notranslate"><span class="pre">plugins/aruco/config/plugin_default_config.yaml</span></code>.</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">ArUco Plugin Parameters</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>tag_dict</strong></p></td>
+<td><p>ArUco dictionary used for detection (e.g. <code class="docutils literal notranslate"><span class="pre">6x6_250</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>marker_size</strong></p></td>
+<td><p>Physical size of the marker side, in meters (m). Used for pose estimation.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>estimate_pose</strong></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, estimate the 6-DoF pose of each marker (requires camera
+intrinsics).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="launching-the-behavior">
+<h2>Launching the Behavior<a class="headerlink" href="#launching-the-behavior" title="Link to this heading"></a></h2>
+<p>You can launch this behavior selecting the detection plugin and the image
+source:</p>
+<p><strong>1. Topic mode (images from a topic)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_behaviors_object_perception<span class="w"> </span>detect_behavior_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>namespace:<span class="o">=</span>&lt;drone_namespace&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>plugin_name:<span class="o">=</span>&lt;plugin_config_file&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>use_embedded_camera:<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p><strong>2. Embedded camera mode</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>as2_behaviors_object_perception<span class="w"> </span>detect_behavior_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>namespace:<span class="o">=</span>&lt;drone_namespace&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>plugin_name:<span class="o">=</span>&lt;plugin_config_file&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>use_embedded_camera:<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>camera_interface_file:<span class="o">=</span>&lt;camera_interface_file&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>calibration_file:<span class="o">=</span>&lt;camera_calibration_file&gt;
+</pre></div>
+</div>
+<p><strong>Sending the Goal manually:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>/&lt;namespace&gt;/PerceptionBehavior<span class="w"> </span>as2_msgs/action/DetectObjects<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">&quot;{threshold: 0.0, target_classes: []}&quot;</span>
+</pre></div>
+</div>
+<p>To detect only specific ArUco markers, list their ids in <code class="docutils literal notranslate"><span class="pre">target_classes</span></code>,
+e.g. <code class="docutils literal notranslate"><span class="pre">target_classes:</span> <span class="pre">['0',</span> <span class="pre">'5']</span></code>.</p>
+</section>
+<section id="debugging-interfaces">
+<h2>Debugging &amp; Interfaces<a class="headerlink" href="#debugging-interfaces" title="Link to this heading"></a></h2>
+<p>The behavior and the ArUco plugin publish the following topics for debugging and
+visualization purposes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">detections_data</span></code>: Detections produced by the pipeline
+(<code class="docutils literal notranslate"><span class="pre">as2_msgs/ObjectPerceptionArray</span></code>). The exact topic name is set per stage
+with <code class="docutils literal notranslate"><span class="pre">output_topic</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debug/detection_poses</span></code>: Valid 3D poses of the detections published as a
+<code class="docutils literal notranslate"><span class="pre">geometry_msgs/PoseArray</span></code> (configured with <code class="docutils literal notranslate"><span class="pre">debug_poses_topic</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debug/detection_markers</span></code>: ArUco markers published as a
+<code class="docutils literal notranslate"><span class="pre">visualization_msgs/MarkerArray</span></code> (cube + id text) for visualization in RViz.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2026, Universidad Politécnica de Madrid.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -614,9 +614,13 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Detect ArUco Markers</p></td>
-<td><p>Detect ArUco Markers in a image and publish the result.</p></td>
-<td><p>Target ids: list of id of the markers to detect</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="perception/object_perception/index.html#behaviors-object-perception"><span class="std std-ref">Object Perception Behavior</span></a></p></td>
+<td><p>Plugin-based perception pipeline that processes camera images and publishes the detected objects (e.g. ArUco markers), including their image location and optional 3D pose.</p></td>
+<td><div class="line-block">
+<div class="line">Threshold: minimum confidence score in the range [0.0, 1.0] for a detection to be accepted.</div>
+<div class="line">Target classes: list of class ids to detect (e.g. ArUco marker ids). If empty, every detected object is reported.</div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
