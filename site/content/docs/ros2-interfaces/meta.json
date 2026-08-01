@@ -1,0 +1,12 @@
+{
+  "title": "ROS 2 Interfaces",
+  "icon": "Radio",
+  "pages": [
+    "index",
+    "as2-msgs",
+    "aerial-platform",
+    "motion-controller",
+    "state-estimator",
+    "behaviors"
+  ]
+}

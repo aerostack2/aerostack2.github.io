@@ -1,0 +1,13 @@
+{
+  "title": "Examples",
+  "icon": "FlaskConical",
+  "pages": [
+    "index",
+    "gazebo",
+    "multirotor-simulator",
+    "crazyflie",
+    "dji",
+    "pixhawk",
+    "tello"
+  ]
+}

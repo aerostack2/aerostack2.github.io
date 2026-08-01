@@ -1,0 +1,16 @@
+{
+  "title": "Aerial Platforms",
+  "icon": "PlaneTakeoff",
+  "pages": [
+    "index",
+    "gazebo-simulation",
+    "multirotor-simulator",
+    "pixhawk",
+    "mavlink",
+    "crazyflie",
+    "dji-osdk",
+    "dji-psdk",
+    "ryze-tello",
+    "betaflight"
+  ]
+}

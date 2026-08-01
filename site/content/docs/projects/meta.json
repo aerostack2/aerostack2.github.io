@@ -1,0 +1,5 @@
+{
+  "title": "Projects",
+  "icon": "FolderGit2",
+  "pages": ["index", "gsoc", "insertion", "ratec", "roadmaps"]
+}

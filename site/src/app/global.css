@@ -1,0 +1,52 @@
+@import "tailwindcss";
+/* `opsz` variant carries Inter v4's optical-size axis as well as weight. */
+@import "@fontsource-variable/inter/opsz.css";
+@import "./theme-linear.css";
+/* `preset.css` already includes docs/flux/home/notebook/shared. It does NOT
+   include glass — if you ever switch back to GlassLayout, add
+   `@import "fumadocs-ui/css/generated/glass.css";` here or it renders unstyled. */
+@import "fumadocs-ui/css/preset.css";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+}
+
+html {
+  scrollbar-gutter: stable;
+  font-optical-sizing: auto;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Glass exposes no sidebar `components` slot, so the section headings are
+   styled here. Every section is a collapsible folder now, whose trigger is the
+   folder trigger. `data-panel-open` is NOT usable here: it vanishes when the
+   folder is collapsed. `aria-expanded` is always present on the triggers, and
+   `:not([aria-haspopup])` excludes the search and popover buttons.
+   Uppercase but unbolded. */
+/* `SidebarFolderTrigger` rotates its chevron from the folder's own internal
+   state, which `AccordionFolder` overrides — so drive it from `aria-expanded`,
+   which reflects the real Collapsible state. */
+#nd-sidebar button[aria-expanded]:not([aria-haspopup]) svg[data-icon] {
+  transition: transform 150ms ease;
+}
+#nd-sidebar button[aria-expanded="false"]:not([aria-haspopup]) svg[data-icon] {
+  transform: rotate(-90deg);
+}
+#nd-sidebar button[aria-expanded="true"]:not([aria-haspopup]) svg[data-icon] {
+  transform: none;
+}
+
+#nd-sidebar button[aria-expanded]:not([aria-haspopup]) {
+  font-weight: 400;
+  /* Titles are already title-cased in each `meta.json`, so no `text-transform`
+     — `capitalize` would be redundant and `uppercase` mangles nothing but reads
+     louder than wanted. */
+  /* Matches the page rows, which inherit the sidebar's `text-sm`. */
+  font-size: 0.875rem;
+  color: var(--color-fd-muted-foreground);
+}

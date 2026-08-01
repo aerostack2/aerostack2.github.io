@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "getting-started",
+    "concepts",
+    "examples",
+    "aerial-platforms",
+    "behaviors",
+    "plugins",
+    "user-interfaces",
+    "ros2-interfaces",
+    "develop-guide",
+    "tutorials",
+    "cli",
+    "api",
+    "projects",
+    "about"
+  ]
+}

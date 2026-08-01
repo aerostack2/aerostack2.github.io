@@ -1,0 +1,14 @@
+{
+  "title": "Tutorials",
+  "icon": "GraduationCap",
+  "pages": [
+    "index",
+    "aerial-platform",
+    "behavior",
+    "controller-plugin",
+    "estimator-plugin",
+    "follow-reference-plugin",
+    "trajectory-generation-plugin",
+    "gazebo-assets"
+  ]
+}

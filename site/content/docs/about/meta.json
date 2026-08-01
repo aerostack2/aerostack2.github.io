@@ -1,0 +1,5 @@
+{
+  "title": "About",
+  "icon": "Info",
+  "pages": ["index", "user-reviews", "citations", "license"]
+}

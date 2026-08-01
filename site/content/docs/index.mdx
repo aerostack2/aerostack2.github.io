@@ -1,0 +1,119 @@
+---
+title: Aerostack2
+description: An open source framework for developing multi-robot aerial systems, built on ROS 2.
+---
+
+Aerostack2 is an open source software framework that helps developers design and build the control
+architecture of aerial robotic systems, integrating multiple heterogeneous computational solutions —
+computer vision algorithms, motion controllers, self-localization and mapping methods, motion
+planning algorithms and more.
+
+<Cards>
+  <Card title="Getting Started" href="/docs/getting-started" description="Install Aerostack2 and run your first flight." />
+  <Card title="Concepts" href="/docs/concepts" description="The architecture, communications and core abstractions." />
+  <Card title="Examples" href="/docs/examples" description="Ready-to-run projects for Gazebo, Crazyflie, DJI, Pixhawk and Tello." />
+  <Card title="Develop Guide" href="/docs/develop-guide" description="Write your own packages, plugins and behaviors." />
+</Cards>
+
+## Migration status
+
+<Callout type="info" title="This site is being rebuilt">
+  The pages under each section are stubs. Content is ported from the Sphinx site one page at a time —
+  each stub names the reST file it comes from.
+</Callout>
+
+The components below replace the reST directives used by the old site, and are available in every
+MDX page without importing them.
+
+### Callouts
+
+Replaces `.. note::` and `.. warning::`.
+
+<Callout type="warn">
+  Aerostack2 requires ROS 2 Humble. Earlier distributions are no longer supported.
+</Callout>
+
+### Figures
+
+Replaces `.. figure::`, including its `:scale:` option.
+
+<Figure
+  src="/architecture-overview.jpg"
+  alt="Aerostack2 architecture"
+  caption="Aerostack2 architecture overview"
+  scale={80}
+/>
+
+### Videos
+
+Replaces the hand-written `.. raw:: html` iframe embeds.
+
+<Video youtube="IvItNtSB-QE" title="Aerostack2: A framework for developing Multi-Robot Aerial Systems" />
+
+### Tables
+
+Replaces `.. list-table::`.
+
+| Name              | Type                       | Quality of Service | Description                                  |
+| ----------------- | -------------------------- | ------------------ | -------------------------------------------- |
+| `platform/info`   | `as2_msgs/PlatformInfo`    | DefaultQoS         | Connection, arming, offboard and fly status   |
+| `actuator_command/pose` | `geometry_msgs/PoseStamped` | SensorDataQoS | Position in metres and orientation in radians |
+
+### Math
+
+Replaces `.. math::` and the `:math:` role, rendered with KaTeX. Inline math uses `$…$` and display
+math uses `$$…$$`.
+
+Instantaneous mass is thrust over vertical acceleration, where $T$ is the thrust and $a_z$ the
+vertical acceleration in $m/s^2$:
+
+$$
+m_{inst} = \frac{T}{{a_z}}
+$$
+
+The force error is the difference between commanded and measured force:
+
+$$
+F_{error} = F_{cmd} - F_{meas} \quad\text{where}\quad F_{meas} = m \cdot {a}_z
+$$
+
+### Code blocks
+
+Replaces `.. code-block::`, rendered with the Fumadocs `CodeBlock` component. The copy button is
+built in, so `sphinx-copybutton` is no longer needed.
+
+`title` covers the 10 places the old docs used `:caption:`, and `lineNumbers` turns on numbering:
+
+```bash title="launch_simulation.sh" lineNumbers
+ros2 launch as2_gazebo_assets launch_simulation.py \
+  use_sim_time:=true \
+  simulation_config_file:=config/world.json
+```
+
+Consecutive blocks tagged with `tab` become a tabbed group — useful for the install pages, which
+currently repeat themselves for each method:
+
+```bash tab="Binary"
+sudo apt install ros-humble-aerostack2
+```
+
+```bash tab="Source"
+vcs import src < aerostack2.repos
+colcon build --symlink-install
+```
+
+Shiki has no SDFormat grammar, so the old `.. code-block:: sdf` blocks become `xml`:
+
+```xml title="model.sdf"
+<sdf version="1.9">
+  <model name="quadrotor">
+    <link name="base_link" />
+  </model>
+</sdf>
+```
+
+Use `noCopy` on blocks that shouldn't be copied, such as sample output:
+
+```console noCopy
+[INFO] [as2_platform]: Platform is ready
+```

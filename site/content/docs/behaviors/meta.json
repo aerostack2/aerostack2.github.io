@@ -1,0 +1,13 @@
+{
+  "title": "Robot Behaviors",
+  "icon": "Workflow",
+  "pages": [
+    "index",
+    "trajectory-generation",
+    "follow-reference",
+    "swarm-flocking",
+    "payload",
+    "perception",
+    "param-estimation"
+  ]
+}

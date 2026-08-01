@@ -1,0 +1,61 @@
+/* Fumadocs colour theme derived from the design tokens published by
+   linear.app/docs. Replaces `fumadocs-ui/css/neutral.css`.
+
+   Linear's own token -> Fumadocs variable, so the mapping stays checkable:
+     --color-bg-primary      -> --color-fd-background
+     --color-bg-level-1      -> --color-fd-card
+     --color-bg-secondary    -> --color-fd-popover / --color-fd-secondary
+     --color-bg-tertiary     -> --color-fd-accent      (hover states)
+     --color-border-primary  -> --color-fd-border
+     --color-text-primary    -> --color-fd-foreground
+     --color-text-tertiary   -> --color-fd-muted-foreground
+     --color-accent          -> --color-fd-primary / --color-fd-ring */
+
+@import "fumadocs-ui/css/lib/default-colors.css";
+
+@theme {
+  --color-fd-background: #ffffff;
+  --color-fd-foreground: #282a30;
+  --color-fd-muted: #f4f4f5;
+  --color-fd-muted-foreground: #6f6e77;
+  --color-fd-popover: #ffffff;
+  --color-fd-popover-foreground: #282a30;
+  --color-fd-card: #f9f8f9;
+  --color-fd-card-foreground: #282a30;
+  --color-fd-border: #e9e8ea;
+  --color-fd-primary: #7170ff;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: #f9f8f9;
+  --color-fd-secondary-foreground: #3c4149;
+  --color-fd-accent: #f4f2f4;
+  --color-fd-accent-foreground: #282a30;
+  --color-fd-ring: #7170ff;
+  --color-fd-overlay: rgba(0, 0, 0, 0.2);
+}
+
+.dark {
+  --color-fd-background: #08090a;
+  --color-fd-foreground: #f7f8f8;
+  --color-fd-muted: #141516;
+  --color-fd-muted-foreground: #8a8f98;
+  --color-fd-popover: #1c1c1f;
+  --color-fd-popover-foreground: #f7f8f8;
+  --color-fd-card: #0f1011;
+  --color-fd-card-foreground: #f7f8f8;
+  --color-fd-border: #23252a;
+  --color-fd-primary: #7170ff;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: #1c1c1f;
+  --color-fd-secondary-foreground: #d0d6e0;
+  --color-fd-accent: #232326;
+  --color-fd-accent-foreground: #f7f8f8;
+  --color-fd-ring: #7170ff;
+  --color-fd-overlay: rgba(0, 0, 0, 0.5);
+}
+
+/* Linear's sidebar sits a step darker than the page, not lighter. */
+.dark #nd-sidebar {
+  --color-fd-muted: #0f1011;
+  --color-fd-secondary: #141516;
+  --color-fd-muted-foreground: #8a8f98;
+}
