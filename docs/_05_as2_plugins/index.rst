@@ -48,18 +48,43 @@ State Estimator Plugins
 -----------------------
 
 
+State Estimator plugins turn the measurements available on a given platform into the robot
+state and the transform tree. The plugin is selected with the ``plugin_name`` parameter, and
+its own parameters live in a block named after it. See
+:ref:`State Estimator <as2_concepts_state_estimator>` for how the component and its plugins
+fit together.
+
+.. figure:: _state_estimator/images/plugin_overview.png
+   :scale: 32
+   :align: center
+   :class: with-shadow
+
+   What each plugin consumes, and the output path they share
+
 .. list-table:: State Estimator Plugins
-   :widths: 50 50
+   :widths: 25 75
    :header-rows: 1
 
    * - Name
      - Description
-   * - Raw Odometry
-     - This plugin use the raw odometry data from an external source, such as the aircraft or a onboard sensor.
-   * - Ground Truth
-     - This plugin use the ground truth data from an external source, such as simulator or a external sensor.
-   * - Mocap Pose
-     - This plugin use the pose data from an external source, such as a motion capture system, and compute the twist.
+   * - :ref:`Raw Odometry <as2_plugins_state_estimator_raw_odometry>`
+     - Republishes an odometry the platform has already computed, such as the one coming
+       from an autopilot or an onboard tracking sensor. Optionally anchors the tree to a GPS
+       datum.
+   * - :ref:`Ground Truth <as2_plugins_state_estimator_ground_truth>`
+     - Takes an absolute, essentially exact pose at face value. Reads it either from a pose
+       topic or directly from a motion capture system, and computes the twist when the
+       source does not provide one.
+   * - :ref:`Simple EKF <as2_plugins_state_estimator_simple_ekf>`
+     - Fuses an IMU with an arbitrary list of pose sources in a 15 state Extended Kalman
+       Filter. Handles delayed measurements, drifting sources and output smoothing.
+
+.. toctree::
+   :maxdepth: 1
+
+   _state_estimator/raw_odometry.rst
+   _state_estimator/ground_truth.rst
+   _state_estimator/simple_ekf.rst
 
 
 
