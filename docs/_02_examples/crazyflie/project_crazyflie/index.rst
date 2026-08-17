@@ -28,8 +28,27 @@ There are two drone configurations available, one for flying with internal posit
 (e.g. flow deck or lighthouse deck) and another for using an external one (e.g. motion capture system).
 Depending on the position estimation method, the configuration file should be set accordingly.
 
+The file ships both configurations, the internal one active and the external one commented
+out. Uncomment the one you need and comment out the other.
+
+Internal position estimation
+============================
+
+The drone estimates its own position, and the
+:ref:`raw_odometry <as2_plugins_state_estimator_raw_odometry>` plugin republishes it.
+
+.. code-block:: yaml
+
+   platform:
+     ros__parameters:
+       external_odom: false
+
+   state_estimator:
+     ros__parameters:
+       plugin_name: "raw_odometry"
+
 .. list-table:: Internal position estimation configuration
-   :widths: 50 50 50
+   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameters
@@ -41,15 +60,35 @@ Depending on the position estimation method, the configuration file should be se
    * - ``external_odom``
      - false
      - Availability of external odometry
-   * - ``external_odom_topic``
-     - ""
-     - External odometry topic name (not needed if external_odom is false)
    * - ``plugin_name``
      - "raw_odometry"
      - Plugin name for the state estimator
 
+External position estimation
+============================
+
+A motion capture system gives the pose, and the
+:ref:`ground_truth <as2_plugins_state_estimator_ground_truth>` plugin reads the rigid
+bodies directly. The estimated pose is sent back to the drone through
+``external_odom_topic``.
+
+.. code-block:: yaml
+
+   platform:
+     ros__parameters:
+       external_odom: true
+       external_odom_topic: "self_localization/pose"
+
+   state_estimator:
+     ros__parameters:
+       plugin_name: "ground_truth"
+       ground_truth:
+         mocap_sub_topic: "/mocap/rigid_bodies"
+         twist_smooth_filter_cte: 0.1   # (0, 1]; 1 applies no filtering
+         rigid_body_name: "1"
+
 .. list-table:: External position estimation configuration
-   :widths: 50 50 50
+   :widths: 30 30 40
    :header-rows: 1
 
    * - Parameters
@@ -63,25 +102,37 @@ Depending on the position estimation method, the configuration file should be se
      - Availability of external odometry
    * - ``external_odom_topic``
      - "self_localization/pose"
-     - External odometry topic name (not needed if external_odom is false)
+     - Topic the estimated pose is sent back to the drone on
    * - ``plugin_name``
-     - "mocap_pose"
+     - "ground_truth"
      - Plugin name for the state estimator
-   * - ``mocap_topic``
+   * - ``ground_truth.mocap_sub_topic``
      - "/mocap/rigid_bodies"
      - Topic where the mocap data is published
-   * - ``rigid_body_name``
+   * - ``ground_truth.rigid_body_name``
      - "1"
      - Name of the rigid body assigned for the drone (it varies for each drone)
+   * - ``ground_truth.twist_smooth_filter_cte``
+     - 0.1
+     - Low-pass constant applied to the twist, which is obtained by differentiating the
+       mocap pose
 
-Remember to set the correct addresses in the file for each drone, 
+The ``rigid_body_name`` of each drone is set in the per-drone section at the bottom of the
+file, since it varies from drone to drone.
+
+Remember to set the correct addresses in the file for each drone,
 as indicated in :ref:`aerial_platform_crazyflie_platform_launch`.
 Leave only the entries for every drone that will be used, even if it is only one.
 
 .. note::
 
-    For propagating the motion capture system data into the ROS 2 system, we recommend using the 
+    For propagating the motion capture system data into the ROS 2 system, we recommend using the
     `mocap4ros2 <https://mocap4ros2-project.github.io/>`_ package.
+
+.. note::
+
+    Both plugins have further parameters. They are documented in the
+    :ref:`State Estimator plugins <as2_plugins_state_estimator>` reference.
 
 .. _project_crazyflie_launching:
 

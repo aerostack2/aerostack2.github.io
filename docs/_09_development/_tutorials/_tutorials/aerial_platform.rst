@@ -17,7 +17,7 @@ Overview
 --------
 
 This tutorial shows how to create your own Aerial Platform. To understand what is an
-AeroStack2 Aerial Platform, please revisit :ref:`aerial_platforms`.
+Aerostack2 Aerial Platform, please revisit :ref:`aerial_platforms`.
 
 For better understanding, this tutorial will be a walktrough of one existing platform.
 Due to accesibility, :ref:`Gazebo Platform <aerial_platform_gazebo>` will be the chosen one. The code used in
@@ -26,12 +26,12 @@ this tutorial can be found in `Github
 
 .. note::
 
-    Just as a reminder, an aerial platform has two sides. One who deals with AeroStack2
+    Just as a reminder, an aerial platform has two sides. One who deals with Aerostack2
     communication (ROS 2) and another who deals with the specific hardware platform.
     Since all platforms inherit from a common parent class, the user should only focus on
     how to communicate (send commands and receive data) with the platform hardware. ROS 2
     communication will be done by the base class, who has all the subscribers and publishers
-    needed in AeroStack2.
+    needed in Aerostack2.
 
 
 
@@ -42,9 +42,9 @@ Requirements
 ------------
 
 - ROS 2 Humble
-- AeroStack2
+- Aerostack2
 - Gazebo Fortress
-- Quadrotor Gazebo model (as2_gazebo_assets, already included within AeroStack2)
+- Quadrotor Gazebo model (as2_gazebo_assets, already included within Aerostack2)
 
 
 

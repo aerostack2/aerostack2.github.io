@@ -34,7 +34,30 @@ The flags for the components launcher are:
 
 Arguments for the components launcher are:
 
-- ``-e``: estimator type. Allowed values [``ground_truth``, ``raw_odometry``, ``mocap``]. Default: ``ground_truth``.
+- ``-e``: estimator type. Allowed values [``raw_odometry``, ``mocap_pose``]. Default: ``raw_odometry``.
+
+The value of ``-e`` selects the configuration file the components are launched with, and
+each file configures the state estimator for that setup:
+
+.. list-table:: Configuration selected by ``-e``
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - Value
+     - Configuration file
+     - State estimator
+   * - ``raw_odometry``
+     - ``real_config/cf_flowdeck.yaml``
+     - :ref:`raw_odometry <as2_plugins_state_estimator_raw_odometry>`, republishing the
+       odometry the optical flow deck computes
+   * - ``mocap_pose``
+     - ``real_config/cf_mocap.yaml``
+     - :ref:`ground_truth <as2_plugins_state_estimator_ground_truth>`, reading the rigid
+       bodies of the motion capture system. Also launches ``mocap4ros2``
+
+In the simulated version the flag is ignored: ``sim_config/cf_sim.yaml`` is used, with the
+:ref:`ground_truth <as2_plugins_state_estimator_ground_truth>` plugin reading the ground
+truth of the simulator.
 
 
 
@@ -161,15 +184,20 @@ In order to perform a real execution of this project, it is needed to have the c
 Before launching the components, remember to set the correct address in the file ``real_config/swarm_config_file.yaml``, as indicated in :ref:`aerial_platform_crazyflie_platform_launch`.
 Leave only the entries for the drone(s) that will be used, even if it is only one.
 
-It is also important to decide which state estimator to use. Currently, Aerostack2 supports two types of state estimators for the Crazyflie, this are:
+It is also important to decide which state estimator to use, which is what the ``-e`` flag
+selects:
 
-- **Optitrack**: which uses ``mocap`` plugin. 
-- **Optical Flow**: which uses ``raw_odometry`` plugin.
+- **Optitrack**: ``-e mocap_pose``, which uses the ``ground_truth`` plugin reading the
+  motion capture rigid bodies. Configured in ``real_config/cf_mocap.yaml``.
+- **Optical Flow**: ``-e raw_odometry``, which uses the ``raw_odometry`` plugin. Configured
+  in ``real_config/cf_flowdeck.yaml``.
 
 .. note::
 
-    Before launching the components with **mocap**, it is also necessary to set the file ``real_config/mocap.yaml``. This file will be used by the state estimator mocap plugin to 
-    get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
+    Before launching the components with **mocap**, it is also necessary to set the file ``real_config/optitrack.yaml``
+    with the address of your motion capture server. The pose it publishes is read by the state estimator, which turns it
+    into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
+    The rigid body assigned to each drone is set per drone in ``real_config/cf_mocap.yaml``.
 
 .. warning:: 
 
@@ -192,14 +220,11 @@ In order to launch the components for a **single drone** with **optical flow**, 
 
     ./launch_as2.bash -e raw_odometry -t
 
-Before launching the components with **mocap**, it is also necessary to set the file ``real_config/mocap.yaml``. This file will be used by the state estimator mocap plugin to 
-get the ground truth pose coming from our motion capture system into the Aerostack2 common interface localization :ref:`topics <ros2_common_interfaces_state_estimator_topics>`.
-
 In order to launch the components for a **single drone** with **mocap**, do:
 
 .. code-block:: bash
 
-    ./launch_as2.bash -e mocap -t
+    ./launch_as2.bash -e mocap_pose -t
 
 To start the mission for a **single drone**, go to a new terminal line and execute:
 
@@ -238,7 +263,7 @@ In order to launch the components for a **swarm of 2 drones** with **mocap**, do
 
 .. code-block:: bash
 
-    ./launch_as2.bash -m -e mocap -t
+    ./launch_as2.bash -m -e mocap_pose -t
 
 To start the mission for a **swarm of 2 drones**, go to a new terminal line and execute:
 

@@ -17,7 +17,7 @@ Overview
 --------
 
 This tutorial shows how to create your brand new Behavior. To understand what is an
-AeroStack2 Behavior, please revisit :ref:`behaviors` section.
+Aerostack2 Behavior, please revisit :ref:`behaviors` section.
 
 For better understanding, this tutorial will be a walktrough of one existing behavior (Takeoff).
 As you already now, a behavior is formed by a Server and a Client. The code used in this tutorial 
@@ -34,7 +34,7 @@ Requirements
 ------------
 
 - ROS 2 Humble
-- AeroStack2
+- Aerostack2
 
 
 
@@ -149,7 +149,7 @@ The client side will explained with an example in Python. However, feel free to 
 in C++ or any other ROS 2 supported language.
 
 The Behavior class inherits from a common behavior handler which implements all common features to
-the AeroStack2 behaviors. Methods like ``pause``, ``resume`` or ``cancel`` are equal between behaviors,
+the Aerostack2 behaviors. Methods like ``pause``, ``resume`` or ``cancel`` are equal between behaviors,
 so the user doesn't need to code them. Other aspects like topics, services or action management is also
 solved by the parent class.
 
